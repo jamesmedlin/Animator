@@ -1,10 +1,9 @@
 package cs3500.easyanimator.model;
 
-import java.util.Stack;
 
 public abstract class AShape implements IShape {
-  Stack<>
 
+  @Override
   public void changeColor(Color color, int duration) {
 
   }
