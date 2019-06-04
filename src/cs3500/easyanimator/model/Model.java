@@ -36,6 +36,7 @@ public class Model implements IModel {
             new MyEllipse(
                 name, startWidth, startHeight, startRed, startGreen, startBlue, startX, startY),
             new ArrayList<IMotion>()));
+        break;
       default:
         shapes.put(name, null);
     }
@@ -46,19 +47,26 @@ public class Model implements IModel {
     shapes.remove(name);
   }
 
-  public void addMotion(
-      String name, int startTime, int endTime, int startX, int endX, int startY, int endY,
-      int startHeight, int endHeight, int startWidth, int endWidth, int startRed, int endRed,
-      int startGreen, int endGreen, int startBlue, int endBlue) {
-    
+  public void addMotion( String name, int startTime, int endTime, double startX, double endX,
+      double startY, double endY, int startHeight, int endHeight, int startWidth, int endWidth,
+      int startRed, int endRed, int startGreen, int endGreen, int startBlue, int endBlue) {
+    IMovableShape shape = this.shapes.getOrDefault(name, null);
+    if (shape == null) {
+      throw new IllegalArgumentException("Shape with name " + name + " does not exist");
+    }
+    else {
+      shape.addMotion(startTime, endTime, startX, endX,startY, endY, startHeight, endHeight,
+          startWidth, endWidth, startRed, endRed, startGreen, endGreen, startBlue, endBlue);
+    }
   }
 
   @Override
   public String printHistory() {
+    String result = "";
     for (IMovableShape shape : shapes.values()) {
-      shape.getMotions();
+      result += shape.getMotions();
     }
-    return "The history here";
+    return result;
   }
 
 }

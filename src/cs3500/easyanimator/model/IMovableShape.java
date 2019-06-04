@@ -34,4 +34,8 @@ public interface IMovableShape {
    */
   String getMotions();
 
+  void addMotion(int startTime, int endTime, double startX, double endX, double startY, double endY,
+      int startHeight, int endHeight, int startWidth, int endWidth, int startRed, int endRed,
+      int startGreen, int endGreen, int startBlue, int endBlue);
+
 }

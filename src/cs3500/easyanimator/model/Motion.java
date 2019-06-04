@@ -1,10 +1,28 @@
 package cs3500.easyanimator.model;
 
 import java.awt.geom.Point2D;
+import java.awt.geom.Point2D.Double;
 
 public class Motion implements IMotion {
   
-  
+  public Motion(int startTime, int endTime, double startX, double startY, double endX, double endY,
+      int startHeight, int endHeight, int startWidth, int endWidth, int startRed, int endRed,
+      int startGreen, int endGreen, int startBlue, int endBlue) {
+    this.startTime = startTime;
+    this.endTime = endTime;
+    this.startPos = new Point2D.Double(startX, startY);
+    this.endPos = new Point2D.Double(endX, endY);
+    this.startHeight = startHeight;
+    this.endHeight = endHeight;
+    this.startWidth = startWidth;
+    this.endWidth = endWidth;
+    this.startRed = startRed;
+    this.endRed = endRed;
+    this.startGreen = startGreen;
+    this.endGreen = endGreen;
+    this.startBlue = startBlue;
+    this.endBlue = endBlue;
+  }
   
   int startTime;
   int endTime;

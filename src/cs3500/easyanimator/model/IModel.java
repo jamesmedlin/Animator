@@ -44,7 +44,7 @@ public interface IModel {
    * @param endBlue
    */
   void addMotion(
-      String name, int startTime, int endTime, int startX, int endX, int startY, int endY,
+      String name, int startTime, int endTime, double startX, double endX, double startY, double endY,
       int startHeight, int endHeight, int startWidth, int endWidth, int startRed, int endRed,
       int startGreen, int endGreen, int startBlue, int endBlue);
   
