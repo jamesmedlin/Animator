@@ -67,57 +67,62 @@ public class AnimatedShape implements IAnimatedShape {
       this.endTick = this.mostRecentShape.getTick();
     }
 
-    public MotionAdder setStartWidth(int value) {
+    private MotionAdder setStartWidth(int value) {
       this.startWidth = value;
       return this;
     }
 
-    public MotionAdder setStartHeight(int value) {
+    private MotionAdder setStartHeight(int value) {
       this.startHeight = value;
       return this;
     }
 
-    public MotionAdder setEndWidth(int value) {
+    private MotionAdder setEndWidth(int value) {
       this.endWidth = value;
       return this;
     }
 
-    public MotionAdder setEndHeight(int value) {
+    private MotionAdder setEndHeight(int value) {
       this.endHeight = value;
       return this;
     }
 
-    public MotionAdder setStartPos(Point2D pos) {
+    private MotionAdder setStartPos(Point2D pos) {
       this.startPos = pos;
       return this;
     }
 
-    public MotionAdder setEndPos(Point2D pos) {
+    private MotionAdder setEndPos(Point2D pos) {
       this.endPos = pos;
       return this;
     }
 
-    public MotionAdder setStartColor(Color color) {
+    private MotionAdder setStartColor(Color color) {
       this.startColor = color;
       return this;
     }
 
-    public MotionAdder setEndColor(Color color) {
+    private MotionAdder setEndColor(Color color) {
       this.endColor = color;
       return this;
     }
 
-    public MotionAdder setStartTick(int value) {
+    private MotionAdder setStartTick(int value) {
       this.startTick = value;
       return this;
     }
 
-    public MotionAdder setEndTick(int value) {
+    private MotionAdder setEndTick(int value) {
       this.endTick = value;
       return this;
     }
+    
+    public MotionAdder setDuration(int duration) {
+      this.endTick = this.startTick + duration;
+      return this;
+    }
 
-    public AnimatedShape add() {
+    private AnimatedShape add() {
 
       ArrayList<IShapeState> states = AnimatedShape.this.states;
 
@@ -167,32 +172,27 @@ public class AnimatedShape implements IAnimatedShape {
   }
 
   @Override
-  public void addFullMotion(int startTime, int endTime, Point2D startPos, Point2D endPos,
-      int startHeight, int endHeight, int startWidth, int endWidth, Color startColor,
-      Color endColor) {
-    new MotionAdder().setStartColor(startColor)
+  public void fullMotionTo(
+      Point2D endPos, int endHeight, int endWidth, Color endColor, int duration) {
+    new MotionAdder()
     .setEndColor(endColor)
-    .setStartHeight(startHeight)
     .setEndHeight(endHeight)
-    .setStartWidth(startWidth)
     .setEndWidth(endWidth)
-    .setStartPos(startPos)
     .setEndPos(endPos)
-    .setStartTick(startTime)
-    .setEndTick(endTime)
+    .setDuration(duration)
     .add();
   }
 
   @Override
   public void changeColor(Color color, int duration) {
     AnimatedShape.MotionAdder adder = new MotionAdder();
-    adder.setEndColor(color).setEndTick(adder.mostRecentShape.getTick() + duration).add();
+    adder.setEndColor(color).setDuration(duration).add();
   }
 
   @Override
   public void moveTo(Point2D endPos, int duration) {
     AnimatedShape.MotionAdder adder = new MotionAdder();
-    adder.setEndPos(endPos).setEndTick(adder.mostRecentShape.getTick() + duration).add();    
+    adder.setEndPos(endPos).setDuration(duration).add();    
   }
 
   @Override
@@ -200,7 +200,7 @@ public class AnimatedShape implements IAnimatedShape {
     AnimatedShape.MotionAdder adder = new MotionAdder();
     adder.setEndWidth(newWidth)
     .setEndHeight(newHeight)
-    .setEndTick(adder.mostRecentShape.getTick() + duration)
+    .setDuration(duration)
     .add();       
   }
 

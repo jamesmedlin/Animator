@@ -25,28 +25,6 @@ public interface IModel {
    */
   void removeShape(String name) throws IllegalArgumentException;
 
-  /**
-   * 
-   * @param name
-   * @param startTime
-   * @param endTime
-   * @param i
-   * @param j
-   * @param startHeight
-   * @param endHeight
-   * @param startWidth
-   * @param endWidth
-   * @param startRed
-   * @param endRed
-   * @param startGreen
-   * @param endGreen
-   * @param startBlue
-   * @param endBlue
-   */
-  void addFullMotion(
-      String name, int startTime, int endTime, double startX, double endX, double startY, double endY,
-      int startHeight, int endHeight, int startWidth, int endWidth, int startRed, int endRed,
-      int startGreen, int endGreen, int startBlue, int endBlue);
 
   /**
    * changes the color of this shape over a certain amount of time
@@ -79,5 +57,8 @@ public interface IModel {
   String printHistory();
   
   List<IReadOnlyShapeState> getShapesAtTick(int tick);
+
+  void fullMotionTo(String name, int duration, double endX, double endY, int endHeight,
+      int endWidth, int endRed, int endGreen, int endBlue);
   
 }

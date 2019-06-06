@@ -25,17 +25,16 @@ public class Model implements IModel {
   }
 
   @Override
-  public void addFullMotion(String name, int startTime, int endTime, double startX, double endX,
-      double startY, double endY, int startHeight, int endHeight, int startWidth, int endWidth,
-      int startRed, int endRed, int startGreen, int endGreen, int startBlue, int endBlue) {
+  public void fullMotionTo(String name, int duration, double endX, double endY, int endHeight, int endWidth,
+      int endRed, int endGreen, int endBlue) {
     IAnimatedShape shape = this.shapes.getOrDefault(name, null);
     if (shape == null) {
       throw new IllegalArgumentException("Shape with name " + name + " does not exist");
     }
     else {
-      shape.addFullMotion(startTime, endTime, new Point2D.Double(startX, startY), 
-          new Point2D.Double(endX, endY), startHeight, endHeight, startWidth, endWidth,
-          new Color(startRed, startGreen, startBlue), new Color(endRed, endGreen, endBlue));
+      shape.fullMotionTo(
+          new Point2D.Double(endX, endY), endHeight, endWidth,
+          new Color(endRed, endGreen, endBlue), duration);
     }
   }
 

@@ -4,15 +4,22 @@ import java.awt.geom.Point2D;
 
 public interface IAnimatedShape {
   /**
-   * retrieves the previous states of the shape
-   * @return the history of the shape
+   * Retrieves all the states associated with this shape.
+   * 
+   * @return the motions associated with this animated shape
    */
   String getMotions();
   
-  IShapeState getShapeAt(int tick);
+  /**
+   * Based on the added motions of this animated shape, this method will return the read only
+   * version of the shape state that represents the animated shape at the given tick
+   * 
+   * @param tick the tick at which the Animated shape should be represented
+   * @return
+   */
+  IReadOnlyShapeState getShapeAt(int tick);
 
-  void addFullMotion(int startTime, int endTime, Point2D startPos, Point2D endPos, int startHeight,
-      int endHeight, int startWidth, int endWidth, Color startColor, Color endColor);
+  void fullMotionTo(Point2D endPos, int endHeight, int endWidth, Color endColor, int duration);
 
   void changeColor(Color color, int duration);
 
