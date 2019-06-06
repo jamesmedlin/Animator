@@ -5,7 +5,22 @@ import java.awt.geom.Point2D.Double;
 
 public class Motion implements IMotion {
   
-  public Motion(int startTime, int endTime, double startX, double startY, double endX, double endY,
+  int startTime;
+  int endTime;
+  Point2D startPos;
+  Point2D endPos;
+  int startHeight;
+  int endHeight;
+  int startWidth;
+  int endWidth;
+  int startRed;
+  int endRed;
+  int startGreen;
+  int endGreen;
+  int startBlue;
+  int endBlue;
+  
+  private Motion(int startTime, int endTime, double startX, double startY, double endX, double endY,
       int startHeight, int endHeight, int startWidth, int endWidth, int startRed, int endRed,
       int startGreen, int endGreen, int startBlue, int endBlue) {
     this.startTime = startTime;
@@ -24,20 +39,7 @@ public class Motion implements IMotion {
     this.endBlue = endBlue;
   }
   
-  int startTime;
-  int endTime;
-  Point2D startPos;
-  Point2D endPos;
-  int startHeight;
-  int endHeight;
-  int startWidth;
-  int endWidth;
-  int startRed;
-  int endRed;
-  int startGreen;
-  int endGreen;
-  int startBlue;
-  int endBlue;
+  
   
   @Override
   public String toString() {
