@@ -3,6 +3,7 @@ package cs3500.easyanimator.model;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Model implements IModel {
   private HashMap<String, IAnimatedShape> shapes = new HashMap<String, IAnimatedShape>();
@@ -116,6 +117,12 @@ public class Model implements IModel {
       shape.changeSizeTo(newHeight, newWidth, duration);
     }
     
+  }
+
+  @Override
+  public List<IReadOnlyShapeState> getShapesAtTick(int tick) {
+    // TODO Auto-generated method stub
+    return null;
   }
 
 }

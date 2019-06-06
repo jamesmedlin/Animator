@@ -69,12 +69,13 @@ public abstract class AShapeState implements IShapeState {
 
   @Override
   public String toString() {
-    return "" + this.tick
-        + this.position.getX()
-        + this.position.getY()
-        + this.width + this.height
-        + this.color.getRed()
-        + this.color.getGreen()
+    return "" + this.tick + " "
+        + this.position.getX() + " "
+        + this.position.getY() + " "
+        + this.width + " "
+        + this.height + " "
+        + this.color.getRed() + " "
+        + this.color.getGreen() + " "
         + this.color.getBlue();
   }
 

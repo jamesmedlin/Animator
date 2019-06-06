@@ -8,16 +8,19 @@ import java.util.Arrays;
 public class AnimatedShape implements IAnimatedShape {
 
   private final ShapeType type;
+  private final IShapeState initState;
   private ArrayList<IShapeState> states;
 
-  public AnimatedShape(ShapeType type, ArrayList<IShapeState> states) {
+  public AnimatedShape(ShapeType type, IShapeState initState, ArrayList<IShapeState> states) {
     this.type = type;
+    this.initState = initState;
     this.states = states;
   }
 
-  public AnimatedShape(ShapeType type, IShapeState initialState) {
+  public AnimatedShape(ShapeType type, IShapeState initState) {
     this.type = type;
-    this.states = new ArrayList<IShapeState>(Arrays.asList(initialState));
+    this.initState = initState;
+    this.states = new ArrayList<IShapeState>();
   }
 
   @Override
@@ -25,29 +28,43 @@ public class AnimatedShape implements IAnimatedShape {
     String result = "";
     int i = 0;
     while (i < this.states.size() - 1) {
-      result +=  this.states.get(i).toString() + "    " + this.states.get(i + 1).toString() + "/n"; 
+      result +=  this.states.get(i).toString() + "    " + this.states.get(i + 1).toString() + "\n"; 
       i += 2;
     }
 
     return result;
   }
 
-  public class MotionAdder {
-    private IShapeState mostRecentShape = 
-        AnimatedShape.this.states.get(AnimatedShape.this.states.size() - 1);
+  private class MotionAdder {
+    private IReadOnlyShapeState mostRecentShape;
+    private int startWidth;
+    private int startHeight;
+    private int endWidth;
+    private int endHeight;
+    private Point2D startPos;
+    private Point2D endPos;
+    private Color startColor;
+    private Color endColor;
+    private int startTick;
+    private int endTick;
 
-    private int startWidth = this.mostRecentShape.getWidth();
-    private int startHeight = this.mostRecentShape.getHeight();
-    private int endWidth = this.mostRecentShape.getWidth();
-    private int endHeight = this.mostRecentShape.getHeight();
-    private Point2D startPos = this.mostRecentShape.getPosition();
-    private Point2D endPos = this.mostRecentShape.getPosition();
-    private Color startColor = this.mostRecentShape.getColor();
-    private Color endColor = this.mostRecentShape.getColor();
-    private int startTick = this.mostRecentShape.getTick();
-    private int endTick = this.mostRecentShape.getTick();
-
-    public MotionAdder() {
+    private MotionAdder() {
+      if (AnimatedShape.this.states.isEmpty()) {
+        this.mostRecentShape = AnimatedShape.this.initState;
+      }
+      else {
+        this.mostRecentShape = AnimatedShape.this.states.get(AnimatedShape.this.states.size() - 1);
+      }
+      this.startWidth = this.mostRecentShape.getWidth();
+      this.startHeight = this.mostRecentShape.getHeight();
+      this.endWidth = this.mostRecentShape.getWidth();
+      this.endHeight = this.mostRecentShape.getHeight();
+      this.startPos = this.mostRecentShape.getPosition();
+      this.endPos = this.mostRecentShape.getPosition();
+      this.startColor = this.mostRecentShape.getColor();
+      this.endColor = this.mostRecentShape.getColor();
+      this.startTick = this.mostRecentShape.getTick();
+      this.endTick = this.mostRecentShape.getTick();
     }
 
     public MotionAdder setStartWidth(int value) {
@@ -101,6 +118,20 @@ public class AnimatedShape implements IAnimatedShape {
     }
 
     public AnimatedShape add() {
+
+      ArrayList<IShapeState> states = AnimatedShape.this.states;
+
+      for (int i = 0; i < AnimatedShape.this.states.size(); i += 2) {
+        if (!((this.startTick < states.get(i).getTick()
+            && this.endTick < states.get(i).getTick())
+            || (this.startTick > states.get(i + 1).getTick()
+                && this.endTick > states.get(i + 1).getTick()))) {
+          throw new IllegalArgumentException(
+              "Shape is already performing an operation "
+              + "during at least one of the ticks specified.");
+        }
+      }
+
       switch (AnimatedShape.this.type) {
         case RECTANGLE:
           AnimatedShape.this.states.add(
