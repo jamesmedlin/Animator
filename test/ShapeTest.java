@@ -248,7 +248,7 @@ public class ShapeTest {
   
   /**
    * Tests that end states of one motion match the start times of the next and that there are
-   * no gaps in the ticks of the motions
+   * no gaps in the ticks of the motions.
    */
   @Test
   public void testGoodMotionTransition() {

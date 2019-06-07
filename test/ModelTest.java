@@ -5,6 +5,8 @@ import java.awt.geom.Point2D;
 import static cs3500.easyanimator.model.ShapeType.ELLIPSE;
 import static cs3500.easyanimator.model.ShapeType.RECTANGLE;
 import static org.junit.Assert.assertEquals;
+
+import cs3500.easyanimator.model.AnimatedShape;
 import cs3500.easyanimator.model.Color;
 import cs3500.easyanimator.model.EllipseState;
 import cs3500.easyanimator.model.IModel;
@@ -28,14 +30,21 @@ public class ModelTest {
   @Test
   public void testBasicAnimation() {
     IModel model1 = new Model();
+    assertEquals(model.printHistory(), "");
   }
 
   @Test
   public void testBasicAnimation2() {
     model.addShapeAt(1,"Dave", ELLIPSE,10,10,10,10,255,255,255);
+    model.addShapeAt(1,"Dave II", ELLIPSE,10,10,10,10,255,255,255);
     model.addShapeAt(1,"Vidojeeee", RECTANGLE,0,200,20,100,0,0,0);
+    model.addShapeAt(1,"Vido", RECTANGLE,1,200,20,100,1,1,1);
     model.getShape("Dave");
     model.getShape("Vidojeeee");
+    assertEquals(true, model.getShapeObject("Dave") instanceof AnimatedShape);
+    assertEquals(true, model.getShapeObject("Vidojeeee") instanceof AnimatedShape);
+    assertEquals(true, model.getShapeObject("Vido") instanceof AnimatedShape);
+    assertEquals(true, model.getShapeObject("Dave II") instanceof AnimatedShape);
   }
 
   @Test (expected = IllegalArgumentException.class)

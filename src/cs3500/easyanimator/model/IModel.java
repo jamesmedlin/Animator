@@ -110,4 +110,12 @@ public interface IModel {
    * @throws IllegalArgumentException when the name is not valid or the duration is less than 1
    */
   void doNothing(String name, int duration) throws IllegalArgumentException;
+
+  /**
+   * returns the object version of an snimsted shape.
+   * @param name the unique identifier of a shape
+   * @return the animated shape with the given name
+   * @throws IllegalArgumentException when the name is invalid
+   */
+  public IAnimatedShape getShapeObject(String name) throws IllegalArgumentException;
 }
