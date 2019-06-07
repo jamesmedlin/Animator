@@ -1,8 +1,6 @@
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
-import cs3500.easyanimator.model.AnimatedShape;
-import cs3500.easyanimator.model.IAnimatedShape;
 import cs3500.easyanimator.model.IModel;
 import cs3500.easyanimator.model.Model;
 import cs3500.easyanimator.model.ShapeType;

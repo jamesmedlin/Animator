@@ -1,10 +1,12 @@
 package cs3500.easyanimator.model;
 
 import java.awt.geom.Point2D;
-import java.awt.geom.Point2D.Double;
 import java.util.ArrayList;
-import java.util.Arrays;
 
+/**
+ * Represents an animated shape over time. It is made up of an initial shape state and a list of
+ * subsequent shape states added by the MotionAdder over time
+ */
 public class AnimatedShape implements IAnimatedShape {
 
   private final ShapeType type;
@@ -35,6 +37,12 @@ public class AnimatedShape implements IAnimatedShape {
     return result;
   }
 
+  /**
+   * Serves as something of a builder for motions. This way, anyone using or extending this
+   * implementation can very easily personalize the kinds of motions they want to create, while
+   * having access to the most recent state of this animated shape
+   *
+   */
   private class MotionAdder {
     private IReadOnlyShapeState mostRecentShape;
     private int startWidth;
@@ -122,6 +130,12 @@ public class AnimatedShape implements IAnimatedShape {
       return this;
     }
 
+    /**
+     * Adds a new shape state to this animated shape. First checks if the ticks specified create
+     * any overlapping motions, then adds the correct {@code IShapeState} to this AnimatedShape.
+     * 
+     * @return returns this object after mutating it
+     */
     private AnimatedShape add() {
 
       ArrayList<IShapeState> states = AnimatedShape.this.states;

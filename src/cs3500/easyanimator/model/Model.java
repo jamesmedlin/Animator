@@ -1,7 +1,6 @@
 package cs3500.easyanimator.model;
 
 import java.awt.geom.Point2D;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -10,14 +9,11 @@ public class Model implements IModel {
   
   
   /**
-   * constructs a default model
+   * Constructs a default model.
    */
   public Model() {
 
   }
-
-
-
 
   @Override
   public void removeShape(String name) throws IllegalArgumentException {
@@ -47,9 +43,7 @@ public class Model implements IModel {
     return result;
   }
 
-
-
-
+  
   @Override
   public void addShapeAt(int tick, String name, ShapeType type, double x, double y, int width,
       int height, int red, int green, int blue) throws IllegalArgumentException {
@@ -74,6 +68,7 @@ public class Model implements IModel {
     
   }
 
+  
   @Override
   public void changeColorTo(String name, int red, int green, int blue, int duration)
       throws IllegalArgumentException{
@@ -87,9 +82,7 @@ public class Model implements IModel {
     
   }
 
-
-
-
+  
   @Override
   public void moveTo(String name, double x, double y, int duration) {
     // TODO Auto-generated method stub
@@ -102,9 +95,7 @@ public class Model implements IModel {
     }
   }
 
-
-
-
+  
   @Override
   public void changeSizeTo(String name, int newHeight, int newWidth, int duration)
       throws IllegalArgumentException {
@@ -115,13 +106,13 @@ public class Model implements IModel {
     else {
       shape.changeSizeTo(newHeight, newWidth, duration);
     }
-    
   }
+  
 
   @Override
   public List<IReadOnlyShapeState> getShapesAtTick(int tick) {
     // TODO Auto-generated method stub
     return null;
   }
-
+  
 }

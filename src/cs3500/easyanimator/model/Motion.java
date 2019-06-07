@@ -1,7 +1,6 @@
 package cs3500.easyanimator.model;
 
 import java.awt.geom.Point2D;
-import java.awt.geom.Point2D.Double;
 
 public class Motion implements IMotion {
   
