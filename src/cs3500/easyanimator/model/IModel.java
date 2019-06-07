@@ -91,5 +91,20 @@ public interface IModel {
    */
   void fullMotionTo(String name, int duration, double endX, double endY, int endHeight,
       int endWidth, int endRed, int endGreen, int endBlue);
-  
+
+  /**
+   * helps for testing by allowing shapes to be retrieved
+   * @param name the unique identifier of a shape
+   * @return the shape
+   * @throws IllegalArgumentException when the name is not a current shape
+   */
+  public String getShape(String name) throws IllegalArgumentException;
+
+  /**
+   * keeps the shape in place, with no change in size or color
+   * @param name the unique identifier
+   * @param duration the time over which this shape freezes
+   * @throws IllegalArgumentException when the name is not valid or the duration is less than 1
+   */
+  void doNothing(String name, int duration) throws IllegalArgumentException;
 }

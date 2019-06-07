@@ -16,7 +16,12 @@ public class Model implements IModel {
 
   @Override
   public void removeShape(String name) throws IllegalArgumentException {
-    shapes.remove(name);
+    if (shapes.containsKey(name)) {
+      shapes.remove(name);
+    }
+    else {
+      throw new IllegalArgumentException("This is not a valid name or is not a current shape's name.");
+    }
   }
 
   @Override
@@ -123,6 +128,22 @@ public class Model implements IModel {
       }
       return shapesAtTick;
     }
+  }
+
+  public String getShape(String name) throws IllegalArgumentException {
+    if (shapes.containsKey(name)) {
+      return shapes.get(name).getMotions();
+    }
+    else {
+      throw new IllegalArgumentException("This name does not exist in the current shapes");
+    }
+  }
+
+  public void doNothing(String name, int duration) throws IllegalArgumentException {
+    if (!shapes.containsKey(name)) {
+      throw new IllegalArgumentException("Invalid name");
+    }
+    shapes.get(name).addDoNothing(duration);
   }
   
 }
