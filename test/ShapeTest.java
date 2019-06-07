@@ -1,5 +1,6 @@
 import static org.junit.Assert.assertEquals;
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 import cs3500.easyanimator.model.AnimatedShape;
@@ -243,6 +244,24 @@ public class ShapeTest {
     assertEquals(2, animatedEllipse.getStates().size());
     assertEquals("6 40.0 30.0 25 35 0 0 0    95 40.0 30.0 25 35 0 0 0\n",
         animatedEllipse.getMotions());
+  }
+  
+  /**
+   * Tests that end states of one motion match the start times of the next and that there are
+   * no gaps in the ticks of the motions
+   */
+  @Test
+  public void testGoodMotionTransition() {
+    animatedRectangle.addDoNothing(5);
+    animatedRectangle.changeColor(new Color(0, 0, 0), 10);
+    animatedRectangle.changeSizeTo(50, 40, 12);
+    animatedRectangle.moveTo(new Point2D.Double(33, 33), 10);
+    animatedRectangle.fullMotionTo(new Point2D.Double(44, 44), 23, 42, new Color(255, 0, 0), 23);
+    ArrayList<IReadOnlyShapeState> states =
+        (ArrayList<IReadOnlyShapeState>) this.animatedRectangle.getStates();
+    for (int i = 1; i < states.size() - 1; i += 2) {
+      assertEquals(states.get(i).toString(), states.get(i + 1).toString());
+    }
   }
   
 }

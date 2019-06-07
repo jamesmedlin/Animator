@@ -102,52 +102,5 @@ public class AShapeStateTest {
   public void testGetPosition2() {
     assertEquals(readOnly2.getPosition(), new Point2D.Double(10,10));
   }
-
-  @Test
-  public void testSetWidth() {
-    shapeState.setWidth(1000);
-    assertEquals(shapeState.getWidth(), 1000);
-  }
-  @Test
-  public void testSetHeight() {
-    shapeState.setHeight(2000);
-    assertEquals(shapeState.getHeight(), 2000);
-  }
-  @Test
-  public void testSetColor() {
-    shapeState.setColor(55,66,77);
-    assertEquals(shapeState.getColor().getRed(), 55);
-    assertEquals(shapeState.getColor().getGreen(), 66);
-    assertEquals(shapeState.getColor().getBlue(), 77);
-  }
-  @Test
-  public void testSetPosition() {
-    shapeState.setPosition(99,88);
-    assertEquals(shapeState.getPosition().getX(), 99, 0.01);
-    assertEquals(shapeState.getPosition().getY(), 88,0.01);
-  }
-
-  @Test
-  public void testSetWidth2() {
-    shapeState2.setWidth(1000);
-    assertEquals(shapeState2.getWidth(), 1000);
-  }
-  @Test
-  public void testSetHeight2() {
-    shapeState2.setHeight(2000);
-    assertEquals(shapeState2.getHeight(), 2000);
-  }
-  @Test
-  public void testSetColor2() {
-    shapeState2.setColor(155,166,177);
-    assertEquals(shapeState2.getColor().getRed(), 155);
-    assertEquals(shapeState2.getColor().getGreen(), 166);
-    assertEquals(shapeState2.getColor().getBlue(), 177);
-  }
-  @Test
-  public void testSetPosition2() {
-    shapeState2.setPosition(99,88);
-    assertEquals(shapeState2.getPosition(), new Point2D.Double(99,88));
-  }
-
+  
 }
