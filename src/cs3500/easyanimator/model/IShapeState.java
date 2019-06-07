@@ -5,14 +5,12 @@ public interface IShapeState extends IReadOnlyShapeState {
 
   /**
    * Sets the width of this shape state to the given value.
-   * 
    * @param value the value to which the width will be set
    */
   void setWidth(int value);
   
   /**
    * Sets the height of this shape state to the given value.
-   * 
    * @param value the value to which the height will be set
    */
   void setHeight(int value);

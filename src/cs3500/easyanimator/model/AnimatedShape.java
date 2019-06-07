@@ -175,14 +175,17 @@ public class AnimatedShape implements IAnimatedShape {
       }
       return AnimatedShape.this;
     }
-
   }
 
-
   @Override
-  public IShapeState getShapeAt(int tick) {
-    // TODO Auto-generated method stub
-    return null;
+  public IReadOnlyShapeState getShapeAt(int tick) {
+    // TODO implement when we start animation
+    for (IShapeState state : states) {
+      if (state.getTick() == tick) {
+        return state;
+      }
+    }
+    throw new IllegalArgumentException("This tick does not exist for this shape.");
   }
 
   @Override
@@ -217,7 +220,5 @@ public class AnimatedShape implements IAnimatedShape {
     .setDuration(duration)
     .add();       
   }
-
-
 
 }

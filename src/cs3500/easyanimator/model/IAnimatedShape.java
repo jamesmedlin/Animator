@@ -12,12 +12,13 @@ public interface IAnimatedShape {
   
   /**
    * Based on the added motions of this animated shape, this method will return the read only
-   * version of the shape state that represents the animated shape at the given tick
+   * version of the shape state that represents the animated shape at the given tick.
    * 
    * @param tick the tick at which the Animated shape should be represented
-   * @return
+   * @return the shape at the given tick
+   * @throws IllegalArgumentException when given a tick that does not exist for this shape
    */
-  IReadOnlyShapeState getShapeAt(int tick);
+  IReadOnlyShapeState getShapeAt(int tick) throws IllegalArgumentException;
 
   /**
    * Adds a motion to this animated shape, taking as the starting position the state at the

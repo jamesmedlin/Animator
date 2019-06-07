@@ -1,18 +1,17 @@
 package cs3500.easyanimator.model;
 
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class Model implements IModel {
   private HashMap<String, IAnimatedShape> shapes = new HashMap<String, IAnimatedShape>();
   
-  
   /**
    * Constructs a default model.
    */
   public Model() {
-
   }
 
   @Override
@@ -85,7 +84,6 @@ public class Model implements IModel {
   
   @Override
   public void moveTo(String name, double x, double y, int duration) {
-    // TODO Auto-generated method stub
     IAnimatedShape shape = this.shapes.getOrDefault(name, null);
     if (shape == null) {
       throw new IllegalArgumentException("Shape with name " + name + " does not exist");
@@ -111,8 +109,20 @@ public class Model implements IModel {
 
   @Override
   public List<IReadOnlyShapeState> getShapesAtTick(int tick) {
-    // TODO Auto-generated method stub
-    return null;
+    if (tick < 0) {
+      throw new IllegalArgumentException("The tick must be a positive number.");
+    } else {
+      List<IReadOnlyShapeState> shapesAtTick = new ArrayList<>();
+      for (IAnimatedShape shape : shapes.values()) {
+        try {
+          IReadOnlyShapeState tickShape = shape.getShapeAt(tick);
+          shapesAtTick.add(tickShape);
+        } catch (IllegalArgumentException e) {
+          // ignore if a certain shape doesnt have this tick
+        }
+      }
+      return shapesAtTick;
+    }
   }
   
 }
