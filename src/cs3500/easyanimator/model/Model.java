@@ -54,7 +54,7 @@ public class Model implements IModel {
   @Override
   public void addShapeAt(int tick, String name, ShapeType type, double x, double y, int width,
       int height, int red, int green, int blue) throws IllegalArgumentException {
-    if (this.shapes.containsKey(name) || type == null || name == null) {
+    if (this.shapes.containsKey(name) || type == null || name == null || name.equals("")) {
       throw new IllegalArgumentException("Shape names must be unique and non-null.");
     }
     
