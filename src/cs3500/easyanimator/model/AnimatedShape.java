@@ -24,9 +24,14 @@ public class AnimatedShape implements IAnimatedShape {
    * @param states A list of {@code IShapeState} objects representing end points of motions
    */
   public AnimatedShape(ShapeType type, IShapeState initState, ArrayList<IShapeState> states) {
-    this.type = type;
-    this.initState = initState;
-    this.states = states;
+    if (type == null || initState == null || states == null) {
+      throw new IllegalArgumentException("Cannot construct animated shape with null arguments.");
+    }
+    else {
+      this.type = type;
+      this.initState = initState;
+      this.states = states;
+    }
   }
 
   /**
@@ -37,20 +42,7 @@ public class AnimatedShape implements IAnimatedShape {
    * @param initState The initial state of the shape as an {@code IShapeState}
    */
   public AnimatedShape(ShapeType type, IShapeState initState) {
-    this.type = type;
-    this.initState = initState;
-    this.states = new ArrayList<IShapeState>();
-  }
-
-  @Override
-  public String getMotions() {
-    String result = "";
-    int i = 0;
-    while (i < this.states.size() - 1) {
-      result +=  this.states.get(i).toString() + "    " + this.states.get(i + 1).toString() + "\n"; 
-      i += 2;
-    }
-    return result;
+    this(type, initState, new ArrayList<IShapeState>());
   }
 
   /**
@@ -91,21 +83,33 @@ public class AnimatedShape implements IAnimatedShape {
     }
 
     private MotionAdder setStartWidth(int value) {
+      if (value <= 0) {
+        throw new IllegalArgumentException("Width must be positive");
+      }
       this.startWidth = value;
       return this;
     }
 
     private MotionAdder setStartHeight(int value) {
+      if (value <= 0) {
+        throw new IllegalArgumentException("Height must be positive");
+      }
       this.startHeight = value;
       return this;
     }
 
     private MotionAdder setEndWidth(int value) {
+      if (value <= 0) {
+        throw new IllegalArgumentException("Width must be positive");
+      }
       this.endWidth = value;
       return this;
     }
 
     private MotionAdder setEndHeight(int value) {
+      if (value <= 0) {
+        throw new IllegalArgumentException("Height must be positive");
+      }
       this.endHeight = value;
       return this;
     }
@@ -131,17 +135,23 @@ public class AnimatedShape implements IAnimatedShape {
     }
 
     private MotionAdder setStartTick(int value) {
+      if (value <= 0) {
+        throw new IllegalArgumentException("Tick must be positive");
+      }
       this.startTick = value;
       return this;
     }
 
     private MotionAdder setEndTick(int value) {
+      if (value <= 0) {
+        throw new IllegalArgumentException("Tick must be positive");
+      }
       this.endTick = value;
       return this;
     }
     
     public MotionAdder setDuration(int duration) {
-      if (duration < 0) {
+      if (duration < 1) {
         throw new IllegalArgumentException("Durations must be positive.");
       }
       else {
@@ -161,10 +171,10 @@ public class AnimatedShape implements IAnimatedShape {
       ArrayList<IShapeState> states = AnimatedShape.this.states;
 
       for (int i = 0; i < AnimatedShape.this.states.size(); i += 2) {
-        if (!((this.startTick < states.get(i).getTick()
-            && this.endTick < states.get(i).getTick())
-            || (this.startTick > states.get(i + 1).getTick()
-                && this.endTick > states.get(i + 1).getTick()))) {
+        if (!((this.startTick <= states.get(i).getTick()
+            && this.endTick <= states.get(i).getTick())
+            || (this.startTick >= states.get(i + 1).getTick()
+                && this.endTick >= states.get(i + 1).getTick()))) {
           throw new IllegalArgumentException(
               "Shape is already performing an operation "
               + "during at least one of the ticks specified.");
@@ -196,6 +206,17 @@ public class AnimatedShape implements IAnimatedShape {
       return AnimatedShape.this;
     }
   }
+  
+  @Override
+  public String getMotions() {
+    String result = "";
+    int i = 0;
+    while (i < this.states.size() - 1) {
+      result +=  this.states.get(i).toString() + "    " + this.states.get(i + 1).toString() + "\n"; 
+      i += 2;
+    }
+    return result;
+  }
 
   @Override
   public IReadOnlyShapeState getShapeAt(int tick) {
@@ -206,6 +227,9 @@ public class AnimatedShape implements IAnimatedShape {
   @Override
   public void fullMotionTo(
       Point2D endPos, int endHeight, int endWidth, Color endColor, int duration) {
+    if (endPos == null || endColor == null) {
+      throw new IllegalArgumentException("Position and color must not be null.");
+    }
     new MotionAdder()
     .setEndColor(endColor)
     .setEndHeight(endHeight)
@@ -217,20 +241,23 @@ public class AnimatedShape implements IAnimatedShape {
 
   @Override
   public void changeColor(Color color, int duration) {
-    AnimatedShape.MotionAdder adder = new MotionAdder();
-    adder.setEndColor(color).setDuration(duration).add();
+    if (color == null) {
+      throw new IllegalArgumentException("Position and color must not be null.");
+    }
+    new MotionAdder().setEndColor(color).setDuration(duration).add();
   }
 
   @Override
   public void moveTo(Point2D endPos, int duration) {
-    AnimatedShape.MotionAdder adder = new MotionAdder();
-    adder.setEndPos(endPos).setDuration(duration).add();    
+    if (endPos == null) {
+      throw new IllegalArgumentException("Position and color must not be null.");
+    }
+    new MotionAdder().setEndPos(endPos).setDuration(duration).add();    
   }
 
   @Override
   public void changeSizeTo(int newHeight, int newWidth, int duration) {
-    AnimatedShape.MotionAdder adder = new MotionAdder();
-    adder.setEndWidth(newWidth)
+    new MotionAdder().setEndWidth(newWidth)
     .setEndHeight(newHeight)
     .setDuration(duration)
     .add();       
@@ -241,6 +268,7 @@ public class AnimatedShape implements IAnimatedShape {
     new MotionAdder().setDuration(duration).add();
   }
   
+  @Override
   public List<IReadOnlyShapeState> getStates() {
     ArrayList<IReadOnlyShapeState> result = new ArrayList<IReadOnlyShapeState>();
     

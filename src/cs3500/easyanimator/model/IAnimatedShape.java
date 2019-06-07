@@ -30,8 +30,10 @@ public interface IAnimatedShape {
    * @param endWidth the width of the shape at the end of the motion
    * @param endColor the color of the shape at the end of the motion
    * @param duration the time the motion will take
+   * @throws IllegalArgumentException if any of the arguments are null or non-positive
    */
-  void fullMotionTo(Point2D endPos, int endHeight, int endWidth, Color endColor, int duration);
+  void fullMotionTo(Point2D endPos, int endHeight, int endWidth, Color endColor, int duration)
+       throws IllegalArgumentException;
 
   /**
    * Changes the color of this animated shape to the given color over the given duration, but
@@ -39,8 +41,9 @@ public interface IAnimatedShape {
    * 
    * @param color the color to which the shape will change
    * @param duration the time the shape will take to fade colors
+   * @throws IllegalArgumentException if the duration is non-positive or the color is null
    */
-  void changeColor(Color color, int duration);
+  void changeColor(Color color, int duration) throws IllegalArgumentException;
 
   /**
    * Moves this animated shape over a given duration, but does not modify anything else about the
@@ -48,8 +51,9 @@ public interface IAnimatedShape {
    * 
    * @param endPos the position of the shape after the move
    * @param duration the amount of time the shape will take to slide there
+   * @throws IllegalArgumentExcpetion if the duration is non-positive or the position is null
    */
-  void moveTo(Point2D endPos, int duration);
+  void moveTo(Point2D endPos, int duration) throws IllegalArgumentException;
 
   /**
    * Changes the size of this animated shape over the given duration, but does not change anything
@@ -58,8 +62,9 @@ public interface IAnimatedShape {
    * @param newHeight the height of the shape after the transformation
    * @param newWidth the width of the shape after the transformation
    * @param duration the amount of time the transformation will take  
+   * @throws IllegalArgumentException if any of the arguments are non-positive
    */
-  void changeSizeTo(int newHeight, int newWidth, int duration);
+  void changeSizeTo(int newHeight, int newWidth, int duration) throws IllegalArgumentException;
   
   /**
    * Directs this animated shape to do nothing for the given duration.
@@ -68,6 +73,11 @@ public interface IAnimatedShape {
    */
   void addDoNothing(int duration);
   
+  /**
+   * Getter for the list of states of this Animated Shape. Used primarily for testing purposes.
+   * 
+   * @return List of shape states.
+   */
   List<IReadOnlyShapeState> getStates();
 
 }
