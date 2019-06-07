@@ -4,6 +4,9 @@ import java.awt.geom.Point2D;
 
 /**
  * Represents a read only version of a shape state.
+ *
+ * REASONING: The reasoning behind this is so that shapes are now purposefully immutable in
+ * order to maintain integrity of the model to the threat of outside users
  */
 public interface IReadOnlyShapeState {
   /**

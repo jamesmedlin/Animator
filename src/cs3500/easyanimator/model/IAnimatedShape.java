@@ -9,7 +9,6 @@ import java.util.List;
 public interface IAnimatedShape {
   /**
    * Retrieves all the states associated with this shape.
-   * 
    * @return the motions associated with this animated shape
    */
   String getMotions();
@@ -54,7 +53,7 @@ public interface IAnimatedShape {
    * 
    * @param endPos the position of the shape after the move
    * @param duration the amount of time the shape will take to slide there
-   * @throws IllegalArgumentExcpetion if the duration is non-positive or the position is null
+   * @throws IllegalArgumentException if the duration is non-positive or the position is null
    */
   void moveTo(Point2D endPos, int duration) throws IllegalArgumentException;
 
@@ -78,7 +77,6 @@ public interface IAnimatedShape {
   
   /**
    * Getter for the list of states of this Animated Shape. Used primarily for testing purposes.
-   * 
    * @return List of shape states.
    */
   List<IReadOnlyShapeState> getStates();

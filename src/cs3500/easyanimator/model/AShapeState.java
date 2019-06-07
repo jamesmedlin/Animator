@@ -8,8 +8,11 @@ import java.awt.geom.Point2D;
  */
 
 public abstract class AShapeState implements IShapeState {
+  // INVARIANT: tick is a positive number > 0
   protected final int tick;
+  // INVARIANT: width is a positive number > 0
   protected int width;
+  // INVARIANT: height is a positive number > 0
   protected int height;
   protected Color color;
   protected Point2D position;
@@ -33,26 +36,26 @@ public abstract class AShapeState implements IShapeState {
     this.color = color;
     this.position = position;
   }
-
-  @Override
-  public void setWidth(int value) {
-    this.width = value;
-  }
-
-  @Override
-  public void setHeight(int value) {
-    this.height = value;
-  }
-
-  @Override
-  public void setColor(int red, int green, int blue) {
-    this.color = new Color(red, green, blue);
-  }
-
-  @Override
-  public void setPosition(double x, double y) {
-    this.position.setLocation(x, y);
-  }
+//
+//  @Override
+//  public void setWidth(int value) {
+//    this.width = value;
+//  }
+//
+//  @Override
+//  public void setHeight(int value) {
+//    this.height = value;
+//  }
+//
+//  @Override
+//  public void setColor(int red, int green, int blue) {
+//    this.color = new Color(red, green, blue);
+//  }
+//
+//  @Override
+//  public void setPosition(double x, double y) {
+//    this.position.setLocation(x, y);
+//  }
 
   @Override
   public int getWidth() {

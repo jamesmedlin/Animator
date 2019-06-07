@@ -3,7 +3,8 @@ package cs3500.easyanimator.model;
 import java.util.List;
 
 /**
- * represents a model for this animation
+ * represents the animation's data structure, independent of user interface.
+ * Directly organizes the data and logic of this animation.
  */
 public interface IModel {
 
@@ -42,7 +43,8 @@ public interface IModel {
    * @param duration the time it takes to perform this motion
    * @throws IllegalArgumentException when given invalid color values or names
    */
-  void changeColorTo(String name, int red, int green, int blue, int duration) throws IllegalArgumentException;
+  void changeColorTo(String name, int red, int green, int blue, int duration)
+          throws IllegalArgumentException;
 
   /**
    * moves the shapes from its current position to the given position.
@@ -61,7 +63,8 @@ public interface IModel {
    * @param duration the time it takes to perform this motion
    * @throws IllegalArgumentException when given invalid lengths or names
    */
-  void changeSizeTo(String name, int newHeight, int newWidth, int duration) throws IllegalArgumentException;
+  void changeSizeTo(String name, int newHeight, int newWidth, int duration)
+          throws IllegalArgumentException;
 
 
   /**
@@ -93,7 +96,7 @@ public interface IModel {
       int endWidth, int endRed, int endGreen, int endBlue);
 
   /**
-   * helps for testing by allowing shapes to be retrieved
+   * helps for testing by allowing shapes to be retrieved.
    * @param name the unique identifier of a shape
    * @return the shape
    * @throws IllegalArgumentException when the name is not a current shape
@@ -101,7 +104,7 @@ public interface IModel {
   public String getShape(String name) throws IllegalArgumentException;
 
   /**
-   * keeps the shape in place, with no change in size or color
+   * keeps the shape in place, with no change in size or color.
    * @param name the unique identifier
    * @param duration the time over which this shape freezes
    * @throws IllegalArgumentException when the name is not valid or the duration is less than 1

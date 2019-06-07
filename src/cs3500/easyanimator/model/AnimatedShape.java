@@ -9,9 +9,11 @@ import java.util.List;
  * subsequent shape states added by the MotionAdder over time
  */
 public class AnimatedShape implements IAnimatedShape {
-
+  // any type of subsequent shapes
   private final ShapeType type;
+  // records the initial state of the animated shape
   private final IShapeState initState;
+  // a list of the shapes in its different states
   private ArrayList<IShapeState> states;
   
   
@@ -226,17 +228,17 @@ public class AnimatedShape implements IAnimatedShape {
 
   @Override
   public void fullMotionTo(
-      Point2D endPos, int endHeight, int endWidth, Color endColor, int duration) {
+          Point2D endPos, int endHeight, int endWidth, Color endColor, int duration) {
     if (endPos == null || endColor == null) {
       throw new IllegalArgumentException("Position and color must not be null.");
     }
     new MotionAdder()
-    .setEndColor(endColor)
-    .setEndHeight(endHeight)
-    .setEndWidth(endWidth)
-    .setEndPos(endPos)
-    .setDuration(duration)
-    .add();
+            .setEndColor(endColor)
+            .setEndHeight(endHeight)
+            .setEndWidth(endWidth)
+            .setEndPos(endPos)
+            .setDuration(duration)
+            .add();
   }
 
   @Override
@@ -258,9 +260,9 @@ public class AnimatedShape implements IAnimatedShape {
   @Override
   public void changeSizeTo(int newHeight, int newWidth, int duration) {
     new MotionAdder().setEndWidth(newWidth)
-    .setEndHeight(newHeight)
-    .setDuration(duration)
-    .add();       
+            .setEndHeight(newHeight)
+            .setDuration(duration)
+            .add();
   }
   
   @Override

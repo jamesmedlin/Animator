@@ -4,12 +4,15 @@ package cs3500.easyanimator.model;
  * represents color with different values of red, green, and blue.
  */
 public class Color {
+  // INVARIANT: red is an integer between 0 and 255 inclusive
   private final int red;
+  // INVARIANT: red is an integer between 0 and 255 inclusive
   private final int green;
+  // INVARIANT: red is an integer between 0 and 255 inclusive
   private final int blue;
 
   /**
-   * constructs an instance of color for shapes
+   * constructs an instance of color for shapes.
    * @param red the value of red in the color
    * @param green the value of green in the color
    * @param blue in the color

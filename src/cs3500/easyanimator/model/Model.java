@@ -10,12 +10,26 @@ import java.util.List;
  * mapped to a unique string name.
  */
 public class Model implements IModel {
-  private HashMap<String, IAnimatedShape> shapes = new HashMap<String, IAnimatedShape>();
-  
+  private HashMap<String, IAnimatedShape> shapes;
+
   /**
    * Constructs a default model.
    */
   public Model() {
+    this.shapes = new HashMap<String, IAnimatedShape>();
+  }
+
+  /**
+   * Constructs a model, but a list of Shapes can be given when initialized.
+   * @param shapes list of shapes added when instantiating this model
+   */
+  public Model(HashMap<String, IAnimatedShape> shapes) {
+    if (shapes == null) {
+      this.shapes = new HashMap<String, IAnimatedShape>();
+    }
+    else {
+      this.shapes = shapes;
+    }
   }
 
   @Override
@@ -24,12 +38,14 @@ public class Model implements IModel {
       shapes.remove(name);
     }
     else {
-      throw new IllegalArgumentException("This is not a valid name or is not a current shape's name.");
+      throw new IllegalArgumentException("This is not a valid name or " +
+              "is not a current shape's name.");
     }
   }
 
   @Override
-  public void fullMotionTo(String name, int duration, double endX, double endY, int endHeight, int endWidth,
+  public void fullMotionTo(String name, int duration, double endX,
+                           double endY, int endHeight, int endWidth,
       int endRed, int endGreen, int endBlue) {
     IAnimatedShape shape = this.shapes.getOrDefault(name, null);
     if (shape == null) {
@@ -79,7 +95,7 @@ public class Model implements IModel {
   
   @Override
   public void changeColorTo(String name, int red, int green, int blue, int duration)
-      throws IllegalArgumentException{
+      throws IllegalArgumentException {
     IAnimatedShape shape = this.shapes.getOrDefault(name, null);
     if (shape == null) {
       throw new IllegalArgumentException("Shape with name " + name + " does not exist");
@@ -134,6 +150,7 @@ public class Model implements IModel {
     }
   }
 
+  @Override
   public String getShape(String name) throws IllegalArgumentException {
     if (shapes.containsKey(name)) {
       return shapes.get(name).getMotions();
@@ -143,6 +160,7 @@ public class Model implements IModel {
     }
   }
 
+  @Override
   public void doNothing(String name, int duration) throws IllegalArgumentException {
     if (!shapes.containsKey(name)) {
       throw new IllegalArgumentException("Invalid name");
