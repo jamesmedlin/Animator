@@ -38,5 +38,8 @@ public interface IShapeState extends IReadOnlyShapeState {
    * @return tick, x position, y position, width, height, red, green, blue as string values.
    */
   String toString();
+  
+  IShapeState deepCopy();
+  
 
 }

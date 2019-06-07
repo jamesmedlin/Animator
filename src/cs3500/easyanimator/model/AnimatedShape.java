@@ -2,6 +2,7 @@ package cs3500.easyanimator.model;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents an animated shape over time. It is made up of an initial shape state and a list of
@@ -12,13 +13,29 @@ public class AnimatedShape implements IAnimatedShape {
   private final ShapeType type;
   private final IShapeState initState;
   private ArrayList<IShapeState> states;
-
+  
+  
+  /**
+   * Public constructor that allows for the creation of an {@code AnimatedShape} object while
+   * specifying all its fields.
+   * 
+   * @param type the type of the shape
+   * @param initState The initial state of the shape as an {@code IShapeState}
+   * @param states A list of {@code IShapeState} objects representing end points of motions
+   */
   public AnimatedShape(ShapeType type, IShapeState initState, ArrayList<IShapeState> states) {
     this.type = type;
     this.initState = initState;
     this.states = states;
   }
 
+  /**
+   * Public constructor that allows for the creation of an {@code AnimatedShape} object at
+   * its initial state, with no movements added.
+   * 
+   * @param type the type of the shape
+   * @param initState The initial state of the shape as an {@code IShapeState}
+   */
   public AnimatedShape(ShapeType type, IShapeState initState) {
     this.type = type;
     this.initState = initState;
@@ -33,15 +50,13 @@ public class AnimatedShape implements IAnimatedShape {
       result +=  this.states.get(i).toString() + "    " + this.states.get(i + 1).toString() + "\n"; 
       i += 2;
     }
-
     return result;
   }
 
   /**
    * Serves as something of a builder for motions. This way, anyone using or extending this
    * implementation can very easily personalize the kinds of motions they want to create, while
-   * having access to the most recent state of this animated shape
-   *
+   * having access to the most recent state of this animated shape.
    */
   private class MotionAdder {
     private IReadOnlyShapeState mostRecentShape;
@@ -126,8 +141,13 @@ public class AnimatedShape implements IAnimatedShape {
     }
     
     public MotionAdder setDuration(int duration) {
-      this.endTick = this.startTick + duration;
-      return this;
+      if (duration < 0) {
+        throw new IllegalArgumentException("Durations must be positive.");
+      }
+      else {
+        this.endTick = this.startTick + duration;
+        return this;
+      }   
     }
 
     /**
@@ -181,7 +201,6 @@ public class AnimatedShape implements IAnimatedShape {
 
   @Override
   public IShapeState getShapeAt(int tick) {
-    // TODO Auto-generated method stub
     return null;
   }
 
@@ -216,6 +235,21 @@ public class AnimatedShape implements IAnimatedShape {
     .setEndHeight(newHeight)
     .setDuration(duration)
     .add();       
+  }
+  
+  @Override
+  public void addDoNothing(int duration) {
+    new MotionAdder().setDuration(duration).add();
+  }
+  
+  public List<IReadOnlyShapeState> getStates() {
+    ArrayList<IReadOnlyShapeState> result = new ArrayList<IReadOnlyShapeState>();
+    
+    for (IShapeState state : this.states) {
+      result.add(state.deepCopy());
+    }
+    
+    return result;
   }
 
 

@@ -1,14 +1,13 @@
 package cs3500.easyanimator.model;
 
 import java.awt.geom.Point2D;
-import java.awt.geom.Point2D.Double;
 
 public abstract class AShapeState implements IShapeState {
-  private final int tick;
-  private int width;
-  private int height;
-  private Color color;
-  private Point2D position;
+  protected final int tick;
+  protected int width;
+  protected int height;
+  protected Color color;
+  protected Point2D position;
 
   public AShapeState(
       int tick, int width, int height, Color color, Point2D position) {
@@ -78,5 +77,8 @@ public abstract class AShapeState implements IShapeState {
         + this.color.getGreen() + " "
         + this.color.getBlue();
   }
+  
+  @Override
+  public abstract IShapeState deepCopy();
 
 }

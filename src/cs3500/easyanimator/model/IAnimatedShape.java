@@ -1,6 +1,7 @@
 package cs3500.easyanimator.model;
 
 import java.awt.geom.Point2D;
+import java.util.List;
 
 public interface IAnimatedShape {
   /**
@@ -58,5 +59,14 @@ public interface IAnimatedShape {
    * @param duration the amount of time the transformation will take  
    */
   void changeSizeTo(int newHeight, int newWidth, int duration);
+  
+  /**
+   * Directs this animated shape to do nothing for the given duration.
+   * 
+   * @param duration the length of time this Animated Shape should rest.
+   */
+  void addDoNothing(int duration);
+  
+  List<IReadOnlyShapeState> getStates();
 
 }
