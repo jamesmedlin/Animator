@@ -11,7 +11,7 @@ import cs3500.easyanimator.model.Model;
 import static cs3500.easyanimator.model.ShapeType.*;
 
 /**
- * tests the model and all of its methods.
+ * Tests the functionality of the {@code Model} class and all of its methods.
  */
 public class ModelTest {
 
@@ -80,7 +80,7 @@ public class ModelTest {
     model.addShapeAt(1, "Dave", ELLIPSE, 10, 10, 10, 10, 255, 255, 255);
     model.changeColorTo("Dave", 0, 0, 0, 0);
   }
-  @Test
+  @Test (expected = IllegalArgumentException.class)
   public void testMoveToFail() {
     model.addShapeAt(1, "Dave", ELLIPSE, 10, 10, 10, 10, 255, 255, 255);
     model.changeColorTo("Dave", 0, 0, 0, 0);
@@ -143,36 +143,23 @@ public class ModelTest {
   }
 
 
-//  @Test
-//  public void testRemoveShape2() {
-//    model.addShapeAt(0,"Dave", ELLIPSE,10,10,10,10,255,255,255);
-//    model.addShapeAt(0,"Vido", RECTANGLE,10,10,10,10,0,0,0);
-//    model.removeShape("Vido");
-//    int i = model.getShapesAtTick(0).size();
-//    assertEquals(model.getShapesAtTick(0).size(), 1);
-//    assertEquals(model.getShapesAtTick(1).get(0).toString(),
-//            new EllipseState(1,10,10,
-//                    new Color(255,255,255),
-//                    new Point2D.Double(10,10)).toString());
-//  }
-
   @Test
   public void testAddShapeAt() {
     model.addShapeAt(1,"Dave", ELLIPSE,10,10,10,10,255,255,255);
     model.changeColorTo("Dave", 0,0,0, 2);
     assertEquals(model.getShape("Dave"), new EllipseState(1,10,10,
-            new Color(255,255,255), new Point2D.Double(10,10)).toString() + "    " +
-            new EllipseState(3,10,10,
-                    new Color(0,0,0), new Point2D.Double(10,10)).toString() + "\n");
+        new Color(255,255,255), new Point2D.Double(10,10)).toString() + "    " +
+        new EllipseState(3,10,10,
+            new Color(0,0,0), new Point2D.Double(10,10)).toString() + "\n");
   }
   @Test
   public void testAddShapeAt2() {
     model.addShapeAt(1,"Dave2", RECTANGLE,10,10,10,10,255,255,255);
     model.changeColorTo("Dave2", 0,0,0, 2);
     assertEquals(model.getShape("Dave2"), new EllipseState(1,10,10,
-            new Color(255,255,255), new Point2D.Double(10,10)).toString() + "    " +
-            new EllipseState(3,10,10,
-                    new Color(0,0,0), new Point2D.Double(10,10)).toString() + "\n");
+        new Color(255,255,255), new Point2D.Double(10,10)).toString() + "    " +
+        new EllipseState(3,10,10,
+            new Color(0,0,0), new Point2D.Double(10,10)).toString() + "\n");
   }
 
   @Test
@@ -180,9 +167,9 @@ public class ModelTest {
     model.addShapeAt(1,"Dave", ELLIPSE,10,10,10,10,255,255,255);
     model.changeColorTo("Dave", 0,0,0, 2);
     assertEquals(model.getShape("Dave"), new EllipseState(1,10,10,
-            new Color(255,255,255), new Point2D.Double(10,10)).toString() + "    " +
-            new EllipseState(3,10,10,
-                    new Color(0,0,0), new Point2D.Double(10,10)).toString() + "\n");
+        new Color(255,255,255), new Point2D.Double(10,10)).toString() + "    " +
+        new EllipseState(3,10,10,
+            new Color(0,0,0), new Point2D.Double(10,10)).toString() + "\n");
   }
 
   @Test
@@ -190,9 +177,9 @@ public class ModelTest {
     model.addShapeAt(1,"Dave", ELLIPSE,10,10,10,10,255,255,255);
     model.changeSizeTo("Dave", 3,3, 2);
     assertEquals(model.getShape("Dave"), new EllipseState(1,10,10,
-            new Color(255,255,255), new Point2D.Double(10,10)).toString() + "    " +
-            new EllipseState(3,3,3,
-                    new Color(255,255,255), new Point2D.Double(10,10)).toString() + "\n");
+        new Color(255,255,255), new Point2D.Double(10,10)).toString() + "    " +
+        new EllipseState(3,3,3,
+            new Color(255,255,255), new Point2D.Double(10,10)).toString() + "\n");
   }
 
   @Test
@@ -200,9 +187,9 @@ public class ModelTest {
     model.addShapeAt(1,"Dave", ELLIPSE,10,10,10,10,255,255,255);
     model.moveTo("Dave", 25,33,9);
     assertEquals(model.getShape("Dave"), new EllipseState(1,10,10,
-            new Color(255,255,255), new Point2D.Double(10,10)).toString() + "    " +
-            new EllipseState(10,10,10,
-                    new Color(255,255,255), new Point2D.Double(25,33)).toString() + "\n");
+        new Color(255,255,255), new Point2D.Double(10,10)).toString() + "    " +
+        new EllipseState(10,10,10,
+            new Color(255,255,255), new Point2D.Double(25,33)).toString() + "\n");
   }
 
   @Test
@@ -210,36 +197,36 @@ public class ModelTest {
     model.addShapeAt(1,"Dave", ELLIPSE,10,10,10,10,255,255,255);
     model.moveTo("Dave", 25,33,9);
     assertEquals(model.getShape("Dave"), new EllipseState(1,10,10,
-            new Color(255,255,255), new Point2D.Double(10,10)).toString() + "    " +
-            new EllipseState(10,10,10,
-                    new Color(255,255,255), new Point2D.Double(25,33)).toString() + "\n");
+        new Color(255,255,255), new Point2D.Double(10,10)).toString() + "    " +
+        new EllipseState(10,10,10,
+            new Color(255,255,255), new Point2D.Double(25,33)).toString() + "\n");
   }
   @Test
   public void testMoveToOffScreenTop() {
     model.addShapeAt(1,"Dave", ELLIPSE,10,10,10,10,255,255,255);
     model.moveTo("Dave", 25,-100,9);
     assertEquals(model.getShape("Dave"), new EllipseState(1,10,10,
-            new Color(255,255,255), new Point2D.Double(10,10)).toString() + "    " +
-            new EllipseState(10,10,10,
-                    new Color(255,255,255), new Point2D.Double(25,-100)).toString() + "\n");
+        new Color(255,255,255), new Point2D.Double(10,10)).toString() + "    " +
+        new EllipseState(10,10,10,
+            new Color(255,255,255), new Point2D.Double(25,-100)).toString() + "\n");
   }
   @Test
   public void testMoveToOffScreenBottom() {
     model.addShapeAt(1,"Dave", ELLIPSE,10,10,10,10,255,255,255);
     model.moveTo("Dave", 25,10000,9);
     assertEquals(model.getShape("Dave"), new EllipseState(1,10,10,
-            new Color(255,255,255), new Point2D.Double(10,10)).toString() + "    " +
-            new EllipseState(10,10,10,
-                    new Color(255,255,255), new Point2D.Double(25,10000)).toString() + "\n");
+        new Color(255,255,255), new Point2D.Double(10,10)).toString() + "    " +
+        new EllipseState(10,10,10,
+            new Color(255,255,255), new Point2D.Double(25,10000)).toString() + "\n");
   }
   @Test
   public void testMoveToOffScreenRight() {
     model.addShapeAt(1,"Dave", ELLIPSE,10,10,10,10,255,255,255);
     model.moveTo("Dave", 50000,33,9);
     assertEquals(model.getShape("Dave"), new EllipseState(1,10,10,
-            new Color(255,255,255), new Point2D.Double(10,10)).toString() + "    " +
-            new EllipseState(10,10,10,
-                    new Color(255,255,255), new Point2D.Double(50000,33)).toString() + "\n");
+        new Color(255,255,255), new Point2D.Double(10,10)).toString() + "    " +
+        new EllipseState(10,10,10,
+            new Color(255,255,255), new Point2D.Double(50000,33)).toString() + "\n");
   }
 
   @Test
@@ -249,7 +236,11 @@ public class ModelTest {
     model.changeSizeTo("Dave", 12,12,19);
     model.changeColorTo("Dave", 200,200,200,23);
     model.fullMotionTo("Dave", 25,50,50,25,25,13,0,93);
-    assertEquals(model.printHistory(),"oof");
+    assertEquals("1 10.0 10.0 10 10 255 255 255    10 50000.0 33.0 10 10 255 255 255\n" + 
+        "10 50000.0 33.0 10 10 255 255 255    29 50000.0 33.0 12 12 255 255 255\n" + 
+        "29 50000.0 33.0 12 12 255 255 255    52 50000.0 33.0 12 12 200 200 200\n" + 
+        "52 50000.0 33.0 12 12 200 200 200    77 50.0 50.0 25 25 13 0 93\n"
+        ,model.printHistory());
   }
   @Test
   public void testPrintHistory3() {

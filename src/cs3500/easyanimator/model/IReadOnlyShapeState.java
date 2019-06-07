@@ -2,6 +2,9 @@ package cs3500.easyanimator.model;
 
 import java.awt.geom.Point2D;
 
+/**
+ * Represents a read only version of a shape state.
+ */
 public interface IReadOnlyShapeState {
   /**
    * retrieves the width of this readable shape.

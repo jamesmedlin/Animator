@@ -1,6 +1,5 @@
 import static org.junit.Assert.assertEquals;
 import java.awt.geom.Point2D;
-import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 import cs3500.easyanimator.model.AnimatedShape;

@@ -1,6 +1,9 @@
 package cs3500.easyanimator.model;
 
 
+/**
+ * Represents an instantaneous state of a shape.
+ */
 public interface IShapeState extends IReadOnlyShapeState {
 
   /**

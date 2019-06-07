@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Represents the model of this EasyAnimator. The model stores {@code AnimatedShape} objects
+ * mapped to a unique string name.
+ */
 public class Model implements IModel {
   private HashMap<String, IAnimatedShape> shapes = new HashMap<String, IAnimatedShape>();
   

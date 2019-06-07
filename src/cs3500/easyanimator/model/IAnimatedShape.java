@@ -3,6 +3,9 @@ package cs3500.easyanimator.model;
 import java.awt.geom.Point2D;
 import java.util.List;
 
+/**
+ * Represents an  animated shape that has different states over time.
+ */
 public interface IAnimatedShape {
   /**
    * Retrieves all the states associated with this shape.
