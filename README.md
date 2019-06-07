@@ -12,4 +12,10 @@ This interface also has a `getShapeAtTick` and `getMotions` function. These meth
 
 ### IReadOnlyShapeState/IShapeState
 These interfaces is comprised of objects that represent shapes at a given tick in the model animation. This inteface was created to represent individual state of an animated shapes at given ticks. Therefore we made an abstract class to implement the interface that had tick, width, height, color, and position fields, as any shape state in the animation will need these properities. The only methods this inteface supports are getters (in both intefaces) and a `toString` and `deepCopy` methods that return new representations of the shapes. This is because we believe that these shape states should be immuatable once created.
-The aforementioned abstract class is currently only extended by Rectangles and Ellipses, but new shapes can be added easily by adding new classes and adding the new type of shape to the `ShapeType` enum.
+The aforementioned abstract class is currently only extended by Rectangles and Ellipses, but new shapes can be added easily by adding new classes and adding the new type of shape to the `ShapeType` enum. The classes that extend the abstract shape state class are comprised only of their explicit constructors and versions of the `deepCopy` method.
+
+### ShapeType Enum
+Represents a list of supported types of shapes. In order to add a new supported shape. A user need only add to the enum and write a class exending the abstract shape state class. That class need only have explicit constructors and a override of the `deepCopy` method.
+
+### Color
+A simple class to represent the RGB values of a color in an organized way. The implementation is only used internally so users need not be familiar with the `Color` constructor. Instead they can simply pass integers into the `changeColor` methods in the model.
