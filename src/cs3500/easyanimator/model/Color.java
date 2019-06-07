@@ -1,10 +1,19 @@
 package cs3500.easyanimator.model;
 
+/**
+ * represents color with different values of red, green, and blue.
+ */
 public class Color {
   private final int red;
   private final int green;
   private final int blue;
-  
+
+  /**
+   * constructs an instance of color for shapes
+   * @param red the value of red in the color
+   * @param green the value of green in the color
+   * @param blue in the color
+   */
   public Color(int red, int green, int blue) {
     if (red > 255 || red < 0 || green > 255 || green < 0 || blue > 255 || blue < 0) {
       throw new IllegalArgumentException("Color values must be between 0 and 255");

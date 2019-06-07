@@ -11,7 +11,11 @@ import cs3500.easyanimator.model.Model;
 import static cs3500.easyanimator.model.ShapeType.*;
 
 /**
+<<<<<<< HEAD
  * Tests the functionality of the {@code Model} class and all of its methods.
+=======
+ * tests the code of the {@code Model} class implementation.
+>>>>>>> 63099027984834cd5bb6ab1de110f3f9bdd6268d
  */
 public class ModelTest {
 

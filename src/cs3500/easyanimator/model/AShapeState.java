@@ -3,6 +3,10 @@ package cs3500.easyanimator.model;
 import java.awt.geom.Point2D;
 
 
+/**
+ * Represents the abstracted instantaneous version of any supported shape.
+ */
+
 public abstract class AShapeState implements IShapeState {
   protected final int tick;
   protected int width;
@@ -20,7 +24,7 @@ public abstract class AShapeState implements IShapeState {
    */
   public AShapeState(
       int tick, int width, int height, Color color, Point2D position) {
-    if (tick < 0 || width < 0 || height < 0) {
+    if (tick < 0 || width < 0 || height < 0 || position == null) {
       throw new IllegalArgumentException("Tick, width, and height must be non-negative");
     }
     this.tick = tick;
@@ -62,7 +66,7 @@ public abstract class AShapeState implements IShapeState {
 
   @Override
   public Color getColor() {
-    return new Color(this.color.getRed(), this.color.getBlue(), this.color.getGreen());
+    return new Color(this.color.getRed(), this.color.getGreen(), this.color.getBlue());
   }
 
   @Override
