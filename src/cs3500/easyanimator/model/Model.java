@@ -77,12 +77,14 @@ public class Model implements IModel {
       case RECTANGLE:
         shapes.put(name, new AnimatedShape(type,
                 new RectangleState(
-                        tick, width, height, new Color(red, green, blue), new Point2D.Double(x, y))));
+                        tick, width, height,
+                        new Color(red, green, blue), new Point2D.Double(x, y))));
         break;
       case ELLIPSE:
         shapes.put(name, new AnimatedShape(type,
                 new EllipseState(
-                        tick, width, height, new Color(red, green, blue), new Point2D.Double(x, y))));
+                        tick, width, height,
+                        new Color(red, green, blue), new Point2D.Double(x, y))));
         break;
       default:
         shapes.put(name, null);
