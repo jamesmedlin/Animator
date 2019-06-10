@@ -1,13 +1,11 @@
 package cs3500.animator.model;
 
-import java.util.List;
-import cs3500.animator.util.AnimationBuilder;
 
 /**
  * represents the animation's data structure, independent of user interface.
  * Directly organizes the data and logic of this animation.
  */
-public interface IModel {
+public interface IModel extends IReadOnlyModel {
 
   /**
    * instantiates a shape to the animation when called.
@@ -69,19 +67,6 @@ public interface IModel {
 
 
   /**
-   * retrieves the previous states of this shape.
-   * @return the history of this shape
-   */
-  String printHistory();
-
-  /**
-   * retrieves all shapes at a certain tick.
-   * @param tick the tick at which shapes are retrieves
-   * @return the list of readable shapes at the given tick
-   */
-  List<IReadOnlyShapeState> getShapesAtTick(int tick);
-
-  /**
    * creates a new motion which allows instantaneous changes in states.
    * @param name the unique shape identifier
    * @param duration the times over which this motion is performed
@@ -96,13 +81,6 @@ public interface IModel {
   void fullMotionTo(String name, int duration, double endX, double endY, int endHeight,
       int endWidth, int endRed, int endGreen, int endBlue);
 
-  /**
-   * helps for testing by allowing shapes to be retrieved.
-   * @param name the unique identifier of a shape
-   * @return the shape
-   * @throws IllegalArgumentException when the name is not a current shape
-   */
-  public String getShape(String name) throws IllegalArgumentException;
 
   /**
    * keeps the shape in place, with no change in size or color.
@@ -111,14 +89,6 @@ public interface IModel {
    * @throws IllegalArgumentException when the name is not valid or the duration is less than 1
    */
   void doNothing(String name, int duration) throws IllegalArgumentException;
-
-  /**
-   * returns the object version of an snimsted shape.
-   * @param name the unique identifier of a shape
-   * @return the animated shape with the given name
-   * @throws IllegalArgumentException when the name is invalid
-   */
-  public IAnimatedShape getShapeObject(String name) throws IllegalArgumentException;
 
   /**
    * Adds a full motion to the animation, allowing for customizable start AND ent times.
@@ -143,4 +113,5 @@ public interface IModel {
    */
   void fullMotion(String name, int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1,
       int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2);
+
 }

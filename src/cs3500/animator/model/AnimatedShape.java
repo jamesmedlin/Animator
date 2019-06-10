@@ -27,8 +27,9 @@ public class AnimatedShape implements IAnimatedShape {
    * @param states A list of {@code IShapeState} objects representing end points of motions
    */
   public AnimatedShape(ShapeType type, IShapeState initState, ArrayList<IShapeState> states) {
-    if (type == null || initState == null || states == null) {
-      throw new IllegalArgumentException("Cannot construct animated shape with null arguments.");
+    if (type == null || states == null) {
+      throw new IllegalArgumentException("Cannot construct " +
+              "animated shape with null type or null states.");
     }
     else {
       this.type = type;
