@@ -1,6 +1,7 @@
 package cs3500.animator.model;
 
 import java.util.List;
+import cs3500.animator.util.AnimationBuilder;
 
 /**
  * represents the animation's data structure, independent of user interface.
@@ -44,7 +45,7 @@ public interface IModel {
    * @throws IllegalArgumentException when given invalid color values or names
    */
   void changeColorTo(String name, int red, int green, int blue, int duration)
-          throws IllegalArgumentException;
+      throws IllegalArgumentException;
 
   /**
    * moves the shapes from its current position to the given position.
@@ -64,7 +65,7 @@ public interface IModel {
    * @throws IllegalArgumentException when given invalid lengths or names
    */
   void changeSizeTo(String name, int newHeight, int newWidth, int duration)
-          throws IllegalArgumentException;
+      throws IllegalArgumentException;
 
 
   /**
@@ -118,4 +119,28 @@ public interface IModel {
    * @throws IllegalArgumentException when the name is invalid
    */
   public IAnimatedShape getShapeObject(String name) throws IllegalArgumentException;
+
+  /**
+   * Adds a full motion to the animation, allowing for customizable start AND ent times.
+   * 
+   * @param name The name of the shape
+   * @param t1   The start time of this transformation
+   * @param x1   The initial x-position of the shape
+   * @param y1   The initial y-position of the shape
+   * @param w1   The initial width of the shape
+   * @param h1   The initial height of the shape
+   * @param r1   The initial red color-value of the shape
+   * @param g1   The initial green color-value of the shape
+   * @param b1   The initial blue color-value of the shape
+   * @param t2   The end time of this transformation
+   * @param x2   The final x-position of the shape
+   * @param y2   The final y-position of the shape
+   * @param w2   The final width of the shape
+   * @param h2   The final height of the shape
+   * @param r2   The final red color-value of the shape
+   * @param g2   The final green color-value of the shape
+   * @param b2   The final blue color-value of the shape
+   */
+  void fullMotion(String name, int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1,
+      int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2);
 }

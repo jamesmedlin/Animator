@@ -1,6 +1,7 @@
 package cs3500.animator.model;
 
 import java.awt.geom.Point2D;
+import java.awt.geom.Point2D.Double;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,8 @@ public class AnimatedShape implements IAnimatedShape {
   private final IShapeState initState;
   // a list of the shapes in its different states
   private ArrayList<IShapeState> states;
-  
-  
+
+
   /**
    * Public constructor that allows for the creation of an {@code AnimatedShape} object while
    * specifying all its fields.
@@ -151,8 +152,8 @@ public class AnimatedShape implements IAnimatedShape {
       this.endTick = value;
       return this;
     }
-    
-    public MotionAdder setDuration(int duration) {
+
+    private MotionAdder setDuration(int duration) {
       if (duration < 1) {
         throw new IllegalArgumentException("Durations must be positive.");
       }
@@ -176,10 +177,10 @@ public class AnimatedShape implements IAnimatedShape {
         if (!((this.startTick <= states.get(i).getTick()
             && this.endTick <= states.get(i).getTick())
             || (this.startTick >= states.get(i + 1).getTick()
-                && this.endTick >= states.get(i + 1).getTick()))) {
+            && this.endTick >= states.get(i + 1).getTick()))) {
           throw new IllegalArgumentException(
               "Shape is already performing an operation "
-              + "during at least one of the ticks specified.");
+                  + "during at least one of the ticks specified.");
         }
       }
 
@@ -208,7 +209,7 @@ public class AnimatedShape implements IAnimatedShape {
       return AnimatedShape.this;
     }
   }
-  
+
   @Override
   public String getMotions() {
     String result = "";
@@ -228,57 +229,89 @@ public class AnimatedShape implements IAnimatedShape {
 
   @Override
   public void fullMotionTo(
-          Point2D endPos, int endHeight, int endWidth, Color endColor, int duration) {
-    if (endPos == null || endColor == null) {
-      throw new IllegalArgumentException("Position and color must not be null.");
+      Point2D endPos, int endHeight, int endWidth, Color endColor, int duration) {
+    if (endPos == null || endColor == null || (this.initState == null && this.states.isEmpty())) {
+      throw new IllegalArgumentException("Position and color must not be null."
+          + "And initState or states must have values.");
     }
     new MotionAdder()
-            .setEndColor(endColor)
-            .setEndHeight(endHeight)
-            .setEndWidth(endWidth)
-            .setEndPos(endPos)
-            .setDuration(duration)
-            .add();
+    .setEndColor(endColor)
+    .setEndHeight(endHeight)
+    .setEndWidth(endWidth)
+    .setEndPos(endPos)
+    .setDuration(duration)
+    .add();
   }
 
   @Override
   public void changeColor(Color color, int duration) {
-    if (color == null) {
-      throw new IllegalArgumentException("Position and color must not be null.");
+    if (color == null || (this.initState == null && this.states.isEmpty())) {
+      throw new IllegalArgumentException("Position and color must not be null."
+          + "And initState or states must have values.");
     }
     new MotionAdder().setEndColor(color).setDuration(duration).add();
   }
 
   @Override
   public void moveTo(Point2D endPos, int duration) {
-    if (endPos == null) {
-      throw new IllegalArgumentException("Position and color must not be null.");
+    if (endPos == null || (this.initState == null && this.states.isEmpty())) {
+      throw new IllegalArgumentException("Position must not be null."
+          + "And initState or states must have values.");
     }
     new MotionAdder().setEndPos(endPos).setDuration(duration).add();    
   }
 
   @Override
   public void changeSizeTo(int newHeight, int newWidth, int duration) {
+    if (this.initState == null && this.states.isEmpty()) {
+      throw new IllegalArgumentException("initState or states must have values.");
+    }
     new MotionAdder().setEndWidth(newWidth)
-            .setEndHeight(newHeight)
-            .setDuration(duration)
-            .add();
+    .setEndHeight(newHeight)
+    .setDuration(duration)
+    .add();
   }
-  
+
   @Override
   public void addDoNothing(int duration) {
     new MotionAdder().setDuration(duration).add();
   }
-  
+
   @Override
   public List<IReadOnlyShapeState> getStates() {
     ArrayList<IReadOnlyShapeState> result = new ArrayList<IReadOnlyShapeState>();
-    
+
     for (IShapeState state : this.states) {
       result.add(state.deepCopy());
     }
-    
+
     return result;
+  }
+
+  @Override
+  public void fullMotion(int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1, int t2,
+      int x2, int y2, int w2, int h2, int r2, int g2, int b2) {
+    MotionAdder adder = new MotionAdder();
+
+    if (adder.mostRecentShape != null && (t1 != adder.endTick || x1 != adder.endPos.getX() || y1 != adder.endPos.getY()
+        || w1 != adder.endWidth || h1 != adder.endHeight || r1 != adder.endColor.getRed()
+        || g1 != adder.endColor.getGreen() || b1 != adder.endColor.getBlue())) {
+      throw new IllegalArgumentException("Motion must begin where the last one left off");
+    }
+    else {
+      adder
+      .setStartColor(new Color(r1, g1, b1))
+      .setEndColor(new Color(r2, g2, b2))
+      .setStartTick(t1)
+      .setEndTick(t2)
+      .setStartHeight(h1)
+      .setEndHeight(h2)
+      .setStartWidth(w1)
+      .setEndWidth(w2)
+      .setStartPos(new Point2D.Double(x1, y1))
+      .setEndPos(new Point2D.Double(x2, y2))
+      .add();
+    }
   }
 
 }
