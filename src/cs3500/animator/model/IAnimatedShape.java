@@ -1,4 +1,4 @@
-package cs3500.easyanimator.model;
+package cs3500.animator.model;
 
 import java.awt.geom.Point2D;
 import java.util.List;

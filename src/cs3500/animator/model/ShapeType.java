@@ -1,4 +1,4 @@
-package cs3500.easyanimator.model;
+package cs3500.animator.model;
 
 /**
  * Represents the types of shapes currently supported by this Animator.

@@ -1,16 +1,14 @@
 import org.junit.Before;
 import org.junit.Test;
+import cs3500.animator.model.AnimatedShape;
+import cs3500.animator.model.Color;
+import cs3500.animator.model.EllipseState;
+import cs3500.animator.model.IModel;
+import cs3500.animator.model.Model;
 import java.awt.geom.Point2D;
-
-import static cs3500.easyanimator.model.ShapeType.ELLIPSE;
-import static cs3500.easyanimator.model.ShapeType.RECTANGLE;
+import static cs3500.animator.model.ShapeType.ELLIPSE;
+import static cs3500.animator.model.ShapeType.RECTANGLE;
 import static org.junit.Assert.assertEquals;
-
-import cs3500.easyanimator.model.AnimatedShape;
-import cs3500.easyanimator.model.Color;
-import cs3500.easyanimator.model.EllipseState;
-import cs3500.easyanimator.model.IModel;
-import cs3500.easyanimator.model.Model;
 
 
 /**

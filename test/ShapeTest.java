@@ -3,13 +3,13 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
-import cs3500.easyanimator.model.AnimatedShape;
-import cs3500.easyanimator.model.Color;
-import cs3500.easyanimator.model.EllipseState;
-import cs3500.easyanimator.model.IAnimatedShape;
-import cs3500.easyanimator.model.IReadOnlyShapeState;
-import cs3500.easyanimator.model.RectangleState;
-import cs3500.easyanimator.model.ShapeType;
+import cs3500.animator.model.AnimatedShape;
+import cs3500.animator.model.Color;
+import cs3500.animator.model.EllipseState;
+import cs3500.animator.model.IAnimatedShape;
+import cs3500.animator.model.IReadOnlyShapeState;
+import cs3500.animator.model.RectangleState;
+import cs3500.animator.model.ShapeType;
 
 /**
  * Tests the functionality of the {@code AnimatedShape} class implementation.

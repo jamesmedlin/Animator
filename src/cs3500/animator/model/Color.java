@@ -1,4 +1,4 @@
-package cs3500.easyanimator.model;
+package cs3500.animator.model;
 
 /**
  * represents color with different values of red, green, and blue.

@@ -1,4 +1,4 @@
-package cs3500.easyanimator.model;
+package cs3500.animator.model;
 
 /**
  * Represents an instantaneous state of a shape.

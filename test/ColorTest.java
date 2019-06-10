@@ -1,7 +1,7 @@
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
-import cs3500.easyanimator.model.Color;
+import cs3500.animator.model.Color;
 
 /**
  * Tests the functionality of the {@code Color} class implementation.
