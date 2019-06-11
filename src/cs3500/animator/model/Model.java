@@ -13,19 +13,29 @@ import cs3500.animator.util.AnimationBuilder;
 public final class Model implements IModel {
   private HashMap<String, IAnimatedShape> shapes;
 
+  private final int height;
+  private final int width;
+
 
   public static final class Builder implements AnimationBuilder<IModel> {
     private HashMap<String, IAnimatedShape> shapes;
+    private int x;
+    private int y;
+    private int height;
+    private int width;
 
     @Override
     public IModel build() {
-      return new Model(shapes);
+      return new Model(shapes, width, height);
     }
 
     @Override
     public AnimationBuilder<IModel> setBounds(int x, int y, int width, int height) {
-      // TODO Auto-generated method stub
-      return null;
+      this.x = x;
+      this.y = y;
+      this.width = width;
+      this.height = height;
+      return this;
     }
 
     @Override
@@ -49,7 +59,8 @@ public final class Model implements IModel {
       if (!shapes.containsKey(name)) {
         throw new IllegalArgumentException("Invalid name");
       }
-      shapes.get(name).fullMotion(t1, x1, y1, w1, h1, r1, g1, b1, t2, x2, y2, w2, h2, r2, g2, b2);
+      shapes.get(name).fullMotion(t1, x1 + this.x, y1 + this.y, w1, h1, r1, g1, b1,
+          t2, x2 + this.x, y2 + this.y, w2, h2, r2, g2, b2);
       return this;
     }
 
@@ -65,20 +76,27 @@ public final class Model implements IModel {
    * Constructs a default model.
    */
   public Model() {
-    this.shapes = new HashMap<String, IAnimatedShape>();
+    this(null, 500, 500);
   }
 
   /**
    * Constructs a model, but a list of Shapes can be given when initialized.
    *
    * @param shapes list of shapes added when instantiating this model
+   * @param height2 
+   * @param width2 
+   * @param y2 
+   * @param x2 
    */
-  public Model(HashMap<String, IAnimatedShape> shapes) {
+  public Model(HashMap<String, IAnimatedShape> shapes, int width, int height) {
     if (shapes == null) {
       this.shapes = new HashMap<String, IAnimatedShape>();
     } else {
       this.shapes = shapes;
     }
+
+    this.width = width;
+    this.height = height;
   }
 
   @Override
@@ -229,6 +247,16 @@ public final class Model implements IModel {
       result.add(shape.deepCopy());
     }
     return result;
+  }
+
+  @Override
+  public int getWidth() {
+    return this.width;
+  }
+
+  @Override
+  public int getHeight() {
+    return this.height;
   }
 }
 

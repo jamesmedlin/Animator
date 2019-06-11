@@ -4,8 +4,8 @@ import cs3500.animator.model.IReadOnlyAnimatedShape;
 
 public class EllipseTag extends ASVGTag {
 
-  protected EllipseTag(IReadOnlyAnimatedShape shape) {
-    super(shape);
+  protected EllipseTag(IReadOnlyAnimatedShape shape, int rate) {
+    super(shape, rate);
   }
 
   @Override
