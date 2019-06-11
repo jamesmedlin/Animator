@@ -1,24 +1,23 @@
 package cs3500.animator.view;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.function.Function;
-import cs3500.animator.model.IAnimatedShape;
 import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.IReadOnlyModel;
-import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
 
 public class SVGView implements IView {
   private int rate;
   private HashMap<ShapeType, Function<IReadOnlyAnimatedShape, ISVGTag>> commandMap;
-  
+
   public SVGView(int rate) {
     this.rate = rate;
     this.commandMap.put(
-        ShapeType.RECTANGLE, (IReadOnlyAnimatedShape shape) -> {return new RectangleTag(shape);});
+        ShapeType.RECTANGLE,
+        (IReadOnlyAnimatedShape shape) -> {return new RectangleTag(shape, this.rate);});
     this.commandMap.put(
-        ShapeType.ELLIPSE, (IReadOnlyAnimatedShape shape) -> {return new EllipseTag(shape);});
+        ShapeType.ELLIPSE,
+        (IReadOnlyAnimatedShape shape) -> {return new EllipseTag(shape, this.rate);});
   }
 
   @Override
@@ -26,8 +25,10 @@ public class SVGView implements IView {
     throw new UnsupportedOperationException("You suck.");
   }
 
-  public String formatSVG2(IReadOnlyModel model) {
-    String result = "";
+  @Override
+  public String formatSVG(IReadOnlyModel model) {
+    String result = "<svg width=\"" + model.getWidth() + "\" height\"" + model.getHeight()
+        + "\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">";
     for (IReadOnlyAnimatedShape shape : model.getShapes()) {
       Function<IReadOnlyAnimatedShape, ISVGTag> func = this.commandMap.get(shape.getType());
       ISVGTag tag = func.apply(shape);
@@ -35,16 +36,5 @@ public class SVGView implements IView {
     }
     return result;
   }
-  
-  @Override
-  public String formatSVG(IReadOnlyModel model) {
-    String result = "";
-    List<IReadOnlyAnimatedShape> shapes = model.getShapes();
-    for (IReadOnlyAnimatedShape shape : shapes) {
-    }
-    return result;
-  }
-
-
 
 }

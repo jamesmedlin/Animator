@@ -7,8 +7,8 @@ import cs3500.animator.model.IReadOnlyShapeState;
 
 public class RectangleTag extends ASVGTag {
 
-  protected RectangleTag(IReadOnlyAnimatedShape shape) {
-    super(shape);
+  protected RectangleTag(IReadOnlyAnimatedShape shape, int rate) {
+    super(shape, rate);
   }
 
   @Override

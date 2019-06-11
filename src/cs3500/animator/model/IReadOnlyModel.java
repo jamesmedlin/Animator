@@ -31,4 +31,8 @@ public interface IReadOnlyModel {
    * @return a list of Read Only animated shapes
    */
   public List<IReadOnlyAnimatedShape> getShapes();
+
+  int getWidth();
+  
+  int getHeight();
 }
