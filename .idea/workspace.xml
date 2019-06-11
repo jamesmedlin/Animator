@@ -2,11 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e870a397-68d9-44a5-8faa-61152e356747" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/cs3500/animator/model/AShapeState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/model/AShapeState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/ModelTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/ModelTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/cs3500/animator/model/AnimatedShape.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/cs3500/animator/model/AnimatedShape.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/cs3500/animator/model/IAnimatedShape.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/cs3500/animator/model/IAnimatedShape.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/cs3500/animator/model/IReadOnlyModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/cs3500/animator/model/IReadOnlyModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/cs3500/animator/model/Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/cs3500/animator/model/Model.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/cs3500/animator/view/IView.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/cs3500/animator/view/IView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/cs3500/animator/view/SVGView.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/cs3500/animator/view/SVGView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/cs3500/animator/view/TextView.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/cs3500/animator/view/TextView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/cs3500/animator/view/VisualView.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/cs3500/animator/view/VisualView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cs3500/animator/model/AnimatedShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/model/AnimatedShape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/animator/model/IShapeState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/model/IShapeState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/animator/model/IAnimatedShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/model/IAnimatedShape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/animator/model/IReadOnlyModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/model/IReadOnlyModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cs3500/animator/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/animator/view/SVGView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/view/SVGView.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,16 +50,17 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cs3500/animator/model/Model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
+            <state relative-caret-position="3553">
               <caret line="213" column="3" selection-start-line="213" selection-start-column="3" selection-end-line="213" selection-end-column="3" />
               <folding>
                 <element signature="e#586#587#0" expanded="true" />
                 <element signature="e#624#625#0" expanded="true" />
                 <element signature="e#1938#1939#0" expanded="true" />
                 <element signature="e#1999#2000#0" expanded="true" />
+                <element signature="e#7153#7177#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -107,17 +116,18 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cs3500/animator/model/AnimatedShape.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
+            <state relative-caret-position="163">
+              <caret line="324" column="2" selection-start-line="324" selection-start-column="2" selection-end-line="324" selection-end-column="2" />
               <folding>
                 <element signature="e#9016#9017#0" expanded="true" />
                 <element signature="e#9071#9072#0" expanded="true" />
                 <element signature="e#9192#9213#0" expanded="true" />
                 <element signature="e#10335#10336#0" expanded="true" />
                 <element signature="e#10360#10361#0" expanded="true" />
+                <element signature="e#10524#10537#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -193,8 +203,8 @@
         <option value="$PROJECT_DIR$/src/cs3500/animator/model/IShapeState.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/model/AShapeState.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/view/SVGView.java" />
-        <option value="$PROJECT_DIR$/src/cs3500/animator/model/AnimatedShape.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/model/Model.java" />
+        <option value="$PROJECT_DIR$/src/cs3500/animator/model/AnimatedShape.java" />
       </list>
     </option>
   </component>
@@ -349,7 +359,7 @@
       <option name="presentableId" value="Default" />
       <updated>1559669082571</updated>
       <workItem from="1559669086870" duration="270000" />
-      <workItem from="1559866205837" duration="37334000" />
+      <workItem from="1559866205837" duration="37580000" />
     </task>
     <servers />
   </component>
@@ -386,7 +396,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37781000" />
+    <option name="totallyTimeSpent" value="38027000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -748,35 +758,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/SVGView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="41" lean-forward="true" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cs3500/animator/model/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor />
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/model/AnimatedShape.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
-          <folding>
-            <element signature="e#9016#9017#0" expanded="true" />
-            <element signature="e#9071#9072#0" expanded="true" />
-            <element signature="e#9192#9213#0" expanded="true" />
-            <element signature="e#10335#10336#0" expanded="true" />
-            <element signature="e#10360#10361#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -787,15 +773,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/SVGView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="41" lean-forward="true" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/cs3500/animator/model/Model.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
+        <state relative-caret-position="3553">
           <caret line="213" column="3" selection-start-line="213" selection-start-column="3" selection-end-line="213" selection-end-column="3" />
           <folding>
             <element signature="e#586#587#0" expanded="true" />
             <element signature="e#624#625#0" expanded="true" />
             <element signature="e#1938#1939#0" expanded="true" />
             <element signature="e#1999#2000#0" expanded="true" />
+            <element signature="e#7153#7177#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/model/AnimatedShape.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="324" column="2" selection-start-line="324" selection-start-column="2" selection-end-line="324" selection-end-column="2" />
+          <folding>
+            <element signature="e#9016#9017#0" expanded="true" />
+            <element signature="e#9071#9072#0" expanded="true" />
+            <element signature="e#9192#9213#0" expanded="true" />
+            <element signature="e#10335#10336#0" expanded="true" />
+            <element signature="e#10360#10361#0" expanded="true" />
+            <element signature="e#10524#10537#0" expanded="true" />
           </folding>
         </state>
       </provider>
