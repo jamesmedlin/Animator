@@ -1,12 +1,7 @@
 package cs3500.animator.model;
 import java.util.List;
-public interface IReadOnlyModel {
 
-  /**
-   * retrieves the previous states of this shape.
-   * @return the history of this shape
-   */
-  String printHistory();
+public interface IReadOnlyModel {
 
   /**
    * retrieves all shapes at a certain tick.
@@ -30,4 +25,10 @@ public interface IReadOnlyModel {
    * @throws IllegalArgumentException when the name is invalid
    */
   public IAnimatedShape getShapeObject(String name) throws IllegalArgumentException;
+
+  /**
+   * creates a list of all the animated shapes in the animation.
+   * @return a list of Read Only animated shapes
+   */
+  public List<IReadOnlyAnimatedShape> getShapes();
 }

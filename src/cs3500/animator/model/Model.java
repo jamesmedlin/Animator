@@ -105,15 +105,6 @@ public final class Model implements IModel {
     }
   }
 
-  @Override
-  public String printHistory() {
-    String result = "";
-    for (IAnimatedShape shape : shapes.values()) {
-      result += shape.getMotions();
-    }
-    return result;
-  }
-
 
   @Override
   public void addShapeAt(int tick, String name, ShapeType type, double x, double y, int width,

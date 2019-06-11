@@ -6,22 +6,7 @@ import java.util.List;
 /**
  * Represents an  animated shape that has different states over time.
  */
-public interface IAnimatedShape {
-  /**
-   * Retrieves all the states associated with this shape.
-   * @return the motions associated with this animated shape
-   */
-  String getMotions();
-  
-  /**
-   * Based on the added motions of this animated shape, this method will return the read only
-   * version of the shape state that represents the animated shape at the given tick.
-   * 
-   * @param tick the tick at which the Animated shape should be represented
-   * @return the shape at the given tick
-   * @throws IllegalArgumentException when given a tick that does not exist for this shape
-   */
-  IReadOnlyShapeState getShapeAt(int tick) throws IllegalArgumentException;
+public interface IAnimatedShape extends IReadOnlyAnimatedShape{
 
   /**
    * Adds a motion to this animated shape, taking as the starting position the state at the
@@ -74,13 +59,27 @@ public interface IAnimatedShape {
    * @param duration the length of time this Animated Shape should rest.
    */
   void addDoNothing(int duration);
-  
-  /**
-   * Getter for the list of states of this Animated Shape. Used primarily for testing purposes.
-   * @return List of shape states.
-   */
-  List<IReadOnlyShapeState> getStates();
 
+
+  /**
+   * changes the state of this shape via position, color, and/or size.
+   * @param t1 initial tick
+   * @param x1 initial x position
+   * @param y1 initial y position
+   * @param w1 initial width
+   * @param h1 initial height
+   * @param r1 initial red color value
+   * @param g1 initial green color value
+   * @param b1 initial blue color value
+   * @param t2 end tick
+   * @param x2 end x position
+   * @param y2 end y position
+   * @param w2 end width
+   * @param h2 end height
+   * @param r2 end red color value
+   * @param g2 end green color value
+   * @param b2 end blue color value
+   */
   void fullMotion(int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1, int t2, int x2,
       int y2, int w2, int h2, int r2, int g2, int b2);
 

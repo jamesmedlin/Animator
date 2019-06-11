@@ -315,4 +315,8 @@ public class AnimatedShape implements IAnimatedShape {
     }
   }
 
+  public ShapeType getType() {
+    return this.type;
+  }
+
 }
