@@ -1,9 +1,11 @@
 package cs3500.animator.model;
 
+import java.util.Comparator;
+
 /**
  * Represents an instantaneous state of a shape.
  */
-public interface IShapeState extends IReadOnlyShapeState {
+public interface IShapeState extends IReadOnlyShapeState, Comparable<IShapeState> {
 
   /**
    * Overrides the java-provided toString method. This method returns all the methods fields/

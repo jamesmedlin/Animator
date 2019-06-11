@@ -32,10 +32,10 @@ public final class Model implements IModel {
     public AnimationBuilder<IModel> declareShape(String name, String type) {
       switch (type) {
         case "rectangle":
-          shapes.put(name, new AnimatedShape(ShapeType.RECTANGLE, null));
+          shapes.put(name, new AnimatedShape(name, ShapeType.RECTANGLE, null));
           break;
         case "ellipse":
-          shapes.put(name, new AnimatedShape(ShapeType.ELLIPSE, null));
+          shapes.put(name, new AnimatedShape(name, ShapeType.ELLIPSE, null));
           break;
         default:
           throw new IllegalArgumentException("Shape type not supported");
@@ -115,13 +115,13 @@ public final class Model implements IModel {
 
     switch (type) {
       case RECTANGLE:
-        shapes.put(name, new AnimatedShape(type,
+        shapes.put(name, new AnimatedShape(name, type,
             new RectangleState(
                 tick, width, height,
                 new Color(red, green, blue), new Point2D.Double(x, y))));
         break;
       case ELLIPSE:
-        shapes.put(name, new AnimatedShape(type,
+        shapes.put(name, new AnimatedShape(name, type,
             new EllipseState(
                 tick, width, height,
                 new Color(red, green, blue), new Point2D.Double(x, y))));

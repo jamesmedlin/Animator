@@ -8,7 +8,7 @@ import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
 
 public class SVGView implements IView {
-
+  int rate;
 
   @Override
   public String printView(IReadOnlyModel model) {
@@ -21,7 +21,7 @@ public class SVGView implements IView {
     List<IReadOnlyAnimatedShape> shapes = model.getShapes();
     for (IReadOnlyAnimatedShape shape : shapes) {
       result += "<" + convertType(shape.getType()) + ">\n";
-      result += stateConverter(shape.getStates());
+      result += stateConverter(shape.getStates(), model);
     }
     return result;
   }
@@ -38,10 +38,12 @@ public class SVGView implements IView {
     }
   }
 
-  private static String stateConverter(List<IReadOnlyShapeState> states) {
+  private String stateConverter(List<IReadOnlyShapeState> states, IReadOnlyModel model) {
     String result = "";
-    for (IReadOnlyShapeState state : states) {
-      result += "<animate attributesType=\"xml\" begin=\"" + state.;
+    for (int i = 0; i < states.size() - 1; i += 2) {
+      result += "<animate attributesType=\"xml\" begin=\"" +
+              (states.get(i).getTick() / this.rate * 1000) + "ms\" dur=\"" +
+              ((states.get(i + 1).getTick() - states.get(i).getTick()) / this.rate * 1000) + "ms\" attributeName=\'" + states.get(i).;
     }
   }
 }

@@ -3,6 +3,8 @@ package cs3500.animator.model;
 import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Double;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -10,6 +12,7 @@ import java.util.List;
  * subsequent shape states added by the MotionAdder over time
  */
 public class AnimatedShape implements IAnimatedShape {
+  String name;
   // any type of subsequent shapes
   private final ShapeType type;
   // records the initial state of the animated shape
@@ -26,7 +29,7 @@ public class AnimatedShape implements IAnimatedShape {
    * @param initState The initial state of the shape as an {@code IShapeState}
    * @param states A list of {@code IShapeState} objects representing end points of motions
    */
-  public AnimatedShape(ShapeType type, IShapeState initState, ArrayList<IShapeState> states) {
+  public AnimatedShape(String name, ShapeType type, IShapeState initState, ArrayList<IShapeState> states) {
     if (type == null || states == null) {
       throw new IllegalArgumentException("Cannot construct " +
               "animated shape with null type or null states.");
@@ -45,8 +48,8 @@ public class AnimatedShape implements IAnimatedShape {
    * @param type the type of the shape
    * @param initState The initial state of the shape as an {@code IShapeState}
    */
-  public AnimatedShape(ShapeType type, IShapeState initState) {
-    this(type, initState, new ArrayList<IShapeState>());
+  public AnimatedShape(String name, ShapeType type, IShapeState initState) {
+    this(name, type, initState, new ArrayList<IShapeState>());
   }
 
   /**
@@ -172,9 +175,9 @@ public class AnimatedShape implements IAnimatedShape {
      */
     private AnimatedShape add() {
 
-      ArrayList<IShapeState> states = AnimatedShape.this.states;
+      List<IShapeState> states = AnimatedShape.this.states;
 
-      for (int i = 0; i < AnimatedShape.this.states.size(); i += 2) {
+      for (int i = 0; i < states.size(); i += 2) {
         if (!((this.startTick <= states.get(i).getTick()
             && this.endTick <= states.get(i).getTick())
             || (this.startTick >= states.get(i + 1).getTick()
@@ -187,26 +190,27 @@ public class AnimatedShape implements IAnimatedShape {
 
       switch (AnimatedShape.this.type) {
         case RECTANGLE:
-          AnimatedShape.this.states.add(
+          states.add(
               new RectangleState(
                   this.startTick, this.startWidth, 
                   this.startHeight, this.startColor, this.startPos));
-          AnimatedShape.this.states.add(
+          states.add(
               new RectangleState(
                   this.endTick, this.endWidth, this.endHeight, this.endColor, this.endPos));
           break;
         case ELLIPSE:
-          AnimatedShape.this.states.add(
+          states.add(
               new EllipseState(
                   this.startTick, this.startWidth,
                   this.startHeight, this.startColor, this.startPos));
-          AnimatedShape.this.states.add(
+          states.add(
               new EllipseState(
                   this.endTick, this.endWidth, this.endHeight, this.endColor, this.endPos));
           break;
         default:
           break;
       }
+      Collections.sort(states);
       return AnimatedShape.this;
     }
   }
@@ -318,5 +322,7 @@ public class AnimatedShape implements IAnimatedShape {
   public ShapeType getType() {
     return this.type;
   }
+
+
 
 }

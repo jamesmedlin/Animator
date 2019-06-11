@@ -19,14 +19,15 @@ public abstract class AShapeState implements IShapeState {
 
   /**
    * Serves as a common constructor for all subclasses of an abstract shape state.
-   * @param tick the tick at which this state exists
-   * @param width the width of the shape in this state
-   * @param height the the height of the shape in this state
-   * @param color the color of the shape in this state
+   *
+   * @param tick     the tick at which this state exists
+   * @param width    the width of the shape in this state
+   * @param height   the the height of the shape in this state
+   * @param color    the color of the shape in this state
    * @param position the position of the shape in this state
    */
   public AShapeState(
-      int tick, int width, int height, Color color, Point2D position) {
+          int tick, int width, int height, Color color, Point2D position) {
     if (tick < 0 || width < 0 || height < 0 || position == null) {
       throw new IllegalArgumentException("Tick, width, and height must be non-negative");
     }
@@ -73,8 +74,18 @@ public abstract class AShapeState implements IShapeState {
             + this.color.getGreen() + " "
             + this.color.getBlue();
   }
-  
+
   @Override
   public abstract IShapeState deepCopy();
 
+  @Override
+  public int compareTo(IShapeState shape) {
+    if (this.tick < shape.getTick()) {
+      return -1;
+    } else if (this.tick > shape.getTick()) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
 }
