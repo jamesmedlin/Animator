@@ -27,4 +27,6 @@ public interface IReadOnlyAnimatedShape {
   IReadOnlyShapeState getShapeAt(int tick) throws IllegalArgumentException;
 
   ShapeType getType();
+
+  String getName();
 }

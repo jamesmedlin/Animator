@@ -322,7 +322,7 @@ public class AnimatedShape implements IAnimatedShape {
   public ShapeType getType() {
     return this.type;
   }
-  
+
   @Override
   public IAnimatedShape deepCopy() {
     ArrayList<IShapeState> statesCopy = new ArrayList<IShapeState>();
@@ -335,6 +335,11 @@ public class AnimatedShape implements IAnimatedShape {
     else {
       return new AnimatedShape(this.name, this.type, this.initState.deepCopy(), statesCopy);
     }
+  }
+
+  @Override
+  public String getName() {
+    return this.name;
   }
 
 }
