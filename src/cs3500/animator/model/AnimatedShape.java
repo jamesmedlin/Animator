@@ -29,7 +29,8 @@ public class AnimatedShape implements IAnimatedShape {
    * @param initState The initial state of the shape as an {@code IShapeState}
    * @param states A list of {@code IShapeState} objects representing end points of motions
    */
-  public AnimatedShape(String name, ShapeType type, IShapeState initState, ArrayList<IShapeState> states) {
+  public AnimatedShape(
+      String name, ShapeType type, IShapeState initState, ArrayList<IShapeState> states) {
     if (type == null || states == null) {
       throw new IllegalArgumentException("Cannot construct " +
               "animated shape with null type or null states.");
@@ -298,9 +299,10 @@ public class AnimatedShape implements IAnimatedShape {
       int x2, int y2, int w2, int h2, int r2, int g2, int b2) {
     MotionAdder adder = new MotionAdder();
 
-    if (adder.mostRecentShape != null && (t1 != adder.endTick || x1 != adder.endPos.getX() || y1 != adder.endPos.getY()
-        || w1 != adder.endWidth || h1 != adder.endHeight || r1 != adder.endColor.getRed()
-        || g1 != adder.endColor.getGreen() || b1 != adder.endColor.getBlue())) {
+    if (adder.mostRecentShape != null && (t1 != adder.endTick || x1 != adder.endPos.getX()
+        || y1 != adder.endPos.getY() || w1 != adder.endWidth || h1 != adder.endHeight
+        || r1 != adder.endColor.getRed() || g1 != adder.endColor.getGreen()
+        || b1 != adder.endColor.getBlue())) {
       throw new IllegalArgumentException("Motion must begin where the last one left off");
     }
     else {
