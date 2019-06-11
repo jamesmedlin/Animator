@@ -205,9 +205,9 @@ public final class Model implements IModel {
   }
 
   @Override
-  public IAnimatedShape getShapeObject(String name) {
+  public IReadOnlyAnimatedShape getShapeObject(String name) {
     if (shapes.containsKey(name)) {
-      return shapes.get(name);
+      return shapes.get(name).deepCopy();
     } else {
       throw new IllegalArgumentException("This name does not exist in the current shapes");
     }
@@ -220,6 +220,15 @@ public final class Model implements IModel {
       throw new IllegalArgumentException("Invalid name");
     }
     shapes.get(name).fullMotion(t1, x1, y1, w1, h1, r1, g1, b1, t2, x2, y2, w2, h2, r2, g2, b2);
+  }
+
+  @Override
+  public List<IReadOnlyAnimatedShape> getShapes() {
+    ArrayList<IReadOnlyAnimatedShape> result = new ArrayList<IReadOnlyAnimatedShape>();
+    for (IAnimatedShape shape : this.shapes.values()) {
+      result.add(shape.deepCopy());
+    }
+    return result;
   }
 }
 

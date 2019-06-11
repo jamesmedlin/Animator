@@ -24,7 +24,7 @@ public interface IReadOnlyModel {
    * @return the animated shape with the given name
    * @throws IllegalArgumentException when the name is invalid
    */
-  public IAnimatedShape getShapeObject(String name) throws IllegalArgumentException;
+  public IReadOnlyAnimatedShape getShapeObject(String name) throws IllegalArgumentException;
 
   /**
    * creates a list of all the animated shapes in the animation.

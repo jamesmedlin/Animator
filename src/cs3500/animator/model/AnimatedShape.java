@@ -319,4 +319,18 @@ public class AnimatedShape implements IAnimatedShape {
     return this.type;
   }
 
+  @Override
+  public IAnimatedShape deepCopy() {
+    ArrayList<IShapeState> statesCopy = new ArrayList<IShapeState>();
+    for (IShapeState state : this.states) {
+      statesCopy.add(state.deepCopy());
+    }
+    if (this.initState == null) {
+      return new AnimatedShape(this.type, null, statesCopy);
+    }
+    else {
+      return new AnimatedShape(this.type, this.initState.deepCopy(), statesCopy);
+    }
+  }
+
 }
