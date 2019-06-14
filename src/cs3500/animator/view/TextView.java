@@ -7,6 +7,9 @@ import cs3500.animator.model.IReadOnlyModel;
 import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
 
+/**
+ * represents the text formatted as a String for this type of view in this program.
+ */
 public class TextView implements IView {
 
   public String printView(IReadOnlyModel model) {

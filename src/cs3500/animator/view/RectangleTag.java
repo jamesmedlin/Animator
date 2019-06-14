@@ -5,6 +5,9 @@ import java.util.List;
 import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.IReadOnlyShapeState;
 
+/**
+ * represents the svg format specifically for shapes of the type rectangle.
+ */
 public class RectangleTag extends ASVGTag {
 
   protected RectangleTag(IReadOnlyAnimatedShape shape, int rate) {

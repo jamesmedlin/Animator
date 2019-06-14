@@ -291,32 +291,6 @@ public class ModelTest {
             new Color(255,255,255), new Point2D.Double(50000,33)).toString() + "\n");
   }
 
-//  @Test
-//  public void testPrintHistory() {
-//    model.addShapeAt(1,"Dave", RECTANGLE,10,10,10,10,255,255,255);
-//    model.moveTo("Dave", 50000,33,9);
-//    model.changeSizeTo("Dave", 12,12,19);
-//    model.changeColorTo("Dave", 200,200,200,23);
-//    model.fullMotionTo("Dave", 25,50,50,25,25,13,0,93);
-//    assertEquals("1 10.0 10.0 10 10 255 255 255    10 50000.0 33.0 10 10 255 255 255\n" +
-//        "10 50000.0 33.0 10 10 255 255 255    29 50000.0 33.0 12 12 255 255 255\n" +
-//        "29 50000.0 33.0 12 12 255 255 255    52 50000.0 33.0 12 12 200 200 200\n" +
-//        "52 50000.0 33.0 12 12 200 200 200    77 50.0 50.0 25 25 13 0 93\n"
-//        ,model.printHistory());
-//  }
-//
-//  @Test
-//  public void testPrintHistory3() {
-//    model.addShapeAt(1,"Dave", ELLIPSE,10,10,10,10,255,255,255);
-//    assertEquals(model.printHistory(),"");
-//  }
-//
-//  @Test
-//  public void testPrintHistory2() {
-//    model.printHistory();
-//    assertEquals(model.printHistory(),"");
-//  }
-
   @Test
   public void testFullMotion() {
     model.addShapeAt(1,"Dave", RECTANGLE,10,10,10,10,255,255,255);

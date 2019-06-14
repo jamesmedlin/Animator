@@ -2,6 +2,8 @@ package cs3500.animator.model;
 
 import java.awt.geom.Point2D;
 
+import static cs3500.animator.model.ShapeType.RECTANGLE;
+
 /**
  * Represents a state of a Rectangle in an animated shape. This class is used to represent
  * the state of a moving shape at a given tick and are used in the animated shape class to serve
@@ -30,5 +32,11 @@ public class RectangleState extends AShapeState {
         new Color(this.color.getRed(), this.color.getGreen(), this.color.getBlue()),
         new Point2D.Double(this.position.getX(), this.position.getY()));
   }
+
+  @Override
+  public ShapeType getType() {
+    return RECTANGLE;
+  }
+
 
 }

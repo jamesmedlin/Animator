@@ -9,7 +9,7 @@ import javax.swing.*;
 import cs3500.animator.model.IReadOnlyShapeState;
 
 
-public class DrawingPanel extends JPanel implements IDrawingPanel {
+public class DrawingPanel extends ADrawingPanel {
   List<IReadOnlyShapeState> shapes = null;
 
   public DrawingPanel(){
@@ -25,11 +25,5 @@ public class DrawingPanel extends JPanel implements IDrawingPanel {
         g.fillRect((int)shape.getPosition().getX(), (int)shape.getPosition().getY(),shape.getWidth(), shape.getHeight());
       }
     }
-  }
-
-  @Override
-  public void draw(List<IReadOnlyShapeState> shapes) {
-    this.shapes = shapes;
-    repaint();
   }
 }

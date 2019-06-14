@@ -1,6 +1,4 @@
 package cs3500.animator.view;
-
-
 import java.awt.Dimension;
 import java.awt.Color;
 import java.util.List;
@@ -15,7 +13,7 @@ public class VisualView extends JFrame implements IView {
   JScrollPane scrollPane;
 
   /**
-   * TODO
+   * represents the standard animation/user-friendly interpretation of the program.
    */
   public VisualView(){
     super();

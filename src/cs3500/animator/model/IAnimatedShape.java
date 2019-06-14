@@ -4,7 +4,7 @@ import java.awt.geom.Point2D;
 import java.util.List;
 
 /**
- * Represents an  animated shape that has different states over time.
+ * Represents an animated shape that has different states over time.
  */
 public interface IAnimatedShape extends IReadOnlyAnimatedShape{
 
@@ -83,6 +83,10 @@ public interface IAnimatedShape extends IReadOnlyAnimatedShape{
   void fullMotion(int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1, int t2, int x2,
       int y2, int w2, int h2, int r2, int g2, int b2);
 
+  /**
+   * returns the complete copy of this for the purpose of ensuring no user can mutate anything.
+   * @return a complete copy
+   */
   IAnimatedShape deepCopy();
 
 }

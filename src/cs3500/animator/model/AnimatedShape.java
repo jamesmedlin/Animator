@@ -12,7 +12,7 @@ import java.util.List;
  * subsequent shape states added by the MotionAdder over time
  */
 public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> {
-  String name;
+  private final String name;
   // any type of subsequent shapes
   private final ShapeType type;
   // records the initial state of the animated shape
@@ -63,7 +63,7 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
       return 1;
     }
     else {
-      return 0;
+      return name.compareTo(o.getName());
     }
   }
 

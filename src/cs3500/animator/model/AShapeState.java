@@ -38,6 +38,12 @@ public abstract class AShapeState implements IShapeState {
     this.position = position;
   }
 
+  /**
+   * gets the shape type of this state of the shape.
+   * @return the shape's type
+   */
+  public abstract ShapeType getType();
+
   @Override
   public int getWidth() {
     return this.width;

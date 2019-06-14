@@ -20,6 +20,4 @@ public interface IShapeState extends IReadOnlyShapeState, Comparable<IShapeState
    * @return a complete copy of a shape's state
    */
   IShapeState deepCopy();
-  
-
 }

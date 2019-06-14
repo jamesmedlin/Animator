@@ -8,6 +8,9 @@ import cs3500.animator.model.IReadOnlyModel;
 import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
 
+/**
+ * represents the svg type of view for this program's animation.
+ */
 public class SVGView implements IView {
   private int rate;
   private HashMap<ShapeType, Function<IReadOnlyAnimatedShape, ISVGTag>> commandMap;

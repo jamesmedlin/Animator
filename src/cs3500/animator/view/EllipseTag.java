@@ -5,6 +5,9 @@ import java.util.List;
 import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.IReadOnlyShapeState;
 
+/**
+ * represents the svg format specifically for shapes of the type ellipse.
+ */
 public class EllipseTag extends ASVGTag {
 
   protected EllipseTag(IReadOnlyAnimatedShape shape, int rate) {
