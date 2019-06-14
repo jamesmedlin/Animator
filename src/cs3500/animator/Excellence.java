@@ -18,7 +18,7 @@ import cs3500.animator.util.AnimationReader;
 import cs3500.animator.view.IView;
 import cs3500.animator.view.SVGView;
 import cs3500.animator.view.TextView;
-import cs3500.animator.view.VisualView;
+import cs3500.animator.view.ViewFactory;
 
 public class Excellence {
   public static void main(String [] args) {
@@ -77,24 +77,21 @@ public class Excellence {
     }
     
     IReadOnlyModel model = AnimationReader.parseFile(in, new Model.Builder());
-    IView view = null;
+    IView view = ViewFactory.makeView(type, tps, model);
     
     try {
       switch (type) {
         case "svg":
         case "SVG":
-          view = new SVGView(tps);
           out.append(view.formatSVG(model));
           System.exit(0);
           break;
         case "text":
-          view = new TextView();
           out.append(view.printView(model));
           System.exit(0);
           break;
         case "visual":
-          view = new VisualView(tps);
-          view.render(model);
+          view.render();
           System.exit(0);
           break;
         default:

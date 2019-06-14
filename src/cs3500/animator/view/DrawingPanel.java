@@ -20,9 +20,23 @@ public class DrawingPanel extends JPanel implements IDrawingPanel {
   public void paintComponent(Graphics g){
     super.paintComponent(g);
     if ( shapes != null ){
-      g.setColor( Color.pink );
       for ( IReadOnlyShapeState shape : shapes ){
-        g.fillRect((int)shape.getPosition().getX(), (int)shape.getPosition().getY(),shape.getWidth(), shape.getHeight());
+        float[] hsbColor = shape.getColor().getHSB();
+        g.setColor(Color.getHSBColor(hsbColor[0], hsbColor[1], hsbColor[3]));
+        switch (shape.getType()) {
+          case RECTANGLE:
+            g.fillRect(
+                (int)shape.getPosition().getX(), (int)shape.getPosition().getY(),
+                shape.getWidth(), shape.getHeight());
+            break;
+          case ELLIPSE:
+            g.fillOval((int)shape.getPosition().getX(), (int)shape.getPosition().getY(),
+                shape.getWidth(), shape.getHeight());
+            break;
+          default:
+            throw new IllegalArgumentException(
+                "Enum has been updated without support in DrawingPanel");
+        }
       }
     }
   }
@@ -32,4 +46,6 @@ public class DrawingPanel extends JPanel implements IDrawingPanel {
     this.shapes = shapes;
     repaint();
   }
+  
+  
 }

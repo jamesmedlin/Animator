@@ -1,5 +1,6 @@
 package cs3500.animator.model;
 
+
 /**
  * represents color with different values of red, green, and blue.
  */
@@ -38,6 +39,10 @@ public class Color {
   
   public int getBlue() {
     return this.blue;
+  }
+  
+  public float[] getHSB() {
+    return java.awt.Color.RGBtoHSB(this.red, this.green, this.blue, new float[3]);
   }
   
 }
