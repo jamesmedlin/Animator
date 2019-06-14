@@ -96,5 +96,24 @@ public abstract class AShapeState implements IShapeState {
     }
   }
 
+  @Override
+  public void setWidth(int value) {
+    this.width = value;
+  }
+  
+  @Override
+  public void setHeight(int value) {
+    this.height = value;
+  }
+  
+  @Override
+  public void setColor(int r, int g, int b) {
+    this.color = new Color(r, g, b);
+  }
+  
+  @Override
+  public void setPosition(double x, double y) {
+    this.position = new Point2D.Double(x, y);
+  }
 
 }

@@ -189,7 +189,7 @@ public final class Model implements IModel {
     if (tick < 0) {
       throw new IllegalArgumentException("The tick must be a positive number.");
     } else {
-      List<IReadOnlyShapeState> shapesAtTick = new ArrayList<>();
+      List<IReadOnlyShapeState> shapesAtTick = new ArrayList<IReadOnlyShapeState>();
       for (IAnimatedShape shape : shapes.values()) {
         try {
           IReadOnlyShapeState tickShape = shape.getShapeAt(tick);

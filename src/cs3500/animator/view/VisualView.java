@@ -24,22 +24,22 @@ public class VisualView extends JFrame implements IView {
    */
   public VisualView(int speed, IReadOnlyModel model) {
     super();
+    
+    this.panel = new DrawingPanel();
+    panel.setMinimumSize(new Dimension(model.getWidth(), model.getHeight()));
+    panel.setPreferredSize(new Dimension(2000, 2000));
+    panel.setBackground(Color.white);
 
-    this.timer = new Timer(speed, new ActionListener() {
+    this.timer = new Timer(1000 / speed, new ActionListener() {
 
       @Override
       public void actionPerformed(ActionEvent e) {
         List<IReadOnlyShapeState> shapesToRender = model.getShapesAtTick(tick++);
-        VisualView.this.drawShapes(shapesToRender);
+        drawShapes(shapesToRender);
       }
     });
 
-    this.panel = new DrawingPanel();
-    panel.setMinimumSize(new Dimension(500, 500));
-    panel.setPreferredSize(new Dimension(2000, 2000));
-    panel.setBackground(Color.yellow);
-
-
+    
     scrollPane = new JScrollPane(panel);
 
     setSize(800, 800);

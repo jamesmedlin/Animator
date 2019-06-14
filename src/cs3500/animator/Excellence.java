@@ -89,7 +89,6 @@ public class Excellence {
           break;
         case "visual":
           view.render();
-          System.exit(0);
           break;
         default:
           JOptionPane.showMessageDialog(

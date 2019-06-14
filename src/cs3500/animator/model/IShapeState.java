@@ -20,4 +20,12 @@ public interface IShapeState extends IReadOnlyShapeState, Comparable<IShapeState
    * @return a complete copy of a shape's state
    */
   IShapeState deepCopy();
+  
+  void setWidth(int value);
+  
+  void setHeight(int value);
+  
+  void setColor(int r, int g, int b);
+  
+  void setPosition(double x, double y);
 }
