@@ -9,21 +9,11 @@ public interface IModel extends IReadOnlyModel {
 
   /**
    * instantiates a shape to the animation when called.
-   * @param tick the tick at which this shape initializes
    * @param name a unique identifier
    * @param type the type of shape being instantiated
-   * @param x the x position of where the shape starts
-   * @param y the y position of where the shape starts
-   * @param width the width of the shape
-   * @param height the height of the shape
-   * @param red the value of red color
-   * @param green the value of green color
-   * @param blue the value of blue color
    * @throws IllegalArgumentException when given invalid initial values
    */
-  void addShapeAt(
-      int tick, String name, ShapeType type, double x, double y, int width,
-      int height, int red, int green, int blue) throws IllegalArgumentException;
+  void addShape(String name, ShapeType type) throws IllegalArgumentException;
 
   /**
    * removes a specific shape when called.
