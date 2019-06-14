@@ -15,11 +15,6 @@ public class EllipseState extends AShapeState {
   }
 
   @Override
-  public ShapeType getType() {
-    return ShapeType.ELLIPSE;
-  }
-
-  @Override
   public IShapeState deepCopy() {
     return new EllipseState(
             this.tick, this.width, this.height,

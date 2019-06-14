@@ -21,8 +21,8 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
    * Public constructor that allows for the creation of an {@code AnimatedShape} object while
    * specifying all its fields.
    *
+   * @param name the shape's unique identifier
    * @param type      the type of the shape
-   * @param initState The initial state of the shape as an {@code IShapeState}
    * @param states    A list of {@code IShapeState} objects representing end points of motions
    */
   public AnimatedShape(String name, ShapeType type, ArrayList<IShapeState> states) {
