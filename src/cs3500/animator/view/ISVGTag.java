@@ -7,8 +7,9 @@ public interface ISVGTag {
 
   /**
    * formats the shape's animations in terms of svg.
+   *
    * @return a string formatted specifically for each type of shape
    */
-  public String format();
+  String format();
 
 }

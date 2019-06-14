@@ -9,12 +9,15 @@ public class ViewFactory {
 
   /**
    * creates an instance of the requested view based on the given type.
-   * @param type
-   * @param ticksPerSecond
-   * @param model
-   * @return
+   *
+   * @param type           a String version of the type of view being requested
+   * @param ticksPerSecond the speed at which this view should run.
+   * @param model          an immutable version of the program's model
+   * @return an instance of the requested view
+   * @throws IllegalArgumentException when given an invalid string type of a view
    */
-  public static IView makeView(String type, int ticksPerSecond, IReadOnlyModel model) {
+  public static IView makeView(String type, int ticksPerSecond, IReadOnlyModel model)
+          throws IllegalArgumentException {
     switch (type) {
       case "text":
         return new TextView();

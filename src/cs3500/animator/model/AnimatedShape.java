@@ -1,10 +1,8 @@
 package cs3500.animator.model;
 
 import java.awt.geom.Point2D;
-import java.awt.geom.Point2D.Double;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -22,13 +20,12 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
   /**
    * Public constructor that allows for the creation of an {@code AnimatedShape} object while
    * specifying all its fields.
-   * 
-   * @param type the type of the shape
+   *
+   * @param type      the type of the shape
    * @param initState The initial state of the shape as an {@code IShapeState}
-   * @param states A list of {@code IShapeState} objects representing end points of motions
+   * @param states    A list of {@code IShapeState} objects representing end points of motions
    */
-  public AnimatedShape(
-      String name, ShapeType type, ArrayList<IShapeState> states) {
+  public AnimatedShape(String name, ShapeType type, ArrayList<IShapeState> states) {
     if (type == null || states == null) {
       throw new IllegalArgumentException("Cannot construct " +
           "animated shape with null type or null states.");
@@ -41,10 +38,10 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
   }
 
   /**
-   * Public constructor that allows for the creation of an {@code AnimatedShape} object at
-   * its initial state, with no movements added.
-   * 
-   * @param type the type of the shape
+   * Public constructor that allows for the creation of an {@code AnimatedShape} object at its
+   * initial state, with no movements added.
+   *
+   * @param type      the type of the shape
    * @param initState The initial state of the shape as an {@code IShapeState}
    */
   public AnimatedShape(String name, ShapeType type) {
@@ -190,17 +187,16 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
     private MotionAdder setDuration(int duration) {
       if (duration < 1) {
         throw new IllegalArgumentException("Durations must be positive.");
-      }
-      else {
+      } else {
         this.endTick = this.startTick + duration;
         return this;
-      }   
+      }
     }
 
     /**
-     * Adds a new shape state to this animated shape. First checks if the ticks specified create
-     * any overlapping motions, then adds the correct {@code IShapeState} to this AnimatedShape.
-     * 
+     * Adds a new shape state to this animated shape. First checks if the ticks specified create any
+     * overlapping motions, then adds the correct {@code IShapeState} to this AnimatedShape.
+     *
      * @return returns this object after mutating it
      */
     private AnimatedShape add() {
@@ -209,33 +205,33 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
 
       for (int i = 0; i < states.size(); i += 2) {
         if (!((this.startTick <= states.get(i).getTick()
-            && this.endTick <= states.get(i).getTick())
-            || (this.startTick >= states.get(i + 1).getTick()
-            && this.endTick >= states.get(i + 1).getTick()))) {
+                && this.endTick <= states.get(i).getTick())
+                || (this.startTick >= states.get(i + 1).getTick()
+                && this.endTick >= states.get(i + 1).getTick()))) {
           throw new IllegalArgumentException(
-              "Shape is already performing an operation "
-                  + "during at least one of the ticks specified.");
+                  "Shape is already performing an operation "
+                          + "during at least one of the ticks specified.");
         }
       }
 
       switch (AnimatedShape.this.type) {
         case RECTANGLE:
           states.add(
-              new RectangleState(
-                  this.startTick, this.startWidth, 
-                  this.startHeight, this.startColor, this.startPos));
+                  new RectangleState(
+                          this.startTick, this.startWidth,
+                          this.startHeight, this.startColor, this.startPos));
           states.add(
-              new RectangleState(
-                  this.endTick, this.endWidth, this.endHeight, this.endColor, this.endPos));
+                  new RectangleState(
+                          this.endTick, this.endWidth, this.endHeight, this.endColor, this.endPos));
           break;
         case ELLIPSE:
           states.add(
-              new EllipseState(
-                  this.startTick, this.startWidth,
-                  this.startHeight, this.startColor, this.startPos));
+                  new EllipseState(
+                          this.startTick, this.startWidth,
+                          this.startHeight, this.startColor, this.startPos));
           states.add(
-              new EllipseState(
-                  this.endTick, this.endWidth, this.endHeight, this.endColor, this.endPos));
+                  new EllipseState(
+                          this.endTick, this.endWidth, this.endHeight, this.endColor, this.endPos));
           break;
         default:
           break;
@@ -250,7 +246,7 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
     String result = "";
     int i = 0;
     while (i < this.states.size() - 1) {
-      result +=  this.states.get(i).toString() + "    " + this.states.get(i + 1).toString() + "\n"; 
+      result += this.states.get(i).toString() + "    " + this.states.get(i + 1).toString() + "\n";
       i += 2;
     }
     return result;
@@ -271,22 +267,22 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
       Point2D endPos, int endHeight, int endWidth, Color endColor, int duration) {
     if (endPos == null || endColor == null || this.states.isEmpty()) {
       throw new IllegalArgumentException("Position and color must not be null."
-          + "And initState or states must have values.");
+              + "And initState or states must have values.");
     }
     new MotionAdder()
-    .setEndColor(endColor)
-    .setEndHeight(endHeight)
-    .setEndWidth(endWidth)
-    .setEndPos(endPos)
-    .setDuration(duration)
-    .add();
+            .setEndColor(endColor)
+            .setEndHeight(endHeight)
+            .setEndWidth(endWidth)
+            .setEndPos(endPos)
+            .setDuration(duration)
+            .add();
   }
 
   @Override
   public void changeColor(Color color, int duration) {
     if (color == null || this.states.isEmpty()) {
       throw new IllegalArgumentException("Position and color must not be null."
-          + "And initState or states must have values.");
+              + "And initState or states must have values.");
     }
     new MotionAdder().setEndColor(color).setDuration(duration).add();
   }
@@ -297,7 +293,7 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
       throw new IllegalArgumentException("Position must not be null."
           + "And states must have values.");
     }
-    new MotionAdder().setEndPos(endPos).setDuration(duration).add();    
+    new MotionAdder().setEndPos(endPos).setDuration(duration).add();
   }
 
   @Override
@@ -306,9 +302,9 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
       throw new IllegalArgumentException("States must have values.");
     }
     new MotionAdder().setEndWidth(newWidth)
-    .setEndHeight(newHeight)
-    .setDuration(duration)
-    .add();
+            .setEndHeight(newHeight)
+            .setDuration(duration)
+            .add();
   }
 
   @Override
@@ -329,28 +325,27 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
 
   @Override
   public void fullMotion(int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1, int t2,
-      int x2, int y2, int w2, int h2, int r2, int g2, int b2) {
+                         int x2, int y2, int w2, int h2, int r2, int g2, int b2) {
     MotionAdder adder = new MotionAdder();
 
     if (adder.mostRecentShape != null && (t1 != adder.endTick || x1 != adder.endPos.getX()
-        || y1 != adder.endPos.getY() || w1 != adder.endWidth || h1 != adder.endHeight
-        || r1 != adder.endColor.getRed() || g1 != adder.endColor.getGreen()
-        || b1 != adder.endColor.getBlue())) {
+            || y1 != adder.endPos.getY() || w1 != adder.endWidth || h1 != adder.endHeight
+            || r1 != adder.endColor.getRed() || g1 != adder.endColor.getGreen()
+            || b1 != adder.endColor.getBlue())) {
       throw new IllegalArgumentException("Motion must begin where the last one left off");
-    }
-    else {
+    } else {
       adder
-      .setStartColor(new Color(r1, g1, b1))
-      .setEndColor(new Color(r2, g2, b2))
-      .setStartTick(t1)
-      .setEndTick(t2)
-      .setStartHeight(h1)
-      .setEndHeight(h2)
-      .setStartWidth(w1)
-      .setEndWidth(w2)
-      .setStartPos(new Point2D.Double(x1, y1))
-      .setEndPos(new Point2D.Double(x2, y2))
-      .add();
+              .setStartColor(new Color(r1, g1, b1))
+              .setEndColor(new Color(r2, g2, b2))
+              .setStartTick(t1)
+              .setEndTick(t2)
+              .setStartHeight(h1)
+              .setEndHeight(h2)
+              .setStartWidth(w1)
+              .setEndWidth(w2)
+              .setStartPos(new Point2D.Double(x1, y1))
+              .setEndPos(new Point2D.Double(x2, y2))
+              .add();
     }
   }
 

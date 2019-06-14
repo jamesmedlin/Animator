@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+
 import cs3500.animator.util.AnimationBuilder;
 
 /**
@@ -56,18 +57,18 @@ public final class Model implements IModel {
 
     @Override
     public AnimationBuilder<IModel> addMotion(String name, int t1, int x1, int y1, int w1, int h1,
-        int r1, int g1, int b1, int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2) {
+                                              int r1, int g1, int b1, int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2) {
       if (!shapes.containsKey(name)) {
         throw new IllegalArgumentException("Invalid name");
       }
       shapes.get(name).fullMotion(t1, x1 + this.x, y1 + this.y, w1, h1, r1, g1, b1,
-          t2, x2 + this.x, y2 + this.y, w2, h2, r2, g2, b2);
+              t2, x2 + this.x, y2 + this.y, w2, h2, r2, g2, b2);
       return this;
     }
 
     @Override
     public AnimationBuilder<IModel> addKeyframe(String name, int t, int x, int y, int w, int h,
-        int r, int g, int b) {
+                                                int r, int g, int b) {
       return this;
     }
 
@@ -84,10 +85,6 @@ public final class Model implements IModel {
    * Constructs a model, but a list of Shapes can be given when initialized.
    *
    * @param shapes list of shapes added when instantiating this model
-   * @param height2 
-   * @param width2 
-   * @param y2 
-   * @param x2 
    */
   public Model(HashMap<String, IAnimatedShape> shapes, int width, int height) {
     if (shapes == null) {
@@ -106,23 +103,23 @@ public final class Model implements IModel {
       shapes.remove(name);
     } else {
       throw new IllegalArgumentException("This is not a valid name or " +
-          "is not a current shape's name.");
+              "is not a current shape's name.");
     }
   }
 
   @Override
   public void fullMotionTo(String name, int duration, double endX,
-      double endY, int endHeight, int endWidth,
-      int endRed, int endGreen, int endBlue) {
+                           double endY, int endHeight, int endWidth,
+                           int endRed, int endGreen, int endBlue) {
     IAnimatedShape shape = this.shapes.getOrDefault(name, null);
     if (shape == null) {
       throw new IllegalArgumentException("Shape with name " + name + " does not exist");
     } else {
       shape.fullMotionTo(
-          new Point2D.Double(endX, endY), endHeight, endWidth,
-          new Color(endRed, endGreen, endBlue), duration);
+              new Point2D.Double(endX, endY), endHeight, endWidth,
+              new Color(endRed, endGreen, endBlue), duration);
     }
-    
+
     this.height = (int) Math.max(endY, this.height);
     this.width = (int) Math.max(endX, this.width);
   }
@@ -150,7 +147,7 @@ public final class Model implements IModel {
 
   @Override
   public void changeColorTo(String name, int red, int green, int blue, int duration)
-      throws IllegalArgumentException {
+          throws IllegalArgumentException {
     IAnimatedShape shape = this.shapes.getOrDefault(name, null);
     if (shape == null) {
       throw new IllegalArgumentException("Shape with name " + name + " does not exist");
@@ -169,7 +166,7 @@ public final class Model implements IModel {
     } else {
       shape.moveTo(new Point2D.Double(x, y), duration);
     }
-    
+
     this.height = (int) Math.max(x, this.height);
     this.width = (int) Math.max(y, this.width);
   }
@@ -177,7 +174,7 @@ public final class Model implements IModel {
 
   @Override
   public void changeSizeTo(String name, int newHeight, int newWidth, int duration)
-      throws IllegalArgumentException {
+          throws IllegalArgumentException {
     IAnimatedShape shape = this.shapes.getOrDefault(name, null);
     if (shape == null) {
       throw new IllegalArgumentException("Shape with name " + name + " does not exist");
@@ -233,12 +230,12 @@ public final class Model implements IModel {
 
   @Override
   public void fullMotion(String name, int t1, int x1, int y1, int w1, int h1, int r1, int g1,
-      int b1, int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2) {
+                         int b1, int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2) {
     if (!shapes.containsKey(name)) {
       throw new IllegalArgumentException("Invalid name");
     }
     shapes.get(name).fullMotion(t1, x1, y1, w1, h1, r1, g1, b1, t2, x2, y2, w2, h2, r2, g2, b2);
-    
+
     this.height = (int) Math.max(x2, this.height);
     this.width = (int) Math.max(y2, this.width);
   }
@@ -249,7 +246,7 @@ public final class Model implements IModel {
     for (IAnimatedShape shape : this.shapes.values()) {
       result.add(shape.deepCopy());
     }
-    Collections.sort((List)result);
+    Collections.sort((List) result);
     return result;
   }
 

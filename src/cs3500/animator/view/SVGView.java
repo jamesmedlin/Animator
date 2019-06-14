@@ -1,11 +1,10 @@
 package cs3500.animator.view;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.function.Function;
+
 import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.IReadOnlyModel;
-import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
 
 /**
@@ -18,13 +17,17 @@ public class SVGView implements IView {
   public SVGView(int rate) {
     this.rate = rate;
     this.commandMap.put(
-        ShapeType.RECTANGLE,
-        (IReadOnlyAnimatedShape shape) -> {return new RectangleTag(shape, this.rate);});
+            ShapeType.RECTANGLE,
+            (IReadOnlyAnimatedShape shape) -> {
+              return new RectangleTag(shape, this.rate);
+            });
     this.commandMap.put(
-        ShapeType.ELLIPSE,
-        (IReadOnlyAnimatedShape shape) -> {return new EllipseTag(shape, this.rate);});
+            ShapeType.ELLIPSE,
+            (IReadOnlyAnimatedShape shape) -> {
+              return new EllipseTag(shape, this.rate);
+            });
   }
-  
+
 
   @Override
   public String printView(IReadOnlyModel model) {
@@ -34,7 +37,7 @@ public class SVGView implements IView {
   @Override
   public String formatSVG(IReadOnlyModel model) {
     String result = "<svg width=\"" + model.getWidth() + "\" height\"" + model.getHeight()
-        + "\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">";
+            + "\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">";
     for (IReadOnlyAnimatedShape shape : model.getShapes()) {
       Function<IReadOnlyAnimatedShape, ISVGTag> func = this.commandMap.get(shape.getType());
       ISVGTag tag = func.apply(shape);

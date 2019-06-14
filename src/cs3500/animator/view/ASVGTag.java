@@ -5,16 +5,19 @@ import java.util.List;
 import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.IReadOnlyShapeState;
 
+/**
+ * represents an abstracted version of a vsg tag depending on the type of shape.
+ */
 public abstract class ASVGTag implements ISVGTag {
-  
+
   protected final IReadOnlyAnimatedShape shape;
   protected int rate;
-  
+
   protected ASVGTag(IReadOnlyAnimatedShape shape, int rate) {
     this.shape = shape;
     this.rate = rate;
   }
-  
+
   @Override
   public abstract String format();
 
