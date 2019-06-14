@@ -19,6 +19,7 @@ public class SVGView implements IView {
         ShapeType.ELLIPSE,
         (IReadOnlyAnimatedShape shape) -> {return new EllipseTag(shape, this.rate);});
   }
+  
 
   @Override
   public String printView(IReadOnlyModel model) {
