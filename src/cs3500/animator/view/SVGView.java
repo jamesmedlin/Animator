@@ -16,6 +16,7 @@ public class SVGView implements IView {
 
   public SVGView(int rate) {
     this.rate = rate;
+    this.commandMap = new HashMap<>();
     this.commandMap.put(
             ShapeType.RECTANGLE,
             (IReadOnlyAnimatedShape shape) -> {
@@ -28,12 +29,6 @@ public class SVGView implements IView {
             });
   }
 
-
-  @Override
-  public String printView(IReadOnlyModel model) {
-    throw new UnsupportedOperationException("You suck.");
-  }
-
   @Override
   public String formatSVG(IReadOnlyModel model) {
     String result = "<svg width=\"" + model.getWidth() + "\" height\"" + model.getHeight()
@@ -43,7 +38,12 @@ public class SVGView implements IView {
       ISVGTag tag = func.apply(shape);
       result += tag.format();
     }
-    return result;
+    return result + "\n</svg>\n";
+  }
+
+  @Override
+  public String printView(IReadOnlyModel model) {
+    throw new UnsupportedOperationException("You suck.");
   }
 
   @Override

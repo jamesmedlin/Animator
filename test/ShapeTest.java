@@ -26,17 +26,22 @@ public class ShapeTest {
   public void setUp() {
     animatedRectangle = new AnimatedShape("Dave",
             ShapeType.RECTANGLE,
-            new RectangleState(0, 50, 50, new Color(255, 255, 255), new Point2D.Double(0, 0)));
+            new RectangleState(0, 50, 50,
+                    new Color(255, 255, 255),
+                    new Point2D.Double(0, 0)));
     animatedEllipse = new AnimatedShape("Vido",
             ShapeType.ELLIPSE,
-            new EllipseState(6, 25, 35, new Color(0, 0, 0), new Point2D.Double(40, 30)));
+            new EllipseState(6, 25, 35,
+                    new Color(0, 0, 0),
+                    new Point2D.Double(40, 30)));
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testNullConstructor1() {
     IAnimatedShape badShape =
             new AnimatedShape("Vido",
-                    null, new EllipseState(6, 25, 35, new Color(0, 0, 0), new Point2D.Double(40, 30)));
+                    null, new EllipseState(6, 25, 35,
+                    new Color(0, 0, 0), new Point2D.Double(40, 30)));
   }
 
   @Test(expected = IllegalArgumentException.class)

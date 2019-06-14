@@ -38,28 +38,28 @@ public class EllipseTag extends ASVGTag {
               (states.get(i).getTick() / this.rate * 1000) + "ms\" dur=\""
               + ((states.get(i + 1).getTick() - states.get(i).getTick()) / this.rate * 1000)
               + "ms\" attributeName=\"cx\" from=\"" + states.get(i).getPosition().getX()
-              + "\" to=\"" + states.get(i + 1).getPosition().getX() + "\" fill=\"freeze\" />";
+              + "\" to=\"" + states.get(i + 1).getPosition().getX() + "\" fill=\"freeze\" />\n";
     }
     if (states.get(i).getPosition().getY() != states.get(i + 1).getPosition().getY()) {
       result += "<animate attributesType=\"xml\" begin=\"" +
               (states.get(i).getTick() / this.rate * 1000) + "ms\" dur=\""
               + ((states.get(i + 1).getTick() - states.get(i).getTick()) / this.rate * 1000)
               + "ms\" attributeName=\"cy\" from=\"" + states.get(i).getPosition().getY()
-              + "\" to=\"" + states.get(i + 1).getPosition().getY() + "\" fill=\"freeze\" />";
+              + "\" to=\"" + states.get(i + 1).getPosition().getY() + "\" fill=\"freeze\" />\n";
     }
     if (states.get(i).getWidth() != states.get(i + 1).getWidth()) {
       result += "<animate attributesType=\"xml\" begin=\"" +
               (states.get(i).getTick() / this.rate * 1000) + "ms\" dur=\""
               + ((states.get(i + 1).getTick() - states.get(i).getTick()) / this.rate * 1000)
               + "ms\" attributeName=\"rx\" from=\"" + states.get(i).getWidth() / 2
-              + "\" to=\"" + states.get(i + 1).getWidth() / 2 + "\" fill=\"freeze\" />";
+              + "\" to=\"" + states.get(i + 1).getWidth() / 2 + "\" fill=\"freeze\" />\n";
     }
     if (states.get(i).getHeight() != states.get(i + 1).getHeight()) {
       result += "<animate attributesType=\"xml\" begin=\"" +
               (states.get(i).getTick() / this.rate * 1000) + "ms\" dur=\""
               + ((states.get(i + 1).getTick() - states.get(i).getTick()) / this.rate * 1000)
               + "ms\" attributeName=\"ry\" from=\"" + states.get(i).getHeight() / 2
-              + "\" to=\"" + states.get(i + 1).getHeight() / 2 + "\" fill=\"freeze\" />";
+              + "\" to=\"" + states.get(i + 1).getHeight() / 2 + "\" fill=\"freeze\" />\n";
     }
     return result;
   }

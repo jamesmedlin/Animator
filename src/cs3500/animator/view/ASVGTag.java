@@ -35,7 +35,7 @@ public abstract class ASVGTag implements ISVGTag {
                 ")\" to=\"rgb("
                 + shape.getStates().get(0).getColor().getRed() + ","
                 + shape.getStates().get(0).getColor().getGreen() + ","
-                + shape.getStates().get(0).getColor().getBlue() + ")\" fill=\"freeze\" />";
+                + shape.getStates().get(0).getColor().getBlue() + ")\" fill=\"freeze\" />\n";
       }
       result += stateConverterHelper(states, i);
     }
