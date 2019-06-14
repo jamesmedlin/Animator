@@ -1,9 +1,11 @@
 package cs3500.animator.view;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.function.Function;
 import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.IReadOnlyModel;
+import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
 
 public class SVGView implements IView {
@@ -35,6 +37,11 @@ public class SVGView implements IView {
       result += tag.format();
     }
     return result;
+  }
+
+  @Override
+  public void render(List<IReadOnlyShapeState> shapes) {
+    throw new UnsupportedOperationException("You suck.");
   }
 
 }

@@ -11,7 +11,7 @@ import java.util.List;
  * Represents an animated shape over time. It is made up of an initial shape state and a list of
  * subsequent shape states added by the MotionAdder over time
  */
-public class AnimatedShape implements IAnimatedShape {
+public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> {
   String name;
   // any type of subsequent shapes
   private final ShapeType type;
@@ -36,6 +36,7 @@ public class AnimatedShape implements IAnimatedShape {
               "animated shape with null type or null states.");
     }
     else {
+      this.name = name;
       this.type = type;
       this.initState = initState;
       this.states = states;
@@ -51,6 +52,19 @@ public class AnimatedShape implements IAnimatedShape {
    */
   public AnimatedShape(String name, ShapeType type, IShapeState initState) {
     this(name, type, initState, new ArrayList<IShapeState>());
+  }
+
+  @Override
+  public int compareTo(AnimatedShape o) {
+    if (initState.getTick() < o.initState.getTick()) {
+      return -1;
+    }
+    if (initState.getTick() > o.initState.getTick()) {
+      return 1;
+    }
+    else {
+      return 0;
+    }
   }
 
   /**
@@ -229,8 +243,12 @@ public class AnimatedShape implements IAnimatedShape {
 
   @Override
   public IReadOnlyShapeState getShapeAt(int tick) {
-    // TODO implement when we start animation
-    return null;
+    for (IShapeState state : states) {
+      if (state.getTick() == tick) {
+        return state;
+      }
+    }
+    throw new IllegalArgumentException("No state of this shape at the given tick.");
   }
 
   @Override

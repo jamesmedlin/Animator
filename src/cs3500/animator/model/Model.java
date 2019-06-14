@@ -2,6 +2,7 @@ package cs3500.animator.model;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import cs3500.animator.util.AnimationBuilder;
@@ -246,6 +247,7 @@ public final class Model implements IModel {
     for (IAnimatedShape shape : this.shapes.values()) {
       result.add(shape.deepCopy());
     }
+    Collections.sort((List)result);
     return result;
   }
 

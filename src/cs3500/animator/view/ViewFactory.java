@@ -9,7 +9,7 @@ public class ViewFactory {
       case "svg":
         return new SVGView(ticksPerSecond);
       case "visual":
-        return new VisualView(ticksPerSecond);
+        return new VisualView();
       default:
         throw new IllegalArgumentException("Must be a valid type of view.");
     }

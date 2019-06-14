@@ -1,6 +1,9 @@
 package cs3500.animator.view;
 
+import java.util.List;
+
 import cs3500.animator.model.IReadOnlyModel;
+import cs3500.animator.model.IReadOnlyShapeState;
 
 public interface IView {
 
@@ -9,12 +12,17 @@ public interface IView {
    * @param model a Read Only version of the model
    * @return a String description of the shapes and their motions
    */
-  public String printView(IReadOnlyModel model);
+  String printView(IReadOnlyModel model);
 
   /**
    * returns an svg formatted description of the animation.
    * @param model a Read Only version of the model
    * @return a String description of the animation in SVG style
    */
-  public String formatSVG(IReadOnlyModel model);
+  String formatSVG(IReadOnlyModel model);
+
+  /**
+   * renders all the shapes in the given list.
+   */
+  void render(List<IReadOnlyShapeState> shapes);
 }

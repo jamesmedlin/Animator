@@ -19,38 +19,38 @@ public class ShapeTest {
   IAnimatedShape animatedRectangle;
   IAnimatedShape animatedEllipse;
   
-  @Before
-  public void setUp() {
-    animatedRectangle = new AnimatedShape(
-        ShapeType.RECTANGLE,
-        new RectangleState(0, 50, 50, new Color(255, 255, 255), new Point2D.Double(0,0)));
-    animatedEllipse = new AnimatedShape(
-        ShapeType.ELLIPSE,
-        new EllipseState(6, 25, 35, new Color(0, 0, 0), new Point2D.Double(40, 30)));
-  }
-  
-  @Test (expected = IllegalArgumentException.class)
-  public void testNullConstructor1() {
-    IAnimatedShape badShape =
-        new AnimatedShape(
-            null, new EllipseState(6, 25, 35, new Color(0, 0, 0), new Point2D.Double(40, 30)));
-  }
-  
-  @Test (expected = IllegalArgumentException.class)
-  public void testNullConstructor2() {
-    IAnimatedShape badShape =
-        new AnimatedShape(
-            ShapeType.ELLIPSE, null);
-  }
-  
-  @Test (expected = IllegalArgumentException.class)
-  public void testNullConstructor3() {
-    IAnimatedShape badShape =
-        new AnimatedShape(
-            ShapeType.ELLIPSE,
-            new RectangleState(0, 50, 50, new Color(255, 255, 255), new Point2D.Double(0,0)),
-            null);
-  }
+//  @Before
+//  public void setUp() {
+//    animatedRectangle = new AnimatedShape(
+//        ShapeType.RECTANGLE,
+//        new RectangleState(0, 50, 50, new Color(255, 255, 255), new Point2D.Double(0,0)));
+//    animatedEllipse = new AnimatedShape(
+//        ShapeType.ELLIPSE,
+//        new EllipseState(6, 25, 35, new Color(0, 0, 0), new Point2D.Double(40, 30)));
+//  }
+//
+//  @Test (expected = IllegalArgumentException.class)
+//  public void testNullConstructor1() {
+//    IAnimatedShape badShape =
+//        new AnimatedShape(
+//            null, new EllipseState(6, 25, 35, new Color(0, 0, 0), new Point2D.Double(40, 30)));
+//  }
+//
+//  @Test (expected = IllegalArgumentException.class)
+//  public void testNullConstructor2() {
+//    IAnimatedShape badShape =
+//        new AnimatedShape(
+//            ShapeType.ELLIPSE, null);
+//  }
+//
+//  @Test (expected = IllegalArgumentException.class)
+//  public void testNullConstructor3() {
+//    IAnimatedShape badShape =
+//        new AnimatedShape(
+//            ShapeType.ELLIPSE,
+//            new RectangleState(0, 50, 50, new Color(255, 255, 255), new Point2D.Double(0,0)),
+//            null);
+//  }
   
   @Test
   public void testGetMotions() {
