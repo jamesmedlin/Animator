@@ -17,9 +17,9 @@ public class EllipseState extends AShapeState {
   @Override
   public IShapeState deepCopy() {
     return new EllipseState(
-        this.tick, this.width, this.height, 
-        new Color(this.color.getRed(), this.color.getGreen(), this.color.getBlue()),
-        new Point2D.Double(this.position.getX(), this.position.getY()));
+            this.tick, this.width, this.height,
+            new Color(this.color.getRed(), this.color.getGreen(), this.color.getBlue()),
+            new Point2D.Double(this.position.getX(), this.position.getY()));
   }
 
   @Override

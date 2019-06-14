@@ -8,8 +8,10 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
 import cs3500.animator.model.IReadOnlyModel;
 import cs3500.animator.model.Model;
 import cs3500.animator.util.AnimationReader;
@@ -17,13 +19,13 @@ import cs3500.animator.view.IView;
 import cs3500.animator.view.ViewFactory;
 
 public class Excellence {
-  public static void main(String [] args) {
-        
+  public static void main(String[] args) {
+
     String argString = "";
     for (String s : args) {
       argString += s + " ";
     }
-    
+
     Scanner argParser = new Scanner(new StringReader(argString));
     Readable in = new InputStreamReader(System.in);
     Appendable out = System.out;
@@ -32,7 +34,7 @@ public class Excellence {
     JFrame frame = new JFrame();
     frame.setBounds(0, 0, 200, 100);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    
+
     try {
       while (argParser.hasNext()) {
         String next = argParser.next();
@@ -51,30 +53,29 @@ public class Excellence {
             break;
           default:
             JOptionPane.showMessageDialog(frame, "Valid arguments consist of the following"
-                + "-in \"name-of-animation-file\" -view \"type-of-view\" -out "
-                + "\"where-output-show-go\" -speed \"integer-ticks-per-second\"\n",
-                "Invalid command line arguments", JOptionPane.ERROR_MESSAGE);
+                            + "-in \"name-of-animation-file\" -view \"type-of-view\" -out "
+                            + "\"where-output-show-go\" -speed \"integer-ticks-per-second\"\n",
+                    "Invalid command line arguments", JOptionPane.ERROR_MESSAGE);
         }
       }
-    }
-    catch (NoSuchElementException e) {
+    } catch (NoSuchElementException e) {
       JOptionPane.showMessageDialog(frame, "Insufficient arguments to run program."
-          + "Each argument must be followed by a value",
-          "Invalid command line arguments", JOptionPane.ERROR_MESSAGE);
+                      + "Each argument must be followed by a value",
+              "Invalid command line arguments", JOptionPane.ERROR_MESSAGE);
     } catch (FileNotFoundException e) {
       JOptionPane.showMessageDialog(frame, e.getMessage(),
-          "Invalid command line arguments", JOptionPane.ERROR_MESSAGE);
+              "Invalid command line arguments", JOptionPane.ERROR_MESSAGE);
     } catch (IOException e) {
       JOptionPane.showMessageDialog(frame, e.getMessage(),
-          "FileWriter failed", JOptionPane.ERROR_MESSAGE);
+              "FileWriter failed", JOptionPane.ERROR_MESSAGE);
     } catch (NumberFormatException e) {
       JOptionPane.showMessageDialog(frame, "Speed must be an integer.",
-          "Invalid command line arguments", JOptionPane.ERROR_MESSAGE);
+              "Invalid command line arguments", JOptionPane.ERROR_MESSAGE);
     }
-    
+
     IReadOnlyModel model = AnimationReader.parseFile(in, new Model.Builder());
     IView view = ViewFactory.makeView(type, tps, model);
-    
+
     try {
       switch (type) {
         case "svg":
@@ -92,12 +93,13 @@ public class Excellence {
           break;
         default:
           JOptionPane.showMessageDialog(
-              frame, "Suuported views are \"text\", \"svg\", and \"visual\".",
-              "Invalid command line arguments", JOptionPane.ERROR_MESSAGE);
+                  frame, "Supported views are \"text\", \"svg\", and \"visual\".",
+                  "Invalid command line arguments", JOptionPane.ERROR_MESSAGE);
       }
-    }
-    catch (IOException e) {
-
+    } catch (IOException e) {
+      JOptionPane.showMessageDialog(
+              frame, "Could not output.",
+              "Invalid command line arguments", JOptionPane.ERROR_MESSAGE);
     }
   }
 }

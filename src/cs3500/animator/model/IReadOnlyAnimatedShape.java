@@ -6,12 +6,14 @@ public interface IReadOnlyAnimatedShape {
 
   /**
    * Getter for the list of states of this Animated Shape. Used primarily for testing purposes.
+   *
    * @return List of shape states.
    */
   List<IReadOnlyShapeState> getStates();
 
   /**
    * Retrieves all the states associated with this shape.
+   *
    * @return the motions associated with this animated shape
    */
   String getMotions();

@@ -2,7 +2,7 @@ package cs3500.animator.view;
 
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.JPanel;
 
 import cs3500.animator.model.IReadOnlyShapeState;
 
@@ -18,7 +18,7 @@ public class ADrawingPanel extends JPanel implements IDrawingPanel {
 
   @Override
   public void draw(List<IReadOnlyShapeState> shapes) {
-      this.shapes = shapes;
-      repaint();
+    this.shapes = shapes;
+    repaint();
   }
 }
