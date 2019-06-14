@@ -13,8 +13,6 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
   private final String name;
   // any type of subsequent shapes
   private final ShapeType type;
-  // records the initial state of the animated shape
-  private final IShapeState initState;
   // a list of the shapes in its different states
   private ArrayList<IShapeState> states;
 
@@ -27,15 +25,14 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
    * @param initState The initial state of the shape as an {@code IShapeState}
    * @param states    A list of {@code IShapeState} objects representing end points of motions
    */
-  public AnimatedShape(
-          String name, ShapeType type, IShapeState initState, ArrayList<IShapeState> states) {
+  public AnimatedShape(String name, ShapeType type, ArrayList<IShapeState> states) {
     if (type == null || states == null) {
       throw new IllegalArgumentException("Cannot construct " +
-              "animated shape with null type or null states.");
-    } else {
+          "animated shape with null type or null states.");
+    }
+    else {
       this.name = name;
       this.type = type;
-      this.initState = initState;
       this.states = states;
     }
   }
@@ -47,18 +44,25 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
    * @param type      the type of the shape
    * @param initState The initial state of the shape as an {@code IShapeState}
    */
-  public AnimatedShape(String name, ShapeType type, IShapeState initState) {
-    this(name, type, initState, new ArrayList<IShapeState>());
+  public AnimatedShape(String name, ShapeType type) {
+    this(name, type, new ArrayList<IShapeState>());
   }
+ 
 
   @Override
   public int compareTo(AnimatedShape o) {
-    if (initState.getTick() < o.initState.getTick()) {
-      return -1;
+    try {
+      if (states.get(0).getTick() < o.getStates().get(0).getTick()) {
+        return -1;
+      }
+      if (states.get(0).getTick() > o.states.get(0).getTick()) {
+        return 1;
+      }
+      else {
+        return name.compareTo(o.getName());
+      }
     }
-    if (initState.getTick() > o.initState.getTick()) {
-      return 1;
-    } else {
+    catch (IndexOutOfBoundsException e) {
       return name.compareTo(o.getName());
     }
   }
@@ -83,20 +87,33 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
 
     private MotionAdder() {
       if (AnimatedShape.this.states.isEmpty()) {
-        this.mostRecentShape = AnimatedShape.this.initState;
-      } else {
-        this.mostRecentShape = AnimatedShape.this.states.get(AnimatedShape.this.states.size() - 1);
+        this.mostRecentShape = null;
+        this.startWidth = 0;
+        this.startHeight = 0;
+        this.endWidth = 0;
+        this.endHeight = 0;
+        this.startPos = new Point2D.Double(0, 0);
+        this.endPos = new Point2D.Double(0, 0);
+        this.startColor = new Color(0, 0, 0);
+        this.endColor = new Color(0, 0, 0);
+        this.startTick = 0;
+        this.endTick = 0;
       }
-      this.startWidth = this.mostRecentShape.getWidth();
-      this.startHeight = this.mostRecentShape.getHeight();
-      this.endWidth = this.mostRecentShape.getWidth();
-      this.endHeight = this.mostRecentShape.getHeight();
-      this.startPos = this.mostRecentShape.getPosition();
-      this.endPos = this.mostRecentShape.getPosition();
-      this.startColor = this.mostRecentShape.getColor();
-      this.endColor = this.mostRecentShape.getColor();
-      this.startTick = this.mostRecentShape.getTick();
-      this.endTick = this.mostRecentShape.getTick();
+      else {
+        this.mostRecentShape = AnimatedShape.this.states.get(AnimatedShape.this.states.size() - 1);
+        this.startWidth = this.mostRecentShape.getWidth();
+        this.startHeight = this.mostRecentShape.getHeight();
+        this.endWidth = this.mostRecentShape.getWidth();
+        this.endHeight = this.mostRecentShape.getHeight();
+        this.startPos = this.mostRecentShape.getPosition();
+        this.endPos = this.mostRecentShape.getPosition();
+        this.startColor = this.mostRecentShape.getColor();
+        this.endColor = this.mostRecentShape.getColor();
+        this.startTick = this.mostRecentShape.getTick();
+        this.endTick = this.mostRecentShape.getTick();
+      }
+
+
     }
 
     private MotionAdder setStartWidth(int value) {
@@ -152,7 +169,7 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
     }
 
     private MotionAdder setStartTick(int value) {
-      if (value <= 0) {
+      if (value < 0) {
         throw new IllegalArgumentException("Tick must be positive");
       }
       this.startTick = value;
@@ -160,7 +177,7 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
     }
 
     private MotionAdder setEndTick(int value) {
-      if (value <= 0) {
+      if (value < 0) {
         throw new IllegalArgumentException("Tick must be positive");
       }
       this.endTick = value;
@@ -247,8 +264,8 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
 
   @Override
   public void fullMotionTo(
-          Point2D endPos, int endHeight, int endWidth, Color endColor, int duration) {
-    if (endPos == null || endColor == null || (this.initState == null && this.states.isEmpty())) {
+      Point2D endPos, int endHeight, int endWidth, Color endColor, int duration) {
+    if (endPos == null || endColor == null || this.states.isEmpty()) {
       throw new IllegalArgumentException("Position and color must not be null."
               + "And initState or states must have values.");
     }
@@ -263,7 +280,7 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
 
   @Override
   public void changeColor(Color color, int duration) {
-    if (color == null || (this.initState == null && this.states.isEmpty())) {
+    if (color == null || this.states.isEmpty()) {
       throw new IllegalArgumentException("Position and color must not be null."
               + "And initState or states must have values.");
     }
@@ -272,17 +289,17 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
 
   @Override
   public void moveTo(Point2D endPos, int duration) {
-    if (endPos == null || (this.initState == null && this.states.isEmpty())) {
+    if (endPos == null || this.states.isEmpty()) {
       throw new IllegalArgumentException("Position must not be null."
-              + "And initState or states must have values.");
+          + "And states must have values.");
     }
     new MotionAdder().setEndPos(endPos).setDuration(duration).add();
   }
 
   @Override
   public void changeSizeTo(int newHeight, int newWidth, int duration) {
-    if (this.initState == null && this.states.isEmpty()) {
-      throw new IllegalArgumentException("initState or states must have values.");
+    if (this.states.isEmpty()) {
+      throw new IllegalArgumentException("States must have values.");
     }
     new MotionAdder().setEndWidth(newWidth)
             .setEndHeight(newHeight)
@@ -342,12 +359,9 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
     for (IShapeState state : this.states) {
       statesCopy.add(state.deepCopy());
     }
-    if (this.initState == null) {
-      return new AnimatedShape(this.name, this.type, null, statesCopy);
-    } else {
-      return new AnimatedShape(this.name, this.type, this.initState.deepCopy(), statesCopy);
-    }
+    return new AnimatedShape(this.name, this.type, statesCopy);
   }
+
 
   @Override
   public String getName() {

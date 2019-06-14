@@ -26,4 +26,9 @@ public class EllipseState extends AShapeState {
             new Color(this.color.getRed(), this.color.getGreen(), this.color.getBlue()),
             new Point2D.Double(this.position.getX(), this.position.getY()));
   }
+
+  @Override
+  public ShapeType getType() {
+    return ShapeType.ELLIPSE;
+  }
 }

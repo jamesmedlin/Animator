@@ -20,11 +20,11 @@ public final class Model implements IModel {
 
 
   public static final class Builder implements AnimationBuilder<IModel> {
-    private HashMap<String, IAnimatedShape> shapes;
-    private int x;
-    private int y;
-    private int height;
-    private int width;
+    private HashMap<String, IAnimatedShape> shapes = new HashMap<String, IAnimatedShape>();
+    private int x = 0;
+    private int y = 0;
+    private int height = 0;
+    private int width = 0;
 
     @Override
     public IModel build() {
@@ -44,10 +44,10 @@ public final class Model implements IModel {
     public AnimationBuilder<IModel> declareShape(String name, String type) {
       switch (type) {
         case "rectangle":
-          shapes.put(name, new AnimatedShape(name, ShapeType.RECTANGLE, null));
+          shapes.put(name, new AnimatedShape(name, ShapeType.RECTANGLE));
           break;
         case "ellipse":
-          shapes.put(name, new AnimatedShape(name, ShapeType.ELLIPSE, null));
+          shapes.put(name, new AnimatedShape(name, ShapeType.ELLIPSE));
           break;
         default:
           throw new IllegalArgumentException("Shape type not supported");
@@ -126,24 +126,17 @@ public final class Model implements IModel {
 
 
   @Override
-  public void addShapeAt(int tick, String name, ShapeType type, double x, double y, int width,
-                         int height, int red, int green, int blue) throws IllegalArgumentException {
+  public void addShape(String name, ShapeType type) throws IllegalArgumentException {
     if (this.shapes.containsKey(name) || type == null || name == null || name.equals("")) {
       throw new IllegalArgumentException("Shape names must be unique and non-null.");
     }
 
     switch (type) {
       case RECTANGLE:
-        shapes.put(name, new AnimatedShape(name, type,
-                new RectangleState(
-                        tick, width, height,
-                        new Color(red, green, blue), new Point2D.Double(x, y))));
+        shapes.put(name, new AnimatedShape(name, type));
         break;
       case ELLIPSE:
-        shapes.put(name, new AnimatedShape(name, type,
-                new EllipseState(
-                        tick, width, height,
-                        new Color(red, green, blue), new Point2D.Double(x, y))));
+        shapes.put(name, new AnimatedShape(name, type));
         break;
       default:
         shapes.put(name, null);
