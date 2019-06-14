@@ -1,24 +1,37 @@
 package cs3500.animator.view;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Color;
 import java.util.List;
 
 import javax.swing.*;
-
+import cs3500.animator.model.IModel;
 import cs3500.animator.model.IReadOnlyModel;
 import cs3500.animator.model.IReadOnlyShapeState;
 
 public class VisualView extends JFrame implements IView {
-  DrawingPanel panel;
-  JScrollPane scrollPane;
+  private DrawingPanel panel;
+  private JScrollPane scrollPane;
+  private Timer timer;
+  private int tick = 0;
 
   /**
    * represents the standard animation/user-friendly interpretation of the program.
    */
-  public VisualView(){
+  public VisualView(int speed, IReadOnlyModel model){
     super();
+    
+    this.timer = new Timer(speed, new ActionListener() {
 
-    panel = new DrawingPanel();
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        List<IReadOnlyShapeState> shapesToRender = model.getShapesAtTick(tick++);
+        VisualView.this.drawShapes(shapesToRender);
+      }
+    });
+
+    this.panel = new DrawingPanel();
     panel.setMinimumSize( new Dimension(500,500));
     panel.setPreferredSize( new Dimension(2000,2000));
     panel.setBackground(Color.yellow);
@@ -46,7 +59,11 @@ public class VisualView extends JFrame implements IView {
   }
 
   @Override
-  public void render(List<IReadOnlyShapeState> shapes) {
+  public void render() {
+    this.timer.start();
+  }
+  
+  private void drawShapes(List<IReadOnlyShapeState> shapes) {
     panel.draw(shapes);
   }
 }

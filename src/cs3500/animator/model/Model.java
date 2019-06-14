@@ -14,8 +14,8 @@ import cs3500.animator.util.AnimationBuilder;
 public final class Model implements IModel {
   private HashMap<String, IAnimatedShape> shapes;
 
-  private final int height;
-  private final int width;
+  private int height;
+  private int width;
 
 
   public static final class Builder implements AnimationBuilder<IModel> {
@@ -122,6 +122,9 @@ public final class Model implements IModel {
           new Point2D.Double(endX, endY), endHeight, endWidth,
           new Color(endRed, endGreen, endBlue), duration);
     }
+    
+    this.height = (int) Math.max(endY, this.height);
+    this.width = (int) Math.max(endX, this.width);
   }
 
 
@@ -173,6 +176,9 @@ public final class Model implements IModel {
     } else {
       shape.moveTo(new Point2D.Double(x, y), duration);
     }
+    
+    this.height = (int) Math.max(x, this.height);
+    this.width = (int) Math.max(y, this.width);
   }
 
 
@@ -239,6 +245,9 @@ public final class Model implements IModel {
       throw new IllegalArgumentException("Invalid name");
     }
     shapes.get(name).fullMotion(t1, x1, y1, w1, h1, r1, g1, b1, t2, x2, y2, w2, h2, r2, g2, b2);
+    
+    this.height = (int) Math.max(x2, this.height);
+    this.width = (int) Math.max(y2, this.width);
   }
 
   @Override

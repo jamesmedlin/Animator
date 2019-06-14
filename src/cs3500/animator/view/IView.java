@@ -24,5 +24,5 @@ public interface IView {
   /**
    * renders all the shapes in the given list.
    */
-  void render(List<IReadOnlyShapeState> shapes);
+  void render();
 }

@@ -37,4 +37,10 @@ public interface IReadOnlyShapeState {
    * @return tick, x position, y position, width, height, red, green, blue as string values.
    */
   int getTick();
+
+  /**
+   * retrieves the type of shape based on what it is.
+   * @return the type in this instance
+   */
+  ShapeType getType();
 }

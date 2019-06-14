@@ -28,7 +28,7 @@ public class TextView implements IView {
   }
 
   @Override
-  public void render(List<IReadOnlyShapeState> shapes) {
+  public void render() {
     throw new UnsupportedOperationException("You suck.");
   }
 
