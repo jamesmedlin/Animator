@@ -11,7 +11,7 @@ import cs3500.animator.view.IView;
 import cs3500.animator.view.TextView;
 
 /**
- * tests the textual view of {@code AShapeState} for getters.
+ * tests the textual view of {@code TextView}.
  */
 public class TextViewTest {
 
