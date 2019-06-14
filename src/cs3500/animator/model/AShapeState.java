@@ -8,7 +8,6 @@ import java.awt.geom.Point2D;
  */
 
 public abstract class AShapeState implements IShapeState {
-  protected static ShapeType type;
   // INVARIANT: tick is a positive number > 0
   protected final int tick;
   // INVARIANT: width is a positive number > 0
@@ -38,12 +37,6 @@ public abstract class AShapeState implements IShapeState {
     this.color = color;
     this.position = position;
   }
-
-  /**
-   * gets the shape type of this state of the shape.
-   * @return the shape's type
-   */
-  public abstract ShapeType getType();
 
   @Override
   public int getWidth() {
@@ -95,4 +88,6 @@ public abstract class AShapeState implements IShapeState {
       return 0;
     }
   }
+  
+  
 }
