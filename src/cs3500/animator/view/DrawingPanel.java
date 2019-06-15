@@ -10,7 +10,6 @@ import cs3500.animator.model.IReadOnlyShapeState;
  * represents a panel in the animation of this program.
  */
 public class DrawingPanel extends ADrawingPanel {
-  List<IReadOnlyShapeState> shapes = null;
 
   public DrawingPanel() {
     super();
@@ -22,7 +21,7 @@ public class DrawingPanel extends ADrawingPanel {
     if (shapes != null) {
       for (IReadOnlyShapeState shape : shapes) {
         float[] hsbColor = shape.getColor().getHSB();
-        g.setColor(Color.getHSBColor(hsbColor[0], hsbColor[1], hsbColor[3]));
+        g.setColor(Color.getHSBColor(hsbColor[0], hsbColor[1], hsbColor[2]));
         switch (shape.getType()) {
           case RECTANGLE:
             g.fillRect(

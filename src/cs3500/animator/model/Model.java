@@ -2,10 +2,10 @@ package cs3500.animator.model;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-
 import cs3500.animator.util.AnimationBuilder;
 
 /**
@@ -13,11 +13,10 @@ import cs3500.animator.util.AnimationBuilder;
  * to a unique string name.
  */
 public final class Model implements IModel {
-  private HashMap<String, IAnimatedShape> shapes;
-
+  private HashMap<String, IAnimatedShape> shapes = new HashMap<String, IAnimatedShape>();
   private int height;
   private int width;
-
+  private int shapeCount = this.shapes.values().size();
 
   public static final class Builder implements AnimationBuilder<IModel> {
     private HashMap<String, IAnimatedShape> shapes = new HashMap<String, IAnimatedShape>();
@@ -25,6 +24,7 @@ public final class Model implements IModel {
     private int y = 0;
     private int height = 0;
     private int width = 0;
+    private int shapeCount = 0;
 
     @Override
     public IModel build() {
@@ -44,31 +44,32 @@ public final class Model implements IModel {
     public AnimationBuilder<IModel> declareShape(String name, String type) {
       switch (type) {
         case "rectangle":
-          shapes.put(name, new AnimatedShape(name, ShapeType.RECTANGLE));
+          shapes.put(name, new AnimatedShape(name, ShapeType.RECTANGLE, this.shapeCount));
           break;
         case "ellipse":
-          shapes.put(name, new AnimatedShape(name, ShapeType.ELLIPSE));
+          shapes.put(name, new AnimatedShape(name, ShapeType.ELLIPSE, this.shapeCount));
           break;
         default:
           throw new IllegalArgumentException("Shape type not supported");
       }
+      this.shapeCount++;
       return this;
     }
 
     @Override
     public AnimationBuilder<IModel> addMotion(String name, int t1, int x1, int y1, int w1, int h1,
-                                              int r1, int g1, int b1, int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2) {
+        int r1, int g1, int b1, int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2) {
       if (!shapes.containsKey(name)) {
         throw new IllegalArgumentException("Invalid name");
       }
-      shapes.get(name).fullMotion(t1, x1 + this.x, y1 + this.y, w1, h1, r1, g1, b1,
-              t2, x2 + this.x, y2 + this.y, w2, h2, r2, g2, b2);
+      shapes.get(name).fullMotion(t1, x1 - this.x, y1 - this.y, w1, h1, r1, g1, b1,
+          t2, x2 - this.x, y2 - this.y, w2, h2, r2, g2, b2);
       return this;
     }
 
     @Override
     public AnimationBuilder<IModel> addKeyframe(String name, int t, int x, int y, int w, int h,
-                                                int r, int g, int b) {
+        int r, int g, int b) {
       return this;
     }
 
@@ -103,21 +104,21 @@ public final class Model implements IModel {
       shapes.remove(name);
     } else {
       throw new IllegalArgumentException("This is not a valid name or " +
-              "is not a current shape's name.");
+          "is not a current shape's name.");
     }
   }
 
   @Override
   public void fullMotionTo(String name, int duration, double endX,
-                           double endY, int endHeight, int endWidth,
-                           int endRed, int endGreen, int endBlue) {
+      double endY, int endHeight, int endWidth,
+      int endRed, int endGreen, int endBlue) {
     IAnimatedShape shape = this.shapes.getOrDefault(name, null);
     if (shape == null) {
       throw new IllegalArgumentException("Shape with name " + name + " does not exist");
     } else {
       shape.fullMotionTo(
-              new Point2D.Double(endX, endY), endHeight, endWidth,
-              new Color(endRed, endGreen, endBlue), duration);
+          new Point2D.Double(endX, endY), endHeight, endWidth,
+          new Color(endRed, endGreen, endBlue), duration);
     }
 
     this.height = (int) Math.max(endY, this.height);
@@ -133,21 +134,22 @@ public final class Model implements IModel {
 
     switch (type) {
       case RECTANGLE:
-        shapes.put(name, new AnimatedShape(name, type));
+        shapes.put(name, new AnimatedShape(name, type, this.shapeCount));
         break;
       case ELLIPSE:
-        shapes.put(name, new AnimatedShape(name, type));
+        shapes.put(name, new AnimatedShape(name, type, this.shapeCount));
         break;
       default:
         shapes.put(name, null);
     }
-
+    
+    this.shapeCount++;
   }
 
 
   @Override
   public void changeColorTo(String name, int red, int green, int blue, int duration)
-          throws IllegalArgumentException {
+      throws IllegalArgumentException {
     IAnimatedShape shape = this.shapes.getOrDefault(name, null);
     if (shape == null) {
       throw new IllegalArgumentException("Shape with name " + name + " does not exist");
@@ -174,7 +176,7 @@ public final class Model implements IModel {
 
   @Override
   public void changeSizeTo(String name, int newHeight, int newWidth, int duration)
-          throws IllegalArgumentException {
+      throws IllegalArgumentException {
     IAnimatedShape shape = this.shapes.getOrDefault(name, null);
     if (shape == null) {
       throw new IllegalArgumentException("Shape with name " + name + " does not exist");
@@ -190,7 +192,10 @@ public final class Model implements IModel {
       throw new IllegalArgumentException("The tick must be a positive number.");
     } else {
       List<IReadOnlyShapeState> shapesAtTick = new ArrayList<IReadOnlyShapeState>();
-      for (IAnimatedShape shape : shapes.values()) {
+      List<IAnimatedShape> sortedShapes = new ArrayList<IAnimatedShape>(this.shapes.values());
+      Collections.sort(sortedShapes);
+      
+      for (IAnimatedShape shape : sortedShapes) {
         try {
           IReadOnlyShapeState tickShape = shape.getShapeAt(tick);
           shapesAtTick.add(tickShape);
@@ -230,7 +235,7 @@ public final class Model implements IModel {
 
   @Override
   public void fullMotion(String name, int t1, int x1, int y1, int w1, int h1, int r1, int g1,
-                         int b1, int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2) {
+      int b1, int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2) {
     if (!shapes.containsKey(name)) {
       throw new IllegalArgumentException("Invalid name");
     }

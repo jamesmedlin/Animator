@@ -9,12 +9,14 @@ import java.util.List;
  * Represents an animated shape over time. It is made up of an initial shape state and a list of
  * subsequent shape states added by the MotionAdder over time
  */
-public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> {
+public class AnimatedShape implements IAnimatedShape {
   private final String name;
   // any type of subsequent shapes
   private final ShapeType type;
   // a list of the shapes in its different states
   private ArrayList<IShapeState> states;
+  // Represents the order this shape should be layered with other shapes
+  private int order;
 
 
   /**
@@ -25,7 +27,7 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
    * @param type      the type of the shape
    * @param states    A list of {@code IShapeState} objects representing end points of motions
    */
-  public AnimatedShape(String name, ShapeType type, ArrayList<IShapeState> states) {
+  public AnimatedShape(String name, ShapeType type, ArrayList<IShapeState> states, int order) {
     if (type == null || states == null) {
       throw new IllegalArgumentException("Cannot construct " +
           "animated shape with null type or null states.");
@@ -34,6 +36,7 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
       this.name = name;
       this.type = type;
       this.states = states;
+      this.order = order;
     }
   }
 
@@ -44,27 +47,27 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
    * @param type      the type of the shape
    * @param initState The initial state of the shape as an {@code IShapeState}
    */
-  public AnimatedShape(String name, ShapeType type) {
-    this(name, type, new ArrayList<IShapeState>());
+  public AnimatedShape(String name, ShapeType type, int order) {
+    this(name, type, new ArrayList<IShapeState>(), order);
   }
 
 
   @Override
-  public int compareTo(AnimatedShape o) {
-    try {
-      if (states.get(0).getTick() < o.getStates().get(0).getTick()) {
-        return -1;
-      }
-      if (states.get(0).getTick() > o.states.get(0).getTick()) {
-        return 1;
-      }
-      else {
-        return name.compareTo(o.getName());
-      }
+  public int compareTo(IAnimatedShape o) {
+
+    if (this.getOrder() < o.getOrder()) {
+      return -1;
     }
-    catch (IndexOutOfBoundsException e) {
+    else if (this.getOrder() > o.getOrder()) {
+      return 1;
+    }
+    else if (this.getOrder() == o.getOrder()) {
+      return 0;
+    }
+    else {
       return name.compareTo(o.getName());
     }
+
   }
 
   /**
@@ -257,7 +260,7 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
     for (int i = 0; i < this.states.size() - 1; i += 2) {
       IShapeState a = this.states.get(i);
       IShapeState b = this.states.get(i + 1);
-      if (a.getTick() <= tick || b.getTick() >= tick) {
+      if (a.getTick() <= tick && b.getTick() >= tick && a.getTick() != b.getTick()) {
         a.setColor(
             linearInterpolate(
                 a.getColor().getRed(), b.getColor().getRed(), a.getTick(), b.getTick(), tick),
@@ -265,18 +268,18 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
                 a.getColor().getGreen(), b.getColor().getGreen(), a.getTick(), b.getTick(), tick),
             linearInterpolate(
                 a.getColor().getBlue(), b.getColor().getBlue(), a.getTick(), b.getTick(), tick));
-        
+
         a.setHeight(
             linearInterpolate(a.getHeight(), b.getHeight(), a.getTick(), b.getTick(), tick));
-        
+
         a.setWidth(linearInterpolate(a.getWidth(), b.getWidth(), a.getTick(), b.getTick(), tick));
-        
+
         a.setPosition(
             linearInterpolate(
-                a.getPosition().getX(), b.getPosition().getY(), a.getTick(), b.getTick(), tick),
+                a.getPosition().getX(), b.getPosition().getX(), a.getTick(), b.getTick(), tick),
             linearInterpolate(
-                a.getPosition().getX(), b.getPosition().getY(), a.getTick(), b.getTick(), tick));
-        
+                a.getPosition().getY(), b.getPosition().getY(), a.getTick(), b.getTick(), tick));
+
         return a;
       }
     }
@@ -384,13 +387,18 @@ public class AnimatedShape implements IAnimatedShape, Comparable<AnimatedShape> 
     for (IShapeState state : this.states) {
       statesCopy.add(state.deepCopy());
     }
-    return new AnimatedShape(this.name, this.type, statesCopy);
+    return new AnimatedShape(this.name, this.type, statesCopy, this.order);
   }
 
 
   @Override
   public String getName() {
     return this.name;
+  }
+
+  @Override
+  public int getOrder() {
+    return this.order;
   }
 
 }

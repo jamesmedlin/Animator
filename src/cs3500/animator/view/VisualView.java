@@ -15,7 +15,6 @@ import cs3500.animator.model.IReadOnlyShapeState;
 
 public class VisualView extends JFrame implements IView {
   private DrawingPanel panel;
-  private JScrollPane scrollPane;
   private Timer timer;
   private int tick = 0;
 
@@ -26,8 +25,10 @@ public class VisualView extends JFrame implements IView {
     super();
     
     this.panel = new DrawingPanel();
-    panel.setMinimumSize(new Dimension(model.getWidth(), model.getHeight()));
-    panel.setPreferredSize(new Dimension(2000, 2000));
+    this.setSize(model.getWidth() + 25, model.getHeight() + 25);
+    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    panel.setPreferredSize(new Dimension(model.getWidth(), model.getHeight()));
     panel.setBackground(Color.white);
 
     this.timer = new Timer(1000 / speed, new ActionListener() {
@@ -39,14 +40,7 @@ public class VisualView extends JFrame implements IView {
       }
     });
 
-    
-    scrollPane = new JScrollPane(panel);
-
-    setSize(800, 800);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setLocation(200, 200);
-
-    add(scrollPane);
+    add(panel);
 
     setVisible(true);
   }
