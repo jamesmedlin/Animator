@@ -39,8 +39,8 @@ public class AShapeStateTest {
 
   @Test
   public void testDefaultAnimatedShape() {
-    AnimatedShape animation1 = new AnimatedShape("Dave", RECTANGLE, new ArrayList<>());
-    AnimatedShape animation2 = new AnimatedShape("Sandy", ELLIPSE, new ArrayList<>());
+    AnimatedShape animation1 = new AnimatedShape("Dave", RECTANGLE, new ArrayList<>(), 0);
+    AnimatedShape animation2 = new AnimatedShape("Sandy", ELLIPSE, new ArrayList<>(), 1);
     assertEquals(true, animation1.getStates().isEmpty());
     assertEquals(true, animation2.getStates().isEmpty());
   }

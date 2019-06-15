@@ -38,14 +38,21 @@ public class SVGViewTest {
   public void testPrintView3() {
     assertEquals("<svg width=\"500\" height\"500\" version=\"1.1\" " +
             "xmlns=\"http://www.w3.org/2000/svg\">\n" +
-            "</svg>\n", v1.formatSVG(m1));
+            "\n</svg>\n", v1.formatSVG(m1));
   }
 
   @Test
   public void testPrintView2() {
     m1.addShape("Dave", RECTANGLE);
     m1.addShape("Rich II", ELLIPSE);
-    assertEquals("", v1.formatSVG(m1));
+    assertEquals("<svg width=\"500\" height\"500\" version=\"1.1\" xmlns=\"http://" +
+            "www.w3.org/2000/svg\">\n" +
+            "<rect id=\"Dave\">\n" +
+            "</rect>\n" +
+            "<ellipse id=\"Rich II\">\n" +
+            "</ellipse>\n" +
+            "\n" +
+            "</svg>\n", v1.formatSVG(m1));
   }
 
   @Test
@@ -116,69 +123,39 @@ public class SVGViewTest {
             76, 30, 30, 23, 199, 67, 255);
     m1.fullMotion("Daniel", 5, 30, 30, 10, 10, 30, 78, 180,
             22, 100, 100, 100, 100, 0, 13, 255);
-    assertEquals("<svg width=\"500\" height\"500\" version=\"1.1\" xmlns=\"http:" +
-            "//www.w3.org/2000/svg\">\n" +
-            "<rect id=\"Dave\" x=\"10.0\"  y=\"10.0\" width=\"10\" height=\"10\" fill=\"" +
-            "rgb(255,255,255)\" visibility=\"visible\" >\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"f" +
-            "ill\" from=\"rgb(255,255,255)\" to=\"rgb(255,255,255)\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"x\"" +
-            " from=\"10.0\" to=\"4.0\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"y\" " +
-            "from=\"10.0\" to=\"4.0\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"widt" +
-            "h\" from=\"10\" to=\"4\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"heig" +
-            "ht\" from=\"10\" to=\"4\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"fill" +
-            "\" from=\"rgb(4,4,4)\" to=\"rgb(255,255,255)\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"x\" " +
-            "from=\"4.0\" to=\"76.0\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"y\" " +
-            "from=\"4.0\" to=\"30.0\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"widt" +
-            "h\" from=\"4\" to=\"30\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"heig" +
-            "ht\" from=\"4\" to=\"23\" fill=\"freeze\" />\n" +
+    assertEquals("<svg width=\"500\" height\"500\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+            "<rect id=\"Dave\" x=\"10.0\"  y=\"10.0\" width=\"10\" height=\"10\" fill=\"rgb(255,255,255)\" visibility=\"visible\" >\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"fill\" from=\"rgb(255,255,255)\" to=\"rgb(255,255,255)\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"x\" from=\"10.0\" to=\"4.0\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"y\" from=\"10.0\" to=\"4.0\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"width\" from=\"10\" to=\"4\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"height\" from=\"10\" to=\"4\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"fill\" from=\"rgb(4,4,4)\" to=\"rgb(255,255,255)\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"x\" from=\"4.0\" to=\"76.0\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"y\" from=\"4.0\" to=\"30.0\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"width\" from=\"4\" to=\"30\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"height\" from=\"4\" to=\"23\" fill=\"freeze\" />\n" +
             "</rect>\n" +
-            "<ellipse id=\"Vido\" cx=\"200.0\"  cy=\"200.0\" rx=\"0\" ry=\"0\" fill=\"rgb(0," +
-            "0,0)\" visibility=\"visible\" >\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"fill" +
-            "\" from=\"rgb(0,0,0)\" to=\"rgb(0,0,0)\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"cx\"" +
-            " from=\"200.0\" to=\"250.0\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"cy\"" +
-            " from=\"200.0\" to=\"250.0\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"rx\"" +
-            " from=\"0\" to=\"11\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"ry\"" +
-            " from=\"0\" to=\"17\" fill=\"freeze\" />\n" +
+            "<ellipse id=\"Adam\" cx=\"20.0\"  cy=\"30.0\" rx=\"10\" ry=\"1\" fill=\"rgb(3,30,57)\" visibility=\"visible\" >\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"fill\" from=\"rgb(3,30,57)\" to=\"rgb(3,30,57)\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"cx\" from=\"20.0\" to=\"300.0\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"cy\" from=\"30.0\" to=\"300.0\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"rx\" from=\"10\" to=\"6\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"ry\" from=\"1\" to=\"36\" fill=\"freeze\" />\n" +
             "</ellipse>\n" +
-            "<rect id=\"Daniel\" x=\"30.0\"  y=\"30.0\" width=\"10\" height=\"10\" fill=\"rg" +
-            "b(30,78,180)\" visibility=\"visible\" >\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"fill\"" +
-            " from=\"rgb(30,78,180)\" to=\"rgb(30,78,180)\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"x\" f" +
-            "rom=\"30.0\" to=\"100.0\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"y\" " +
-            "from=\"30.0\" to=\"100.0\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"widt" +
-            "h\" from=\"10\" to=\"100\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"heig" +
-            "ht\" from=\"10\" to=\"100\" fill=\"freeze\" />\n" +
+            "<rect id=\"Daniel\" x=\"30.0\"  y=\"30.0\" width=\"10\" height=\"10\" fill=\"rgb(30,78,180)\" visibility=\"visible\" >\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"fill\" from=\"rgb(30,78,180)\" to=\"rgb(30,78,180)\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"x\" from=\"30.0\" to=\"100.0\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"y\" from=\"30.0\" to=\"100.0\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"width\" from=\"10\" to=\"100\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"height\" from=\"10\" to=\"100\" fill=\"freeze\" />\n" +
             "</rect>\n" +
-            "<ellipse id=\"Adam\" cx=\"20.0\"  cy=\"30.0\" rx=\"10\" ry=\"1\" fill=\"rgb(3,3" +
-            "0,57)\" visibility=\"visible\" >\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"fil" +
-            "l\" from=\"rgb(3,30,57)\" to=\"rgb(3,30,57)\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"cx\"" +
-            " from=\"20.0\" to=\"300.0\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"cy\"" +
-            " from=\"30.0\" to=\"300.0\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"rx\"" +
-            " from=\"10\" to=\"6\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"ry\"" +
-            " from=\"1\" to=\"36\" fill=\"freeze\" />\n" +
+            "<ellipse id=\"Vido\" cx=\"200.0\"  cy=\"200.0\" rx=\"0\" ry=\"0\" fill=\"rgb(0,0,0)\" visibility=\"visible\" >\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"fill\" from=\"rgb(0,0,0)\" to=\"rgb(0,0,0)\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"cx\" from=\"200.0\" to=\"250.0\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"cy\" from=\"200.0\" to=\"250.0\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"rx\" from=\"0\" to=\"11\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"ry\" from=\"0\" to=\"17\" fill=\"freeze\" />\n" +
             "</ellipse>\n" +
             "\n" +
             "</svg>\n", v1.formatSVG(m1));
@@ -200,19 +177,9 @@ public class SVGViewTest {
             76, 30, 30, 23, 199, 67, 255);
     m1.fullMotion("Daniel", 3, 30, 30, 10, 10, 30, 78, 180,
             22, 100, 100, 100, 100, 0, 13, 255);
-    assertEquals("<svg width=\"500\" height\"500\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"><ellipse id=\"Adam\" cx=\"20.0\"  cy=\"30.0\" rx=\"10\" ry=\"1\" fill=\"rgb(3,30,57)\" visibility=\"visible\" ><animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"fill\" from=\"rgb(3,30,57)\" to=\"rgb(3,30,57)\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"cx\" from=\"20.0\" to=\"300.0\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"cy\" from=\"30.0\" to=\"300.0\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"rx\" from=\"10\" to=\"6\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"ry\" from=\"1\" to=\"36\" fill=\"freeze\" />\n" +
-            "</ellipse>\n" +
-            "<rect id=\"Daniel\" x=\"30.0\"  y=\"30.0\" width=\"10\" height=\"10\" fill=\"rgb(30,78,180)\" visibility=\"visible\" ><animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"fill\" from=\"rgb(30,78,180)\" to=\"rgb(30,78,180)\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"x\" from=\"30.0\" to=\"100.0\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"y\" from=\"30.0\" to=\"100.0\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"width\" from=\"10\" to=\"100\" fill=\"freeze\" />\n" +
-            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"height\" from=\"10\" to=\"100\" fill=\"freeze\" />\n" +
-            "</rect>\n" +
-            "<rect id=\"Dave\" x=\"10.0\"  y=\"10.0\" width=\"10\" height=\"10\" fill=\"rgb(255,255,255)\" visibility=\"visible\" ><animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"fill\" from=\"rgb(255,255,255)\" to=\"rgb(255,255,255)\" fill=\"freeze\" />\n" +
+    assertEquals("<svg width=\"500\" height\"500\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+            "<rect id=\"Dave\" x=\"10.0\"  y=\"10.0\" width=\"10\" height=\"10\" fill=\"rgb(255,255,255)\" visibility=\"visible\" >\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"fill\" from=\"rgb(255,255,255)\" to=\"rgb(255,255,255)\" fill=\"freeze\" />\n" +
             "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"x\" from=\"10.0\" to=\"4.0\" fill=\"freeze\" />\n" +
             "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"y\" from=\"10.0\" to=\"4.0\" fill=\"freeze\" />\n" +
             "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"width\" from=\"10\" to=\"4\" fill=\"freeze\" />\n" +
@@ -223,7 +190,22 @@ public class SVGViewTest {
             "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"width\" from=\"4\" to=\"30\" fill=\"freeze\" />\n" +
             "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"height\" from=\"4\" to=\"23\" fill=\"freeze\" />\n" +
             "</rect>\n" +
-            "<ellipse id=\"Vido\" cx=\"200.0\"  cy=\"200.0\" rx=\"0\" ry=\"0\" fill=\"rgb(0,0,0)\" visibility=\"visible\" ><animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"fill\" from=\"rgb(0,0,0)\" to=\"rgb(0,0,0)\" fill=\"freeze\" />\n" +
+            "<ellipse id=\"Adam\" cx=\"20.0\"  cy=\"30.0\" rx=\"10\" ry=\"1\" fill=\"rgb(3,30,57)\" visibility=\"visible\" >\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"fill\" from=\"rgb(3,30,57)\" to=\"rgb(3,30,57)\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"cx\" from=\"20.0\" to=\"300.0\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"cy\" from=\"30.0\" to=\"300.0\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"rx\" from=\"10\" to=\"6\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"ry\" from=\"1\" to=\"36\" fill=\"freeze\" />\n" +
+            "</ellipse>\n" +
+            "<rect id=\"Daniel\" x=\"30.0\"  y=\"30.0\" width=\"10\" height=\"10\" fill=\"rgb(30,78,180)\" visibility=\"visible\" >\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"fill\" from=\"rgb(30,78,180)\" to=\"rgb(30,78,180)\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"x\" from=\"30.0\" to=\"100.0\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"y\" from=\"30.0\" to=\"100.0\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"width\" from=\"10\" to=\"100\" fill=\"freeze\" />\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"height\" from=\"10\" to=\"100\" fill=\"freeze\" />\n" +
+            "</rect>\n" +
+            "<ellipse id=\"Vido\" cx=\"200.0\"  cy=\"200.0\" rx=\"0\" ry=\"0\" fill=\"rgb(0,0,0)\" visibility=\"visible\" >\n" +
+            "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"fill\" from=\"rgb(0,0,0)\" to=\"rgb(0,0,0)\" fill=\"freeze\" />\n" +
             "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"cx\" from=\"200.0\" to=\"250.0\" fill=\"freeze\" />\n" +
             "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"cy\" from=\"200.0\" to=\"250.0\" fill=\"freeze\" />\n" +
             "<animate attributesType=\"xml\" begin=\"0ms\" dur=\"0ms\" attributeName=\"rx\" from=\"0\" to=\"11\" fill=\"freeze\" />\n" +

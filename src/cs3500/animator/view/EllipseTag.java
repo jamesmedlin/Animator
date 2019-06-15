@@ -17,15 +17,19 @@ public class EllipseTag extends ASVGTag {
   @Override
   public String format() {
     String result = "";
-    result += "<ellipse id=\""
-            + shape.getName() + "\" cx=\"" + shape.getStates().get(0).getPosition().getX()
-            + "\"  cy=\"" + shape.getStates().get(0).getPosition().getY() + "\" rx=\""
-            + shape.getStates().get(0).getWidth() / 2 + "\" ry=\""
-            + shape.getStates().get(0).getHeight() / 2 + "\" fill=\"rgb("
-            + shape.getStates().get(0).getColor().getRed() + ","
-            + shape.getStates().get(0).getColor().getGreen() + ","
-            + shape.getStates().get(0).getColor().getBlue() + ")\" visibility=\"visible\" >\n";
-    result += stateConverter(shape.getStates());
+    if (!shape.getStates().isEmpty()) {
+      result += "<ellipse id=\""
+              + shape.getName() + "\" cx=\"" + shape.getStates().get(0).getPosition().getX()
+              + "\"  cy=\"" + shape.getStates().get(0).getPosition().getY() + "\" rx=\""
+              + shape.getStates().get(0).getWidth() / 2 + "\" ry=\""
+              + shape.getStates().get(0).getHeight() / 2 + "\" fill=\"rgb("
+              + shape.getStates().get(0).getColor().getRed() + ","
+              + shape.getStates().get(0).getColor().getGreen() + ","
+              + shape.getStates().get(0).getColor().getBlue() + ")\" visibility=\"visible\" >\n";
+      result += stateConverter(shape.getStates());
+    } else {
+      result += "<ellipse id=\"" + shape.getName() + "\">\n";
+    }
     result += "</ellipse>\n";
     return result;
   }

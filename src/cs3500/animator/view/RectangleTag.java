@@ -17,15 +17,19 @@ public class RectangleTag extends ASVGTag {
   @Override
   public String format() {
     String result = "";
-    result += "<rect id=\""
-            + shape.getName() + "\" x=\"" + shape.getStates().get(0).getPosition().getX()
-            + "\"  y=\"" + shape.getStates().get(0).getPosition().getY() + "\" width=\""
-            + shape.getStates().get(0).getWidth() + "\" height=\""
-            + shape.getStates().get(0).getHeight() + "\" fill=\"rgb("
-            + shape.getStates().get(0).getColor().getRed() + ","
-            + shape.getStates().get(0).getColor().getGreen() + ","
-            + shape.getStates().get(0).getColor().getBlue() + ")\" visibility=\"visible\" >\n";
-    result += stateConverter(shape.getStates());
+    if (!shape.getStates().isEmpty()) {
+      result += "<rect id=\""
+              + shape.getName() + "\" x=\"" + shape.getStates().get(0).getPosition().getX()
+              + "\"  y=\"" + shape.getStates().get(0).getPosition().getY() + "\" width=\""
+              + shape.getStates().get(0).getWidth() + "\" height=\""
+              + shape.getStates().get(0).getHeight() + "\" fill=\"rgb("
+              + shape.getStates().get(0).getColor().getRed() + ","
+              + shape.getStates().get(0).getColor().getGreen() + ","
+              + shape.getStates().get(0).getColor().getBlue() + ")\" visibility=\"visible\" >\n";
+      result += stateConverter(shape.getStates());
+    } else {
+      result += "<rect id=\"" + shape.getName() + "\">\n";
+    }
     result += "</rect>\n";
     return result;
   }

@@ -5,7 +5,7 @@ import java.awt.geom.Point2D;
 /**
  * Represents an animated shape that has different states over time.
  */
-public interface IAnimatedShape extends IReadOnlyAnimatedShape {
+public interface IAnimatedShape extends IReadOnlyAnimatedShape, Comparable<IAnimatedShape> {
 
   /**
    * Adds a motion to this animated shape, taking as the starting position the state at the greatest
@@ -89,5 +89,11 @@ public interface IAnimatedShape extends IReadOnlyAnimatedShape {
    * @return a complete copy
    */
   IAnimatedShape deepCopy();
+
+  /**
+   * Gets the order this shape should be layered with other shapes
+   * @return an integer order
+   */
+  int getOrder();
 
 }

@@ -30,13 +30,13 @@ public class ShapeTest {
 //            new Color(255, 255, 255),
 //            new Point2D.Double(0, 0)));
     animatedRectangle = new AnimatedShape("Dave",
-            ShapeType.RECTANGLE, stateRect);
+            ShapeType.RECTANGLE, stateRect,0);
     ArrayList stateEll = new ArrayList<IShapeState>();
 //    stateEll.add(new EllipseState(6, 25, 35,
 //            new Color(0, 0, 0),
 //            new Point2D.Double(40, 30)));
     animatedEllipse = new AnimatedShape("Vido",
-            ShapeType.ELLIPSE, stateEll);
+            ShapeType.ELLIPSE, stateEll,1);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -44,14 +44,14 @@ public class ShapeTest {
     ArrayList bad = new ArrayList();
     bad.add(new EllipseState(6, 25, 35,
             new Color(0, 0, 0), new Point2D.Double(40, 30)));
-    IAnimatedShape badShape = new AnimatedShape("Vido", null, bad);
+    IAnimatedShape badShape = new AnimatedShape("Vido", null, bad, 0);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testNullConstructor2() {
     IAnimatedShape badShape =
             new AnimatedShape("Vido",
-                    ShapeType.ELLIPSE, null);
+                    ShapeType.ELLIPSE, null, 0);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -59,7 +59,7 @@ public class ShapeTest {
     ArrayList bad = new ArrayList();
     bad.add(new RectangleState(0, 50, 50, new Color(255, 255, 255),
             new Point2D.Double(0, 0)));
-    IAnimatedShape badShape = new AnimatedShape(null, ShapeType.ELLIPSE, bad);
+    IAnimatedShape badShape = new AnimatedShape(null, ShapeType.ELLIPSE, bad, 0);
   }
 
   @Test
