@@ -6,6 +6,9 @@ import cs3500.animator.model.Model;
 import cs3500.animator.view.IView;
 import cs3500.animator.view.VisualView;
 
+/**
+ * tests the visual view of {@code VisualView}.
+ */
 public class VisualViewTest {
 
   IModel m1;
