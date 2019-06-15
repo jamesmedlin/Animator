@@ -23,12 +23,14 @@ public class TextView implements IView {
 
   @Override
   public String formatSVG(IReadOnlyModel model) {
-    throw new UnsupportedOperationException("You suck.");
+    throw new UnsupportedOperationException("This operation is not " +
+            "supported in this type of view.");
   }
 
   @Override
   public void render() {
-    throw new UnsupportedOperationException("You suck.");
+    throw new UnsupportedOperationException("This operation is not " +
+            "supported in this type of view.");
   }
 
   public String convertToString(ShapeType type) throws IllegalArgumentException {
@@ -38,7 +40,8 @@ public class TextView implements IView {
       case ELLIPSE:
         return "Ellipse";
       default:
-        throw new IllegalArgumentException("Conversion code from Shape types to String must be updated.");
+        throw new IllegalArgumentException("Conversion code from Shape " +
+                "types to String must be updated.");
     }
   }
 }

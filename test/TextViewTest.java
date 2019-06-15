@@ -24,6 +24,16 @@ public class TextViewTest {
     v1 = new TextView();
   }
 
+  @Test (expected = UnsupportedOperationException.class)
+  public void testFail() {
+    v1.render();
+  }
+
+  @Test (expected = UnsupportedOperationException.class)
+  public void testFail2() {
+    v1.formatSVG(m1);
+  }
+
   @Test
   public void testPrintView3() {
     assertEquals("", v1.printView(m1));
@@ -32,7 +42,7 @@ public class TextViewTest {
   @Test
   public void testPrintView2() {
     m1.addShape("Dave", RECTANGLE);
-    m1.addShape( "Rich II", ELLIPSE);
+    m1.addShape("Rich II", ELLIPSE);
     assertEquals("Rectangle Dave:\n" +
             "Ellipse Rich II:\n", v1.printView(m1));
   }
@@ -40,49 +50,68 @@ public class TextViewTest {
   @Test
   public void testPrintView() {
     m1.addShape("Dave", RECTANGLE);
-    m1.addShape( "Rich II", ELLIPSE);
-    m1.fullMotion("Dave", 1,10, 10, 10, 10, 255, 255,
-            255,5, 4, 4, 4, 4, 4, 4, 4);
-    m1.fullMotion("Rich II", 4,20, 30, 20, 2, 3, 30, 57,
+    m1.addShape("Rich II", ELLIPSE);
+    m1.fullMotion("Dave", 1, 10, 10, 10, 10, 255, 255,
+            255, 5, 4, 4, 4, 4, 4, 4, 4);
+    m1.fullMotion("Rich II", 4, 20, 30, 20, 2, 3, 30, 57,
             20, 300, 300, 12, 72, 200, 200, 200);
     m1.fullMotion("Dave", 5, 4, 4, 4, 4, 4, 4, 4, 7,
             76, 30, 30, 23, 199, 67, 255);
-    assertEquals("", v1.printView(m1));
+    assertEquals("Rectangle Dave:\n" +
+            "1 10.0 10.0 10 10 255 255 255    5 4.0 4.0 4 4 4 4 4\n" +
+            "5 4.0 4.0 4 4 4 4 4    7 76.0 30.0 30 23 199 67 255\n" +
+            "Ellipse Rich II:\n" +
+            "4 20.0 30.0 20 2 3 30 57    20 300.0 300.0 12 72 200 200 200\n", v1.printView(m1));
   }
 
   @Test
   public void testPrintViewBasedOnWhenInstantiated() {
-    m1.addShape( "Dave", RECTANGLE);
+    m1.addShape("Dave", RECTANGLE);
     m1.addShape("Adam", ELLIPSE);
     m1.addShape("Daniel", RECTANGLE);
     m1.addShape("Vido", ELLIPSE);
-    m1.fullMotion("Dave", 1,10, 10, 10, 10, 255, 255, 255,
+    m1.fullMotion("Dave", 1, 10, 10, 10, 10, 255, 255, 255,
             5, 4, 4, 4, 4, 4, 4, 4);
-    m1.fullMotion("Vido", 3,200, 200, 1, 1, 0, 0, 0,23,
+    m1.fullMotion("Vido", 3, 200, 200, 1, 1, 0, 0, 0, 23,
             250, 250, 23, 34, 90, 36, 78);
     m1.fullMotion("Adam", 10, 20, 30, 20, 2, 3, 30, 57,
             30, 300, 300, 12, 72, 200, 200, 200);
-    m1.fullMotion("Dave", 5, 4, 4, 4, 4, 4, 4, 4,7,
+    m1.fullMotion("Dave", 5, 4, 4, 4, 4, 4, 4, 4, 7,
             76, 30, 30, 23, 199, 67, 255);
     m1.fullMotion("Daniel", 5, 30, 30, 10, 10, 30, 78, 180,
             22, 100, 100, 100, 100, 0, 13, 255);
-    assertEquals("", v1.printView(m1));
+    assertEquals("Rectangle Dave:\n" +
+            "1 10.0 10.0 10 10 255 255 255    5 4.0 4.0 4 4 4 4 4\n" +
+            "5 4.0 4.0 4 4 4 4 4    7 76.0 30.0 30 23 199 67 255\n" +
+            "Ellipse Vido:\n" +
+            "3 200.0 200.0 1 1 0 0 0    23 250.0 250.0 23 34 90 36 78\n" +
+            "Rectangle Daniel:\n" +
+            "5 30.0 30.0 10 10 30 78 180    22 100.0 100.0 100 100 0 13 255\n" +
+            "Ellipse Adam:\n" +
+            "10 20.0 30.0 20 2 3 30 57    30 300.0 300.0 12 72 200 200 200\n", v1.printView(m1));
   }
 
   @Test
   public void testPrintViewAlphabetically() {
-    m1.addShape( "Dave", RECTANGLE);
+    m1.addShape("Dave", RECTANGLE);
     m1.addShape("Adam", ELLIPSE);
     m1.addShape("Daniel", RECTANGLE);
     m1.addShape("Vido", ELLIPSE);
-    m1.fullMotion("Dave", 3,10, 10, 10, 10, 255, 255, 255,
+    m1.fullMotion("Dave", 3, 10, 10, 10, 10, 255, 255, 255,
             5, 4, 4, 4, 4, 4, 4, 4);
-    m1.fullMotion("Vido", 3,200, 200, 1, 1, 0, 0, 0,23,
+    m1.fullMotion("Vido", 3, 200, 200, 1, 1, 0, 0, 0, 23,
             250, 250, 23, 34, 90, 36, 78);
     m1.fullMotion("Adam", 3, 20, 30, 20, 2, 3, 30, 57,
             30, 300, 300, 12, 72, 200, 200, 200);
     m1.fullMotion("Daniel", 3, 30, 30, 10, 10, 30, 78, 180,
             22, 100, 100, 100, 100, 0, 13, 255);
-    assertEquals("", v1.printView(m1));
+    assertEquals("Ellipse Adam:\n" +
+            "3 20.0 30.0 20 2 3 30 57    30 300.0 300.0 12 72 200 200 200\n" +
+            "Rectangle Daniel:\n" +
+            "3 30.0 30.0 10 10 30 78 180    22 100.0 100.0 100 100 0 13 255\n" +
+            "Rectangle Dave:\n" +
+            "3 10.0 10.0 10 10 255 255 255    5 4.0 4.0 4 4 4 4 4\n" +
+            "Ellipse Vido:\n" +
+            "3 200.0 200.0 1 1 0 0 0    23 250.0 250.0 23 34 90 36 78\n", v1.printView(m1));
   }
 }

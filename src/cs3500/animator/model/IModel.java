@@ -8,8 +8,8 @@ package cs3500.animator.model;
 public interface IModel extends IReadOnlyModel {
 
   /**
-   * instantiates a shape to the animation when called.
-<<<<<<< HEAD
+   * instantiates a shape to the animation when called. <<<<<<< HEAD
+   *
    * @param name a unique identifier
    * @param type the type of shape being instantiated
    * @throws IllegalArgumentException when given invalid initial values

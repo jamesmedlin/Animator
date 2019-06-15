@@ -11,6 +11,7 @@ import cs3500.animator.model.Color;
 import cs3500.animator.model.EllipseState;
 import cs3500.animator.model.IAnimatedShape;
 import cs3500.animator.model.IReadOnlyShapeState;
+import cs3500.animator.model.IShapeState;
 import cs3500.animator.model.RectangleState;
 import cs3500.animator.model.ShapeType;
 
@@ -24,24 +25,26 @@ public class ShapeTest {
 
   @Before
   public void setUp() {
+    ArrayList stateRect = new ArrayList<IShapeState>();
+//    stateRect.add(new RectangleState(0, 50, 50,
+//            new Color(255, 255, 255),
+//            new Point2D.Double(0, 0)));
     animatedRectangle = new AnimatedShape("Dave",
-            ShapeType.RECTANGLE,
-            new RectangleState(0, 50, 50,
-                    new Color(255, 255, 255),
-                    new Point2D.Double(0, 0)));
+            ShapeType.RECTANGLE, stateRect);
+    ArrayList stateEll = new ArrayList<IShapeState>();
+//    stateEll.add(new EllipseState(6, 25, 35,
+//            new Color(0, 0, 0),
+//            new Point2D.Double(40, 30)));
     animatedEllipse = new AnimatedShape("Vido",
-            ShapeType.ELLIPSE,
-            new EllipseState(6, 25, 35,
-                    new Color(0, 0, 0),
-                    new Point2D.Double(40, 30)));
+            ShapeType.ELLIPSE, stateEll);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testNullConstructor1() {
-    IAnimatedShape badShape =
-            new AnimatedShape("Vido",
-                    null, new EllipseState(6, 25, 35,
-                    new Color(0, 0, 0), new Point2D.Double(40, 30)));
+    ArrayList bad = new ArrayList();
+    bad.add(new EllipseState(6, 25, 35,
+            new Color(0, 0, 0), new Point2D.Double(40, 30)));
+    IAnimatedShape badShape = new AnimatedShape("Vido", null, bad);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -53,11 +56,10 @@ public class ShapeTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testNullConstructor3() {
-    IAnimatedShape badShape =
-            new AnimatedShape("Vido",
-                    ShapeType.ELLIPSE,
-                    new RectangleState(0, 50, 50, new Color(255, 255, 255), new Point2D.Double(0, 0)),
-                    null);
+    ArrayList bad = new ArrayList();
+    bad.add(new RectangleState(0, 50, 50, new Color(255, 255, 255),
+            new Point2D.Double(0, 0)));
+    IAnimatedShape badShape = new AnimatedShape(null, ShapeType.ELLIPSE, bad);
   }
 
   @Test
@@ -65,11 +67,11 @@ public class ShapeTest {
     assertEquals("", animatedRectangle.getMotions());
     assertEquals("", animatedEllipse.getMotions());
     animatedRectangle.addDoNothing(15);
-    assertEquals("0 0.0 0.0 50 50 255 255 255    15 0.0 0.0 50 50 255 255 255\n",
+    assertEquals("0 0.0 0.0 0 0 0 0 0    15 0.0 0.0 0 0 0 0 0\n",
             animatedRectangle.getMotions());
     animatedRectangle.addDoNothing(10);
-    assertEquals("0 0.0 0.0 50 50 255 255 255    15 0.0 0.0 50 50 255 255 255\n"
-                    + "15 0.0 0.0 50 50 255 255 255    25 0.0 0.0 50 50 255 255 255\n",
+    assertEquals("0 0.0 0.0 0 0 0 0 0    15 0.0 0.0 0 0 0 0 0\n"
+                    + "15 0.0 0.0 0 0 0 0 0    25 0.0 0.0 0 0 0 0 0\n",
             animatedRectangle.getMotions());
   }
 
@@ -169,7 +171,7 @@ public class ShapeTest {
     assertEquals(true, animatedRectangle.getStates().isEmpty());
     animatedRectangle.fullMotionTo(new Point2D.Double(25, 25), 55, 25, new Color(255, 0, 0), 20);
     assertEquals(2, animatedRectangle.getStates().size());
-    assertEquals("0 0.0 0.0 50 50 255 255 255    20 25.0 25.0 25 55 255 0 0\n",
+    assertEquals("0 0.0 0.0 0 0 0 0 0    20 25.0 25.0 25 55 255 0 0\n",
             animatedRectangle.getMotions());
   }
 
@@ -178,7 +180,7 @@ public class ShapeTest {
     assertEquals(true, animatedEllipse.getStates().isEmpty());
     animatedEllipse.fullMotionTo(new Point2D.Double(25, 25), 55, 25, new Color(255, 0, 0), 20);
     assertEquals(2, animatedEllipse.getStates().size());
-    assertEquals("6 40.0 30.0 25 35 0 0 0    26 25.0 25.0 25 55 255 0 0\n",
+    assertEquals("0 0.0 0.0 0 0 0 0 0    20 25.0 25.0 25 55 255 0 0\n",
             animatedEllipse.getMotions());
   }
 
@@ -187,7 +189,7 @@ public class ShapeTest {
     assertEquals(true, animatedRectangle.getStates().isEmpty());
     animatedRectangle.changeColor(new Color(255, 231, 241), 23);
     assertEquals(2, animatedRectangle.getStates().size());
-    assertEquals("0 0.0 0.0 50 50 255 255 255    23 0.0 0.0 50 50 255 231 241\n",
+    assertEquals("0 0.0 0.0 0 0 0 0 0    23 0.0 0.0 0 0 255 231 241\n",
             animatedRectangle.getMotions());
   }
 
@@ -196,7 +198,7 @@ public class ShapeTest {
     assertEquals(true, animatedEllipse.getStates().isEmpty());
     animatedEllipse.changeColor(new Color(255, 231, 241), 23);
     assertEquals(2, animatedEllipse.getStates().size());
-    assertEquals("6 40.0 30.0 25 35 0 0 0    29 40.0 30.0 25 35 255 231 241\n",
+    assertEquals("0 0.0 0.0 0 0 0 0 0    23 0.0 0.0 0 0 255 231 241\n",
             animatedEllipse.getMotions());
   }
 
@@ -205,7 +207,7 @@ public class ShapeTest {
     assertEquals(true, animatedRectangle.getStates().isEmpty());
     animatedRectangle.moveTo(new Point2D.Double(23.5, 21.25), 43);
     assertEquals(2, animatedRectangle.getStates().size());
-    assertEquals("0 0.0 0.0 50 50 255 255 255    43 23.5 21.25 50 50 255 255 255\n",
+    assertEquals("0 0.0 0.0 0 0 0 0 0    43 23.5 21.25 0 0 0 0 0\n",
             animatedRectangle.getMotions());
   }
 
@@ -214,7 +216,7 @@ public class ShapeTest {
     assertEquals(true, animatedEllipse.getStates().isEmpty());
     animatedEllipse.moveTo(new Point2D.Double(69, 420), 12);
     assertEquals(2, animatedEllipse.getStates().size());
-    assertEquals("6 40.0 30.0 25 35 0 0 0    18 69.0 420.0 25 35 0 0 0\n",
+    assertEquals("0 0.0 0.0 0 0 0 0 0    12 69.0 420.0 0 0 0 0 0\n",
             animatedEllipse.getMotions());
   }
 
@@ -223,7 +225,7 @@ public class ShapeTest {
     assertEquals(true, animatedRectangle.getStates().isEmpty());
     animatedRectangle.changeSizeTo(1, 1, 1);
     assertEquals(2, animatedRectangle.getStates().size());
-    assertEquals("0 0.0 0.0 50 50 255 255 255    1 0.0 0.0 1 1 255 255 255\n",
+    assertEquals("0 0.0 0.0 0 0 0 0 0    1 0.0 0.0 1 1 0 0 0\n",
             animatedRectangle.getMotions());
   }
 
@@ -232,7 +234,7 @@ public class ShapeTest {
     assertEquals(true, animatedEllipse.getStates().isEmpty());
     animatedEllipse.changeSizeTo(32, 21, 11);
     assertEquals(2, animatedEllipse.getStates().size());
-    assertEquals("6 40.0 30.0 25 35 0 0 0    17 40.0 30.0 21 32 0 0 0\n",
+    assertEquals("0 0.0 0.0 0 0 0 0 0    11 0.0 0.0 21 32 0 0 0\n",
             animatedEllipse.getMotions());
   }
 
@@ -241,7 +243,7 @@ public class ShapeTest {
     assertEquals(true, animatedRectangle.getStates().isEmpty());
     animatedRectangle.addDoNothing(15);
     assertEquals(2, animatedRectangle.getStates().size());
-    assertEquals("0 0.0 0.0 50 50 255 255 255    15 0.0 0.0 50 50 255 255 255\n",
+    assertEquals("0 0.0 0.0 0 0 0 0 0    15 0.0 0.0 0 0 0 0 0\n",
             animatedRectangle.getMotions());
   }
 
@@ -250,7 +252,7 @@ public class ShapeTest {
     assertEquals(true, animatedEllipse.getStates().isEmpty());
     animatedEllipse.addDoNothing(89);
     assertEquals(2, animatedEllipse.getStates().size());
-    assertEquals("6 40.0 30.0 25 35 0 0 0    95 40.0 30.0 25 35 0 0 0\n",
+    assertEquals("0 0.0 0.0 0 0 0 0 0    89 0.0 0.0 0 0 0 0 0\n",
             animatedEllipse.getMotions());
   }
 
@@ -264,7 +266,6 @@ public class ShapeTest {
     animatedRectangle.changeColor(new Color(0, 0, 0), 10);
     animatedRectangle.changeSizeTo(50, 40, 12);
     animatedRectangle.moveTo(new Point2D.Double(33, 33), 10);
-    animatedRectangle.fullMotionTo(new Point2D.Double(44, 44), 23, 42, new Color(255, 0, 0), 23);
     ArrayList<IReadOnlyShapeState> states =
             (ArrayList<IReadOnlyShapeState>) this.animatedRectangle.getStates();
     for (int i = 1; i < states.size() - 1; i += 2) {

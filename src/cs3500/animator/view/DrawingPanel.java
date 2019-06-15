@@ -40,5 +40,4 @@ public class DrawingPanel extends ADrawingPanel {
       }
     }
   }
-
 }

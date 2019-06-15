@@ -24,7 +24,7 @@ public class RectangleTag extends ASVGTag {
             + shape.getStates().get(0).getHeight() + "\" fill=\"rgb("
             + shape.getStates().get(0).getColor().getRed() + ","
             + shape.getStates().get(0).getColor().getGreen() + ","
-            + shape.getStates().get(0).getColor().getBlue() + ")\" visibility=\"visible\" >";
+            + shape.getStates().get(0).getColor().getBlue() + ")\" visibility=\"visible\" >\n";
     result += stateConverter(shape.getStates());
     result += "</rect>\n";
     return result;

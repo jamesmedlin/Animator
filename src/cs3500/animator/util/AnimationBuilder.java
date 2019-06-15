@@ -1,5 +1,9 @@
 package cs3500.animator.util;
 
+/**
+ * the animation builder which was given as starter code in this assignment.
+ * @param <Doc> the type the animation builder works with
+ */
 public interface AnimationBuilder<Doc> {
   /**
    * Constructs a final document.

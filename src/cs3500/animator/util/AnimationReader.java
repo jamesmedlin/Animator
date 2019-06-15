@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 /**
- * A helper to read animation data and construct an animation from it.
+ * A helper to read animation data and construct an animation from it. Starter code.
  */
 public class AnimationReader {
   /**

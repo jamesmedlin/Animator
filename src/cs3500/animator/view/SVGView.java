@@ -32,7 +32,7 @@ public class SVGView implements IView {
   @Override
   public String formatSVG(IReadOnlyModel model) {
     String result = "<svg width=\"" + model.getWidth() + "\" height\"" + model.getHeight()
-            + "\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">";
+            + "\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n";
     for (IReadOnlyAnimatedShape shape : model.getShapes()) {
       Function<IReadOnlyAnimatedShape, ISVGTag> func = this.commandMap.get(shape.getType());
       ISVGTag tag = func.apply(shape);
@@ -43,12 +43,14 @@ public class SVGView implements IView {
 
   @Override
   public String printView(IReadOnlyModel model) {
-    throw new UnsupportedOperationException("You suck.");
+    throw new UnsupportedOperationException("This operation is" +
+            " not supported in this type of view.");
   }
 
   @Override
   public void render() {
-    throw new UnsupportedOperationException("You suck.");
+    throw new UnsupportedOperationException("This operation is not" +
+            " supported in this type of view.");
   }
 
 }

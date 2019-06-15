@@ -24,7 +24,7 @@ public class EllipseTag extends ASVGTag {
             + shape.getStates().get(0).getHeight() / 2 + "\" fill=\"rgb("
             + shape.getStates().get(0).getColor().getRed() + ","
             + shape.getStates().get(0).getColor().getGreen() + ","
-            + shape.getStates().get(0).getColor().getBlue() + ")\" visibility=\"visible\" >";
+            + shape.getStates().get(0).getColor().getBlue() + ")\" visibility=\"visible\" >\n";
     result += stateConverter(shape.getStates());
     result += "</ellipse>\n";
     return result;

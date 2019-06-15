@@ -1,16 +1,9 @@
-import com.sun.javafx.font.directwrite.RECT;
-import com.sun.org.apache.regexp.internal.RE;
-
 import org.junit.Before;
 import org.junit.Test;
 
 import cs3500.animator.model.AnimatedShape;
-import cs3500.animator.model.Color;
-import cs3500.animator.model.EllipseState;
 import cs3500.animator.model.IModel;
 import cs3500.animator.model.Model;
-
-import java.awt.geom.Point2D;
 
 import static cs3500.animator.model.ShapeType.ELLIPSE;
 import static cs3500.animator.model.ShapeType.RECTANGLE;
@@ -39,8 +32,8 @@ public class ModelTest {
 
   @Test
   public void testBasicAnimation2() {
-    model.addShape( "Dave", ELLIPSE);
-    model.addShape( "Dave II", ELLIPSE);
+    model.addShape("Dave", ELLIPSE);
+    model.addShape("Dave II", ELLIPSE);
     model.addShape("Vidojeeee", RECTANGLE);
     model.addShape("Vido", RECTANGLE);
     model.getShape("Dave");
@@ -55,7 +48,7 @@ public class ModelTest {
   public void testAddShapeAtFail() {
     model.addShape("Dave", ELLIPSE);
     model.fullMotion("Dave", -1, 10, 10, 10, 10, 255, 255,
-            255, 3,10, 10, 10, 10, 255, 255, 255);
+            255, 3, 10, 10, 10, 10, 255, 255, 255);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -71,64 +64,64 @@ public class ModelTest {
   @Test(expected = IllegalArgumentException.class)
   public void testAddShapeAtFail5() {
     model.addShape("Dave", ELLIPSE);
-    model.fullMotion( "Dave", 1, 10, 10, -1, 10, 255, 255,
-            255, 3,10, 10, 10, 10, 255, 255, 255);
+    model.fullMotion("Dave", 1, 10, 10, -1, 10, 255, 255,
+            255, 3, 10, 10, 10, 10, 255, 255, 255);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testAddShapeAtFail6() {
     model.addShape("Dave", ELLIPSE);
-    model.fullMotion( "Dave",1, 10, 10, 10, -1, 255, 255,
-            255,4,10, 10, 10, 10, 255, 255, 255);
+    model.fullMotion("Dave", 1, 10, 10, 10, -1, 255, 255,
+            255, 4, 10, 10, 10, 10, 255, 255, 255);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testAddShapeAtFail7() {
     model.addShape("Dave", ELLIPSE);
     model.fullMotion("Dave", 1, 10, 10, 10, 10, -1, 255,
-            255, 10,10, 10, 10, 10, 255, 255, 255);
+            255, 10, 10, 10, 10, 10, 255, 255, 255);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testAddShapeAtFail8() {
     model.addShape("Dave", ELLIPSE);
     model.fullMotion("Dave", 1, 10, 10, 10, 10, 255, 256,
-            255,10,10, 10, 10, 10, 255, 255, 255);
+            255, 10, 10, 10, 10, 10, 255, 255, 255);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testAddShapeAtFail9() {
     model.addShape("Dave", ELLIPSE);
-    model.fullMotion( "Dave", 1, 10, 10, 10, 10, 255, 255,
-            -1, 12,10, 10, 10, 10, 255, 255, 255);
+    model.fullMotion("Dave", 1, 10, 10, 10, 10, 255, 255,
+            -1, 12, 10, 10, 10, 10, 255, 255, 255);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testAddShapeAtFail10() {
     model.addShape("Dave", ELLIPSE);
-    model.fullMotion( "Dave", 1, 10, 10, 0, 10, 255, 255,
-            255, 2,10, 10, 10, 10, 255, 255, 255);
+    model.fullMotion("Dave", 1, 10, 10, 0, 10, 255, 255,
+            255, 2, 10, 10, 10, 10, 255, 255, 255);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testAddShapeAtFail11() {
     model.addShape("Dave", ELLIPSE);
     model.fullMotion("Dave", 3, 10, 10, 10, 0, 255, 255,
-            255, 4,10, 10, 10, 10, 255, 255, 255);
+            255, 4, 10, 10, 10, 10, 255, 255, 255);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testAddShapeAtFail12() {
     model.addShape("Dave", RECTANGLE);
-    model.fullMotion( "Dave", 2, 10, 10, 0, 10, 255, 255,
+    model.fullMotion("Dave", 2, 10, 10, 0, 10, 255, 255,
             255, 3, 10, 10, 10, 10, 255, 255, 255);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testAddShapeAtFail13() {
     model.addShape("Dave", RECTANGLE);
-    model.fullMotion( "Dave", 2, 10, 10, 10, 0, 255, 255,
-            255, 4,10, 10, 10, 10, 255, 255, 255);
+    model.fullMotion("Dave", 2, 10, 10, 10, 0, 255, 255,
+            255, 4, 10, 10, 10, 10, 255, 255, 255);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -169,13 +162,13 @@ public class ModelTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testChangeSizeToFail2() {
-    model.addShape( "Dave", RECTANGLE);
+    model.addShape("Dave", RECTANGLE);
     model.changeSizeTo("Dave", 5, -1, 9);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testChangeSizeToFail3() {
-    model.addShape( "Dave", RECTANGLE);
+    model.addShape("Dave", RECTANGLE);
     model.changeSizeTo("Dave", 5, -1, 9);
   }
 
@@ -187,7 +180,7 @@ public class ModelTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testChangeSizeToFail5() {
-    model.addShape( "Dave", RECTANGLE);
+    model.addShape("Dave", RECTANGLE);
     model.changeSizeTo("Dave", 5, 5, -3);
   }
 
@@ -205,13 +198,13 @@ public class ModelTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testDoNothingFail() {
-    model.addShape( "Dave", ELLIPSE);
+    model.addShape("Dave", ELLIPSE);
     model.doNothing("Damn Daniel", 9);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testDoNothingFail2() {
-    model.addShape( "Dave", RECTANGLE);
+    model.addShape("Dave", RECTANGLE);
     model.doNothing("Dave", -3);
   }
 
@@ -221,65 +214,67 @@ public class ModelTest {
     model.fullMotionTo("Jake", 4, 4, 4, 4, 4, 4, 4, 4);
   }
 
-  @Test
-  public void testMoveTo() {
-    model.addShapeAt(1, "Dave", ELLIPSE, 10, 10, 10, 10, 255, 255, 255);
-    model.moveTo("Dave", 25, 33, 9);
-    assertEquals(model.getShape("Dave"), new EllipseState(1, 10, 10,
-            new Color(255, 255, 255), new Point2D.Double(10, 10)).toString() + "    " +
-            new EllipseState(10, 10, 10,
-                    new Color(255, 255, 255), new Point2D.Double(25, 33)).toString() + "\n");
-  }
-
-  @Test
-  public void testMoveToOffScreenLeft() {
-    model.addShapeAt(1, "Dave", ELLIPSE, 10, 10, 10, 10, 255, 255, 255);
-    model.moveTo("Dave", 25, 33, 9);
-    assertEquals(model.getShape("Dave"), new EllipseState(1, 10, 10,
-            new Color(255, 255, 255), new Point2D.Double(10, 10)).toString() + "    " +
-            new EllipseState(10, 10, 10,
-                    new Color(255, 255, 255), new Point2D.Double(25, 33)).toString() + "\n");
-  }
-
-  @Test
-  public void testMoveToOffScreenTop() {
-    model.addShapeAt(1, "Dave", ELLIPSE, 10, 10, 10, 10, 255, 255, 255);
-    model.moveTo("Dave", 25, -100, 9);
-    assertEquals(model.getShape("Dave"), new EllipseState(1, 10, 10,
-            new Color(255, 255, 255), new Point2D.Double(10, 10)).toString() + "    " +
-            new EllipseState(10, 10, 10,
-                    new Color(255, 255, 255), new Point2D.Double(25, -100)).toString() + "\n");
-  }
+//  @Test
+//  public void testMoveTo() {
+//    model.addShapeAt(1, "Dave", ELLIPSE, 10, 10, 10, 10, 255, 255, 255);
+//    model.moveTo("Dave", 25, 33, 9);
+//    assertEquals(model.getShape("Dave"), new EllipseState(1, 10, 10,
+//            new Color(255, 255, 255), new Point2D.Double(10, 10)).toString() + "    " +
+//            new EllipseState(10, 10, 10,
+//                    new Color(255, 255, 255), new Point2D.Double(25, 33)).toString() + "\n");
+//  }
+//
+//  @Test
+//  public void testMoveToOffScreenLeft() {
+//    model.addShapeAt(1, "Dave", ELLIPSE, 10, 10, 10, 10, 255, 255, 255);
+//    model.moveTo("Dave", 25, 33, 9);
+//    assertEquals(model.getShape("Dave"), new EllipseState(1, 10, 10,
+//            new Color(255, 255, 255), new Point2D.Double(10, 10)).toString() + "    " +
+//            new EllipseState(10, 10, 10,
+//                    new Color(255, 255, 255), new Point2D.Double(25, 33)).toString() + "\n");
+//  }
+//
+//  @Test
+//  public void testMoveToOffScreenTop() {
+//    model.addShapeAt(1, "Dave", ELLIPSE);
+//    model.fullMotion("Dave", 1,10, 10, 10, 10, 255, 255, 255,25, -100, 9);
+//    assertEquals(model.getShape("Dave"), new EllipseState(1, 10, 10,
+//            new Color(255, 255, 255), new Point2D.Double(10, 10)).toString() + "    " +
+//            new EllipseState(10, 10, 10,
+//                    new Color(255, 255, 255), new Point2D.Double(25, -100)).toString() + "\n");
+//  }
 
   @Test
   public void testFullMotion() {
-    model.addShapeAt(1, "Dave", RECTANGLE, 10, 10, 10, 10, 255, 255, 255);
-    model.fullMotionTo("Dave", 20, 3, 3, 3, 3, 0, 99, 43);
+    model.addShape("Dave", RECTANGLE);
+    model.fullMotion("Dave", 1, 10, 10, 10, 10, 255, 255,
+            255, 21, 3, 3, 3, 3, 0, 99, 43);
     assertEquals(model.getShape("Dave"),
             "1 10.0 10.0 10 10 255 255 255    21 3.0 3.0 3 3 0 99 43" + "\n");
   }
 
   @Test
   public void testFullMotion2() {
-    model.addShapeAt(1, "Dave", ELLIPSE, 10, 10, 10, 10, 255, 255, 255);
-    model.fullMotionTo("Dave", 4, 4, 4, 4, 4, 4, 4, 4);
+    model.addShape("Dave", ELLIPSE);
+    model.fullMotion("Dave", 1, 10, 10, 10, 10, 255, 255,
+            255, 5, 4, 4, 4, 4, 4, 4, 4);
     assertEquals(model.getShape("Dave"),
             "1 10.0 10.0 10 10 255 255 255    5 4.0 4.0 4 4 4 4 4" + "\n");
   }
 
   @Test
   public void testDoNothing() {
-    model.addShapeAt(1, "Dave", ELLIPSE, 10, 10, 10, 10, 255, 255, 255);
+    model.addShape("Dave", RECTANGLE);
     model.doNothing("Dave", 1);
     assertEquals(model.getShape("Dave"),
-            "1 10.0 10.0 10 10 255 255 255    2 10.0 10.0 10 10 255 255 255" + "\n");
+            "0 0.0 0.0 0 0 0 0 0    1 0.0 0.0 0 0 0 0 0" + "\n");
   }
 
   @Test
   public void testDoNothing2() {
-    model.addShapeAt(1, "Dave", ELLIPSE, 10, 10, 10, 10, 255, 255, 255);
+    model.addShape("Dave", ELLIPSE);
     model.doNothing("Dave", 33);
     assertEquals(model.getShape("Dave"),
-            "1 10.0 10.0 10 10 255 255 255    34 10.0 10.0 10 10 255 255 255" + "\n");
+            "0 0.0 0.0 0 0 0 0 0    33 0.0 0.0 0 0 0 0 0" + "\n");
   }
 }

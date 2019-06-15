@@ -24,7 +24,7 @@ public class VisualView extends JFrame implements IView {
    */
   public VisualView(int speed, IReadOnlyModel model) {
     super();
-    
+
     this.panel = new DrawingPanel();
     panel.setMinimumSize(new Dimension(model.getWidth(), model.getHeight()));
     panel.setPreferredSize(new Dimension(2000, 2000));
@@ -39,7 +39,7 @@ public class VisualView extends JFrame implements IView {
       }
     });
 
-    
+
     scrollPane = new JScrollPane(panel);
 
     setSize(800, 800);
@@ -53,12 +53,14 @@ public class VisualView extends JFrame implements IView {
 
   @Override
   public String printView(IReadOnlyModel model) {
-    throw new UnsupportedOperationException("You suck.");
+    throw new UnsupportedOperationException("This operation is not" +
+            " supported in this type of view.");
   }
 
   @Override
   public String formatSVG(IReadOnlyModel model) {
-    throw new UnsupportedOperationException("You suck.");
+    throw new UnsupportedOperationException("This operation is not" +
+            " supported in this type of view.");
   }
 
   @Override

@@ -22,7 +22,7 @@ public interface IReadOnlyModel {
    * @return the shape
    * @throws IllegalArgumentException when the name is not a current shape
    */
-  public String getShape(String name) throws IllegalArgumentException;
+  String getShape(String name) throws IllegalArgumentException;
 
   /**
    * returns the object version of an snimsted shape.
@@ -31,14 +31,14 @@ public interface IReadOnlyModel {
    * @return the animated shape with the given name
    * @throws IllegalArgumentException when the name is invalid
    */
-  public IReadOnlyAnimatedShape getShapeObject(String name) throws IllegalArgumentException;
+  IReadOnlyAnimatedShape getShapeObject(String name) throws IllegalArgumentException;
 
   /**
    * creates a list of all the animated shapes in the animation.
    *
    * @return a list of Read Only animated shapes
    */
-  public List<IReadOnlyAnimatedShape> getShapes();
+  List<IReadOnlyAnimatedShape> getShapes();
 
   int getWidth();
 
