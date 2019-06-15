@@ -53,7 +53,6 @@ public class AnimatedShape implements IAnimatedShape {
 
   @Override
   public int compareTo(IAnimatedShape o) {
-
     if (this.getOrder() < o.getOrder()) {
       return -1;
     }
@@ -260,30 +259,23 @@ public class AnimatedShape implements IAnimatedShape {
       IShapeState b = this.states.get(i + 1);
       if (a.getTick() <= tick && b.getTick() >= tick && a.getTick() != b.getTick()) {
         a.setColor(
-                linearInterpolate(
-                        a.getColor().getRed(), b.getColor().getRed(),
-                        a.getTick(), b.getTick(), tick),
-                linearInterpolate(
-                        a.getColor().getGreen(), b.getColor().getGreen(),
-                        a.getTick(), b.getTick(), tick),
-                linearInterpolate(
-                        a.getColor().getBlue(), b.getColor().getBlue(),
-                        a.getTick(), b.getTick(), tick));
+            linearInterpolate(
+                a.getColor().getRed(), b.getColor().getRed(), a.getTick(), b.getTick(), tick),
+            linearInterpolate(
+                a.getColor().getGreen(), b.getColor().getGreen(), a.getTick(), b.getTick(), tick),
+            linearInterpolate(
+                a.getColor().getBlue(), b.getColor().getBlue(), a.getTick(), b.getTick(), tick));
 
         a.setHeight(
-                linearInterpolate(a.getHeight(), b.getHeight(),
-                        a.getTick(), b.getTick(), tick));
+            linearInterpolate(a.getHeight(), b.getHeight(), a.getTick(), b.getTick(), tick));
 
-        a.setWidth(linearInterpolate(a.getWidth(), b.getWidth(),
-                a.getTick(), b.getTick(), tick));
+        a.setWidth(linearInterpolate(a.getWidth(), b.getWidth(), a.getTick(), b.getTick(), tick));
 
         a.setPosition(
-                linearInterpolate(
-                        a.getPosition().getX(), b.getPosition().getY(),
-                        a.getTick(), b.getTick(), tick),
-                linearInterpolate(
-                        a.getPosition().getX(), b.getPosition().getY(),
-                        a.getTick(), b.getTick(), tick));
+            linearInterpolate(
+                a.getPosition().getX(), b.getPosition().getX(), a.getTick(), b.getTick(), tick),
+            linearInterpolate(
+                a.getPosition().getY(), b.getPosition().getY(), a.getTick(), b.getTick(), tick));
         return a;
       }
     }
