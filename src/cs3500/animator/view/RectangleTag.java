@@ -10,7 +10,7 @@ import cs3500.animator.model.IReadOnlyShapeState;
  */
 public class RectangleTag extends ASVGTag {
 
-  protected RectangleTag(IReadOnlyAnimatedShape shape, int rate) {
+  public RectangleTag(IReadOnlyAnimatedShape shape, int rate) {
     super(shape, rate);
   }
 
@@ -39,29 +39,32 @@ public class RectangleTag extends ASVGTag {
     String result = "";
     if (states.get(i).getPosition().getX() != states.get(i + 1).getPosition().getX()) {
       result += "<animate attributesType=\"xml\" begin=\"" +
-              (states.get(i).getTick() / this.rate * 1000) + "ms\" dur=\""
-              + ((states.get(i + 1).getTick() - states.get(i).getTick()) / this.rate * 1000)
+              ((double)states.get(i).getTick() / (double)this.rate * 1000) + "ms\" dur=\""
+              + (((double)states.get(i + 1).getTick() - states.get(i).getTick()) / this.rate * 1000)
               + "ms\" attributeName=\"x\" from=\"" + states.get(i).getPosition().getX()
               + "\" to=\"" + states.get(i + 1).getPosition().getX() + "\" fill=\"freeze\" />\n";
     }
     if (states.get(i).getPosition().getY() != states.get(i + 1).getPosition().getY()) {
       result += "<animate attributesType=\"xml\" begin=\"" +
-              (states.get(i).getTick() / this.rate * 1000) + "ms\" dur=\""
-              + ((states.get(i + 1).getTick() - states.get(i).getTick()) / this.rate * 1000)
+              ((double)states.get(i).getTick() / (double)this.rate * 1000) + "ms\" dur=\""
+              + (((double)states.get(i + 1).getTick() - (double)states.get(i).getTick()) 
+                  / this.rate * 1000)
               + "ms\" attributeName=\"y\" from=\"" + states.get(i).getPosition().getY()
               + "\" to=\"" + states.get(i + 1).getPosition().getY() + "\" fill=\"freeze\" />\n";
     }
     if (states.get(i).getWidth() != states.get(i + 1).getWidth()) {
       result += "<animate attributesType=\"xml\" begin=\"" +
-              (states.get(i).getTick() / this.rate * 1000) + "ms\" dur=\""
-              + ((states.get(i + 1).getTick() - states.get(i).getTick()) / this.rate * 1000)
+              ((double)states.get(i).getTick() / (double)this.rate * 1000) + "ms\" dur=\""
+              + (((double)states.get(i + 1).getTick() - (double)states.get(i).getTick())
+                  / this.rate * 1000)
               + "ms\" attributeName=\"width\" from=\"" + states.get(i).getWidth()
               + "\" to=\"" + states.get(i + 1).getWidth() + "\" fill=\"freeze\" />\n";
     }
     if (states.get(i).getHeight() != states.get(i + 1).getHeight()) {
       result += "<animate attributesType=\"xml\" begin=\"" +
-              (states.get(i).getTick() / this.rate * 1000) + "ms\" dur=\""
-              + ((states.get(i + 1).getTick() - states.get(i).getTick()) / this.rate * 1000)
+              ((double)states.get(i).getTick() / (double)this.rate * 1000) + "ms\" dur=\""
+              + (((double)states.get(i + 1).getTick() - states.get(i).getTick())
+                  / (double)this.rate * 1000)
               + "ms\" attributeName=\"height\" from=\"" + states.get(i).getHeight()
               + "\" to=\"" + states.get(i + 1).getHeight() + "\" fill=\"freeze\" />\n";
     }

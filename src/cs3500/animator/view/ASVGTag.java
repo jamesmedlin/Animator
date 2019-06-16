@@ -24,20 +24,23 @@ public abstract class ASVGTag implements ISVGTag {
   protected String stateConverter(List<IReadOnlyShapeState> states) {
     String result = "";
     for (int i = 0; i < states.size() - 1; i += 2) {
-      if (states.get(i).getColor() != states.get(i + 1).getColor()) {
-        result += "<animate attributesType=\"xml\" begin=\"" +
-                (states.get(i).getTick() / this.rate * 1000) + "ms\" dur=\""
-                + ((states.get(i + 1).getTick() - states.get(i).getTick()) / this.rate * 1000)
-                + "ms\" attributeName=\"fill\" from=\"rgb(" +
-                shape.getStates().get(i).getColor().getRed() + ","
-                + shape.getStates().get(i).getColor().getGreen() + ","
-                + shape.getStates().get(i).getColor().getBlue() +
-                ")\" to=\"rgb("
-                + shape.getStates().get(0).getColor().getRed() + ","
-                + shape.getStates().get(0).getColor().getGreen() + ","
-                + shape.getStates().get(0).getColor().getBlue() + ")\" fill=\"freeze\" />\n";
+      if (states.get(i).getTick() != states.get(i + 1).getTick()) {
+        if (states.get(i).getColor() != states.get(i + 1).getColor()) {
+          result += "<animate attributesType=\"xml\" begin=\"" +
+              ((double)states.get(i).getTick() / (double)this.rate * 1000) + "ms\" dur=\""
+              + ((double)(states.get(i + 1).getTick() - states.get(i).getTick())
+                  / (double)this.rate * 1000)
+              + "ms\" attributeName=\"fill\" from=\"rgb(" +
+              shape.getStates().get(i).getColor().getRed() + ","
+              + shape.getStates().get(i).getColor().getGreen() + ","
+              + shape.getStates().get(i).getColor().getBlue() +
+              ")\" to=\"rgb("
+              + shape.getStates().get(i + 1).getColor().getRed() + ","
+              + shape.getStates().get(i + 1).getColor().getGreen() + ","
+              + shape.getStates().get(i + 1).getColor().getBlue() + ")\" fill=\"freeze\" />\n";
+        }
+        result += stateConverterHelper(states, i);
       }
-      result += stateConverterHelper(states, i);
     }
     return result;
   }

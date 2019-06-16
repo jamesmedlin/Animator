@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e870a397-68d9-44a5-8faa-61152e356747" name="Default Changelist" comment="" />
+    <list default="true" id="e870a397-68d9-44a5-8faa-61152e356747" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/animator/Excellence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/Excellence.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -110,8 +113,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cs3500/animator/Excellence.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1717">
-              <caret line="101" column="5" selection-end-line="104" />
+            <state relative-caret-position="153">
+              <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -194,7 +197,6 @@
         <option value="$PROJECT_DIR$/src/cs3500/animator/view/View.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/model/ShapeType.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/view/ViewFactory.java" />
-        <option value="$PROJECT_DIR$/src/cs3500/animator/Excellence.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/model/Color.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/model/IAnimatedShape.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/model/IReadOnlyAnimatedShape.java" />
@@ -227,6 +229,7 @@
         <option value="$PROJECT_DIR$/src/cs3500/animator/model/AnimatedShape.java" />
         <option value="$PROJECT_DIR$/test/SVGViewTest.java" />
         <option value="$PROJECT_DIR$/test/VisualViewTest.java" />
+        <option value="$PROJECT_DIR$/src/cs3500/animator/Excellence.java" />
       </list>
     </option>
   </component>
@@ -331,6 +334,7 @@
     <configuration name="Excellence" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cs3500.animator.Excellence" />
       <module name="Homework5" />
+      <option name="PROGRAM_PARAMETERS" value="-type svg -in &quot;\Users\medlinj\Downloads\code (19).zip\code\toh-3.txt&quot; -speed 20 -out \Users\medlinj\Desktop\pls.svg" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="cs3500.animator.*" />
@@ -377,11 +381,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Excellence" />
+      <item itemvalue="JUnit.AShapeStateTest" />
+      <item itemvalue="JUnit.ColorTest" />
+      <item itemvalue="JUnit.ShapeTest" />
+      <item itemvalue="JUnit.SVGViewTest" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Excellence" />
-        <item itemvalue="JUnit.SVGViewTest" />
         <item itemvalue="JUnit.ShapeTest" />
+        <item itemvalue="JUnit.SVGViewTest" />
         <item itemvalue="JUnit.AShapeStateTest" />
         <item itemvalue="JUnit.ColorTest" />
       </list>
@@ -398,14 +409,11 @@
       <option name="presentableId" value="Default" />
       <updated>1559669082571</updated>
       <workItem from="1559669086870" duration="270000" />
-      <workItem from="1559866205837" duration="72085000" />
+      <workItem from="1559866205837" duration="72738000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="SVGViewTest - 2019.06.15 at 14h 18m 36s.xml">
-      <configuration name="SVGViewTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="SVGViewTest - 2019.06.15 at 14h 21m 10s.xml">
       <configuration name="SVGViewTest" configurationId="JUnit" />
     </history-entry>
@@ -433,9 +441,12 @@
     <history-entry file="SVGViewTest - 2019.06.15 at 14h 50m 00s.xml">
       <configuration name="SVGViewTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="ShapeTest - 2019.06.15 at 15h 01m 37s.xml">
+      <configuration name="ShapeTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72532000" />
+    <option name="totallyTimeSpent" value="73185000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -448,9 +459,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.152349" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.152349" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -460,7 +470,7 @@
       <window_info anchor="bottom" id="Messages" order="0" weight="0.0509915" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" />
-      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.10339943" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.3654391" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.04249292" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -926,8 +936,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cs3500/animator/Excellence.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1717">
-          <caret line="101" column="5" selection-end-line="104" />
+        <state relative-caret-position="153">
+          <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

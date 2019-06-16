@@ -14,25 +14,29 @@ public class SVGView implements IView {
   private int rate;
   private HashMap<ShapeType, Function<IReadOnlyAnimatedShape, ISVGTag>> commandMap;
 
+  /**
+   * Constructs a view that creates a view in the SVG format.
+   * @param rate the ticks per second for the view
+   */
   public SVGView(int rate) {
     this.rate = rate;
     this.commandMap = new HashMap<>();
     this.commandMap.put(
-            ShapeType.RECTANGLE,
-            (IReadOnlyAnimatedShape shape) -> {
-              return new RectangleTag(shape, this.rate);
-            });
+        ShapeType.RECTANGLE,
+        (IReadOnlyAnimatedShape shape) -> {
+          return new RectangleTag(shape, this.rate);
+        });
     this.commandMap.put(
-            ShapeType.ELLIPSE,
-            (IReadOnlyAnimatedShape shape) -> {
-              return new EllipseTag(shape, this.rate);
-            });
+        ShapeType.ELLIPSE,
+        (IReadOnlyAnimatedShape shape) -> {
+          return new EllipseTag(shape, this.rate);
+        });
   }
 
   @Override
   public String formatSVG(IReadOnlyModel model) {
-    String result = "<svg width=\"" + model.getWidth() + "\" height\"" + model.getHeight()
-            + "\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n";
+    String result = "<svg width=\"" + model.getWidth() + "\" height=\"" + model.getHeight()
+        + "\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n";
     for (IReadOnlyAnimatedShape shape : model.getShapes()) {
       Function<IReadOnlyAnimatedShape, ISVGTag> func = this.commandMap.get(shape.getType());
       ISVGTag tag = func.apply(shape);
@@ -44,13 +48,13 @@ public class SVGView implements IView {
   @Override
   public String printView(IReadOnlyModel model) {
     throw new UnsupportedOperationException("This operation is" +
-            " not supported in this type of view.");
+        " not supported in this type of view.");
   }
 
   @Override
   public void render() {
     throw new UnsupportedOperationException("This operation is not" +
-            " supported in this type of view.");
+        " supported in this type of view.");
   }
 
 }

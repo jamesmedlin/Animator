@@ -11,6 +11,7 @@ import cs3500.animator.model.ShapeType;
  */
 public class TextView implements IView {
 
+  @Override
   public String printView(IReadOnlyModel model) {
     String result = "";
     List<IReadOnlyAnimatedShape> shapes = model.getShapes();
@@ -24,16 +25,16 @@ public class TextView implements IView {
   @Override
   public String formatSVG(IReadOnlyModel model) {
     throw new UnsupportedOperationException("This operation is not " +
-            "supported in this type of view.");
+        "supported in this type of view.");
   }
 
   @Override
   public void render() {
     throw new UnsupportedOperationException("This operation is not " +
-            "supported in this type of view.");
+        "supported in this type of view.");
   }
 
-  public String convertToString(ShapeType type) throws IllegalArgumentException {
+  private String convertToString(ShapeType type) throws IllegalArgumentException {
     switch (type) {
       case RECTANGLE:
         return "Rectangle";
@@ -41,7 +42,7 @@ public class TextView implements IView {
         return "Ellipse";
       default:
         throw new IllegalArgumentException("Conversion code from Shape " +
-                "types to String must be updated.");
+            "types to String must be updated.");
     }
   }
 }

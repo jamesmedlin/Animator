@@ -2,7 +2,6 @@ package cs3500.animator.model;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +17,9 @@ public final class Model implements IModel {
   private int width;
   private int shapeCount = this.shapes.values().size();
 
+  /**
+   * Builds a version of this model so it can be used by the provided Animation reader and builder.
+   */
   public static final class Builder implements AnimationBuilder<IModel> {
     private HashMap<String, IAnimatedShape> shapes = new HashMap<String, IAnimatedShape>();
     private int x = 0;

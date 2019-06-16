@@ -18,9 +18,16 @@ import cs3500.animator.util.AnimationReader;
 import cs3500.animator.view.IView;
 import cs3500.animator.view.ViewFactory;
 
+/**
+ * Runs the main function of the program.
+ *
+ */
 public class Excellence {
+  /**
+   * Parses command arguments and sets up the program correctly.
+   * @param args supplied command line arguments
+   */
   public static void main(String[] args) {
-
     String argString = "";
     for (String s : args) {
       argString += s + " ";
@@ -29,7 +36,7 @@ public class Excellence {
     Scanner argParser = new Scanner(new StringReader(argString));
     Readable in = new InputStreamReader(System.in);
     Appendable out = System.out;
-    int tps = 30;
+    int tps = 1;
     String type = "";
     JFrame frame = new JFrame();
     frame.setBounds(0, 0, 200, 100);
@@ -56,21 +63,31 @@ public class Excellence {
                             + "-in \"name-of-animation-file\" -view \"type-of-view\" -out "
                             + "\"where-output-show-go\" -speed \"integer-ticks-per-second\"\n",
                     "Invalid command line arguments", JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
+            return;
         }
       }
     } catch (NoSuchElementException e) {
       JOptionPane.showMessageDialog(frame, "Insufficient arguments to run program."
                       + "Each argument must be followed by a value",
               "Invalid command line arguments", JOptionPane.ERROR_MESSAGE);
+      System.exit(1);
+      return;
     } catch (FileNotFoundException e) {
       JOptionPane.showMessageDialog(frame, e.getMessage(),
               "Invalid command line arguments", JOptionPane.ERROR_MESSAGE);
+      System.exit(1);
+      return;
     } catch (IOException e) {
       JOptionPane.showMessageDialog(frame, e.getMessage(),
               "FileWriter failed", JOptionPane.ERROR_MESSAGE);
+      System.exit(1);
+      return;
     } catch (NumberFormatException e) {
       JOptionPane.showMessageDialog(frame, "Speed must be an integer.",
               "Invalid command line arguments", JOptionPane.ERROR_MESSAGE);
+      System.exit(1);
+      return;
     }
 
     IReadOnlyModel model = AnimationReader.parseFile(in, new Model.Builder());
@@ -81,11 +98,9 @@ public class Excellence {
         case "svg":
         case "SVG":
           out.append(view.formatSVG(model));
-          System.exit(0);
           break;
         case "text":
           out.append(view.printView(model));
-          System.exit(0);
           break;
         case "visual":
           view.render();
@@ -94,11 +109,27 @@ public class Excellence {
           JOptionPane.showMessageDialog(
                   frame, "Supported views are \"text\", \"svg\", and \"visual\".",
                   "Invalid command line arguments", JOptionPane.ERROR_MESSAGE);
+          System.exit(1);
+          return;
       }
     } catch (IOException e) {
       JOptionPane.showMessageDialog(
               frame, "Could not output.",
               "Invalid command line arguments", JOptionPane.ERROR_MESSAGE);
+      System.exit(1);
+      return;
+    }
+    
+    if (out instanceof FileWriter) {
+      try {
+        ((FileWriter) out).close();
+      } catch (IOException e) {
+        JOptionPane.showMessageDialog(
+            frame, "Could not output.",
+            "Invalid command line arguments", JOptionPane.ERROR_MESSAGE);
+        System.exit(1);
+        return;
+      }
     }
   }
 }

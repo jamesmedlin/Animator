@@ -2,8 +2,6 @@ package cs3500.animator.view;
 
 import java.awt.Graphics;
 import java.awt.Color;
-import java.util.List;
-
 import cs3500.animator.model.IReadOnlyShapeState;
 
 /**

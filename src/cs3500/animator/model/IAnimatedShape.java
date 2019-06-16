@@ -91,7 +91,7 @@ public interface IAnimatedShape extends IReadOnlyAnimatedShape, Comparable<IAnim
   IAnimatedShape deepCopy();
 
   /**
-   * Gets the order this shape should be layered with other shapes
+   * Gets the order this shape should be layered with other shapes.
    * @return an integer order
    */
   int getOrder();

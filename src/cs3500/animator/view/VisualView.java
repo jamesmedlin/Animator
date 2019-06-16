@@ -12,6 +12,9 @@ import javax.swing.Timer;
 import cs3500.animator.model.IReadOnlyModel;
 import cs3500.animator.model.IReadOnlyShapeState;
 
+/**
+ * Represents a view that opens a separate animation window.
+ */
 public class VisualView extends JFrame implements IView {
   private DrawingPanel panel;
   private Timer timer;

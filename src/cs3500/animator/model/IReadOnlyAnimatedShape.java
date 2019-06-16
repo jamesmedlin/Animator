@@ -2,6 +2,9 @@ package cs3500.animator.model;
 
 import java.util.List;
 
+/**
+ * Represents a read only version of the IShapeState interface.
+ */
 public interface IReadOnlyAnimatedShape {
 
   /**
@@ -28,7 +31,15 @@ public interface IReadOnlyAnimatedShape {
    */
   IReadOnlyShapeState getShapeAt(int tick) throws IllegalArgumentException;
 
+  /**
+   * Returns the enum representing the type of this Animated Shape.
+   * @return correct ShapeType enum
+   */
   ShapeType getType();
 
+  /**
+   * Retrieves the String name of this shape, which is determined by the user.
+   * @return the unique identifier of this shape.
+   */
   String getName();
 }

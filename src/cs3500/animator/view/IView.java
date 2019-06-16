@@ -2,6 +2,10 @@ package cs3500.animator.view;
 
 import cs3500.animator.model.IReadOnlyModel;
 
+/**
+ * Represents the view for an animator program.
+ *
+ */
 public interface IView {
 
   /**
