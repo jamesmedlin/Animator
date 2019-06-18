@@ -1,5 +1,6 @@
 package cs3500.animator.view;
 
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import cs3500.animator.model.IReadOnlyAnimatedShape;
@@ -29,7 +30,7 @@ public class TextView implements IView {
   }
 
   @Override
-  public void render() {
+  public void play() {
     throw new UnsupportedOperationException("This operation is not " +
         "supported in this type of view.");
   }
@@ -44,5 +45,11 @@ public class TextView implements IView {
         throw new IllegalArgumentException("Conversion code from Shape " +
             "types to String must be updated.");
     }
+  }
+
+  @Override
+  public void setListener(ActionListener listener) {
+    // TODO Auto-generated method stub
+    
   }
 }

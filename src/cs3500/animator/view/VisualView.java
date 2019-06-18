@@ -66,4 +66,10 @@ public class VisualView extends JFrame implements IView {
   private void drawShapes(List<IReadOnlyShapeState> shapes) {
     panel.draw(shapes);
   }
+
+  @Override
+  public void setListener(ActionListener listener) {
+    // TODO Auto-generated method stub
+    
+  }
 }

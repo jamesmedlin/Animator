@@ -4,13 +4,60 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.*;
+import cs3500.animator.model.IReadOnlyModel;
 
 public class EditView extends VisualView {
+  public EditView(int speed, IReadOnlyModel model) {
+    super(speed, model);
+    pauseButton = new JButton("pause");
+    pauseButton.setActionCommand("pause button");
+
+    playButton = new JButton("play");
+    playButton.setActionCommand("play button");
+
+    restartButton = new JButton("restart");
+    restartButton.setActionCommand("restart button");
+
+    loopingButton = new JCheckBox("loop");
+    loopingButton.setActionCommand("looping checkbox");
+
+    rectangle = new JRadioButton("rectangle");
+    rectangle.setActionCommand("rectangle button");
+
+    ellipse = new JRadioButton("ellipse");
+    ellipse.setActionCommand("ellipse button");
+
+    buttonGroup = new ButtonGroup();
+    buttonGroup.add(rectangle);
+    buttonGroup.add(ellipse);
+
+    addShape = new JButton("add shape");
+    addShape.setActionCommand("add shape button");
+
+    editFrame = new JButton("edit");
+    editFrame.setActionCommand("edit button");
+
+    addFrame = new JButton("add");
+    addFrame.setActionCommand("add button");
+
+    removeFrame = new JButton("remove");
+    removeFrame.setActionCommand("remove button");
+
+    exit = new JButton("exit");
+    exit.setActionCommand("exit button");
+
+    speedText = new JTextField("speed");
+    speedText.setActionCommand("speed field");
+
+    name = new JTextField("name");
+    name.setActionCommand("name field");
+  }
+
   JButton pauseButton;
   JButton playButton;
   JButton restartButton;
   JCheckBox loopingButton;
-  JTextField speed;
+  JTextField speedText;
   
   JPanel shapes;
   JRadioButton rectangle;
@@ -25,48 +72,7 @@ public class EditView extends VisualView {
   JButton removeFrame;
   JButton exit;
 
-  pauseButton = new JButton("pause");
-  pauseButton.setActionCommand("pause button");
-
-  playButton = new JButton("play");
-  playButton.setActionCommand("play button");
-
-  restartButton = new JButton("restart");
-  restartButton.setActionCommand("restart button");
-
-  loopingButton = new JCheckBox("loop");
-  loopingButton.setActionCommand("looping checkbox");
-
-  rectangle = new JRadioButton("rectangle");
-  rectangle.setActionCommand("rectangle button");
-
-  ellipse = new JRadioButton("ellipse");
-  ellipse.setActionCommand("ellipse button");
-
-  buttonGroup = new ButtonGroup();
-  buttonGroup.add(rectangle);
-  buttonGroup.add(ellipse);
-
-  addShape = new JButton("add shape");
-  addShape.setActionCommand("add shape button");
-
-  editFrame = new JButton("edit");
-  editFrame.setActionCommand("edit button");
-
-  addFrame = new JButton("add");
-  addFrame.setActionCommand("add button");
-
-  removeFrame = new JButton("remove");
-  removeFrame.setActionCommand("remove button");
-
-  exit = new JButton("exit");
-  exit.setActionCommand("exit button");
-
-  speed = new JTextField("speed");
-  exit.setActionCommand("speed field");
-
-  speed = new JTextField("name");
-  exit.setActionCommand("name field");
+  
 
   public void editSpeed(int newTPS) {
     this.timer.setDelay(1000 / newTPS);

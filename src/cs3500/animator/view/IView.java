@@ -1,5 +1,6 @@
 package cs3500.animator.view;
 
+import java.awt.event.ActionListener;
 import cs3500.animator.controller.IAnimatorController;
 import cs3500.animator.model.IReadOnlyModel;
 
@@ -33,5 +34,5 @@ public interface IView {
   /**
    * TODO
    */
-  void setListener(IAnimatorController controller);
+  void setListener(ActionListener listener);
 }
