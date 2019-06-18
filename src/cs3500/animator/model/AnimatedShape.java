@@ -17,6 +17,8 @@ public class AnimatedShape implements IAnimatedShape {
   private ArrayList<IShapeState> states;
   // Represents the order this shape should be layered with other shapes
   private int order;
+  
+  private IShapeState curState;
 
 
   /**
@@ -258,7 +260,7 @@ public class AnimatedShape implements IAnimatedShape {
       IShapeState a = this.states.get(i);
       IShapeState b = this.states.get(i + 1);
       if (a.getTick() <= tick && b.getTick() >= tick && a.getTick() != b.getTick()) {
-        a.setColor(
+        curState.setColor(
             linearInterpolate(
                 a.getColor().getRed(), b.getColor().getRed(), a.getTick(), b.getTick(), tick),
             linearInterpolate(
@@ -266,17 +268,17 @@ public class AnimatedShape implements IAnimatedShape {
             linearInterpolate(
                 a.getColor().getBlue(), b.getColor().getBlue(), a.getTick(), b.getTick(), tick));
 
-        a.setHeight(
+        curState.setHeight(
             linearInterpolate(a.getHeight(), b.getHeight(), a.getTick(), b.getTick(), tick));
 
-        a.setWidth(linearInterpolate(a.getWidth(), b.getWidth(), a.getTick(), b.getTick(), tick));
+        curState.setWidth(linearInterpolate(a.getWidth(), b.getWidth(), a.getTick(), b.getTick(), tick));
 
-        a.setPosition(
+        curState.setPosition(
             linearInterpolate(
                 a.getPosition().getX(), b.getPosition().getX(), a.getTick(), b.getTick(), tick),
             linearInterpolate(
                 a.getPosition().getY(), b.getPosition().getY(), a.getTick(), b.getTick(), tick));
-        return a;
+        return curState;
       }
     }
     throw new IllegalArgumentException("No state of this shape at the given tick.");

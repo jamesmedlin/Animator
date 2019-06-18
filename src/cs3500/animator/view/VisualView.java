@@ -16,9 +16,9 @@ import cs3500.animator.model.IReadOnlyShapeState;
  * Represents a view that opens a separate animation window.
  */
 public class VisualView extends JFrame implements IView {
-  private DrawingPanel panel;
-  private Timer timer;
-  private int tick = 0;
+  protected DrawingPanel panel;
+  protected Timer timer;
+  protected int tick = 0;
 
   /**
    * represents the standard animation/user-friendly interpretation of the program.
@@ -59,7 +59,7 @@ public class VisualView extends JFrame implements IView {
   }
 
   @Override
-  public void render() {
+  public void play() {
     this.timer.start();
   }
 

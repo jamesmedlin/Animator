@@ -103,7 +103,8 @@ public class Excellence {
           out.append(view.printView(model));
           break;
         case "visual":
-          view.render();
+        case "edit":
+          view.play();
           break;
         default:
           JOptionPane.showMessageDialog(

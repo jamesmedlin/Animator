@@ -27,5 +27,5 @@ public interface IView {
   /**
    * renders all the shapes in the given list.
    */
-  void render();
+  void play();
 }
