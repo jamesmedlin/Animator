@@ -1,5 +1,6 @@
 package cs3500.animator.view;
 
+import cs3500.animator.controller.IAnimatorController;
 import cs3500.animator.model.IReadOnlyModel;
 
 /**
@@ -28,4 +29,9 @@ public interface IView {
    * renders all the shapes in the given list.
    */
   void play();
+
+  /**
+   * TODO
+   */
+  void setListener(IAnimatorController controller);
 }
