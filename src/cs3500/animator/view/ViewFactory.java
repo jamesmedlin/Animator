@@ -26,6 +26,8 @@ public class ViewFactory {
         return new SVGView(ticksPerSecond);
       case "visual":
         return new VisualView(ticksPerSecond, width, height);
+      case "edit":
+        return new EditView(ticksPerSecond, width, height);
       default:
         throw new IllegalArgumentException("Must be a valid type of view.");
     }

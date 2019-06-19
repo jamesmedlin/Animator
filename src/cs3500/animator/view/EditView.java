@@ -218,7 +218,6 @@ public class EditView extends VisualView implements ActionListener {
     submitPanel.add(editFrame);
     submitPanel.add(removeFrame);
 
-
     labelButtonPanel.add(editFrame);
     labelButtonPanel.add(tickLabel);
     labelButtonPanel.add(tTick);
