@@ -1,7 +1,7 @@
 package cs3500.animator.view;
 
+import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.*;
 import cs3500.animator.model.IReadOnlyModel;
@@ -51,6 +51,8 @@ public class EditView extends VisualView {
 
     name = new JTextField("name");
     name.setActionCommand("name field");
+
+    makeEastPanel();
   }
 
   JButton pauseButton;
@@ -64,6 +66,7 @@ public class EditView extends VisualView {
   JRadioButton ellipse;
   ButtonGroup buttonGroup;
   JButton addShape;
+  JButton removeShape;
   JTextField name;
   
   JPanel keyFrames;
@@ -72,6 +75,66 @@ public class EditView extends VisualView {
   JButton removeFrame;
   JButton exit;
 
+  JPanel eastPanel;
+  JLabel shapesLabel;
+  JLabel motionsLabel;
+  JList motionsList;
+  JList shapeList;
+
+
+  JPanel labelButtonPanel;
+  JLabel widthLabel;
+  JLabel heightLabel;
+  JLabel xCoordinate;
+  JLabel yCoordinate;
+  JTextField tWidth;
+  JTextField tHeight;
+  JTextField tX;
+  JTextField tY;
+
+
+  public void makeEastPanel() {
+    eastPanel = new JPanel();
+    eastPanel.setLayout( new BoxLayout(eastPanel, BoxLayout.Y_AXIS));
+    shapesLabel = new JLabel("Shapes:");
+    motionsLabel = new JLabel("Motions:");
+
+    motionsList = new JList<String>( new String[]{"Motion1", "Motion2", "Motion3"});
+    motionsList.setPreferredSize(new Dimension(300, 500));
+    motionsList.setFixedCellWidth(300);
+
+    shapeList = new JList<String>( new String[]{"Shape1", "Shape2", "Shape3"});
+    shapeList.setPreferredSize(new Dimension(300, 500));
+    shapeList.setFixedCellWidth(300);
+    eastPanel.add(shapesLabel);
+    eastPanel.add(shapeList);
+
+    eastPanel.add(motionsLabel);
+    eastPanel.add(motionsList);
+
+  }
+
+  public void makeSouthPanel() {
+    widthLabel = new JLabel("Width");
+    heightLabel = new JLabel("Height");
+    xCoordinate = new JLabel("x");
+    yCoordinate = new JLabel("y");
+
+    tWidth = new JTextField(5);
+    tHeight = new JTextField(5);
+    tX = new JTextField(5);
+    tY = new JTextField(5);
+
+    labelButtonPanel = new JPanel(new FlowLayout());
+    labelButtonPanel.add(widthLabel);
+    labelButtonPanel.add(tWidth);
+    labelButtonPanel.add(heightLabel);
+    labelButtonPanel.add(tHeight);
+    labelButtonPanel.add(xCoordinate);
+    labelButtonPanel.add(tX);
+    labelButtonPanel.add(yCoordinate);
+    labelButtonPanel.add(tY);
+  }
   
 
   public void editSpeed(int newTPS) {
