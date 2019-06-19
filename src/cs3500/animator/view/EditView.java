@@ -250,10 +250,28 @@ public class EditView extends VisualView implements ActionListener {
   public void actionPerformed(ActionEvent e) {
     switch (e.getActionCommand()) {
       case "pause button":
+        for (IViewListener listener : this.listeners) {
+          listener.pause();
+        }
         break;
       case "play button":
+        for (IViewListener listener : this.listeners) {
+          listener.play();
+        }
         break;
       case "edit button":
+        for (IViewListener listener : this.listeners) {
+          listener.editKeyFrame(
+              this.shapeList.getSelectedValue(), this.shapeList.getSelectedIndex(),
+              Integer.valueOf(this.tTick.getText()),
+              Integer.valueOf(this.tX.getText()),
+              Integer.valueOf(this.tY.getText()),
+              Integer.valueOf(this.tWidth.getText()),
+              Integer.valueOf(this.tHeight.getText()),
+              Integer.valueOf(this.tRed.getText()),
+              Integer.valueOf(this.tGreen.getText()),
+              Integer.valueOf(this.tBlue.getText()));;
+        }
         break;
       case "add keyframe button":
         break;
