@@ -91,7 +91,7 @@ public class Excellence {
     }
 
     IReadOnlyModel model = AnimationReader.parseFile(in, new Model.Builder());
-    IView view = ViewFactory.makeView(type, tps, model);
+    IView view = ViewFactory.makeView(type, tps, 800, 800);
 
     try {
       switch (type) {
