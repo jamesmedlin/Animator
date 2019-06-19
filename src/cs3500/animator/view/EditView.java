@@ -1,21 +1,12 @@
 package cs3500.animator.view;
 
 
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
-import cs3500.animator.model.IReadOnlyModel;
+
+import javax.swing.*;
 
 public class EditView extends VisualView implements ActionListener {
   
@@ -48,6 +39,9 @@ public class EditView extends VisualView implements ActionListener {
     addShape = new JButton("add shape");
     addShape.setActionCommand("add shape button");
 
+    removeShape = new JButton("remove shape");
+    removeShape.setActionCommand("remove shape button");
+
     editFrame = new JButton("edit");
     editFrame.setActionCommand("edit button");
 
@@ -57,8 +51,8 @@ public class EditView extends VisualView implements ActionListener {
     removeFrame = new JButton("remove");
     removeFrame.setActionCommand("remove keyframe button");
 
-    exit = new JButton("exit");
-    exit.setActionCommand("exit button");
+//    exit = new JButton("exit");
+//    exit.setActionCommand("exit button");
 
     speedText = new JTextField("speed");
     speedText.setActionCommand("speed field");
@@ -71,52 +65,93 @@ public class EditView extends VisualView implements ActionListener {
     restartButton.addActionListener(this);
     loopingButton.addActionListener(this);
     addShape.addActionListener(this);
+    removeShape.addActionListener(this);
     editFrame.addActionListener(this);
     addFrame.addActionListener(this);
     removeFrame.addActionListener(this);
-    exit.addActionListener(this);
     rectangle.addActionListener(this);
     ellipse.addActionListener(this);
     name.addActionListener(this);
 
+    shapesArray = new String[]{};
+    motionsArray = new String[]{};
+
+    shapes = new JPanel(new FlowLayout());
+    shapes.add(addShape);
+    shapes.add(removeShape);
+
     makeEastPanel();
+    makeSouthPanel();
+
+    setLayout(new BorderLayout());
+
+    scrollPane = new JScrollPane(panel);
+    scrollPane.add(pauseButton);
+    scrollPane.add(playButton);
+    scrollPane.add(restartButton);
+    scrollPane.add(loopingButton);
+    scrollPane.add(speedText);
+
+    setSize(800,800);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setLocation(200,200);
+
+
+    add(scrollPane, BorderLayout.CENTER);
+    add(labelButtonPanel, BorderLayout.SOUTH);
+    add(eastPanel, BorderLayout.EAST);
+
+    setVisible(true);
   }
 
-  JButton pauseButton;
-  JButton playButton;
-  JButton restartButton;
-  JCheckBox loopingButton;
-  JTextField speedText;
-  
-  JPanel shapes;
-  JRadioButton rectangle;
-  JRadioButton ellipse;
-  ButtonGroup buttonGroup;
-  JButton addShape;
-  JButton removeShape;
-  JTextField name;
-  
-  JPanel keyFrames;
-  JButton editFrame;
-  JButton addFrame;
-  JButton removeFrame;
-  JButton exit;
+  private JScrollPane scrollPane;
+  private JButton pauseButton;
+  private JButton playButton;
+  private JButton restartButton;
+  private JCheckBox loopingButton;
+  private JTextField speedText;
 
-  JPanel eastPanel;
-  JLabel shapesLabel;
-  JLabel motionsLabel;
-  JList motionsList;
-  JList shapeList;
+  private JPanel shapes;
+  private JRadioButton rectangle;
+  private JRadioButton ellipse;
+  private ButtonGroup buttonGroup;
+  private JButton addShape;
+  private JButton removeShape;
+  private JTextField name;
 
-  JPanel labelButtonPanel;
-  JLabel widthLabel;
-  JLabel heightLabel;
-  JLabel xCoordinate;
-  JLabel yCoordinate;
-  JTextField tWidth;
-  JTextField tHeight;
-  JTextField tX;
-  JTextField tY;
+  private JPanel submitPanel;
+  private JButton editFrame;
+  private JButton addFrame;
+  private JButton removeFrame;
+
+  private JPanel eastPanel;
+  private JLabel shapesLabel;
+  private JLabel motionsLabel;
+  private JList motionsList;
+  private JList shapeList;
+
+  private JPanel labelButtonPanel;
+  private JLabel nameLabel;
+  private JLabel widthLabel;
+  private JLabel heightLabel;
+  private JLabel xCoordinate;
+  private JLabel yCoordinate;
+  private JLabel redColor;
+  private JLabel greenColor;
+  private JLabel blueColor;
+  private JLabel tickLabel;
+  private JTextField tName;
+  private JTextField tWidth;
+  private JTextField tHeight;
+  private JTextField tX;
+  private JTextField tY;
+  private JTextField tRed;
+  private JTextField tGreen;
+  private JTextField tBlue;
+  private JTextField tTick;
+
+  private String[] motionsArray;
+  private String[] shapesArray;
 
 
   public void makeEastPanel() {
@@ -125,11 +160,11 @@ public class EditView extends VisualView implements ActionListener {
     shapesLabel = new JLabel("Shapes:");
     motionsLabel = new JLabel("Motions:");
 
-    motionsList = new JList<String>( new String[]{"Motion1", "Motion2", "Motion3"});
+    motionsList = new JList<String>( motionsArray);
     motionsList.setPreferredSize(new Dimension(300, 500));
     motionsList.setFixedCellWidth(300);
 
-    shapeList = new JList<String>( new String[]{"Shape1", "Shape2", "Shape3"});
+    shapeList = new JList<String>( shapesArray);
     shapeList.setPreferredSize(new Dimension(300, 500));
     shapeList.setFixedCellWidth(300);
     eastPanel.add(shapesLabel);
@@ -137,21 +172,45 @@ public class EditView extends VisualView implements ActionListener {
 
     eastPanel.add(motionsLabel);
     eastPanel.add(motionsList);
+  }
 
+  public void setMotionsArray(String[] array) {
+    this.motionsArray = array;
+  }
+
+  public void setShapesArray(String[] array) {
+    this.shapesArray = array;
   }
 
   public void makeSouthPanel() {
+    nameLabel = new JLabel("Name");
     widthLabel = new JLabel("Width");
     heightLabel = new JLabel("Height");
     xCoordinate = new JLabel("x");
     yCoordinate = new JLabel("y");
+    redColor = new JLabel("red color");
+    greenColor = new JLabel("green color");
+    blueColor = new JLabel("blue color");
+    tickLabel = new JLabel("tick");
 
+    tName = new JTextField(5);
     tWidth = new JTextField(5);
     tHeight = new JTextField(5);
     tX = new JTextField(5);
     tY = new JTextField(5);
+    tRed = new JTextField(5);
+    tGreen = new JTextField(5);
+    tBlue = new JTextField(5);
+    tTick = new JTextField(5);
+
 
     labelButtonPanel = new JPanel(new FlowLayout());
+
+    labelButtonPanel.add(editFrame);
+    labelButtonPanel.add(tickLabel);
+    labelButtonPanel.add(tTick);
+    labelButtonPanel.add(nameLabel);
+    labelButtonPanel.add(tName);
     labelButtonPanel.add(widthLabel);
     labelButtonPanel.add(tWidth);
     labelButtonPanel.add(heightLabel);
@@ -160,6 +219,26 @@ public class EditView extends VisualView implements ActionListener {
     labelButtonPanel.add(tX);
     labelButtonPanel.add(yCoordinate);
     labelButtonPanel.add(tY);
+    labelButtonPanel.add(redColor);
+    labelButtonPanel.add(tRed);
+    labelButtonPanel.add(greenColor);
+    labelButtonPanel.add(tGreen);
+    labelButtonPanel.add(blueColor);
+    labelButtonPanel.add(tBlue);
+    labelButtonPanel.add(submitPanel);
+
+
+    addShape = new JButton("add shape");
+    addShape.setActionCommand("add shape button");
+
+    removeShape = new JButton("remove shape");
+    removeShape.setActionCommand("remove shape button");
+
+    submitPanel = new JPanel(new FlowLayout());
+    submitPanel.add(addFrame);
+    submitPanel.add(editFrame);
+    submitPanel.add(removeFrame);
+
   }
   
 
