@@ -205,6 +205,17 @@ public class EditView extends VisualView implements ActionListener {
 
 
     labelButtonPanel = new JPanel(new FlowLayout());
+    
+    addShape = new JButton("add shape");
+    addShape.setActionCommand("add shape button");
+
+    removeShape = new JButton("remove shape");
+    removeShape.setActionCommand("remove shape button");
+
+    submitPanel = new JPanel(new FlowLayout());
+    submitPanel.add(addFrame);
+    submitPanel.add(editFrame);
+    submitPanel.add(removeFrame);
 
     labelButtonPanel.add(editFrame);
     labelButtonPanel.add(tickLabel);
@@ -227,17 +238,6 @@ public class EditView extends VisualView implements ActionListener {
     labelButtonPanel.add(tBlue);
     labelButtonPanel.add(submitPanel);
 
-
-    addShape = new JButton("add shape");
-    addShape.setActionCommand("add shape button");
-
-    removeShape = new JButton("remove shape");
-    removeShape.setActionCommand("remove shape button");
-
-    submitPanel = new JPanel(new FlowLayout());
-    submitPanel.add(addFrame);
-    submitPanel.add(editFrame);
-    submitPanel.add(removeFrame);
 
   }
   

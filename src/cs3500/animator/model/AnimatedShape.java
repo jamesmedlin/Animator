@@ -1,6 +1,7 @@
 package cs3500.animator.model;
 
 import java.awt.geom.Point2D;
+import java.awt.geom.Point2D.Double;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -38,6 +39,17 @@ public class AnimatedShape implements IAnimatedShape {
       this.type = type;
       this.states = states;
       this.order = order;
+      switch (type) {
+        case RECTANGLE:
+          this.curState = new RectangleState(0, 0, 0,new Color(0, 0, 0), new Point2D.Double(0, 0));
+          break;
+        case ELLIPSE:
+          this.curState = new EllipseState(0, 0, 0,new Color(0, 0, 0), new Point2D.Double(0, 0));
+          break;
+        default:
+          throw new IllegalArgumentException(
+              "New enum needs support in Animated Shape constructor");
+      }
     }
   }
 

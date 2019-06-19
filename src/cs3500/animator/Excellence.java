@@ -11,7 +11,9 @@ import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
+import cs3500.animator.controller.IAnimatorController;
+import cs3500.animator.controller.VisualController;
+import cs3500.animator.model.IModel;
 import cs3500.animator.model.IReadOnlyModel;
 import cs3500.animator.model.Model;
 import cs3500.animator.util.AnimationReader;
@@ -90,8 +92,9 @@ public class Excellence {
       return;
     }
 
-    IReadOnlyModel model = AnimationReader.parseFile(in, new Model.Builder());
-    IView view = ViewFactory.makeView(type, tps, model);
+    IModel model = AnimationReader.parseFile(in, new Model.Builder());
+    IView view = ViewFactory.makeView(type, tps, 800, 800);
+    IAnimatorController controller = new VisualController(model, view, tps);
 
     try {
       switch (type) {
@@ -104,7 +107,7 @@ public class Excellence {
           break;
         case "visual":
         case "edit":
-          view.play();
+          controller.play();
           break;
         default:
           JOptionPane.showMessageDialog(
