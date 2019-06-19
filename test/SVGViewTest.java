@@ -24,10 +24,10 @@ public class SVGViewTest {
     m1 = new Model();
   }
 
-  @Test(expected = UnsupportedOperationException.class)
-  public void testFail() {
-    v1.render();
-  }
+//  @Test(expected = UnsupportedOperationException.class)
+//  public void testFail() {
+//    v1.render();
+//  }
 
   @Test(expected = UnsupportedOperationException.class)
   public void testFail2() {
