@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.*;
+import cs3500.animator.model.IReadOnlyAnimatedShape;
 
 public class EditView extends VisualView implements ActionListener {
   
@@ -261,10 +262,10 @@ public class EditView extends VisualView implements ActionListener {
       case "edit button":
         for (IViewListener listener : this.listeners) {
           listener.editKeyFrame(
-              this.shapeList.getSelectedValue(), this.shapeList.getSelectedIndex(),
+              ((IReadOnlyAnimatedShape) this.shapeList.getSelectedValue()).getName(), this.shapeList.getSelectedIndex(),
               Integer.valueOf(this.tTick.getText()),
-              Integer.valueOf(this.tX.getText()),
-              Integer.valueOf(this.tY.getText()),
+              Double.valueOf(this.tX.getText()),
+              Double.valueOf(this.tY.getText()),
               Integer.valueOf(this.tWidth.getText()),
               Integer.valueOf(this.tHeight.getText()),
               Integer.valueOf(this.tRed.getText()),
