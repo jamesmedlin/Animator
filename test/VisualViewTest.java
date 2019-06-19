@@ -17,7 +17,7 @@ public class VisualViewTest {
   @Before
   public void setUp() {
     m1 = new Model();
-    v1 = new VisualView(30,m1);
+    //v1 = new VisualView(30,m1);
   }
 
   @Test(expected = UnsupportedOperationException.class)

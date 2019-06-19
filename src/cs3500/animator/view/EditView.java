@@ -205,7 +205,7 @@ public class EditView extends VisualView implements ActionListener {
 
 
     labelButtonPanel = new JPanel(new FlowLayout());
-    labelButtonPanel.setPreferredSize(new Dimension(800,100));
+    labelButtonPanel.setPreferredSize(new Dimension(800,150));
 
     addShape = new JButton("add shape");
     addShape.setActionCommand("add shape button");
@@ -238,7 +238,6 @@ public class EditView extends VisualView implements ActionListener {
     labelButtonPanel.add(blueColor);
     labelButtonPanel.add(tBlue);
     labelButtonPanel.add(submitPanel);
-
   }
   
 
