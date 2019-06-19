@@ -17,30 +17,20 @@ import cs3500.animator.model.IReadOnlyShapeState;
  */
 public class VisualView extends JFrame implements IView {
   protected DrawingPanel panel;
-  protected Timer timer;
-  protected int tick = 0;
 
   /**
    * represents the standard animation/user-friendly interpretation of the program.
    */
-  public VisualView(int speed, IReadOnlyModel model) {
+  public VisualView(int speed, int width, int height) {
     super();
 
     this.panel = new DrawingPanel();
-    this.setSize(model.getWidth() + 25, model.getHeight() + 25);
+    this.setSize(width + 25, height + 25);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    panel.setPreferredSize(new Dimension(model.getWidth(), model.getHeight()));
+    panel.setPreferredSize(new Dimension(width, height));
     panel.setBackground(Color.white);
 
-    this.timer = new Timer(1000 / speed, new ActionListener() {
-
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        List<IReadOnlyShapeState> shapesToRender = model.getShapesAtTick(tick++);
-        drawShapes(shapesToRender);
-      }
-    });
 
     add(panel);
     setVisible(true);
@@ -57,19 +47,9 @@ public class VisualView extends JFrame implements IView {
     throw new UnsupportedOperationException("This operation is not" +
             " supported in this type of view.");
   }
-
+  
   @Override
-  public void play() {
-    this.timer.start();
-  }
-
-  private void drawShapes(List<IReadOnlyShapeState> shapes) {
+  public void drawShapes(List<IReadOnlyShapeState> shapes) {
     panel.draw(shapes);
-  }
-
-  @Override
-  public void setListener(ActionListener listener) {
-    // TODO Auto-generated method stub
-    
   }
 }

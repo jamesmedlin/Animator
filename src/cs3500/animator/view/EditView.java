@@ -1,14 +1,18 @@
 package cs3500.animator.view;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.*;
 import cs3500.animator.model.IReadOnlyModel;
 
-public class EditView extends VisualView {
-  public EditView(int speed, IReadOnlyModel model) {
-    super(speed, model);
+public class EditView extends VisualView implements ActionListener {
+  
+  List<IViewListener> listeners;
+  
+  public EditView(int speed, int width, int height) {
+    super(speed, width, height);
     pauseButton = new JButton("pause");
     pauseButton.setActionCommand("pause button");
 
@@ -51,6 +55,19 @@ public class EditView extends VisualView {
 
     name = new JTextField("name");
     name.setActionCommand("name field");
+    
+    pauseButton.addActionListener(this);
+    playButton.addActionListener(this);
+    restartButton.addActionListener(this);
+    loopingButton.addActionListener(this);
+    addShape.addActionListener(this);
+    editFrame.addActionListener(this);
+    addFrame.addActionListener(this);
+    removeFrame.addActionListener(this);
+    exit.addActionListener(this);
+    rectangle.addActionListener(this);
+    ellipse.addActionListener(this);
+    name.addActionListener(this);
   }
 
   JButton pauseButton;
@@ -72,36 +89,16 @@ public class EditView extends VisualView {
   JButton removeFrame;
   JButton exit;
 
-  
 
-  public void editSpeed(int newTPS) {
-    this.timer.setDelay(1000 / newTPS);
+  public void addListener(IViewListener listener) {
+    this.listeners.add(listener);
   }
 
-  public void restart() {
-    this.tick = 0;
-  }
-
-  public void pause() {
-    this.timer.stop();
-  }
-
-  public void toggleLoop() {
-  }
-
-  public void setListener(ActionListener listener) {
-    pauseButton.addActionListener(listener);
-    playButton.addActionListener(listener);
-    restartButton.addActionListener(listener);
-    loopingButton.addActionListener(listener);
-    addShape.addActionListener(listener);
-    editFrame.addActionListener(listener);
-    addFrame.addActionListener(listener);
-    removeFrame.addActionListener(listener);
-    exit.addActionListener(listener);
-    rectangle.addActionListener(listener);
-    ellipse.addActionListener(listener);
-    name.addActionListener(listener);
-
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    switch (e.getActionCommand()) {
+      
+    }
+    
   }
 }

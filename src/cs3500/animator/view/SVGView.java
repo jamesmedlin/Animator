@@ -2,10 +2,12 @@ package cs3500.animator.view;
 
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.List;
 import java.util.function.Function;
 import cs3500.animator.controller.IAnimatorController;
 import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.IReadOnlyModel;
+import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
 
 /**
@@ -53,13 +55,9 @@ public class SVGView implements IView {
   }
 
   @Override
-  public void play() {
+  public void drawShapes(List<IReadOnlyShapeState> states) {
     throw new UnsupportedOperationException("This operation is not" +
         " supported in this type of view.");
-  }
-
-  @Override
-  public void setListener(ActionListener listener) {
   }
 
 }

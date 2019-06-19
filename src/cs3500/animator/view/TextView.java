@@ -5,6 +5,7 @@ import java.util.List;
 
 import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.IReadOnlyModel;
+import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
 
 /**
@@ -30,7 +31,7 @@ public class TextView implements IView {
   }
 
   @Override
-  public void play() {
+  public void drawShapes(List<IReadOnlyShapeState> shapes) {
     throw new UnsupportedOperationException("This operation is not " +
         "supported in this type of view.");
   }
@@ -45,11 +46,5 @@ public class TextView implements IView {
         throw new IllegalArgumentException("Conversion code from Shape " +
             "types to String must be updated.");
     }
-  }
-
-  @Override
-  public void setListener(ActionListener listener) {
-    // TODO Auto-generated method stub
-    
   }
 }

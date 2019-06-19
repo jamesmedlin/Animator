@@ -1,5 +1,7 @@
 package cs3500.animator.controller;
 
-public interface IAnimatorController {
+import cs3500.animator.view.IViewListener;
+
+public interface IAnimatorController extends IViewListener {
 
 }

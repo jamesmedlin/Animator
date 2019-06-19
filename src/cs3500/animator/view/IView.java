@@ -1,8 +1,10 @@
 package cs3500.animator.view;
 
 import java.awt.event.ActionListener;
+import java.util.List;
 import cs3500.animator.controller.IAnimatorController;
 import cs3500.animator.model.IReadOnlyModel;
+import cs3500.animator.model.IReadOnlyShapeState;
 
 /**
  * Represents the view for an animator program.
@@ -27,12 +29,9 @@ public interface IView {
   String formatSVG(IReadOnlyModel model);
 
   /**
-   * renders all the shapes in the given list.
+   * Renders all the shapes in the given list.
+   * 
+   * @param shapes the list of shapes to be drawn in the view
    */
-  void play();
-
-  /**
-   * TODO
-   */
-  void setListener(ActionListener listener);
+  void drawShapes(List<IReadOnlyShapeState> shapes);
 }
