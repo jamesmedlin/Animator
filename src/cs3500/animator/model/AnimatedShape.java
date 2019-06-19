@@ -17,7 +17,7 @@ public class AnimatedShape implements IAnimatedShape {
   private ArrayList<IShapeState> states;
   // Represents the order this shape should be layered with other shapes
   private int order;
-  
+
   private IShapeState curState;
 
 
@@ -32,7 +32,7 @@ public class AnimatedShape implements IAnimatedShape {
   public AnimatedShape(String name, ShapeType type, ArrayList<IShapeState> states, int order) {
     if (type == null || states == null || name == null) {
       throw new IllegalArgumentException("Cannot construct " +
-              "animated shape with null type or null states.");
+          "animated shape with null type or null states.");
     } else {
       this.name = name;
       this.type = type;
@@ -207,33 +207,33 @@ public class AnimatedShape implements IAnimatedShape {
 
       for (int i = 0; i < states.size(); i += 2) {
         if (!((this.startTick <= states.get(i).getTick()
-                && this.endTick <= states.get(i).getTick())
-                || (this.startTick >= states.get(i + 1).getTick()
-                && this.endTick >= states.get(i + 1).getTick()))) {
+            && this.endTick <= states.get(i).getTick())
+            || (this.startTick >= states.get(i + 1).getTick()
+            && this.endTick >= states.get(i + 1).getTick()))) {
           throw new IllegalArgumentException(
-                  "Shape is already performing an operation "
-                          + "during at least one of the ticks specified.");
+              "Shape is already performing an operation "
+                  + "during at least one of the ticks specified.");
         }
       }
 
       switch (AnimatedShape.this.type) {
         case RECTANGLE:
           states.add(
-                  new RectangleState(
-                          this.startTick, this.startWidth,
-                          this.startHeight, this.startColor, this.startPos));
+              new RectangleState(
+                  this.startTick, this.startWidth,
+                  this.startHeight, this.startColor, this.startPos));
           states.add(
-                  new RectangleState(
-                          this.endTick, this.endWidth, this.endHeight, this.endColor, this.endPos));
+              new RectangleState(
+                  this.endTick, this.endWidth, this.endHeight, this.endColor, this.endPos));
           break;
         case ELLIPSE:
           states.add(
-                  new EllipseState(
-                          this.startTick, this.startWidth,
-                          this.startHeight, this.startColor, this.startPos));
+              new EllipseState(
+                  this.startTick, this.startWidth,
+                  this.startHeight, this.startColor, this.startPos));
           states.add(
-                  new EllipseState(
-                          this.endTick, this.endWidth, this.endHeight, this.endColor, this.endPos));
+              new EllipseState(
+                  this.endTick, this.endWidth, this.endHeight, this.endColor, this.endPos));
           break;
         default:
           break;
@@ -271,7 +271,8 @@ public class AnimatedShape implements IAnimatedShape {
         curState.setHeight(
             linearInterpolate(a.getHeight(), b.getHeight(), a.getTick(), b.getTick(), tick));
 
-        curState.setWidth(linearInterpolate(a.getWidth(), b.getWidth(), a.getTick(), b.getTick(), tick));
+        curState.setWidth(linearInterpolate(
+            a.getWidth(), b.getWidth(), a.getTick(), b.getTick(), tick));
 
         curState.setPosition(
             linearInterpolate(
@@ -290,25 +291,25 @@ public class AnimatedShape implements IAnimatedShape {
 
   @Override
   public void fullMotionTo(
-          Point2D endPos, int endHeight, int endWidth, Color endColor, int duration) {
+      Point2D endPos, int endHeight, int endWidth, Color endColor, int duration) {
     if (endPos == null || endColor == null) {
       throw new IllegalArgumentException("Position and color must not be null."
-              + "And initState or states must have values.");
+          + "And initState or states must have values.");
     }
     new MotionAdder()
-            .setEndColor(endColor)
-            .setEndHeight(endHeight)
-            .setEndWidth(endWidth)
-            .setEndPos(endPos)
-            .setDuration(duration)
-            .add();
+    .setEndColor(endColor)
+    .setEndHeight(endHeight)
+    .setEndWidth(endWidth)
+    .setEndPos(endPos)
+    .setDuration(duration)
+    .add();
   }
 
   @Override
   public void changeColor(Color color, int duration) {
     if (color == null) {
       throw new IllegalArgumentException("Position and color must not be null."
-              + "And initState or states must have values.");
+          + "And initState or states must have values.");
     }
     new MotionAdder().setEndColor(color).setDuration(duration).add();
   }
@@ -317,7 +318,7 @@ public class AnimatedShape implements IAnimatedShape {
   public void moveTo(Point2D endPos, int duration) {
     if (endPos == null) {
       throw new IllegalArgumentException("Position must not be null."
-              + "And states must have values.");
+          + "And states must have values.");
     }
     new MotionAdder().setEndPos(endPos).setDuration(duration).add();
   }
@@ -325,9 +326,9 @@ public class AnimatedShape implements IAnimatedShape {
   @Override
   public void changeSizeTo(int newHeight, int newWidth, int duration) {
     new MotionAdder().setEndWidth(newWidth)
-            .setEndHeight(newHeight)
-            .setDuration(duration)
-            .add();
+    .setEndHeight(newHeight)
+    .setDuration(duration)
+    .add();
   }
 
   @Override
@@ -348,27 +349,27 @@ public class AnimatedShape implements IAnimatedShape {
 
   @Override
   public void fullMotion(int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1, int t2,
-                         int x2, int y2, int w2, int h2, int r2, int g2, int b2) {
+      int x2, int y2, int w2, int h2, int r2, int g2, int b2) {
     MotionAdder adder = new MotionAdder();
 
     if (adder.mostRecentShape != null && (t1 != adder.endTick || x1 != adder.endPos.getX()
-            || y1 != adder.endPos.getY() || w1 != adder.endWidth || h1 != adder.endHeight
-            || r1 != adder.endColor.getRed() || g1 != adder.endColor.getGreen()
-            || b1 != adder.endColor.getBlue())) {
+        || y1 != adder.endPos.getY() || w1 != adder.endWidth || h1 != adder.endHeight
+        || r1 != adder.endColor.getRed() || g1 != adder.endColor.getGreen()
+        || b1 != adder.endColor.getBlue())) {
       throw new IllegalArgumentException("Motion must begin where the last one left off");
     } else {
       adder
-              .setStartColor(new Color(r1, g1, b1))
-              .setEndColor(new Color(r2, g2, b2))
-              .setStartTick(t1)
-              .setEndTick(t2)
-              .setStartHeight(h1)
-              .setEndHeight(h2)
-              .setStartWidth(w1)
-              .setEndWidth(w2)
-              .setStartPos(new Point2D.Double(x1, y1))
-              .setEndPos(new Point2D.Double(x2, y2))
-              .add();
+      .setStartColor(new Color(r1, g1, b1))
+      .setEndColor(new Color(r2, g2, b2))
+      .setStartTick(t1)
+      .setEndTick(t2)
+      .setStartHeight(h1)
+      .setEndHeight(h2)
+      .setStartWidth(w1)
+      .setEndWidth(w2)
+      .setStartPos(new Point2D.Double(x1, y1))
+      .setEndPos(new Point2D.Double(x2, y2))
+      .add();
     }
   }
 
@@ -394,6 +395,114 @@ public class AnimatedShape implements IAnimatedShape {
   @Override
   public int getOrder() {
     return this.order;
+  }
+
+  @Override
+  public void addKeyFrame(
+      int tick, double x, double y, int width, int height, int r, int g, int b) {
+    int curIndex = 0;
+    try {
+      while (tick >= this.states.get(curIndex).getTick()) {
+        curIndex++;
+      }
+    }
+    catch (IndexOutOfBoundsException e) {
+      IShapeState sMax = this.states.get(this.states.size() - 1);
+      this.fullMotion(
+          sMax.getTick(), (int)sMax.getPosition().getX(), (int)sMax.getPosition().getY(), 
+          sMax.getWidth(), sMax.getHeight(), sMax.getColor().getRed(),
+          sMax.getColor().getGreen(), sMax.getColor().getBlue(),
+          tick, (int)x, (int)y, width, height, r, g, b);
+      return;
+    }
+
+    if (tick == this.states.get(curIndex).getTick()) {
+      throw new IllegalArgumentException(
+          "Keyframe exists at this tick. Edit the existing one instead");
+    }
+    else if (curIndex == 0) {
+      IShapeState s0 = this.states.get(0);
+      this.fullMotion(tick, (int)x, (int)y, width, height, r, g, b,
+          s0.getTick(), (int)s0.getPosition().getX(), (int)s0.getPosition().getY(),s0.getWidth(),
+          s0.getHeight(), s0.getColor().getRed(),
+          s0.getColor().getGreen(), s0.getColor().getBlue());
+    }
+    else {
+      this.fullMotion(tick, (int)x, (int)y, width, height, r, g, b,
+          tick, (int)x, (int)y, width, height, r, g, b);
+    }
+
+  }
+
+  @Override
+  public void editKeyFrame(int index, int tick, double x, double y,
+      int width, int height, int r, int g, int b) {
+    if (index == 0) {
+      IShapeState s0 = this.states.get(index);
+      s0.setColor(r, g, b);
+      s0.setPosition(x, y);
+      s0.setHeight(height);
+      s0.setWidth(width);
+      if (s0.getTick() < tick) {
+        IShapeState s1 = this.states.get(index + 1);
+        s1.setColor(r, g, b);
+        s1.setPosition(x, y);
+        s1.setHeight(height);
+        s1.setWidth(width);
+        s1.setTick(tick);
+      }
+      s0.setTick(tick);
+      Collections.sort(this.states);
+    }
+    else if ((index * 2) - 2 == this.states.size() - 1) {
+      IShapeState s0 = this.states.get((index * 2) - 2);
+      s0.setColor(r, g, b);
+      s0.setPosition(x, y);
+      s0.setHeight(height);
+      s0.setWidth(width);
+      if (s0.getTick() > tick) {
+        IShapeState s1 = this.states.get((index * 2) - 3);
+        s1.setColor(r, g, b);
+        s1.setPosition(x, y);
+        s1.setHeight(height);
+        s1.setWidth(width);
+        s1.setTick(tick);
+      }
+      s0.setTick(tick);
+      Collections.sort(this.states);
+    }
+    else {
+      IShapeState s0 = this.states.get((index * 2) - 1);
+      IShapeState s1 = this.states.get(index * 2);
+
+      s0.setColor(r, g, b);
+      s0.setPosition(x, y);
+      s0.setHeight(height);
+      s0.setWidth(width);
+      s1.setColor(r, g, b);
+      s1.setPosition(x, y);
+      s1.setHeight(height);
+      s1.setWidth(width);
+      s1.setTick(tick);
+      s0.setTick(tick);
+      Collections.sort(this.states);
+    }
+  }
+
+  @Override
+  public void removeKeyFrame(int index) {
+    if (index == 0) {
+      this.states.remove(index);
+      this.states.remove(index + 1);
+    }
+    else if ((index * 2) - 2 == this.states.size() - 1) {
+      this.states.remove((index * 2) - 2);
+      this.states.remove((index * 2) - 3);
+    }
+    else {
+      this.states.remove((index * 2) - 1);
+      this.states.remove(index * 2);
+    } 
   }
 
 }

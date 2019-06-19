@@ -266,5 +266,39 @@ public final class Model implements IModel {
   public int getHeight() {
     return this.height;
   }
+
+  @Override
+  public void removeKeyFrame(String id, int index) {
+    if (!shapes.containsKey(id)) {
+      throw new IllegalArgumentException("Invalid name");
+    }
+    else {
+      shapes.get(id).removeKeyFrame(index);
+    }
+    
+  }
+
+  @Override
+  public void editKeyFrame(String id, int index, int tick, double x, double y,
+      int width, int height, int r, int g, int b) {
+    if (!shapes.containsKey(id)) {
+      throw new IllegalArgumentException("Invalid name");
+    }
+    else {
+      shapes.get(id).editKeyFrame(index, tick, x, y, width, height, r, g, b);
+    } 
+  }
+
+  @Override
+  public void addKeyFrame(
+      String id, int tick, double x, double y, int width, int height, int r, int g, int b) {
+    if (!shapes.containsKey(id)) {
+      throw new IllegalArgumentException("Invalid name");
+    }
+    else {
+      shapes.get(id).addKeyFrame(tick, x, y, width, height, r, g, b);
+    }  
+  }
+  
 }
 

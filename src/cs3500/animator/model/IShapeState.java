@@ -47,4 +47,6 @@ public interface IShapeState extends IReadOnlyShapeState, Comparable<IShapeState
    * @param y the new y coordinate
    */
   void setPosition(double x, double y);
+
+  void setTick(int tick);
 }

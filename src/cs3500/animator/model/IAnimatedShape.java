@@ -96,4 +96,11 @@ public interface IAnimatedShape extends IReadOnlyAnimatedShape, Comparable<IAnim
    */
   int getOrder();
 
+  void addKeyFrame(int tick, double x, double y, int width, int height, int r, int g, int b);
+
+  void editKeyFrame(
+      int index, int tick, double x, double y, int width, int height, int r, int g, int b);
+
+  void removeKeyFrame(int index);
+
 }

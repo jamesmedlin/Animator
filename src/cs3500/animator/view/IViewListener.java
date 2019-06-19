@@ -8,9 +8,10 @@ public interface IViewListener {
   void addShape(String id, String shapeType);
   void removeShape(String id);
   void loop(boolean value);
-  void addKeyFrame(String id, double x, double y, int width, int height, int r, int g, int b);
+  void addKeyFrame(
+      String id, int tick, double x, double y, int width, int height, int r, int g, int b);
   void removeKeyFrame(String id, int index);
-  void editKeyFrame(
-      String id, int index, double x, double y, int width, int height, int r, int g, int b);
+  void editKeyFrame(String id, int index, int tick, double x, double y,
+      int width, int height, int r, int g, int b);
 
 }

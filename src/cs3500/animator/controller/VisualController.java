@@ -78,24 +78,22 @@ public class VisualController implements IAnimatorController {
 
   @Override
   public void addKeyFrame(
-      String id, double x, double y, int width, int height, int r, int g, int b) {
-    // TODO Auto-generated method stub
+      String id, int tick, double x, double y, int width, int height, int r, int g, int b) {
+    model.addKeyFrame(id, tick, x, y, width, height, r, g, b);
     
   }
 
   @Override
   public void removeKeyFrame(String id, int index) {
-    // TODO Auto-generated method stub
+    model.removeKeyFrame(id, index);
     
   }
 
   @Override
-  public void editKeyFrame(String id, int index, double x, double y, int width, int height, int r,
-      int g, int b) {
-    // TODO Auto-generated method stub
+  public void editKeyFrame(String id, int index, int tick, double x, double y,
+      int width, int height, int r, int g, int b) {
+    model.editKeyFrame(id, index, tick, x, y , width, height, r, g, b);
     
   }
-
-  
 
 }

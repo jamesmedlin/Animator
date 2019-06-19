@@ -52,10 +52,10 @@ public class EditView extends VisualView implements ActionListener {
     editFrame.setActionCommand("edit button");
 
     addFrame = new JButton("add");
-    addFrame.setActionCommand("add button");
+    addFrame.setActionCommand("add keyframe button");
 
     removeFrame = new JButton("remove");
-    removeFrame.setActionCommand("remove button");
+    removeFrame.setActionCommand("remove keyframe button");
 
     exit = new JButton("exit");
     exit.setActionCommand("exit button");
@@ -170,6 +170,18 @@ public class EditView extends VisualView implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     switch (e.getActionCommand()) {
+      case "pause button":
+        break;
+      case "play button":
+        break;
+      case "edit button":
+        break;
+      case "add keyframe button":
+        break;
+      case "remove keyframe button":
+        break;
+      case "remove shape button":
+        break;
       
     }
     

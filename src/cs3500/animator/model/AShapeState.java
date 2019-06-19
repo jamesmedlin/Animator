@@ -9,7 +9,7 @@ import java.awt.geom.Point2D;
 
 public abstract class AShapeState implements IShapeState {
   // INVARIANT: tick is a positive number > 0
-  protected final int tick;
+  protected int tick;
   // INVARIANT: width is a positive number > 0
   protected int width;
   // INVARIANT: height is a positive number > 0
@@ -114,6 +114,11 @@ public abstract class AShapeState implements IShapeState {
   @Override
   public void setPosition(double x, double y) {
     this.position = new Point2D.Double(x, y);
+  }
+  
+  @Override
+  public void setTick(int value) {
+    this.tick = value;
   }
 
 }
