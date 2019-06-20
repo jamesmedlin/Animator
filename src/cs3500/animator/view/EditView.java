@@ -56,7 +56,7 @@ public class EditView extends VisualView implements ActionListener {
     shapes.add(removeShape);
 
     makeEastPanel();
-    makeSouthPanel();
+    makeNorthPanel();
     makeWestPanel();
     setLayout(new BorderLayout());
 
@@ -80,9 +80,9 @@ public class EditView extends VisualView implements ActionListener {
     
     scrollPane = new JScrollPane(panel);
     
-    add(labelButtonPanel, BorderLayout.SOUTH);
+    add(labelButtonPanel, BorderLayout.EAST);
     add(mainButtons, BorderLayout.NORTH);
-    add(eastPanel, BorderLayout.EAST);
+    add(westPanel, BorderLayout.WEST);
     add(scrollPane, BorderLayout.CENTER);
 
     setVisible(true);
@@ -110,7 +110,7 @@ public class EditView extends VisualView implements ActionListener {
   private JButton addFrame;
   private JButton removeFrame;
 
-  private JPanel eastPanel;
+  private JPanel westPanel;
   private JLabel shapesLabel;
   private JLabel motionsLabel;
   private JList motionsList;
@@ -148,24 +148,17 @@ public class EditView extends VisualView implements ActionListener {
   private ArrayList<IReadOnlyAnimatedShape> shapesArray;
 
 
-  public void makeEastPanel() {
-    eastPanel = new JPanel();
-    eastPanel.setLayout(new BoxLayout(eastPanel, BoxLayout.Y_AXIS));
-    shapesLabel = new JLabel("Shapes:");
+  public void makeWestPanel() {
+    westPanel = new JPanel();
+    westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
     motionsLabel = new JLabel("Motions:");
 
     motionsList = new JList<Object>(motionsArray.toArray());
     motionsList.setPreferredSize(new Dimension(300, 500));
     motionsList.setFixedCellWidth(300);
 
-    shapeList = new JList<Object>(shapesArray.toArray());
-    shapeList.setPreferredSize(new Dimension(300, 500));
-    shapeList.setFixedCellWidth(300);
-    eastPanel.add(shapesLabel);
-    eastPanel.add(shapeList);
-
-    eastPanel.add(motionsLabel);
-    eastPanel.add(motionsList);
+    westPanel.add(motionsLabel);
+    westPanel.add(motionsList);
   }
 
   public void setMotionsArray(ArrayList<String> array) {
@@ -176,7 +169,7 @@ public class EditView extends VisualView implements ActionListener {
     this.shapesArray = array;
   }
 
-  public void makeSouthPanel() {
+  public void makeEastPanel() {
     nameLabel = new JLabel("Name");
     widthLabel = new JLabel("Width");
     heightLabel = new JLabel("Height");
@@ -237,6 +230,13 @@ public class EditView extends VisualView implements ActionListener {
 
     removeShape = new JButton("remove shape");
     removeShape.setActionCommand("remove shape button");
+
+    shapesLabel = new JLabel("Shapes:");
+    shapeList = new JList<Object>(shapesArray.toArray());
+    shapeList.setPreferredSize(new Dimension(300, 500));
+    shapeList.setFixedCellWidth(300);
+    labelButtonPanel.add(shapesLabel);
+    labelButtonPanel.add(shapeList);
 
     submitPanel = new JPanel(new FlowLayout());
     submitPanel.add(addFrame);
@@ -299,7 +299,7 @@ public class EditView extends VisualView implements ActionListener {
     }
   }
 
-  public void makeWestPanel() {
+  public void makeNorthPanel() {
     pauseButton = new JButton("pause");
     pauseButton.setActionCommand("pause button");
 
