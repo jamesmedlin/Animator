@@ -4,6 +4,7 @@ package cs3500.animator.view;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
@@ -15,6 +16,9 @@ public class EditView extends VisualView implements ActionListener {
   
   public EditView(int speed, int width, int height) {
     super(speed, width, height);
+    
+    this.listeners = new ArrayList<IViewListener>();
+    
     pauseButton = new JButton("pause");
     pauseButton.setActionCommand("pause button");
 
@@ -74,8 +78,8 @@ public class EditView extends VisualView implements ActionListener {
     ellipse.addActionListener(this);
     name.addActionListener(this);
 
-    shapesArray = new String[]{};
-    motionsArray = new String[]{};
+    shapesArray = new ArrayList<IReadOnlyAnimatedShape>();
+    motionsArray = new ArrayList<String>();
 
     shapes = new JPanel(new FlowLayout());
     shapes.add(addShape);
@@ -151,8 +155,8 @@ public class EditView extends VisualView implements ActionListener {
   private JTextField tBlue;
   private JTextField tTick;
 
-  private String[] motionsArray;
-  private String[] shapesArray;
+  private ArrayList<String> motionsArray;
+  private ArrayList<IReadOnlyAnimatedShape> shapesArray;
 
 
   public void makeEastPanel() {
@@ -161,11 +165,12 @@ public class EditView extends VisualView implements ActionListener {
     shapesLabel = new JLabel("Shapes:");
     motionsLabel = new JLabel("Motions:");
 
-    motionsList = new JList<String>( motionsArray);
+    motionsList = new JList<String>( (String[]) motionsArray.toArray());
     motionsList.setPreferredSize(new Dimension(300, 500));
     motionsList.setFixedCellWidth(300);
 
-    shapeList = new JList<String>( shapesArray);
+    shapeList = new JList<IReadOnlyAnimatedShape>(
+        (IReadOnlyAnimatedShape[]) shapesArray.toArray());
     shapeList.setPreferredSize(new Dimension(300, 500));
     shapeList.setFixedCellWidth(300);
     eastPanel.add(shapesLabel);
@@ -175,11 +180,11 @@ public class EditView extends VisualView implements ActionListener {
     eastPanel.add(motionsList);
   }
 
-  public void setMotionsArray(String[] array) {
+  public void setMotionsArray(ArrayList<String> array) {
     this.motionsArray = array;
   }
 
-  public void setShapesArray(String[] array) {
+  public void setShapesArray(ArrayList<IReadOnlyAnimatedShape> array) {
     this.shapesArray = array;
   }
 
