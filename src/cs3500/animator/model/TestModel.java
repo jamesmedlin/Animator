@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.util.List;
 
 
-public class ModelTest implements IModel {
+public class TestModel implements IModel {
   private final Appendable appendable;
 
-  public ModelTest(Appendable appendable){
+  public TestModel(Appendable appendable){
     this.appendable = appendable;
   }
 
@@ -18,7 +18,6 @@ public class ModelTest implements IModel {
     }catch (IOException e){
       System.err.println("Model appendable couldn't output addShape");
     }
-
   }
 
   @Override
