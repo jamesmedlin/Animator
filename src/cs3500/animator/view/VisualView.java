@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -17,6 +18,8 @@ import cs3500.animator.model.IReadOnlyShapeState;
  */
 public class VisualView extends JFrame implements IView {
   protected DrawingPanel panel;
+  
+  ArrayList<IViewListener> listeners;
 
   /**
    * represents the standard animation/user-friendly interpretation of the program.
@@ -51,5 +54,10 @@ public class VisualView extends JFrame implements IView {
   @Override
   public void drawShapes(List<IReadOnlyShapeState> shapes) {
     panel.draw(shapes);
+  }
+
+  @Override
+  public void addListner(IViewListener listener) {
+    this.listeners.add(listener);
   }
 }

@@ -3,6 +3,7 @@ package cs3500.animator.view;
 import java.awt.event.ActionListener;
 import java.util.List;
 import cs3500.animator.controller.IAnimatorController;
+import cs3500.animator.controller.TestController;
 import cs3500.animator.model.IReadOnlyModel;
 import cs3500.animator.model.IReadOnlyShapeState;
 
@@ -34,4 +35,6 @@ public interface IView {
    * @param shapes the list of shapes to be drawn in the view
    */
   void drawShapes(List<IReadOnlyShapeState> shapes);
+
+  void addListner(IViewListener listener);
 }

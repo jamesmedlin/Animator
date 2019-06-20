@@ -47,4 +47,9 @@ public class TextView implements IView {
             "types to String must be updated.");
     }
   }
+  
+  @Override
+  public void addListner(IViewListener listener) {
+    throw new UnsupportedOperationException("Listeners not supported for this view.");
+  }
 }
