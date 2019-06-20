@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e870a397-68d9-44a5-8faa-61152e356747" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/test/SVGViewTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/SVGViewTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/TextViewTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/TextViewTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/VisualViewTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/VisualViewTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/animator/view/EditView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/view/EditView.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/SVGViewTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="53" column="18" lean-forward="true" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="18" />
+            <state relative-caret-position="374">
+              <caret line="104" column="15" selection-start-line="104" selection-start-column="15" selection-end-line="104" selection-end-column="15" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#741#742#0" expanded="true" />
@@ -46,19 +45,19 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/EditView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4080">
-              <caret line="240" selection-start-line="240" selection-end-line="240" />
+            <state relative-caret-position="289">
+              <caret line="191" column="58" selection-start-line="191" selection-start-column="58" selection-end-line="191" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4925#4926#0" expanded="true" />
-                <element signature="e#4960#4961#0" expanded="true" />
-                <element signature="e#5008#5009#0" expanded="true" />
-                <element signature="e#5042#5043#0" expanded="true" />
-                <element signature="e#6871#6872#0" expanded="true" />
-                <element signature="e#6909#6910#0" expanded="true" />
+                <element signature="e#4978#4979#0" expanded="true" />
+                <element signature="e#5013#5014#0" expanded="true" />
+                <element signature="e#5061#5062#0" expanded="true" />
+                <element signature="e#5095#5096#0" expanded="true" />
+                <element signature="e#6985#6986#0" expanded="true" />
+                <element signature="e#7023#7024#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -174,6 +173,8 @@
       <find>add shape</find>
       <find>scrollPane</find>
       <find>action</find>
+      <find>pause</find>
+      <find>scrollpane</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -228,11 +229,11 @@
         <option value="$PROJECT_DIR$/src/cs3500/animator/model/AnimatedShape.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/view/IView.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/controller/AnimatorController.java" />
-        <option value="$PROJECT_DIR$/src/cs3500/animator/view/EditView.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/Excellence.java" />
         <option value="$PROJECT_DIR$/test/VisualViewTest.java" />
         <option value="$PROJECT_DIR$/test/TextViewTest.java" />
         <option value="$PROJECT_DIR$/test/SVGViewTest.java" />
+        <option value="$PROJECT_DIR$/src/cs3500/animator/view/EditView.java" />
       </list>
     </option>
   </component>
@@ -351,7 +352,7 @@
     <configuration name="Excellence" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cs3500.animator.Excellence" />
       <module name="Homework5" />
-      <option name="PROGRAM_PARAMETERS" value="-view edit -in ‪&quot;C:\Users\medlinj\Downloads\code(19)\code\toh-5.txt&quot; -speed 30" />
+      <option name="PROGRAM_PARAMETERS" value="-view edit -speed 30" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="cs3500.animator.*" />
@@ -464,7 +465,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86703000" />
+    <option name="totallyTimeSpent" value="87822000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -489,7 +490,7 @@
       <window_info anchor="bottom" id="Messages" order="0" weight="0.09915014" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.3654391" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.10623229" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.04249292" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -852,22 +853,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/EditView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4080">
-          <caret line="240" selection-start-line="240" selection-end-line="240" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4925#4926#0" expanded="true" />
-            <element signature="e#4960#4961#0" expanded="true" />
-            <element signature="e#5008#5009#0" expanded="true" />
-            <element signature="e#5042#5043#0" expanded="true" />
-            <element signature="e#6871#6872#0" expanded="true" />
-            <element signature="e#6909#6910#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cs3500/animator/Excellence.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-11">
@@ -902,12 +887,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/SVGViewTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="53" column="18" lean-forward="true" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="18" />
+        <state relative-caret-position="374">
+          <caret line="104" column="15" selection-start-line="104" selection-start-column="15" selection-end-line="104" selection-end-column="15" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#741#742#0" expanded="true" />
             <element signature="e#767#768#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/EditView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="191" column="58" selection-start-line="191" selection-start-column="58" selection-end-line="191" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4978#4979#0" expanded="true" />
+            <element signature="e#5013#5014#0" expanded="true" />
+            <element signature="e#5061#5062#0" expanded="true" />
+            <element signature="e#5095#5096#0" expanded="true" />
+            <element signature="e#6985#6986#0" expanded="true" />
+            <element signature="e#7023#7024#0" expanded="true" />
           </folding>
         </state>
       </provider>
