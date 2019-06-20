@@ -131,6 +131,7 @@ public class Excellence {
         JOptionPane.showMessageDialog(
             frame, "Could not output.",
             "Invalid command line arguments", JOptionPane.ERROR_MESSAGE);
+        argParser.close();
         System.exit(1);
         return;
       }
