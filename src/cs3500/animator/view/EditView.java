@@ -15,17 +15,6 @@ public class EditView extends VisualView implements ActionListener {
   
   public EditView(int speed, int width, int height) {
     super(speed, width, height);
-    pauseButton = new JButton("pause");
-    pauseButton.setActionCommand("pause button");
-
-    playButton = new JButton("play");
-    playButton.setActionCommand("play button");
-
-    restartButton = new JButton("restart");
-    restartButton.setActionCommand("restart button");
-
-    loopingButton = new JCheckBox("loop");
-    loopingButton.setActionCommand("looping checkbox");
 
     rectangle = new JRadioButton("rectangle");
     rectangle.setActionCommand("rectangle button");
@@ -83,28 +72,22 @@ public class EditView extends VisualView implements ActionListener {
 
     makeEastPanel();
     makeSouthPanel();
-
+    makeWestPanel();
     setLayout(new BorderLayout());
-
-    scrollPane = new JScrollPane(panel);
-    scrollPane.add(pauseButton);
-    scrollPane.add(playButton);
-    scrollPane.add(restartButton);
-    scrollPane.add(loopingButton);
-    scrollPane.add(speedText);
 
     setSize(800,800);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocation(200,200);
 
 
-    add(scrollPane, BorderLayout.CENTER);
+    add(mainButtons, BorderLayout.NORTH);
     add(labelButtonPanel, BorderLayout.SOUTH);
     add(eastPanel, BorderLayout.EAST);
 
     setVisible(true);
   }
 
+  private JPanel mainButtons;
   private JScrollPane scrollPane;
   private JButton pauseButton;
   private JButton playButton;
@@ -206,7 +189,7 @@ public class EditView extends VisualView implements ActionListener {
 
 
     labelButtonPanel = new JPanel(new FlowLayout());
-    labelButtonPanel.setPreferredSize(new Dimension(800,150));
+    labelButtonPanel.setPreferredSize(new Dimension(700,120));
 
     addShape = new JButton("add shape");
     addShape.setActionCommand("add shape button");
@@ -279,8 +262,30 @@ public class EditView extends VisualView implements ActionListener {
         break;
       case "remove shape button":
         break;
-      
     }
-    
+  }
+
+  public void makeWestPanel() {
+    pauseButton = new JButton("pause");
+    pauseButton.setActionCommand("pause button");
+
+    playButton = new JButton("play");
+    playButton.setActionCommand("play button");
+
+    restartButton = new JButton("restart");
+    restartButton.setActionCommand("restart button");
+
+    loopingButton = new JCheckBox("loop");
+    loopingButton.setActionCommand("looping checkbox");
+
+    mainButtons = new JPanel();
+    scrollPane = new JScrollPane(panel);
+    scrollPane.add(speedText);
+    scrollPane.add(playButton);
+    scrollPane.add(pauseButton);
+    scrollPane.add(restartButton);
+    scrollPane.add(loopingButton);
+    mainButtons.add(scrollPane);
+
   }
 }
