@@ -16,23 +16,8 @@ public class EditView extends VisualView implements ActionListener {
   
   public EditView(int speed, int width, int height) {
     super(speed, width, height);
-<<<<<<< HEAD
     
     this.listeners = new ArrayList<IViewListener>();
-    
-    pauseButton = new JButton("pause");
-    pauseButton.setActionCommand("pause button");
-
-    playButton = new JButton("play");
-    playButton.setActionCommand("play button");
-
-    restartButton = new JButton("restart");
-    restartButton.setActionCommand("restart button");
-
-    loopingButton = new JCheckBox("loop");
-    loopingButton.setActionCommand("looping checkbox");
-=======
->>>>>>> bc57c8a448969e13190988e7271ee70c6e48f5c4
 
     rectangle = new JRadioButton("rectangle");
     rectangle.setActionCommand("rectangle button");
@@ -62,24 +47,9 @@ public class EditView extends VisualView implements ActionListener {
 //    exit = new JButton("exit");
 //    exit.setActionCommand("exit button");
 
-    speedText = new JTextField("speed");
-    speedText.setActionCommand("speed field");
-
     name = new JTextField("name");
     name.setActionCommand("name field");
     
-    pauseButton.addActionListener(this);
-    playButton.addActionListener(this);
-    restartButton.addActionListener(this);
-    loopingButton.addActionListener(this);
-    addShape.addActionListener(this);
-    removeShape.addActionListener(this);
-    editFrame.addActionListener(this);
-    addFrame.addActionListener(this);
-    removeFrame.addActionListener(this);
-    rectangle.addActionListener(this);
-    ellipse.addActionListener(this);
-    name.addActionListener(this);
 
     shapesArray = new ArrayList<IReadOnlyAnimatedShape>();
     motionsArray = new ArrayList<String>();
@@ -96,11 +66,28 @@ public class EditView extends VisualView implements ActionListener {
     setSize(800,800);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocation(200,200);
+    
+    pauseButton.addActionListener(this);
+    playButton.addActionListener(this);
+    restartButton.addActionListener(this);
+    loopingButton.addActionListener(this);
+    addShape.addActionListener(this);
+    removeShape.addActionListener(this);
+    editFrame.addActionListener(this);
+    addFrame.addActionListener(this);
+    removeFrame.addActionListener(this);
+    rectangle.addActionListener(this);
+    ellipse.addActionListener(this);
+    name.addActionListener(this);
 
 
-    add(mainButtons, BorderLayout.NORTH);
+    
+    scrollPane = new JScrollPane(panel);
+    
     add(labelButtonPanel, BorderLayout.SOUTH);
+    add(mainButtons, BorderLayout.NORTH);
     add(eastPanel, BorderLayout.EAST);
+    add(scrollPane, BorderLayout.CENTER);
 
     setVisible(true);
   }
@@ -162,12 +149,11 @@ public class EditView extends VisualView implements ActionListener {
     shapesLabel = new JLabel("Shapes:");
     motionsLabel = new JLabel("Motions:");
 
-    motionsList = new JList<String>( (String[]) motionsArray.toArray());
+    motionsList = new JList<Object>(motionsArray.toArray());
     motionsList.setPreferredSize(new Dimension(300, 500));
     motionsList.setFixedCellWidth(300);
 
-    shapeList = new JList<IReadOnlyAnimatedShape>(
-        (IReadOnlyAnimatedShape[]) shapesArray.toArray());
+    shapeList = new JList<Object>(shapesArray.toArray());
     shapeList.setPreferredSize(new Dimension(300, 500));
     shapeList.setFixedCellWidth(300);
     eastPanel.add(shapesLabel);
@@ -296,15 +282,16 @@ public class EditView extends VisualView implements ActionListener {
 
     loopingButton = new JCheckBox("loop");
     loopingButton.setActionCommand("looping checkbox");
+    
+    speedText = new JTextField("speed");
+    speedText.setActionCommand("speed field");
 
     mainButtons = new JPanel();
-    scrollPane = new JScrollPane(panel);
-    scrollPane.add(speedText);
-    scrollPane.add(playButton);
-    scrollPane.add(pauseButton);
-    scrollPane.add(restartButton);
-    scrollPane.add(loopingButton);
-    mainButtons.add(scrollPane);
+    mainButtons.add(speedText);
+    mainButtons.add(playButton);
+    mainButtons.add(pauseButton);
+    mainButtons.add(restartButton);
+    mainButtons.add(loopingButton);
 
   }
 }
