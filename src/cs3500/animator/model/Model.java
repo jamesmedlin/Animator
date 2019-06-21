@@ -209,6 +209,16 @@ public final class Model implements IModel {
     }
   }
 
+  public int getMaxTick() {
+    int curMax = 0;
+    for (IAnimatedShape shape : this.shapes.values()) {
+      for (IReadOnlyShapeState state : shape.getStates()) {
+        curMax = Math.max(curMax, state.getTick());
+      }
+    }
+    return curMax;
+  }
+
   @Override
   public String getShape(String name) throws IllegalArgumentException {
     if (shapes.containsKey(name)) {

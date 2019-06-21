@@ -1,11 +1,24 @@
 package cs3500.animator.view;
 
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.ShapeType;
 
@@ -63,6 +76,7 @@ public class EditView extends VisualView implements ActionListener {
     setLocation(200, 200);
 
     pauseButton.addActionListener(this);
+    speedButton.addActionListener(this);
     playButton.addActionListener(this);
     restartButton.addActionListener(this);
     loopingButton.addActionListener(this);
@@ -148,7 +162,7 @@ public class EditView extends VisualView implements ActionListener {
 
   public void makeWestPanel() {
     westPanel = new JPanel();
-    westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
+    westPanel.setLayout((LayoutManager) new BoxLayout(westPanel, BoxLayout.Y_AXIS));
 
     shapesLabel = new JLabel("Shapes:");
     shapeList = new JList<Object>(shapesArray.toArray());
@@ -311,6 +325,11 @@ public class EditView extends VisualView implements ActionListener {
         break;
       case "remove shape button":
         removeShapeAction();
+        break;
+      case "looping checkbox":
+        for (IViewListener listener : this.listeners) {
+          listener.loop(this.loopingButton.isSelected());
+        }
         break;
       default:
         throw new UnsupportedOperationException("Action command not supported: "
