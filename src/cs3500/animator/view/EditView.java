@@ -77,7 +77,6 @@ public class EditView extends VisualView implements ActionListener {
     ellipse.addActionListener(this);
     name.addActionListener(this);
 
-
     
     scrollPane = new JScrollPane(panel);
     
@@ -226,7 +225,7 @@ public class EditView extends VisualView implements ActionListener {
     blueColorPanel.add(tBlue);
 
     labelButtonPanel = new JPanel(new FlowLayout());
-    labelButtonPanel.setPreferredSize(new Dimension(700,120));
+    labelButtonPanel.setPreferredSize(new Dimension(800, 150));
 
     addShape = new JButton("add shape");
     addShape.setActionCommand("add shape button");
