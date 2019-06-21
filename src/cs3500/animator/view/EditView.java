@@ -6,11 +6,7 @@ import java.awt.Dimension;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.AreaAveragingScaleFilter;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
@@ -122,7 +118,6 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
 
     add(eastPanel, BorderLayout.EAST);
     add(northPanel, BorderLayout.NORTH);
-    add(feedbackPanel, BorderLayout.NORTH);
     add(westPanel, BorderLayout.WEST);
     add(scrollPane, BorderLayout.CENTER);
 
@@ -201,7 +196,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
 
     shapesPanel = new JPanel();
     shapesLabel = new JLabel("Shapes:");
-    //shapeList = new JList<Object>(this.shapesArray.toArray());
+    shapeList = new JList<Object>(this.shapesArray.toArray());
     shapeList.setPreferredSize(new Dimension(300, 500));
     shapeList.setFixedCellWidth(300);
 

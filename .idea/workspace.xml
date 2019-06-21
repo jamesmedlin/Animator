@@ -19,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/EditView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-702">
-              <caret line="118" column="34" lean-forward="true" selection-start-line="118" selection-start-column="34" selection-end-line="118" selection-end-column="34" />
+            <state relative-caret-position="289">
+              <caret line="119" column="40" selection-start-line="119" selection-start-column="40" selection-end-line="119" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#9808#9809#0" expanded="true" />
@@ -165,7 +165,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>adder</find>
       <find>getT</find>
       <find>compare</find>
       <find>com</find>
@@ -185,7 +184,6 @@
       <find>motionsArr</find>
       <find>motions</find>
       <find>motionsList</find>
-      <find>shapes</find>
       <find>name</find>
       <find>shapesArr</find>
       <find>setShape</find>
@@ -195,6 +193,8 @@
       <find>boxLay</find>
       <find>set</find>
       <find>setS</find>
+      <find>shapes</find>
+      <find>shapeL</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -257,7 +257,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="121" />
     <option name="y" value="1" />
     <option name="width" value="1750" />
@@ -485,7 +485,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113874000" />
+    <option name="totallyTimeSpent" value="114700000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -497,10 +497,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="97" y="1" width="1400" height="784" extended-state="0" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17089552" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15369128" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -510,7 +510,7 @@
       <window_info anchor="bottom" id="Messages" order="0" weight="0.09815951" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" />
-      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.21932516" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.07223796" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.04249292" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -987,8 +987,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/EditView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-702">
-          <caret line="118" column="34" lean-forward="true" selection-start-line="118" selection-start-column="34" selection-end-line="118" selection-end-column="34" />
+        <state relative-caret-position="289">
+          <caret line="119" column="40" selection-start-line="119" selection-start-column="40" selection-end-line="119" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#9808#9809#0" expanded="true" />
