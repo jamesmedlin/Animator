@@ -70,7 +70,7 @@ public class EditView extends VisualView implements ActionListener {
 
     removeFrame = new JButton("remove");
     removeFrame.setActionCommand("remove keyframe button");
-    
+
     this.shapesArray = new ArrayList<String>();
 
     shapes = new JPanel(new FlowLayout());
@@ -102,14 +102,22 @@ public class EditView extends VisualView implements ActionListener {
 
     scrollPane = new JScrollPane(panel);
 
+    feedbackPanel = new JPanel();
+    feedbackPanel.add(feedback);
+    northPanel = new JPanel(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
+    northPanel.add(mainButtons);
+    northPanel.add(feedbackPanel);
+
     add(eastPanel, BorderLayout.EAST);
-    add(mainButtons, BorderLayout.NORTH);
+    add(northPanel, BorderLayout.NORTH);
+    add(feedbackPanel, BorderLayout.NORTH);
     add(westPanel, BorderLayout.WEST);
     add(scrollPane, BorderLayout.CENTER);
 
     setVisible(true);
   }
 
+  private JPanel northPanel;
   private JLabel feedback;
   private JPanel mainButtons;
   private JScrollPane scrollPane;
@@ -120,6 +128,7 @@ public class EditView extends VisualView implements ActionListener {
   private JLabel speedLabel;
   private JTextField speedText;
   private JButton speedButton;
+  private JPanel feedbackPanel;
 
   private JPanel shapes;
   private JRadioButton rectangle;
@@ -180,7 +189,7 @@ public class EditView extends VisualView implements ActionListener {
 
     shapesPanel = new JPanel();
     shapesLabel = new JLabel("Shapes:");
-    shapeList = new JList<Object>(this.shapesArray.toArray());
+    //shapeList = new JList<Object>(this.shapesArray.toArray());
     shapeList.setPreferredSize(new Dimension(300, 500));
     shapeList.setFixedCellWidth(300);
 
@@ -208,6 +217,7 @@ public class EditView extends VisualView implements ActionListener {
 
   public void setShapesArray(ArrayList<String> array) {
     this.shapesArray = array;
+    this.shapeList = new JList<Object>(array.toArray());
   }
 
   private void makeEastPanel() {

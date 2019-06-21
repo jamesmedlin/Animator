@@ -51,6 +51,7 @@ public class VisualController implements IAnimatorController {
     });
 
     view.addListener(this);
+    setShapesArray();
   }
 
   @Override
@@ -94,24 +95,24 @@ public class VisualController implements IAnimatorController {
   public void addKeyFrame(
       String id, int tick, double x, double y, int width, int height, int r, int g, int b) {
     model.addKeyFrame(id, tick, x, y, width, height, r, g, b);
-    ((EditView)view).setShapesArray(model.getShapes());
+    this.setShapesArray();
   }
 
   @Override
   public void removeKeyFrame(String id, int index) {
     model.removeKeyFrame(id, index);
-    ((EditView)view).setShapesArray(model.getShapes());
+    this.setShapesArray();
   }
 
   @Override
   public void editKeyFrame(String id, int index, int tick, double x, double y,
       int width, int height, int r, int g, int b) {
     model.editKeyFrame(id, index, tick, x, y, width, height, r, g, b);
-    ((EditView)view).setShapesArray(model.getShapes());
+    this.setShapesArray();
   }
 
-  public ArrayList<String> setShapesArray() {
-    return ((EditView)view).setShapesArray(model.getShapesStringArray());
+  public void setShapesArray() {
+    ((EditView)view).setShapesArray(model.getShapesStringArray());
   }
 
 }
