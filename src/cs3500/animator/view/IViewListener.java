@@ -1,11 +1,13 @@
 package cs3500.animator.view;
 
+import cs3500.animator.model.ShapeType;
+
 public interface IViewListener {
   void pause();
   void play();
   void restart();
   void updateSpeed(int newTPS);
-  void addShape(String id, String shapeType);
+  void addShape(String id, ShapeType shapeType);
   void removeShape(String id);
   void loop(boolean value);
   void addKeyFrame(

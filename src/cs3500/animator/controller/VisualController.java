@@ -3,7 +3,9 @@ package cs3500.animator.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+
 import javax.swing.Timer;
+
 import cs3500.animator.model.IModel;
 import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
@@ -50,19 +52,8 @@ public class VisualController implements IAnimatorController {
   }
 
   @Override
-  public void addShape(String id, String shapeType) {
-    switch (shapeType) {
-      case "rectangle":
-      case "Rectangle":
-        model.addShape(id, ShapeType.RECTANGLE);
-        break;
-      case "ellipse":
-      case "Ellipse":
-        model.addShape(id, ShapeType.ELLIPSE);
-        break;
-      default:
-        throw new IllegalArgumentException("Shape type \"" + shapeType + "\" not supported.");
-    }
+  public void addShape(String id, ShapeType shapeType) {
+    model.addShape(id, shapeType);
   }
 
   @Override
@@ -73,27 +64,27 @@ public class VisualController implements IAnimatorController {
   @Override
   public void loop(boolean value) {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void addKeyFrame(
-      String id, int tick, double x, double y, int width, int height, int r, int g, int b) {
+          String id, int tick, double x, double y, int width, int height, int r, int g, int b) {
     model.addKeyFrame(id, tick, x, y, width, height, r, g, b);
-    
+
   }
 
   @Override
   public void removeKeyFrame(String id, int index) {
     model.removeKeyFrame(id, index);
-    
+
   }
 
   @Override
   public void editKeyFrame(String id, int index, int tick, double x, double y,
-      int width, int height, int r, int g, int b) {
-    model.editKeyFrame(id, index, tick, x, y , width, height, r, g, b);
-    
+                           int width, int height, int r, int g, int b) {
+    model.editKeyFrame(id, index, tick, x, y, width, height, r, g, b);
+
   }
 
 }

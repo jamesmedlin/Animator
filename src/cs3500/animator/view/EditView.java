@@ -11,6 +11,7 @@ import javax.swing.*;
 
 import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.IReadOnlyShapeState;
+import cs3500.animator.model.ShapeType;
 
 public class EditView extends VisualView implements ActionListener {
 
@@ -275,14 +276,15 @@ public class EditView extends VisualView implements ActionListener {
   public void actionPerformed(ActionEvent e) {
     switch (e.getActionCommand()) {
       case "pause button":
-        try {
-          for (IViewListener listener : this.listeners) {
-            listener.pause();
-          }
-          feedback.setText("");
-        } catch (Exception r) {
-          feedback.setText("");
-        }
+//        try {
+//          for (IViewListener listener : this.listeners) {
+//            listener.pause();
+//          }
+//          feedback.setText("");
+//        } catch (Exception r) {
+//          feedback.setText("");
+//        }
+        System.out.println("PAUSE BITCH");
         break;
       case "play button":
         try {
@@ -311,6 +313,9 @@ public class EditView extends VisualView implements ActionListener {
         break;
       case "remove keyframe button":
         removeKeyFrameAction();
+        break;
+      case "add shape":
+        addShapeAction();
         break;
       case "remove shape button":
         removeShapeAction();
@@ -416,6 +421,25 @@ public class EditView extends VisualView implements ActionListener {
       feedback.setText("");
     } catch (Exception r) {
       feedback.setText("Ensure a certain shape and its movement are selected.");
+    }
+  }
+
+  private void addShapeAction() {
+    try {
+      for (IViewListener listener : this.listeners) {
+        if (rectangle.isSelected()) {
+          listener.addShape(name.getText(), ShapeType.RECTANGLE);
+        }
+        if (ellipse.isSelected()) {
+          listener.addShape(name.getText(), ShapeType.ELLIPSE);
+        }
+        feedback.setText("");
+        if (!rectangle.isSelected() && !ellipse.isSelected()) {
+          feedback.setText("Ensure a certain shape type is selected.");
+        }
+      }
+    } catch (Exception r) {
+      feedback.setText("Ensure the name entered in a valid and unique name.");
     }
   }
 }
