@@ -69,7 +69,7 @@ public class EditView extends VisualView implements ActionListener {
     makeWestPanel();
     setLayout(new BorderLayout());
 
-    setSize(800, 800);
+    setSize(1000, 800);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocation(200, 200);
 
@@ -89,7 +89,7 @@ public class EditView extends VisualView implements ActionListener {
 
     scrollPane = new JScrollPane(panel);
 
-    add(labelButtonPanel, BorderLayout.EAST);
+    add(eastPanel, BorderLayout.EAST);
     add(mainButtons, BorderLayout.NORTH);
     add(westPanel, BorderLayout.WEST);
     add(scrollPane, BorderLayout.CENTER);
@@ -126,6 +126,7 @@ public class EditView extends VisualView implements ActionListener {
   private JLabel shapesLabel;
   private JLabel motionsLabel;
   private JList motionsList;
+  private JPanel motionsPanel;
   private JList shapeList;
   private JPanel shapesPanel;
 
@@ -243,9 +244,12 @@ public class EditView extends VisualView implements ActionListener {
     blueColorPanel.add(blueColor);
     blueColorPanel.add(tBlue);
 
-    eastPanel = new JPanel(new BoxLayout(eastPanel, BoxLayout.Y_AXIS));
+    eastPanel = new JPanel();
+    eastPanel.setLayout((LayoutManager) new BoxLayout(eastPanel, BoxLayout.Y_AXIS));
     labelButtonPanel = new JPanel(new FlowLayout());
-    labelButtonPanel.setPreferredSize(new Dimension(800, 150));
+    labelButtonPanel.setPreferredSize(new Dimension(300, 150));
+    motionsPanel = new JPanel();
+    
 
     motionsLabel = new JLabel("Motions:");
 
@@ -258,8 +262,9 @@ public class EditView extends VisualView implements ActionListener {
     submitPanel.add(editFrame);
     submitPanel.add(removeFrame);
 
-    eastPanel.add(motionsLabel);
-    eastPanel.add(motionsList);
+    motionsPanel.add(motionsLabel);
+    motionsPanel.add(motionsList);
+    eastPanel.add(motionsPanel);
     labelButtonPanel.add(editFrame);
     labelButtonPanel.add(tickLabel);
     labelButtonPanel.add(tTick);
