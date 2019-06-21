@@ -13,6 +13,10 @@ import cs3500.animator.model.ShapeType;
 import cs3500.animator.view.EditView;
 import cs3500.animator.view.IView;
 
+/**
+ * Represents a controller for the visual-style views of the animator. It handles events fired by
+ * the model and then edits the model as desired.
+ */
 public class VisualController implements IAnimatorController {
   private IModel model;
   private IView view;
@@ -20,6 +24,14 @@ public class VisualController implements IAnimatorController {
   private boolean isLooped;
   private int tick = 0;
 
+  /**
+   * The main constructor of this controller. It contains a timer definition that draws the shapes
+   * of the animation at the given tick, which is stored in the controller.
+   * 
+   * @param model the model to be edited by this controller 
+   * @param view the view to display the results from the model
+   * @param speed the speed at which the controller should display the animation from the model
+   */
   public VisualController(IModel model, IView view, int speed) {
     this.model = model;
     this.view = view;
@@ -38,7 +50,7 @@ public class VisualController implements IAnimatorController {
       }
     });
 
-    view.addListner(this);
+    view.addListener(this);
   }
 
   @Override

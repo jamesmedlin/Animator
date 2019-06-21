@@ -24,7 +24,7 @@ public class TestControllerTest {
   @Test
   public void testPlay() {
     testView = new TestView(new StringReader("Play"));
-    testView.addListner(testController);
+    testView.addListener(testController);
     testView.drawShapes(null);
     assertEquals("play", appendable.toString());
   }
@@ -32,7 +32,7 @@ public class TestControllerTest {
   @Test
   public void testPause() {
     testView = new TestView(new StringReader("Pause"));
-    testView.addListner(testController);
+    testView.addListener(testController);
     testView.drawShapes(null);
     assertEquals("pause", appendable.toString());
   }
@@ -40,7 +40,7 @@ public class TestControllerTest {
   @Test
   public void testRestart() {
     testView = new TestView(new StringReader("Restart"));
-    testView.addListner(testController);
+    testView.addListener(testController);
     testView.drawShapes(null);
     assertEquals("restart", appendable.toString());
   }
@@ -48,7 +48,7 @@ public class TestControllerTest {
   @Test
   public void testLoop() {
     testView = new TestView(new StringReader("Loop"));
-    testView.addListner(testController);
+    testView.addListener(testController);
     testView.drawShapes(null);
     assertEquals("loop", appendable.toString());
   }
@@ -56,7 +56,7 @@ public class TestControllerTest {
   @Test
   public void testUpdateSpeed() {
     testView = new TestView(new StringReader("Speed"));
-    testView.addListner(testController);
+    testView.addListener(testController);
     testView.drawShapes(null);
     assertEquals("new speed: 50", appendable.toString());
   }
@@ -64,7 +64,7 @@ public class TestControllerTest {
   @Test
   public void testAddShape() {
     testView = new TestView(new StringReader("AddShape"));
-    testView.addListner(testController);
+    testView.addListener(testController);
     testView.drawShapes(null);
     assertEquals("new shape: Test Success", appendable.toString());
   }
@@ -72,7 +72,7 @@ public class TestControllerTest {
   @Test
   public void testRemoveShape() {
     testView = new TestView(new StringReader("RemoveShape"));
-    testView.addListner(testController);
+    testView.addListener(testController);
     testView.drawShapes(null);
     assertEquals("Test Success shape removed", appendable.toString());
   }
@@ -80,7 +80,7 @@ public class TestControllerTest {
   @Test
   public void testAddKeyFrame() {
     testView = new TestView(new StringReader("AddKeyframe"));
-    testView.addListner(testController);
+    testView.addListener(testController);
     testView.drawShapes(null);
     assertEquals("new key frame to shape Test Success at tick 25", appendable.toString());
   }
@@ -88,7 +88,7 @@ public class TestControllerTest {
   @Test
   public void testEditKeyFrame() {
     testView = new TestView(new StringReader("EditKeyframe"));
-    testView.addListner(testController);
+    testView.addListener(testController);
     testView.drawShapes(null);
     assertEquals("key frame edited for shape Test Success", appendable.toString());
   }
@@ -96,7 +96,7 @@ public class TestControllerTest {
   @Test
   public void testRemoveKeyFrame() {
     testView = new TestView(new StringReader("RemoveKeyframe"));
-    testView.addListner(testController);
+    testView.addListener(testController);
     testView.drawShapes(null);
     assertEquals("key frame removed from shape Test Success", appendable.toString());
   }

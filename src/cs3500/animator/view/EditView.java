@@ -25,8 +25,21 @@ import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
 
+/**
+ * Represents a view in which you can edit the animation provided. This is implemented through
+ * a variety of swing features.
+ */
 public class EditView extends VisualView implements ActionListener {
 
+  /**
+   * Constructs the new window through which the user views and edits the animation. The animation
+   * panel is render with the given width and height and it runs at the given number of ticks
+   * per second.
+   * 
+   * @param speed the number of ticks per second at which the animation should run
+   * @param width the width of the animation
+   * @param height the height of the animation
+   */
   public EditView(int speed, int width, int height) {
     super(speed, width, height);
 
@@ -57,10 +70,8 @@ public class EditView extends VisualView implements ActionListener {
 
     removeFrame = new JButton("remove");
     removeFrame.setActionCommand("remove keyframe button");
-
-
+    
     this.shapesArray = new ArrayList<String>();
-//    motionsArray = new ArrayList<String>();
 
     shapes = new JPanel(new FlowLayout());
     shapes.add(addShape);
@@ -163,7 +174,7 @@ public class EditView extends VisualView implements ActionListener {
   private ArrayList<String> shapesArray;
 
 
-  public void makeWestPanel() {
+  private void makeWestPanel() {
     westPanel = new JPanel();
     westPanel.setLayout((LayoutManager) new BoxLayout(westPanel, BoxLayout.Y_AXIS));
 
@@ -199,7 +210,7 @@ public class EditView extends VisualView implements ActionListener {
     this.shapesArray = array;
   }
 
-  public void makeEastPanel() {
+  private void makeEastPanel() {
     widthLabel = new JLabel("Width");
     heightLabel = new JLabel("Height");
     xCoordinate = new JLabel("x");
@@ -290,6 +301,7 @@ public class EditView extends VisualView implements ActionListener {
     }
   }
 
+  @Override
   public void addListener(IViewListener listener) {
     this.listeners.add(listener);
   }
@@ -352,7 +364,7 @@ public class EditView extends VisualView implements ActionListener {
     }
   }
 
-  public void makeNorthPanel() {
+  private void makeNorthPanel() {
     pauseButton = new JButton("pause");
     pauseButton.setActionCommand("pause button");
 

@@ -5,9 +5,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * Represents a dummy model to ensure that the controller is calling methods in the model correctly.
+ * Instead of mutating, the dummy model appends to an appendable to which expected values will be
+ * compared.
+ */
 public class TestModel implements IModel {
   private final Appendable appendable;
 
+  /**
+   * Constructs a dummy model.
+   * 
+   * @param appendable the appendable to which the tests will be compared.
+   */
   public TestModel(Appendable appendable){
     this.appendable = appendable;
   }

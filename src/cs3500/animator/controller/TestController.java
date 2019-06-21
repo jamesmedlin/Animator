@@ -5,9 +5,19 @@ import cs3500.animator.view.IView;
 import cs3500.animator.view.IViewListener;
 
 
+/**
+ * Represents a dummy controller used only for testing. It has an Appendable that each of the
+ * methods appends to.
+ */
 public class TestController implements IAnimatorController, IViewListener {
   private final Appendable appendable;
 
+  /**
+   * Constructs a dummy controller with the given view and Appendable.
+   * 
+   * @param view the view from which events will be fired
+   * @param appendable the appendable on which the tests will be compared.
+   */
   public TestController(IView view, Appendable appendable){
     this.appendable = appendable;
   }

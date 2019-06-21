@@ -21,13 +21,12 @@ public class ControllerToModelTest {
   public void setUp() {
     appendable = new StringBuilder();
     testModel = new TestModel(appendable);
-    controller = new VisualController(testModel, testView, 50);
   }
   
   @Test
   public void testAddShape() {
     this.testView = new TestView(new StringReader("AddShape"));
-    this.testView.addListner(controller);
+    controller = new VisualController(testModel, testView, 50);
     testView.drawShapes(null);
     assertEquals("Shape Test Success added into model", appendable.toString());
   }
@@ -35,7 +34,7 @@ public class ControllerToModelTest {
   @Test
   public void testRemoveShape() {
     this.testView = new TestView(new StringReader("RemoveShape"));
-    this.testView.addListner(controller);
+    controller = new VisualController(testModel, testView, 50);
     testView.drawShapes(null);
     assertEquals("Shape Test Success removed from model", appendable.toString());
   }
@@ -43,7 +42,7 @@ public class ControllerToModelTest {
   @Test
   public void testAddKeyFrame() {
     this.testView = new TestView(new StringReader("AddKeyframe"));
-    this.testView.addListner(controller);
+    controller = new VisualController(testModel, testView, 50);
     testView.drawShapes(null);
     assertEquals("Key frame added to Test Success in model", appendable.toString());
   }
@@ -51,7 +50,7 @@ public class ControllerToModelTest {
   @Test
   public void testEditKeyFrame() {
     this.testView = new TestView(new StringReader("EditKeyframe"));
-    this.testView.addListner(controller);
+    controller = new VisualController(testModel, testView, 50);
     testView.drawShapes(null);
     assertEquals("Key frame edited in Test Success in model", appendable.toString());
   }
@@ -59,7 +58,7 @@ public class ControllerToModelTest {
   @Test
   public void testRemoveKeyFrame() {
     this.testView = new TestView(new StringReader("RemoveKeyframe"));
-    this.testView.addListner(controller);
+    controller = new VisualController(testModel, testView, 50);
     testView.drawShapes(null);
     assertEquals("Key frame removed from Test Success in model", appendable.toString());
   }
