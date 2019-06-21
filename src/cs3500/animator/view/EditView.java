@@ -115,6 +115,7 @@ public class EditView extends VisualView implements ActionListener {
   private JButton addShape;
   private JButton removeShape;
   private JTextField name;
+  private JPanel namePanel;
 
   private JPanel submitPanel;
   private JButton editFrame;
@@ -126,6 +127,7 @@ public class EditView extends VisualView implements ActionListener {
   private JLabel motionsLabel;
   private JList motionsList;
   private JList shapeList;
+  private JPanel shapesPanel;
 
   private JPanel eastPanel;
   private JPanel labelButtonPanel;
@@ -160,33 +162,35 @@ public class EditView extends VisualView implements ActionListener {
 
   public void makeWestPanel() {
     westPanel = new JPanel();
-    westPanel.setLayout((LayoutManager) new BoxLayout(westPanel, BoxLayout.PAGE_AXIS));
+    westPanel.setLayout((LayoutManager) new BoxLayout(westPanel, BoxLayout.Y_AXIS));
 
+    shapesPanel = new JPanel();
     shapesLabel = new JLabel("Shapes:");
     shapeList = new JList<Object>(this.shapesArray.toArray());
     shapeList.setPreferredSize(new Dimension(300, 500));
     shapeList.setFixedCellWidth(300);
 
+    namePanel = new JPanel(new FlowLayout());
     nameLabel = new JLabel("Name");
     name = new JTextField(5);
+    namePanel.add(nameLabel);
+    namePanel.add(name);
+
 
     addShape = new JButton("add shape");
     addShape.setActionCommand("add shape button");
 
     removeShape = new JButton("remove shape");
     removeShape.setActionCommand("remove shape button");
-    
-    westPanel.add(shapesLabel);
-    westPanel.add(shapeList);
-    westPanel.add(nameLabel);
-    westPanel.add(name);
+
+
+    shapesPanel.add(shapesLabel);
+    shapesPanel.add(shapeList);
+    westPanel.add(shapesPanel);
+    westPanel.add(namePanel);
     westPanel.add(addShape);
     westPanel.add(removeShape);
   }
-
-//  public void setMotionsArray(ArrayList<String> array) {
-//    this.motionsArray = array;
-//  }
 
   public void setShapesArray(ArrayList<IReadOnlyAnimatedShape> array) {
     this.shapesArray = array;
