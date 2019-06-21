@@ -51,7 +51,7 @@ public class EditView extends VisualView implements ActionListener {
     name.setActionCommand("name field");
 
 
-    shapesArray = new ArrayList<IReadOnlyAnimatedShape>();
+    this.shapesArray = new ArrayList<IReadOnlyAnimatedShape>();
 //    motionsArray = new ArrayList<String>();
 
     shapes = new JPanel(new FlowLayout());
@@ -156,7 +156,7 @@ public class EditView extends VisualView implements ActionListener {
     westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
 
     shapesLabel = new JLabel("Shapes:");
-    shapeList = new JList<Object>(shapesArray.toArray());
+    shapeList = new JList<Object>(this.shapesArray.toArray());
     shapeList.setPreferredSize(new Dimension(300, 500));
     shapeList.setFixedCellWidth(300);
 
@@ -169,8 +169,8 @@ public class EditView extends VisualView implements ActionListener {
     removeShape = new JButton("remove shape");
     removeShape.setActionCommand("remove shape button");
 
-    labelButtonPanel.add(shapesLabel);
-    labelButtonPanel.add(shapeList);
+//    labelButtonPanel.add(shapesLabel);
+//    labelButtonPanel.add(shapeList);
 
     westPanel.add(shapesLabel);
     westPanel.add(shapeList);
