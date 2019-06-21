@@ -115,7 +115,8 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
 
     feedbackPanel = new JPanel();
     feedbackPanel.add(feedback);
-    northPanel = new JPanel(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
+    northPanel = new JPanel();
+    northPanel.setLayout((LayoutManager) new BoxLayout(northPanel, BoxLayout.Y_AXIS));
     northPanel.add(mainButtons);
     northPanel.add(feedbackPanel);
 

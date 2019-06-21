@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e870a397-68d9-44a5-8faa-61152e356747" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/animator/controller/VisualController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/controller/VisualController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cs3500/animator/view/EditView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/view/EditView.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -18,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/EditView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2268">
-              <caret line="316" column="36" lean-forward="true" selection-start-line="316" selection-start-column="36" selection-end-line="316" selection-end-column="36" />
+            <state relative-caret-position="-702">
+              <caret line="118" column="34" lean-forward="true" selection-start-line="118" selection-start-column="34" selection-end-line="118" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#9808#9809#0" expanded="true" />
@@ -97,10 +95,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cs3500/animator/Excellence.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1589">
+            <state relative-caret-position="-1181">
               <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -487,7 +485,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113749000" />
+    <option name="totallyTimeSpent" value="113874000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -977,24 +975,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/EditView.java">
+    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/Excellence.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2268">
-          <caret line="316" column="36" lean-forward="true" selection-start-line="316" selection-start-column="36" selection-end-line="316" selection-end-column="36" />
+        <state relative-caret-position="-1181">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#9808#9809#0" expanded="true" />
-            <element signature="e#9846#9847#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/Excellence.java">
+    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/EditView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1589">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        <state relative-caret-position="-702">
+          <caret line="118" column="34" lean-forward="true" selection-start-line="118" selection-start-column="34" selection-end-line="118" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#9808#9809#0" expanded="true" />
+            <element signature="e#9846#9847#0" expanded="true" />
           </folding>
         </state>
       </provider>
