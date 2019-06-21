@@ -201,7 +201,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
 
     shapesPanel = new JPanel();
     shapesLabel = new JLabel("Shapes:");
-    //shapeList = new JList<Object>(this.shapesArray.toArray());
+    shapeList = new JList<Object>(this.shapesArray.toArray());
     shapeList.setPreferredSize(new Dimension(300, 500));
     shapeList.setFixedCellWidth(300);
 
@@ -523,6 +523,5 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
   @Override
   public void valueChanged(ListSelectionEvent e) {
     this.getMotionsList();
-    
   }
 }
