@@ -209,6 +209,7 @@ public final class Model implements IModel {
     }
   }
 
+  @Override
   public int getMaxTick() {
     int curMax = 0;
     for (IAnimatedShape shape : this.shapes.values()) {
@@ -285,7 +286,6 @@ public final class Model implements IModel {
     else {
       shapes.get(id).removeKeyFrame(index);
     }
-    
   }
 
   @Override

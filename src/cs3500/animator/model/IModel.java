@@ -154,6 +154,11 @@ public interface IModel extends IReadOnlyModel {
   void addKeyFrame(
       String id, int tick, double x, double y, int width, int height, int r, int g, int b);
 
+  /**
+   * Gets the tick of the latest key frame in the entire animation.
+   * 
+   * @return integer of the max time of the animation.
+   */
   int getMaxTick();
 
 }
