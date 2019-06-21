@@ -1,5 +1,6 @@
 package cs3500.animator.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,7 +39,7 @@ public interface IReadOnlyModel {
    *
    * @return a list of Read Only animated shapes
    */
-  List<IReadOnlyAnimatedShape> getShapes();
+  ArrayList<IReadOnlyAnimatedShape> getShapes();
 
   int getWidth();
 
