@@ -29,6 +29,8 @@ public class VisualController implements IAnimatorController {
         view.drawShapes(shapesToRender);
       }
     });
+    
+    view.addListner(this);
   }
 
   @Override

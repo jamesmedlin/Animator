@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 import cs3500.animator.model.IReadOnlyModel;
 import cs3500.animator.model.IReadOnlyShapeState;
+import cs3500.animator.model.ShapeType;
 
 
 public class TestView implements IView {
@@ -47,7 +48,7 @@ public class TestView implements IView {
             listener.updateSpeed(50);
             break;
           case "AddShape":
-            listener.addShape("Test Success", "rectangle");
+            listener.addShape("Test Success", ShapeType.RECTANGLE);
             break;
           case "RemoveShape":
             listener.removeShape("Test Success");

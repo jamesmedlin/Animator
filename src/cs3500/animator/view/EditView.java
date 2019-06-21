@@ -5,17 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.*;
-
 import cs3500.animator.model.IReadOnlyAnimatedShape;
-import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
 
 public class EditView extends VisualView implements ActionListener {
-
-  List<IViewListener> listeners;
 
   public EditView(int speed, int width, int height) {
     super(speed, width, height);
@@ -276,15 +270,14 @@ public class EditView extends VisualView implements ActionListener {
   public void actionPerformed(ActionEvent e) {
     switch (e.getActionCommand()) {
       case "pause button":
-//        try {
-//          for (IViewListener listener : this.listeners) {
-//            listener.pause();
-//          }
-//          feedback.setText("");
-//        } catch (Exception r) {
-//          feedback.setText("");
-//        }
-        System.out.println("PAUSE BITCH");
+        try {
+          for (IViewListener listener : this.listeners) {
+            listener.pause();
+          }
+          feedback.setText("");
+        } catch (Exception r) {
+          feedback.setText("");
+        }
         break;
       case "play button":
         try {
