@@ -134,7 +134,6 @@ public class EditView extends VisualView implements ActionListener {
   private JTextField tGreen;
   private JTextField tBlue;
   private JTextField tTick;
-  private JPanel namePanel;
   private JPanel widthPanel;
   private JPanel heightPanel;
   private JPanel xCoordinatePanel;
@@ -335,7 +334,8 @@ public class EditView extends VisualView implements ActionListener {
     speedLabel = new JLabel("speed");
     speedText = new JTextField(3);
     speedText.setActionCommand("speed field");
-    speedButton = new JButton("adjust");
+    speedButton = new JButton("adjust speed");
+    speedButton.setActionCommand("adjust");
 
     mainButtons = new JPanel();
     mainButtons.add(speedLabel);

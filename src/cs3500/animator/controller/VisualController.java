@@ -10,7 +10,6 @@ import cs3500.animator.model.IModel;
 import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
 import cs3500.animator.view.IView;
-import cs3500.animator.view.VisualView;
 
 public class VisualController implements IAnimatorController {
   private IModel model;
@@ -32,6 +31,8 @@ public class VisualController implements IAnimatorController {
     
     view.addListner(this);
   }
+
+
 
   @Override
   public void pause() {
