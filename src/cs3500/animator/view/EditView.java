@@ -126,7 +126,6 @@ public class EditView extends VisualView implements ActionListener {
   private JLabel greenColor;
   private JLabel blueColor;
   private JLabel tickLabel;
-  private JTextField tName;
   private JTextField tWidth;
   private JTextField tHeight;
   private JTextField tX;
@@ -156,11 +155,25 @@ public class EditView extends VisualView implements ActionListener {
     shapeList = new JList<Object>(shapesArray.toArray());
     shapeList.setPreferredSize(new Dimension(300, 500));
     shapeList.setFixedCellWidth(300);
+
+    nameLabel = new JLabel("Name");
+    name = new JTextField(5);
+
+    addShape = new JButton("add shape");
+    addShape.setActionCommand("add shape button");
+
+    removeShape = new JButton("remove shape");
+    removeShape.setActionCommand("remove shape button");
+
     labelButtonPanel.add(shapesLabel);
     labelButtonPanel.add(shapeList);
 
     westPanel.add(shapesLabel);
     westPanel.add(shapeList);
+    westPanel.add(nameLabel);
+    westPanel.add(name);
+    westPanel.add(addShape);
+    westPanel.add(removeShape);
   }
 
   public void setMotionsArray(ArrayList<String> array) {
@@ -172,7 +185,6 @@ public class EditView extends VisualView implements ActionListener {
   }
 
   public void makeEastPanel() {
-    nameLabel = new JLabel("Name");
     widthLabel = new JLabel("Width");
     heightLabel = new JLabel("Height");
     xCoordinate = new JLabel("x");
@@ -182,7 +194,6 @@ public class EditView extends VisualView implements ActionListener {
     blueColor = new JLabel("blue color");
     tickLabel = new JLabel("tick");
 
-    tName = new JTextField(5);
     tWidth = new JTextField(5);
     tHeight = new JTextField(5);
     tX = new JTextField(5);
@@ -191,10 +202,6 @@ public class EditView extends VisualView implements ActionListener {
     tGreen = new JTextField(5);
     tBlue = new JTextField(5);
     tTick = new JTextField(5);
-
-    namePanel = new JPanel();
-    namePanel.add(nameLabel);
-    namePanel.add(tName);
 
     widthPanel = new JPanel();
     widthPanel.add(widthLabel);
@@ -227,12 +234,6 @@ public class EditView extends VisualView implements ActionListener {
     labelButtonPanel = new JPanel(new FlowLayout());
     labelButtonPanel.setPreferredSize(new Dimension(800, 150));
 
-    addShape = new JButton("add shape");
-    addShape.setActionCommand("add shape button");
-
-    removeShape = new JButton("remove shape");
-    removeShape.setActionCommand("remove shape button");
-
     motionsLabel = new JLabel("Motions:");
 
     motionsList = new JList<Object>(motionsArray.toArray());
@@ -249,8 +250,6 @@ public class EditView extends VisualView implements ActionListener {
     labelButtonPanel.add(editFrame);
     labelButtonPanel.add(tickLabel);
     labelButtonPanel.add(tTick);
-    labelButtonPanel.add(nameLabel);
-    labelButtonPanel.add(namePanel);
     labelButtonPanel.add(widthPanel);
     labelButtonPanel.add(heightPanel);
     labelButtonPanel.add(xCoordinatePanel);
