@@ -258,7 +258,7 @@ public final class Model implements IModel {
   }
 
   @Override
-  public List<IReadOnlyAnimatedShape> getShapes() {
+  public ArrayList<IReadOnlyAnimatedShape> getShapes() {
     ArrayList<IReadOnlyAnimatedShape> result = new ArrayList<IReadOnlyAnimatedShape>();
     for (IAnimatedShape shape : this.shapes.values()) {
       result.add(shape.deepCopy());
