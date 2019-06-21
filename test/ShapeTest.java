@@ -61,11 +61,11 @@ public class ShapeTest {
     assertEquals("", animatedRectangle.getMotions());
     assertEquals("", animatedEllipse.getMotions());
     animatedRectangle.addDoNothing(15);
-    assertEquals("0 0.0 0.0 0 0 0 0 0    15 0.0 0.0 0 0 0 0 0\n",
+    assertEquals("motion Dave 0 0.0 0.0 0 0 0 0 0    15 0.0 0.0 0 0 0 0 0\n",
             animatedRectangle.getMotions());
     animatedRectangle.addDoNothing(10);
-    assertEquals("0 0.0 0.0 0 0 0 0 0    15 0.0 0.0 0 0 0 0 0\n"
-                    + "15 0.0 0.0 0 0 0 0 0    25 0.0 0.0 0 0 0 0 0\n",
+    assertEquals("motion Dave 0 0.0 0.0 0 0 0 0 0    15 0.0 0.0 0 0 0 0 0\n"
+                    + "motion Dave 15 0.0 0.0 0 0 0 0 0    25 0.0 0.0 0 0 0 0 0\n",
             animatedRectangle.getMotions());
   }
 
@@ -165,7 +165,7 @@ public class ShapeTest {
     assertEquals(true, animatedRectangle.getStates().isEmpty());
     animatedRectangle.fullMotionTo(new Point2D.Double(25, 25), 55, 25, new Color(255, 0, 0), 20);
     assertEquals(2, animatedRectangle.getStates().size());
-    assertEquals("0 0.0 0.0 0 0 0 0 0    20 25.0 25.0 25 55 255 0 0\n",
+    assertEquals("motion Dave 0 0.0 0.0 0 0 0 0 0    20 25.0 25.0 25 55 255 0 0\n",
             animatedRectangle.getMotions());
   }
 
@@ -174,7 +174,7 @@ public class ShapeTest {
     assertEquals(true, animatedEllipse.getStates().isEmpty());
     animatedEllipse.fullMotionTo(new Point2D.Double(25, 25), 55, 25, new Color(255, 0, 0), 20);
     assertEquals(2, animatedEllipse.getStates().size());
-    assertEquals("0 0.0 0.0 0 0 0 0 0    20 25.0 25.0 25 55 255 0 0\n",
+    assertEquals("motion Vido 0 0.0 0.0 0 0 0 0 0    20 25.0 25.0 25 55 255 0 0\n",
             animatedEllipse.getMotions());
   }
 
@@ -183,7 +183,7 @@ public class ShapeTest {
     assertEquals(true, animatedRectangle.getStates().isEmpty());
     animatedRectangle.changeColor(new Color(255, 231, 241), 23);
     assertEquals(2, animatedRectangle.getStates().size());
-    assertEquals("0 0.0 0.0 0 0 0 0 0    23 0.0 0.0 0 0 255 231 241\n",
+    assertEquals("motion Dave 0 0.0 0.0 0 0 0 0 0    23 0.0 0.0 0 0 255 231 241\n",
             animatedRectangle.getMotions());
   }
 
@@ -192,7 +192,7 @@ public class ShapeTest {
     assertEquals(true, animatedEllipse.getStates().isEmpty());
     animatedEllipse.changeColor(new Color(255, 231, 241), 23);
     assertEquals(2, animatedEllipse.getStates().size());
-    assertEquals("0 0.0 0.0 0 0 0 0 0    23 0.0 0.0 0 0 255 231 241\n",
+    assertEquals("motion Vido 0 0.0 0.0 0 0 0 0 0    23 0.0 0.0 0 0 255 231 241\n",
             animatedEllipse.getMotions());
   }
 
@@ -201,7 +201,7 @@ public class ShapeTest {
     assertEquals(true, animatedRectangle.getStates().isEmpty());
     animatedRectangle.moveTo(new Point2D.Double(23.5, 21.25), 43);
     assertEquals(2, animatedRectangle.getStates().size());
-    assertEquals("0 0.0 0.0 0 0 0 0 0    43 23.5 21.25 0 0 0 0 0\n",
+    assertEquals("motion Dave 0 0.0 0.0 0 0 0 0 0    43 23.5 21.25 0 0 0 0 0\n",
             animatedRectangle.getMotions());
   }
 
@@ -210,7 +210,7 @@ public class ShapeTest {
     assertEquals(true, animatedEllipse.getStates().isEmpty());
     animatedEllipse.moveTo(new Point2D.Double(69, 420), 12);
     assertEquals(2, animatedEllipse.getStates().size());
-    assertEquals("0 0.0 0.0 0 0 0 0 0    12 69.0 420.0 0 0 0 0 0\n",
+    assertEquals("motion Vido 0 0.0 0.0 0 0 0 0 0    12 69.0 420.0 0 0 0 0 0\n",
             animatedEllipse.getMotions());
   }
 
@@ -219,7 +219,7 @@ public class ShapeTest {
     assertEquals(true, animatedRectangle.getStates().isEmpty());
     animatedRectangle.changeSizeTo(1, 1, 1);
     assertEquals(2, animatedRectangle.getStates().size());
-    assertEquals("0 0.0 0.0 0 0 0 0 0    1 0.0 0.0 1 1 0 0 0\n",
+    assertEquals("motion Dave 0 0.0 0.0 0 0 0 0 0    1 0.0 0.0 1 1 0 0 0\n",
             animatedRectangle.getMotions());
   }
 
@@ -228,7 +228,7 @@ public class ShapeTest {
     assertEquals(true, animatedEllipse.getStates().isEmpty());
     animatedEllipse.changeSizeTo(32, 21, 11);
     assertEquals(2, animatedEllipse.getStates().size());
-    assertEquals("0 0.0 0.0 0 0 0 0 0    11 0.0 0.0 21 32 0 0 0\n",
+    assertEquals("motion Vido 0 0.0 0.0 0 0 0 0 0    11 0.0 0.0 21 32 0 0 0\n",
             animatedEllipse.getMotions());
   }
 
@@ -237,7 +237,7 @@ public class ShapeTest {
     assertEquals(true, animatedRectangle.getStates().isEmpty());
     animatedRectangle.addDoNothing(15);
     assertEquals(2, animatedRectangle.getStates().size());
-    assertEquals("0 0.0 0.0 0 0 0 0 0    15 0.0 0.0 0 0 0 0 0\n",
+    assertEquals("motion Dave 0 0.0 0.0 0 0 0 0 0    15 0.0 0.0 0 0 0 0 0\n",
             animatedRectangle.getMotions());
   }
 
@@ -246,7 +246,7 @@ public class ShapeTest {
     assertEquals(true, animatedEllipse.getStates().isEmpty());
     animatedEllipse.addDoNothing(89);
     assertEquals(2, animatedEllipse.getStates().size());
-    assertEquals("0 0.0 0.0 0 0 0 0 0    89 0.0 0.0 0 0 0 0 0\n",
+    assertEquals("motion Vido 0 0.0 0.0 0 0 0 0 0    89 0.0 0.0 0 0 0 0 0\n",
             animatedEllipse.getMotions());
   }
 

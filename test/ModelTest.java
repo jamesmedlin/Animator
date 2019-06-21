@@ -214,7 +214,7 @@ public class ModelTest {
     model.fullMotion("Dave", 1, 10, 10, 10, 10, 255, 255,
             255, 21, 3, 3, 3, 3, 0, 99, 43);
     assertEquals(model.getShape("Dave"),
-            "1 10.0 10.0 10 10 255 255 255    21 3.0 3.0 3 3 0 99 43" + "\n");
+            "motion Dave 1 10.0 10.0 10 10 255 255 255    21 3.0 3.0 3 3 0 99 43" + "\n");
   }
 
   @Test
@@ -223,7 +223,7 @@ public class ModelTest {
     model.fullMotion("Dave", 1, 10, 10, 10, 10, 255, 255,
             255, 5, 4, 4, 4, 4, 4, 4, 4);
     assertEquals(model.getShape("Dave"),
-            "1 10.0 10.0 10 10 255 255 255    5 4.0 4.0 4 4 4 4 4" + "\n");
+            "motion Dave 1 10.0 10.0 10 10 255 255 255    5 4.0 4.0 4 4 4 4 4" + "\n");
   }
 
   @Test
@@ -231,7 +231,7 @@ public class ModelTest {
     model.addShape("Dave", RECTANGLE);
     model.doNothing("Dave", 1);
     assertEquals(model.getShape("Dave"),
-            "0 0.0 0.0 0 0 0 0 0    1 0.0 0.0 0 0 0 0 0" + "\n");
+            "motion Dave 0 0.0 0.0 0 0 0 0 0    1 0.0 0.0 0 0 0 0 0" + "\n");
   }
 
   @Test
@@ -239,7 +239,7 @@ public class ModelTest {
     model.addShape("Dave", ELLIPSE);
     model.doNothing("Dave", 33);
     assertEquals(model.getShape("Dave"),
-            "0 0.0 0.0 0 0 0 0 0    33 0.0 0.0 0 0 0 0 0" + "\n");
+            "motion Dave 0 0.0 0.0 0 0 0 0 0    33 0.0 0.0 0 0 0 0 0" + "\n");
   }
   
   @Test (expected = IllegalArgumentException.class)

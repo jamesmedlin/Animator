@@ -8,7 +8,6 @@ public class TestController implements IAnimatorController, IViewListener {
   private final Appendable appendable;
 
   public TestController(IView view, Appendable appendable){
-    view.addListner(this);
     this.appendable = appendable;
   }
 

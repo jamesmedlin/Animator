@@ -100,8 +100,6 @@ public class Excellence {
       switch (type) {
         case "svg":
         case "SVG":
-          out.append(view.formatSVG(model));
-          break;
         case "text":
           out.append(view.printView(model));
           break;

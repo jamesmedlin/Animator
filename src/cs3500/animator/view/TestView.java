@@ -50,13 +50,13 @@ public class TestView implements IView {
             listener.addShape("Test Success", "rectangle");
             break;
           case "RemoveShape":
-            listener.removeShape("Test Sucess");
+            listener.removeShape("Test Success");
             break;
           case "AddKeyframe":
             listener.addKeyFrame("Test Success", 25, 0, 0, 0, 0, 0, 0, 0);
             break;
           case "EditKeyframe":
-            listener.editKeyFrame("Test Sucess", 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            listener.editKeyFrame("Test Success", 0, 0, 0, 0, 0, 0, 0, 0, 0);
             break;
           case "RemoveKeyframe":
             listener.removeKeyFrame("Test Success", 0);

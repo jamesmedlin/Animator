@@ -24,21 +24,16 @@ public class SVGViewTest {
     m1 = new Model();
   }
 
-//  @Test(expected = UnsupportedOperationException.class)
-//  public void testFail() {
-//    v1.render();
-//  }
-
   @Test(expected = UnsupportedOperationException.class)
-  public void testFail2() {
-    v1.printView(m1);
+  public void testFail() {
+    v1.drawShapes(null);;
   }
 
   @Test
   public void testPrintView3() {
     assertEquals("<svg width=\"500\" height=\"500\" version=\"1.1\" " +
-            "xmlns=\"http://www.w3.org/2000/svg\">\n" +
-            "\n</svg>\n", v1.printView(m1));
+        "xmlns=\"http://www.w3.org/2000/svg\">\n" +
+        "\n</svg>\n", v1.printView(m1));
   }
 
   @Test
@@ -46,13 +41,13 @@ public class SVGViewTest {
     m1.addShape("Dave", RECTANGLE);
     m1.addShape("Rich II", ELLIPSE);
     assertEquals("<svg width=\"500\" height=\"500\" version=\"1.1\" xmlns=\"http://" +
-            "www.w3.org/2000/svg\">\n" +
-            "<rect id=\"Dave\">\n" +
-            "</rect>\n" +
-            "<ellipse id=\"Rich II\">\n" +
-            "</ellipse>\n" +
-            "\n" +
-            "</svg>\n", v1.printView(m1));
+        "www.w3.org/2000/svg\">\n" +
+        "<rect id=\"Dave\">\n" +
+        "</rect>\n" +
+        "<ellipse id=\"Rich II\">\n" +
+        "</ellipse>\n" +
+        "\n" +
+        "</svg>\n", v1.printView(m1));
   }
 
   @Test
@@ -60,11 +55,11 @@ public class SVGViewTest {
     m1.addShape("Dave", RECTANGLE);
     m1.addShape("Rich II", ELLIPSE);
     m1.fullMotion("Dave", 1, 10, 10, 10, 10, 255, 255, 255,
-            4, 4, 4, 4, 4, 4, 4, 4);
+        4, 4, 4, 4, 4, 4, 4, 4);
     m1.fullMotion("Rich II", 1, 20, 30, 20, 2, 3, 30, 57,
-            21, 300, 300, 12, 72, 200, 200, 200);
+        21, 300, 300, 12, 72, 200, 200, 200);
     m1.fullMotion("Dave", 4, 4, 4, 4, 4, 4, 4, 4, 17,
-            76, 30, 30, 23, 199, 67, 255);
+        76, 30, 30, 23, 199, 67, 255);
     assertEquals("<svg width=\"500\" height=\"500\" version=\"1.1\" xmlns=\"http://www.w3.org/200"
         + "0/svg\">\n" + 
         "<rect id=\"Dave\" x=\"10.0\"  y=\"10.0\" width=\"10\" height=\"10\" fill=\"rgb(255,255,"
@@ -116,15 +111,15 @@ public class SVGViewTest {
     m1.addShape("Daniel", RECTANGLE);
     m1.addShape("Vido", ELLIPSE);
     m1.fullMotion("Dave", 1, 10, 10, 10, 10, 255, 255, 255,
-            5, 4, 4, 4, 4, 4, 4, 4);
+        5, 4, 4, 4, 4, 4, 4, 4);
     m1.fullMotion("Vido", 3, 200, 200, 1, 1, 0, 0, 0, 23,
-            250, 250, 23, 34, 90, 36, 78);
+        250, 250, 23, 34, 90, 36, 78);
     m1.fullMotion("Adam", 10, 20, 30, 20, 2, 3, 30, 57, 30,
-            300, 300, 12, 72, 200, 200, 200);
+        300, 300, 12, 72, 200, 200, 200);
     m1.fullMotion("Dave", 5, 4, 4, 4, 4, 4, 4, 4, 7,
-            76, 30, 30, 23, 199, 67, 255);
+        76, 30, 30, 23, 199, 67, 255);
     m1.fullMotion("Daniel", 5, 30, 30, 10, 10, 30, 78, 180,
-            22, 100, 100, 100, 100, 0, 13, 255);
+        22, 100, 100, 100, 100, 0, 13, 255);
     assertEquals("<svg width=\"500\" height=\"500\" version=\"1.1\" xmlns=\"http://www.w3.org/20"
         + "00/svg\">\n" + 
         "<rect id=\"Dave\" x=\"10.0\"  y=\"10.0\" width=\"10\" height=\"10\" fill=\"rgb(255,255,"
@@ -204,15 +199,15 @@ public class SVGViewTest {
     m1.addShape("Daniel", RECTANGLE);
     m1.addShape("Vido", ELLIPSE);
     m1.fullMotion("Dave", 3, 10, 10, 10, 10, 255, 255, 255,
-            5, 4, 4, 4, 4, 4, 4, 4);
+        5, 4, 4, 4, 4, 4, 4, 4);
     m1.fullMotion("Vido", 3, 200, 200, 1, 1, 0, 0, 0, 23,
-            250, 250, 23, 34, 90, 36, 78);
+        250, 250, 23, 34, 90, 36, 78);
     m1.fullMotion("Adam", 3, 20, 30, 20, 2, 3, 30, 57, 30,
-            300, 300, 12, 72, 200, 200, 200);
+        300, 300, 12, 72, 200, 200, 200);
     m1.fullMotion("Dave", 5, 4, 4, 4, 4, 4, 4, 4, 7,
-            76, 30, 30, 23, 199, 67, 255);
+        76, 30, 30, 23, 199, 67, 255);
     m1.fullMotion("Daniel", 3, 30, 30, 10, 10, 30, 78, 180,
-            22, 100, 100, 100, 100, 0, 13, 255);
+        22, 100, 100, 100, 100, 0, 13, 255);
     assertEquals("<svg width=\"500\" height=\"500\" version=\"1.1\" xmlns=\"http://www.w3.org/2000"
         + "/svg\">\n" + 
         "<rect id=\"Dave\" x=\"10.0\"  y=\"10.0\" width=\"10\" height=\"10\" fill=\"rgb(255,255,25"

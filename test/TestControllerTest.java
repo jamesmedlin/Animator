@@ -24,6 +24,7 @@ public class TestControllerTest {
   @Test
   public void testPlay() {
     testView = new TestView(new StringReader("Play"));
+    testView.addListner(testController);
     testView.drawShapes(null);
     assertEquals("play", appendable.toString());
   }
@@ -81,7 +82,7 @@ public class TestControllerTest {
     testView = new TestView(new StringReader("AddKeyframe"));
     testView.addListner(testController);
     testView.drawShapes(null);
-    assertEquals("new key frame to shape Test Success at tick 0", appendable.toString());
+    assertEquals("new key frame to shape Test Success at tick 25", appendable.toString());
   }
   
   @Test

@@ -29,7 +29,7 @@ public class ControllerToModelTest {
     this.testView = new TestView(new StringReader("AddShape"));
     this.testView.addListner(controller);
     testView.drawShapes(null);
-    assertEquals("Shape Test Sucess added into model", appendable.toString());
+    assertEquals("Shape Test Success added into model", appendable.toString());
   }
   
   @Test
@@ -37,7 +37,7 @@ public class ControllerToModelTest {
     this.testView = new TestView(new StringReader("RemoveShape"));
     this.testView.addListner(controller);
     testView.drawShapes(null);
-    assertEquals("Shape Test Sucess removed from model", appendable.toString());
+    assertEquals("Shape Test Success removed from model", appendable.toString());
   }
   
   @Test
@@ -45,7 +45,7 @@ public class ControllerToModelTest {
     this.testView = new TestView(new StringReader("AddKeyframe"));
     this.testView.addListner(controller);
     testView.drawShapes(null);
-    assertEquals("Key frame added to Test Sucess in model", appendable.toString());
+    assertEquals("Key frame added to Test Success in model", appendable.toString());
   }
   
   @Test
@@ -53,7 +53,7 @@ public class ControllerToModelTest {
     this.testView = new TestView(new StringReader("EditKeyframe"));
     this.testView.addListner(controller);
     testView.drawShapes(null);
-    assertEquals("Key frame edited in Test Sucess in model", appendable.toString());
+    assertEquals("Key frame edited in Test Success in model", appendable.toString());
   }
   
   @Test
@@ -61,6 +61,6 @@ public class ControllerToModelTest {
     this.testView = new TestView(new StringReader("RemoveKeyframe"));
     this.testView.addListner(controller);
     testView.drawShapes(null);
-    assertEquals("Key frame removed from Test Sucess in model", appendable.toString());
+    assertEquals("Key frame removed from Test Success in model", appendable.toString());
   }
 }
