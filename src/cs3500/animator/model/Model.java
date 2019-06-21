@@ -309,6 +309,21 @@ public final class Model implements IModel {
       shapes.get(id).addKeyFrame(tick, x, y, width, height, r, g, b);
     }  
   }
+
+  public ArrayList<String> getShapesStringArray() {
+    ArrayList<String> shapesString = new ArrayList<>();
+    for (IReadOnlyAnimatedShape shape : shapes.values()) {
+      switch (shape.getType()) {
+        case ELLIPSE:
+          shapesString.add("Ellipse " + shape.getName());
+          break;
+        case RECTANGLE:
+          shapesString.add("Rectangle " + shape.getName());
+          break;
+      }
+    }
+    return shapesString;
+  }
   
 }
 

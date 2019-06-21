@@ -1,6 +1,8 @@
 package cs3500.animator.model;
 
 
+import java.util.ArrayList;
+
 /**
  * represents the animation's data structure, independent of user interface. Directly organizes the
  * data and logic of this animation.
@@ -160,5 +162,11 @@ public interface IModel extends IReadOnlyModel {
    * @return integer of the max time of the animation.
    */
   int getMaxTick();
+
+  /**
+   * gets a string list of the shapes currently in the animation.
+   * @return a string array of the shapes' names and types
+   */
+  ArrayList<String> getShapesStringArray();
 
 }

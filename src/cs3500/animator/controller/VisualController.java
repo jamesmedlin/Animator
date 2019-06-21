@@ -98,8 +98,8 @@ public class VisualController implements IAnimatorController {
     ((EditView)view).setShapesArray(model.getShapes());
   }
 
-  private void setShapesArray() {
-    ((EditView)view).setShapesArray(model.getShapes());
+  public ArrayList<String> setShapesArray() {
+    return ((EditView)view).setShapesArray(model.getShapesStringArray());
   }
 
 }

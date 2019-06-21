@@ -1,5 +1,6 @@
 package cs3500.animator.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,4 +43,10 @@ public interface IReadOnlyAnimatedShape {
    * @return the unique identifier of this shape.
    */
   String getName();
+
+  /**
+   * retrieves the states of this shape as an array or strings.
+   * @return the states in string format
+   */
+  ArrayList<String> getStatesStringArray();
 }

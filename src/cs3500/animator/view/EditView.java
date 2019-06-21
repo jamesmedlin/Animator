@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.AreaAveragingScaleFilter;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BoxLayout;
@@ -57,7 +59,7 @@ public class EditView extends VisualView implements ActionListener {
     removeFrame.setActionCommand("remove keyframe button");
 
 
-    this.shapesArray = new ArrayList<IReadOnlyAnimatedShape>();
+    this.shapesArray = new ArrayList<String>();
 //    motionsArray = new ArrayList<String>();
 
     shapes = new JPanel(new FlowLayout());
@@ -158,7 +160,7 @@ public class EditView extends VisualView implements ActionListener {
   private JPanel blueColorPanel;
 
   //private ArrayList<String> motionsArray;
-  private ArrayList<IReadOnlyAnimatedShape> shapesArray;
+  private ArrayList<String> shapesArray;
 
 
   public void makeWestPanel() {
@@ -193,7 +195,7 @@ public class EditView extends VisualView implements ActionListener {
     westPanel.add(removeShape);
   }
 
-  public void setShapesArray(ArrayList<IReadOnlyAnimatedShape> array) {
+  public void setShapesArray(ArrayList<String> array) {
     this.shapesArray = array;
   }
 
@@ -253,7 +255,7 @@ public class EditView extends VisualView implements ActionListener {
 
     motionsLabel = new JLabel("Motions:");
 
-    motionsList = new JList<Object>(getMotionsList().toArray());
+    motionsList = new JList<>(getMotionsList().toArray());
     motionsList.setPreferredSize(new Dimension(300, 500));
     motionsList.setFixedCellWidth(300);
 
@@ -279,12 +281,12 @@ public class EditView extends VisualView implements ActionListener {
     eastPanel.add(labelButtonPanel);
   }
 
-  private List<IReadOnlyShapeState> getMotionsList() {
+  private ArrayList<String> getMotionsList() {
     try {
       return ((IReadOnlyAnimatedShape)
-              (shapeList.getSelectedValue())).getStates();
+              (shapeList.getSelectedValue())).getStatesStringArray();
     } catch (Exception e) {
-      return new ArrayList<IReadOnlyShapeState>();
+      return new ArrayList<>();
     }
   }
 
