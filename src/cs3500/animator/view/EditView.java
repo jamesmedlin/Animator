@@ -1,12 +1,17 @@
 package cs3500.animator.view;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Dimension;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.*;
 import cs3500.animator.model.IReadOnlyAnimatedShape;
+import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
 
 public class EditView extends VisualView implements ActionListener {
@@ -47,7 +52,7 @@ public class EditView extends VisualView implements ActionListener {
 
 
     shapesArray = new ArrayList<IReadOnlyAnimatedShape>();
-    motionsArray = new ArrayList<String>();
+//    motionsArray = new ArrayList<String>();
 
     shapes = new JPanel(new FlowLayout());
     shapes.add(addShape);
@@ -142,7 +147,7 @@ public class EditView extends VisualView implements ActionListener {
   private JPanel greenColorPanel;
   private JPanel blueColorPanel;
 
-  private ArrayList<String> motionsArray;
+  //private ArrayList<String> motionsArray;
   private ArrayList<IReadOnlyAnimatedShape> shapesArray;
 
 
@@ -175,9 +180,9 @@ public class EditView extends VisualView implements ActionListener {
     westPanel.add(removeShape);
   }
 
-  public void setMotionsArray(ArrayList<String> array) {
-    this.motionsArray = array;
-  }
+//  public void setMotionsArray(ArrayList<String> array) {
+//    this.motionsArray = array;
+//  }
 
   public void setShapesArray(ArrayList<IReadOnlyAnimatedShape> array) {
     this.shapesArray = array;
@@ -236,7 +241,7 @@ public class EditView extends VisualView implements ActionListener {
 
     motionsLabel = new JLabel("Motions:");
 
-    motionsList = new JList<Object>(motionsArray.toArray());
+    motionsList = new JList<Object>(getMotionsList().toArray());
     motionsList.setPreferredSize(new Dimension(300, 500));
     motionsList.setFixedCellWidth(300);
 
@@ -260,6 +265,14 @@ public class EditView extends VisualView implements ActionListener {
     labelButtonPanel.add(submitPanel);
   }
 
+  private List<IReadOnlyShapeState> getMotionsList() {
+    try {
+      return ((IReadOnlyAnimatedShape)
+              (shapeList.getSelectedValue())).getStates();
+    } catch (Exception e) {
+      return new ArrayList<IReadOnlyShapeState>();
+    }
+  }
 
   public void addListener(IViewListener listener) {
     this.listeners.add(listener);
