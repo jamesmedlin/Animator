@@ -44,9 +44,6 @@ public class EditView extends VisualView implements ActionListener {
     removeFrame = new JButton("remove");
     removeFrame.setActionCommand("remove keyframe button");
 
-//    exit = new JButton("exit");
-//    exit.setActionCommand("exit button");
-
     name = new JTextField("name");
     name.setActionCommand("name field");
     
@@ -98,6 +95,7 @@ public class EditView extends VisualView implements ActionListener {
   private JButton playButton;
   private JButton restartButton;
   private JCheckBox loopingButton;
+  private JLabel speedLabel;
   private JTextField speedText;
 
   private JPanel shapes;
@@ -138,6 +136,14 @@ public class EditView extends VisualView implements ActionListener {
   private JTextField tGreen;
   private JTextField tBlue;
   private JTextField tTick;
+  private JPanel namePanel;
+  private JPanel widthPanel;
+  private JPanel heightPanel;
+  private JPanel xCoordinatePanel;
+  private JPanel yCoordinatePanel;
+  private JPanel redColorPanel;
+  private JPanel greenColorPanel;
+  private JPanel blueColorPanel;
 
   private ArrayList<String> motionsArray;
   private ArrayList<IReadOnlyAnimatedShape> shapesArray;
@@ -192,6 +198,37 @@ public class EditView extends VisualView implements ActionListener {
     tBlue = new JTextField(5);
     tTick = new JTextField(5);
 
+    namePanel = new JPanel();
+    namePanel.add(nameLabel);
+    namePanel.add(tName);
+
+    widthPanel = new JPanel();
+    widthPanel.add(widthLabel);
+    widthPanel.add(tWidth);
+
+    heightPanel = new JPanel();
+    heightPanel.add(heightLabel);
+    heightPanel.add(tHeight);
+
+    xCoordinatePanel = new JPanel();
+    xCoordinatePanel.add(xCoordinate);
+    xCoordinatePanel.add(tX);
+
+    yCoordinatePanel = new JPanel();
+    yCoordinatePanel.add(yCoordinate);
+    yCoordinatePanel.add(tY);
+
+    redColorPanel = new JPanel();
+    redColorPanel.add(redColor);
+    redColorPanel.add(tRed);
+
+    greenColorPanel = new JPanel();
+    greenColorPanel.add(greenColor);
+    greenColorPanel.add(tGreen);
+
+    blueColorPanel = new JPanel();
+    blueColorPanel.add(blueColor);
+    blueColorPanel.add(tBlue);
 
     labelButtonPanel = new JPanel(new FlowLayout());
     labelButtonPanel.setPreferredSize(new Dimension(700,120));
@@ -211,21 +248,14 @@ public class EditView extends VisualView implements ActionListener {
     labelButtonPanel.add(tickLabel);
     labelButtonPanel.add(tTick);
     labelButtonPanel.add(nameLabel);
-    labelButtonPanel.add(tName);
-    labelButtonPanel.add(widthLabel);
-    labelButtonPanel.add(tWidth);
-    labelButtonPanel.add(heightLabel);
-    labelButtonPanel.add(tHeight);
-    labelButtonPanel.add(xCoordinate);
-    labelButtonPanel.add(tX);
-    labelButtonPanel.add(yCoordinate);
-    labelButtonPanel.add(tY);
-    labelButtonPanel.add(redColor);
-    labelButtonPanel.add(tRed);
-    labelButtonPanel.add(greenColor);
-    labelButtonPanel.add(tGreen);
-    labelButtonPanel.add(blueColor);
-    labelButtonPanel.add(tBlue);
+    labelButtonPanel.add(namePanel);
+    labelButtonPanel.add(widthPanel);
+    labelButtonPanel.add(heightPanel);
+    labelButtonPanel.add(xCoordinatePanel);
+    labelButtonPanel.add(yCoordinatePanel);
+    labelButtonPanel.add(redColorPanel);
+    labelButtonPanel.add(greenColorPanel);
+    labelButtonPanel.add(blueColorPanel);
     labelButtonPanel.add(submitPanel);
   }
   
@@ -282,11 +312,13 @@ public class EditView extends VisualView implements ActionListener {
 
     loopingButton = new JCheckBox("loop");
     loopingButton.setActionCommand("looping checkbox");
-    
-    speedText = new JTextField("speed");
+
+    speedLabel = new JLabel("speed");
+    speedText = new JTextField("");
     speedText.setActionCommand("speed field");
 
     mainButtons = new JPanel();
+    mainButtons.add(speedLabel);
     mainButtons.add(speedText);
     mainButtons.add(playButton);
     mainButtons.add(pauseButton);
