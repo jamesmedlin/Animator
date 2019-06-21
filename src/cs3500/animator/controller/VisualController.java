@@ -17,6 +17,7 @@ public class VisualController implements IAnimatorController {
   private IModel model;
   private IView view;
   private Timer timer;
+  private boolean isLooped;
   private int tick = 0;
 
   public VisualController(IModel model, IView view, int speed) {
@@ -26,15 +27,19 @@ public class VisualController implements IAnimatorController {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        List<IReadOnlyShapeState> shapesToRender = model.getShapesAtTick(tick++);
+        List<IReadOnlyShapeState> shapesToRender = model.getShapesAtTick(tick);
+        if (isLooped) {
+          tick = (tick + 1) % model.getMaxTick();
+        }
+        else {
+          tick++;
+        }
         view.drawShapes(shapesToRender);
       }
     });
-    
+
     view.addListner(this);
   }
-
-
 
   @Override
   public void pause() {
@@ -70,13 +75,12 @@ public class VisualController implements IAnimatorController {
 
   @Override
   public void loop(boolean value) {
-    // TODO Auto-generated method stub
-
+    this.isLooped = value;
   }
 
   @Override
   public void addKeyFrame(
-          String id, int tick, double x, double y, int width, int height, int r, int g, int b) {
+      String id, int tick, double x, double y, int width, int height, int r, int g, int b) {
     model.addKeyFrame(id, tick, x, y, width, height, r, g, b);
     ((EditView)view).setShapesArray(model.getShapes());
   }
@@ -89,7 +93,7 @@ public class VisualController implements IAnimatorController {
 
   @Override
   public void editKeyFrame(String id, int index, int tick, double x, double y,
-                           int width, int height, int r, int g, int b) {
+      int width, int height, int r, int g, int b) {
     model.editKeyFrame(id, index, tick, x, y, width, height, r, g, b);
     ((EditView)view).setShapesArray(model.getShapes());
   }

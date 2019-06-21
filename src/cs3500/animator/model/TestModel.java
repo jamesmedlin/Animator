@@ -168,12 +168,17 @@ public class TestModel implements IModel {
   }
 
   @Override
-  public void addKeyFrame(String id, int tick, double x, double y, int width, int height, int r,
-      int g, int b) {
+  public void addKeyFrame(
+      String id, int tick, double x, double y, int width, int height, int r, int g, int b) {
     try {
       appendable.append("Key frame added to " + id + " in model");
     } catch (IOException e) {
       System.err.println("Model appendable couldn't output addKeyFrame");
     }
+  }
+
+  @Override
+  public int getMaxTick() {
+    return 0;
   }
 }

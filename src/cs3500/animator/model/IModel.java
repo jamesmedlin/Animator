@@ -88,7 +88,7 @@ public interface IModel extends IReadOnlyModel {
   void doNothing(String name, int duration) throws IllegalArgumentException;
 
   /**
-   * Adds a full motion to the animation, allowing for customizable start AND ent times.
+   * Adds a full motion to the animation, allowing for customizable start AND end times.
    *
    * @param name The name of the shape
    * @param t1   The start time of this transformation
@@ -118,5 +118,7 @@ public interface IModel extends IReadOnlyModel {
 
   void addKeyFrame(
       String id, int tick, double x, double y, int width, int height, int r, int g, int b);
+
+  int getMaxTick();
 
 }
