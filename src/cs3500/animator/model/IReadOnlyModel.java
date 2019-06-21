@@ -41,7 +41,15 @@ public interface IReadOnlyModel {
    */
   ArrayList<IReadOnlyAnimatedShape> getShapes();
 
+  /**
+   * Gets the width of the animation as an integer.
+   * @return the width of the animation
+   */
   int getWidth();
 
+  /**
+   * Gets the height of the animation as an integer.
+   * @return the height of the animation
+   */
   int getHeight();
 }

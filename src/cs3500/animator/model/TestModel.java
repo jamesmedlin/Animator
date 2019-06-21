@@ -1,6 +1,7 @@
 package cs3500.animator.model;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -51,7 +52,7 @@ public class TestModel implements IModel {
   }
 
   @Override
-  public List<IReadOnlyAnimatedShape> getShapes() {
+  public ArrayList<IReadOnlyAnimatedShape> getShapes() {
     try {
       appendable.append("Getting shapes");
     } catch (IOException e) {

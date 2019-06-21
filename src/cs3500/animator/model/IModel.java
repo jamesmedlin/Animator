@@ -111,11 +111,46 @@ public interface IModel extends IReadOnlyModel {
   void fullMotion(String name, int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1,
                   int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2);
 
+  /**
+   * Removes the index-th key frame from the shape with the given ID. For example, if the index was
+   * 0, the first key frame of the shape would be removed.
+   * 
+   * @param id the ID of the shape from which the key frame is removed
+   * @param index indicates which key frame of the shape will be removed
+   */
   void removeKeyFrame(String id, int index);
 
+  /**
+   * Edits the index-th key frame in the shape with the given id. It sets that object's fields to
+   * the given parameters.
+   * 
+   * @param id the ID of the shape whose key frame will be edited
+   * @param index indicate which key frame to edit
+   * @param tick the new tick that the key frame occurs
+   * @param x the new x position of the shape
+   * @param y the new y position of the shape
+   * @param width the new width of the shape
+   * @param height the new height of the shape
+   * @param r the new red RGB value of the shape
+   * @param g the new green RGB value of the shape
+   * @param b the new blue RBG value of the shape
+   */
   void editKeyFrame(String id, int index, int tick, double x, double y,
       int width, int height, int r, int g, int b);
 
+  /**
+   * Adds a key frame to this shape at the given tick.
+   * 
+   * @param id the ID of the shape to which the key frame will be added
+   * @param tick the tick of the key frame
+   * @param x the x position of the shape at the given tick
+   * @param y the y position of the shape at the given tick
+   * @param width the width of the shape at the given tick
+   * @param height the height of the shape at the given tick
+   * @param r the red RBG value of the shape at the given tick
+   * @param g the green RBG value of the shape at the given tick
+   * @param b the blue RBG value of the shape at the given tick
+   */
   void addKeyFrame(
       String id, int tick, double x, double y, int width, int height, int r, int g, int b);
 
