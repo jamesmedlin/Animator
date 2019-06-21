@@ -56,9 +56,6 @@ public class EditView extends VisualView implements ActionListener {
     removeFrame = new JButton("remove");
     removeFrame.setActionCommand("remove keyframe button");
 
-    name = new JTextField("name");
-    name.setActionCommand("name field");
-
 
     this.shapesArray = new ArrayList<IReadOnlyAnimatedShape>();
 //    motionsArray = new ArrayList<String>();
@@ -163,7 +160,7 @@ public class EditView extends VisualView implements ActionListener {
 
   public void makeWestPanel() {
     westPanel = new JPanel();
-    westPanel.setLayout((LayoutManager) new BoxLayout(westPanel, BoxLayout.Y_AXIS));
+    westPanel.setLayout((LayoutManager) new BoxLayout(westPanel, BoxLayout.PAGE_AXIS));
 
     shapesLabel = new JLabel("Shapes:");
     shapeList = new JList<Object>(this.shapesArray.toArray());
@@ -178,10 +175,7 @@ public class EditView extends VisualView implements ActionListener {
 
     removeShape = new JButton("remove shape");
     removeShape.setActionCommand("remove shape button");
-
-//    labelButtonPanel.add(shapesLabel);
-//    labelButtonPanel.add(shapeList);
-
+    
     westPanel.add(shapesLabel);
     westPanel.add(shapeList);
     westPanel.add(nameLabel);
@@ -260,8 +254,8 @@ public class EditView extends VisualView implements ActionListener {
     submitPanel.add(editFrame);
     submitPanel.add(removeFrame);
 
-    labelButtonPanel.add(motionsLabel);
-    labelButtonPanel.add(motionsList);
+    eastPanel.add(motionsLabel);
+    eastPanel.add(motionsList);
     labelButtonPanel.add(editFrame);
     labelButtonPanel.add(tickLabel);
     labelButtonPanel.add(tTick);
@@ -273,6 +267,7 @@ public class EditView extends VisualView implements ActionListener {
     labelButtonPanel.add(greenColorPanel);
     labelButtonPanel.add(blueColorPanel);
     labelButtonPanel.add(submitPanel);
+    eastPanel.add(labelButtonPanel);
   }
 
   private List<IReadOnlyShapeState> getMotionsList() {
