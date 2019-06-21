@@ -8,17 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
+
 import cs3500.animator.model.IReadOnlyAnimatedShape;
+import cs3500.animator.model.IReadOnlyShapeState;
 
 public class EditView extends VisualView implements ActionListener {
-  
+
   List<IViewListener> listeners;
-  
+
   public EditView(int speed, int width, int height) {
     super(speed, width, height);
-    
+
     this.listeners = new ArrayList<IViewListener>();
 
+    feedback = new JLabel("");
     rectangle = new JRadioButton("rectangle");
     rectangle.setActionCommand("rectangle button");
 
@@ -46,7 +49,7 @@ public class EditView extends VisualView implements ActionListener {
 
     name = new JTextField("name");
     name.setActionCommand("name field");
-    
+
 
     shapesArray = new ArrayList<IReadOnlyAnimatedShape>();
     motionsArray = new ArrayList<String>();
@@ -60,10 +63,10 @@ public class EditView extends VisualView implements ActionListener {
     makeWestPanel();
     setLayout(new BorderLayout());
 
-    setSize(800,800);
+    setSize(800, 800);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setLocation(200,200);
-    
+    setLocation(200, 200);
+
     pauseButton.addActionListener(this);
     playButton.addActionListener(this);
     restartButton.addActionListener(this);
@@ -77,9 +80,8 @@ public class EditView extends VisualView implements ActionListener {
     ellipse.addActionListener(this);
     name.addActionListener(this);
 
-    
     scrollPane = new JScrollPane(panel);
-    
+
     add(labelButtonPanel, BorderLayout.EAST);
     add(mainButtons, BorderLayout.NORTH);
     add(westPanel, BorderLayout.WEST);
@@ -88,6 +90,7 @@ public class EditView extends VisualView implements ActionListener {
     setVisible(true);
   }
 
+  private JLabel feedback;
   private JPanel mainButtons;
   private JScrollPane scrollPane;
   private JButton pauseButton;
@@ -96,6 +99,7 @@ public class EditView extends VisualView implements ActionListener {
   private JCheckBox loopingButton;
   private JLabel speedLabel;
   private JTextField speedText;
+  private JButton speedButton;
 
   private JPanel shapes;
   private JRadioButton rectangle;
@@ -116,6 +120,7 @@ public class EditView extends VisualView implements ActionListener {
   private JList motionsList;
   private JList shapeList;
 
+  private JPanel eastPanel;
   private JPanel labelButtonPanel;
   private JLabel nameLabel;
   private JLabel widthLabel;
@@ -231,6 +236,7 @@ public class EditView extends VisualView implements ActionListener {
     blueColorPanel.add(blueColor);
     blueColorPanel.add(tBlue);
 
+    eastPanel = new JPanel(new BoxLayout(eastPanel, BoxLayout.Y_AXIS));
     labelButtonPanel = new JPanel(new FlowLayout());
     labelButtonPanel.setPreferredSize(new Dimension(800, 150));
 
@@ -259,7 +265,7 @@ public class EditView extends VisualView implements ActionListener {
     labelButtonPanel.add(blueColorPanel);
     labelButtonPanel.add(submitPanel);
   }
-  
+
 
   public void addListener(IViewListener listener) {
     this.listeners.add(listener);
@@ -269,35 +275,49 @@ public class EditView extends VisualView implements ActionListener {
   public void actionPerformed(ActionEvent e) {
     switch (e.getActionCommand()) {
       case "pause button":
-        for (IViewListener listener : this.listeners) {
-          listener.pause();
+        try {
+          for (IViewListener listener : this.listeners) {
+            listener.pause();
+          }
+          feedback.setText("");
+        } catch (Exception r) {
+          feedback.setText("");
         }
         break;
       case "play button":
-        for (IViewListener listener : this.listeners) {
-          listener.play();
+        try {
+          for (IViewListener listener : this.listeners) {
+            listener.play();
+          }
+          feedback.setText("");
+        } catch (Exception r) {
+          feedback.setText("");
         }
+        break;
+      case "restart button":
+        for (IViewListener listener : this.listeners) {
+          listener.restart();
+        }
+        feedback.setText("");
+        break;
+      case "adjust":
+        adjustSpeedAction();
         break;
       case "edit button":
-        for (IViewListener listener : this.listeners) {
-          listener.editKeyFrame(
-              ((IReadOnlyAnimatedShape) this.shapeList.getSelectedValue()).getName(), this.shapeList.getSelectedIndex(),
-              Integer.valueOf(this.tTick.getText()),
-              Double.valueOf(this.tX.getText()),
-              Double.valueOf(this.tY.getText()),
-              Integer.valueOf(this.tWidth.getText()),
-              Integer.valueOf(this.tHeight.getText()),
-              Integer.valueOf(this.tRed.getText()),
-              Integer.valueOf(this.tGreen.getText()),
-              Integer.valueOf(this.tBlue.getText()));;
-        }
+        editAction();
         break;
       case "add keyframe button":
+        addKeyFrameAction();
         break;
       case "remove keyframe button":
+        removeKeyFrameAction();
         break;
       case "remove shape button":
+        removeShapeAction();
         break;
+      default:
+        throw new UnsupportedOperationException("Action command not supported: "
+                + e.getActionCommand());
     }
   }
 
@@ -317,14 +337,85 @@ public class EditView extends VisualView implements ActionListener {
     speedLabel = new JLabel("speed");
     speedText = new JTextField(3);
     speedText.setActionCommand("speed field");
+    speedButton = new JButton("adjust");
 
     mainButtons = new JPanel();
     mainButtons.add(speedLabel);
     mainButtons.add(speedText);
+    mainButtons.add(speedButton);
     mainButtons.add(playButton);
     mainButtons.add(pauseButton);
     mainButtons.add(restartButton);
     mainButtons.add(loopingButton);
+  }
 
+  private void adjustSpeedAction() {
+    try {
+      for (IViewListener listener : this.listeners) {
+        listener.updateSpeed(Integer.valueOf(speedText.getText()));
+      }
+      feedback.setText("");
+    } catch (Exception r) {
+      feedback.setText("Must be a positive value.");
+    }
+  }
+
+  private void editAction() {
+    try {
+      for (IViewListener listener : this.listeners) {
+        listener.editKeyFrame(
+                ((IReadOnlyAnimatedShape) this.shapeList.getSelectedValue()).getName(),
+                this.shapeList.getSelectedIndex(),
+                Integer.valueOf(this.tTick.getText()),
+                Double.valueOf(this.tX.getText()),
+                Double.valueOf(this.tY.getText()),
+                Integer.valueOf(this.tWidth.getText()),
+                Integer.valueOf(this.tHeight.getText()),
+                Integer.valueOf(this.tRed.getText()),
+                Integer.valueOf(this.tGreen.getText()),
+                Integer.valueOf(this.tBlue.getText()));
+      }
+      feedback.setText("");
+    } catch (Exception r) {
+      feedback.setText("All fields must be valid and filled to edit a movement.");
+    }
+  }
+
+  private void addKeyFrameAction() {
+    try {
+      for (IViewListener listener : this.listeners) {
+        listener.addKeyFrame(((IReadOnlyAnimatedShape) shapeList.getSelectedValue()).getName(),
+                Integer.valueOf(tTick.getText()), Double.valueOf(tX.getText()),
+                Double.valueOf(tY.getText()), Integer.valueOf(tWidth.getText()),
+                Integer.valueOf(tHeight.getText()), Integer.valueOf(tRed.getText()),
+                Integer.valueOf(tGreen.getText()), Integer.valueOf(tBlue.getText()));
+      }
+      feedback.setText("");
+    } catch (Exception r) {
+      feedback.setText("All fields must be valid and filled to add a movement.");
+    }
+  }
+
+  private void removeKeyFrameAction() {
+    try {
+      for (IViewListener listener : this.listeners) {
+        listener.removeKeyFrame(((IReadOnlyAnimatedShape) shapeList.getSelectedValue()).getName(),
+                motionsList.getSelectedIndex());
+      }
+      feedback.setText("");
+    } catch (Exception r) {
+      feedback.setText("Ensure a certain shape and its movement are selected.");
+    }
+  }
+
+  private void removeShapeAction() {
+    try {
+      for (IViewListener listener : this.listeners) {
+        listener.removeShape(((IReadOnlyAnimatedShape) shapeList.getSelectedValue()).getName());
+      }
+      feedback.setText("");
+    } catch (Exception r) {
+      feedback.setText("Ensure a certain shape and its movement are selected.");
+    }
   }
 }

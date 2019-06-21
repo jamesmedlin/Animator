@@ -260,7 +260,7 @@ public class AnimatedShape implements IAnimatedShape {
     String result = "";
     int i = 0;
     while (i < this.states.size() - 1) {
-      result += this.states.get(i).toString() + "    " + this.states.get(i + 1).toString() + "\n";
+      result += "motion " + this.name + " " + this.states.get(i).toString() + "    " + this.states.get(i + 1).toString() + "\n";
       i += 2;
     }
     return result;
