@@ -9,9 +9,11 @@ import java.awt.event.ActionListener;
 import java.awt.image.AreaAveragingScaleFilter;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -21,6 +23,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
@@ -29,7 +33,7 @@ import cs3500.animator.model.ShapeType;
  * Represents a view in which you can edit the animation provided. This is implemented through
  * a variety of swing features.
  */
-public class EditView extends VisualView implements ActionListener {
+public class EditView extends VisualView implements ActionListener, ListSelectionListener {
 
   /**
    * Constructs the new window through which the user views and edits the animation. The animation
@@ -99,6 +103,8 @@ public class EditView extends VisualView implements ActionListener {
     rectangle.addActionListener(this);
     ellipse.addActionListener(this);
     name.addActionListener(this);
+    shapeList.addListSelectionListener(this);
+
 
     scrollPane = new JScrollPane(panel);
 
@@ -208,6 +214,11 @@ public class EditView extends VisualView implements ActionListener {
 
   public void setShapesArray(ArrayList<String> array) {
     this.shapesArray = array;
+    DefaultListModel model = new DefaultListModel();
+    for (String s : this.shapesArray) {
+      model.addElement(s);
+    }
+    this.shapeList.setModel(model);
   }
 
   private void makeEastPanel() {
@@ -266,7 +277,7 @@ public class EditView extends VisualView implements ActionListener {
 
     motionsLabel = new JLabel("Motions:");
 
-    motionsList = new JList<>(getMotionsList().toArray());
+    motionsList = new JList<Object>();
     motionsList.setPreferredSize(new Dimension(300, 500));
     motionsList.setFixedCellWidth(300);
 
@@ -292,13 +303,15 @@ public class EditView extends VisualView implements ActionListener {
     eastPanel.add(labelButtonPanel);
   }
 
-  private ArrayList<String> getMotionsList() {
-    try {
-      return ((IReadOnlyAnimatedShape)
-              (shapeList.getSelectedValue())).getStatesStringArray();
-    } catch (Exception e) {
-      return new ArrayList<>();
-    }
+  public void getMotionsList() {
+      ArrayList<String> array = this.shapesArray.get(shapeList.getSelectedIndex()).getStatesStringArray();
+      DefaultListModel model = new DefaultListModel();
+      
+      for (String s : array) {
+        model.addElement(s);
+      }
+      
+      this.motionsList.setModel(model);
   }
 
   @Override
@@ -480,5 +493,11 @@ public class EditView extends VisualView implements ActionListener {
     } catch (Exception r) {
       feedback.setText("Ensure the name entered in a valid and unique name.");
     }
+  }
+
+  @Override
+  public void valueChanged(ListSelectionEvent e) {
+    this.getMotionsList();
+    
   }
 }

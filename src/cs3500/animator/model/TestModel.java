@@ -192,4 +192,9 @@ public class TestModel implements IModel {
   public int getMaxTick() {
     return 0;
   }
+
+  @Override
+  public ArrayList<String> getShapesStringArray() {
+    return null;
+  }
 }

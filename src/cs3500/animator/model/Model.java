@@ -2,6 +2,7 @@ package cs3500.animator.model;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -312,7 +313,9 @@ public final class Model implements IModel {
 
   public ArrayList<String> getShapesStringArray() {
     ArrayList<String> shapesString = new ArrayList<>();
-    for (IReadOnlyAnimatedShape shape : shapes.values()) {
+    Collection<IAnimatedShape> shapes = this.shapes.values();
+    Collections.sort((List<IAnimatedShape>) shapes);
+    for (IAnimatedShape shape : shapes) {
       switch (shape.getType()) {
         case ELLIPSE:
           shapesString.add("Ellipse " + shape.getName());
