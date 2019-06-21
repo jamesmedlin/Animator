@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e870a397-68d9-44a5-8faa-61152e356747" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cs3500/animator/controller/VisualController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/controller/VisualController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cs3500/animator/view/EditView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/view/EditView.java" afterDir="false" />
     </list>
@@ -17,15 +18,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/EditView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="186" column="29" lean-forward="true" selection-start-line="186" selection-start-column="29" selection-end-line="186" selection-end-column="29" />
+            <state relative-caret-position="2268">
+              <caret line="316" column="36" lean-forward="true" selection-start-line="316" selection-start-column="36" selection-end-line="316" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#9221#9222#0" expanded="true" />
-                <element signature="e#9259#9260#0" expanded="true" />
+                <element signature="e#9808#9809#0" expanded="true" />
+                <element signature="e#9846#9847#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -74,25 +75,36 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cs3500/animator/model/Model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="314" column="55" selection-start-line="314" selection-start-column="55" selection-end-line="314" selection-end-column="55" />
+            <state relative-caret-position="360">
+              <caret line="319" column="21" lean-forward="true" selection-start-line="319" selection-start-column="21" selection-end-line="319" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#8228#8252#0" expanded="true" />
-                <element signature="e#8451#8452#0" expanded="true" />
-                <element signature="e#8478#8479#0" expanded="true" />
-                <element signature="e#8518#8519#0" expanded="true" />
-                <element signature="e#8546#8547#0" expanded="true" />
+                <element signature="e#488#512#0" expanded="true" />
+                <element signature="e#866#890#0" expanded="true" />
+                <element signature="e#1068#1069#0" expanded="true" />
+                <element signature="e#1121#1122#0" expanded="true" />
+                <element signature="e#2589#2590#0" expanded="true" />
+                <element signature="e#2619#2620#0" expanded="true" />
+                <element signature="e#6078#6099#0" expanded="true" />
+                <element signature="e#6158#6174#0" expanded="true" />
+                <element signature="e#8257#8281#0" expanded="true" />
+                <element signature="e#8480#8481#0" expanded="true" />
+                <element signature="e#8507#8508#0" expanded="true" />
+                <element signature="e#8547#8548#0" expanded="true" />
+                <element signature="e#8575#8576#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cs3500/animator/model/AShapeState.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/cs3500/animator/Excellence.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1122">
-              <caret line="78" column="30" selection-start-line="78" selection-start-column="30" selection-end-line="78" selection-end-column="30" />
+            <state relative-caret-position="-1589">
+              <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -109,8 +121,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cs3500/animator/controller/VisualController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-323">
-              <caret line="53" column="21" selection-start-line="53" selection-start-column="21" selection-end-line="53" selection-end-column="21" />
+            <state relative-caret-position="343">
+              <caret line="114" column="53" selection-start-line="114" selection-start-column="53" selection-end-line="114" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1149#1150#0" expanded="true" />
@@ -155,7 +167,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>print</find>
       <find>adder</find>
       <find>getT</find>
       <find>compare</find>
@@ -167,7 +178,6 @@
       <find>scrollpane</find>
       <find>namePanel</find>
       <find>WEST</find>
-      <find>boxLay</find>
       <find>radio</find>
       <find>listeners</find>
       <find>adjust</find>
@@ -179,12 +189,14 @@
       <find>motionsList</find>
       <find>shapes</find>
       <find>name</find>
-      <find>set</find>
       <find>shapesArr</find>
       <find>setShape</find>
       <find>shapesArray</find>
       <find>feedback</find>
       <find>mainbutton</find>
+      <find>boxLay</find>
+      <find>set</find>
+      <find>setS</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -240,8 +252,8 @@
         <option value="$PROJECT_DIR$/src/cs3500/animator/model/IReadOnlyModel.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/model/IReadOnlyAnimatedShape.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/model/IModel.java" />
-        <option value="$PROJECT_DIR$/src/cs3500/animator/model/Model.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/model/AnimatedShape.java" />
+        <option value="$PROJECT_DIR$/src/cs3500/animator/model/Model.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/controller/VisualController.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/view/EditView.java" />
       </list>
@@ -358,11 +370,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TextViewTest">
+  <component name="RunManager" selected="Application.Excellence">
     <configuration name="Excellence" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cs3500.animator.Excellence" />
       <module name="Homework5" />
-      <option name="PROGRAM_PARAMETERS" value="-view edit -speed 30" />
+      <option name="PROGRAM_PARAMETERS" value="-view edit -speed 30 -in ‪$USER_HOME$/Downloads/code(19)/code/toh-3 " />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="cs3500.animator.*" />
@@ -418,8 +430,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TextViewTest" />
         <item itemvalue="Application.Excellence" />
+        <item itemvalue="JUnit.TextViewTest" />
         <item itemvalue="JUnit.ShapeTest" />
         <item itemvalue="JUnit.SVGViewTest" />
         <item itemvalue="JUnit.AShapeStateTest" />
@@ -475,7 +487,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110432000" />
+    <option name="totallyTimeSpent" value="113749000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -497,10 +509,10 @@
       <window_info id="Designer" order="4" />
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="0" weight="0.09915014" />
+      <window_info anchor="bottom" id="Messages" order="0" weight="0.09815951" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.21932516" />
+      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.21932516" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.04249292" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -793,16 +805,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/Excellence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cs3500/animator/model/IReadOnlyModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9">
@@ -920,25 +922,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/model/Model.java">
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Temp1_MocksAndTesting.zip/src/View.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="314" column="55" selection-start-line="314" selection-start-column="55" selection-end-line="314" selection-end-column="55" />
+        <state relative-caret-position="1836">
+          <caret line="143" column="35" lean-forward="true" selection-start-line="143" selection-start-column="22" selection-end-line="143" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8228#8252#0" expanded="true" />
-            <element signature="e#8451#8452#0" expanded="true" />
-            <element signature="e#8478#8479#0" expanded="true" />
-            <element signature="e#8518#8519#0" expanded="true" />
-            <element signature="e#8546#8547#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/model/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="319" column="21" lean-forward="true" selection-start-line="319" selection-start-column="21" selection-end-line="319" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#488#512#0" expanded="true" />
+            <element signature="e#866#890#0" expanded="true" />
+            <element signature="e#1068#1069#0" expanded="true" />
+            <element signature="e#1121#1122#0" expanded="true" />
+            <element signature="e#2589#2590#0" expanded="true" />
+            <element signature="e#2619#2620#0" expanded="true" />
+            <element signature="e#6078#6099#0" expanded="true" />
+            <element signature="e#6158#6174#0" expanded="true" />
+            <element signature="e#8257#8281#0" expanded="true" />
+            <element signature="e#8480#8481#0" expanded="true" />
+            <element signature="e#8507#8508#0" expanded="true" />
+            <element signature="e#8547#8548#0" expanded="true" />
+            <element signature="e#8575#8576#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cs3500/animator/controller/VisualController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-323">
-          <caret line="53" column="21" selection-start-line="53" selection-start-column="21" selection-end-line="53" selection-end-column="21" />
+        <state relative-caret-position="343">
+          <caret line="114" column="53" selection-start-line="114" selection-start-column="53" selection-end-line="114" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1149#1150#0" expanded="true" />
@@ -957,24 +977,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Temp1_MocksAndTesting.zip/src/View.java">
+    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/EditView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1836">
-          <caret line="143" column="35" lean-forward="true" selection-start-line="143" selection-start-column="22" selection-end-line="143" selection-end-column="35" />
+        <state relative-caret-position="2268">
+          <caret line="316" column="36" lean-forward="true" selection-start-line="316" selection-start-column="36" selection-end-line="316" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#9808#9809#0" expanded="true" />
+            <element signature="e#9846#9847#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/EditView.java">
+    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/Excellence.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="186" column="29" lean-forward="true" selection-start-line="186" selection-start-column="29" selection-end-line="186" selection-end-column="29" />
+        <state relative-caret-position="-1589">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#9221#9222#0" expanded="true" />
-            <element signature="e#9259#9260#0" expanded="true" />
           </folding>
         </state>
       </provider>

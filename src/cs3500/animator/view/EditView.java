@@ -25,6 +25,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
+import cs3500.animator.model.IAnimatedShape;
 import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
@@ -34,6 +36,7 @@ import cs3500.animator.model.ShapeType;
  * a variety of swing features.
  */
 public class EditView extends VisualView implements ActionListener, ListSelectionListener {
+  ArrayList<IReadOnlyAnimatedShape> shapesList;
 
   /**
    * Constructs the new window through which the user views and edits the animation. The animation
@@ -46,6 +49,8 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
    */
   public EditView(int speed, int width, int height) {
     super(speed, width, height);
+
+    this.shapesList = new ArrayList<IReadOnlyAnimatedShape>();
 
     this.listeners = new ArrayList<IViewListener>();
 
@@ -221,8 +226,18 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     westPanel.add(removeShape);
   }
 
-  public void setShapesArray(ArrayList<String> array) {
-    this.shapesArray = array;
+  public void setShapesArray(ArrayList<IReadOnlyAnimatedShape> array) {
+    this.shapesArray = new ArrayList<>();
+    for (IReadOnlyAnimatedShape shape : array) {
+      switch (shape.getType()) {
+        case ELLIPSE:
+          this.shapesArray.add("Ellipse " + shape.getName());
+          break;
+        case RECTANGLE:
+          this.shapesArray.add("Rectangle " + shape.getName());
+          break;
+      }
+    }
     DefaultListModel model = new DefaultListModel();
     for (String s : this.shapesArray) {
       model.addElement(s);
@@ -313,13 +328,13 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
   }
 
   public void getMotionsList() {
-      ArrayList<String> array = this.shapesArray.get(shapeList.getSelectedIndex()).getStatesStringArray();
+      ArrayList<String> array = this.shapesList.get(shapeList.getSelectedIndex()).getStatesStringArray();
       DefaultListModel model = new DefaultListModel();
-      
+
       for (String s : array) {
         model.addElement(s);
       }
-      
+
       this.motionsList.setModel(model);
   }
 
