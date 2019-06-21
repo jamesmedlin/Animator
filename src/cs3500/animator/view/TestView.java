@@ -7,18 +7,27 @@ import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
 
 
+/**
+ * Represents a dummy view that tests whether the controller and model are synced up correctly with
+ * the view. It takes in a readable that fires dummy events to be handled by the controller.
+ */
 public class TestView implements IView {
   
   List<IViewListener> listeners;
   Readable readable;
   
+  /**
+   * Constructs a dummy view.
+   * 
+   * @param readable The readable that is composed of the names of the dummy events to be fired.
+   */
   public TestView(Readable readable){
     listeners = new ArrayList<IViewListener>();
     this.readable = readable;
   }
 
   @Override
-  public void addListner(IViewListener listener) {
+  public void addListener(IViewListener listener) {
     listeners.add(listener);
   }
 

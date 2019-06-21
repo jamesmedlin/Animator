@@ -17,9 +17,9 @@ import cs3500.animator.model.IReadOnlyShapeState;
  * Represents a view that opens a separate animation window.
  */
 public class VisualView extends JFrame implements IView {
-  protected DrawingPanel panel;
   
-  List<IViewListener> listeners = new ArrayList<IViewListener>();
+  protected DrawingPanel panel;
+  protected List<IViewListener> listeners;
 
   /**
    * represents the standard animation/user-friendly interpretation of the program.
@@ -27,6 +27,7 @@ public class VisualView extends JFrame implements IView {
   public VisualView(int speed, int width, int height) {
     super();
 
+    this.listeners = new ArrayList<IViewListener>();
     this.panel = new DrawingPanel();
     this.setSize(width + 25, height + 25);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,7 +52,7 @@ public class VisualView extends JFrame implements IView {
   }
 
   @Override
-  public void addListner(IViewListener listener) {
+  public void addListener(IViewListener listener) {
     this.listeners.add(listener);
   }
 }

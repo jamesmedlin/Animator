@@ -56,7 +56,7 @@ public class SVGView implements IView {
   }
 
   @Override
-  public void addListner(IViewListener listener) {
+  public void addListener(IViewListener listener) {
     throw new UnsupportedOperationException("Listeners not supported for this view.");
   }
 

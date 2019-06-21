@@ -9,7 +9,6 @@ import cs3500.animator.model.IReadOnlyShapeState;
 
 /**
  * Represents the view for an animator program.
- *
  */
 public interface IView {
 
@@ -29,5 +28,10 @@ public interface IView {
    */
   void drawShapes(List<IReadOnlyShapeState> shapes);
 
-  void addListner(IViewListener listener);
+  /**
+   * Adds a listener to this view that handles when events are fired by the view.
+   * 
+   * @param listener the listener to be added
+   */
+  void addListener(IViewListener listener);
 }

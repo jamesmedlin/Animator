@@ -9,7 +9,7 @@ import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
 
 /**
- * represents the text formatted as a String for this type of view in this program.
+ * Represents an animation formatted as a string of texts that lists shapes and their motions.
  */
 public class TextView implements IView {
 
@@ -43,7 +43,7 @@ public class TextView implements IView {
   }
   
   @Override
-  public void addListner(IViewListener listener) {
+  public void addListener(IViewListener listener) {
     throw new UnsupportedOperationException("Listeners not supported for this view.");
   }
 }
