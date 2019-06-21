@@ -24,7 +24,7 @@ public class TestController implements IAnimatorController, IViewListener {
   @Override
   public void removeShape(String id) {
     try {
-      appendable.append(id + "shape removed");
+      appendable.append(id + " shape removed");
     } catch (IOException e) {
       System.err.println("Appendable could not output pause");
     }
@@ -32,7 +32,11 @@ public class TestController implements IAnimatorController, IViewListener {
 
   @Override
   public void loop(boolean value) {
-
+    try {
+      appendable.append("loop");
+    } catch (IOException e) {
+      System.err.println("Appendable could not output loop");
+    }
   }
 
   @Override

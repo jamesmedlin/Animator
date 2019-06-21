@@ -20,11 +20,6 @@ public class VisualViewTest {
     //v1 = new VisualView(30,m1);
   }
 
-  @Test(expected = UnsupportedOperationException.class)
-  public void testFail() {
-    v1.formatSVG(m1);
-  }
-
   @Test (expected = UnsupportedOperationException.class)
   public void testFail2() {
     v1.printView(m1);

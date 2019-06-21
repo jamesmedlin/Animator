@@ -38,7 +38,7 @@ public class SVGViewTest {
   public void testPrintView3() {
     assertEquals("<svg width=\"500\" height=\"500\" version=\"1.1\" " +
             "xmlns=\"http://www.w3.org/2000/svg\">\n" +
-            "\n</svg>\n", v1.formatSVG(m1));
+            "\n</svg>\n", v1.printView(m1));
   }
 
   @Test
@@ -52,7 +52,7 @@ public class SVGViewTest {
             "<ellipse id=\"Rich II\">\n" +
             "</ellipse>\n" +
             "\n" +
-            "</svg>\n", v1.formatSVG(m1));
+            "</svg>\n", v1.printView(m1));
   }
 
   @Test
@@ -106,7 +106,7 @@ public class SVGViewTest {
         + "s\" attributeName=\"ry\" from=\"1\" to=\"36\" fill=\"freeze\" />\n" + 
         "</ellipse>\n" + 
         "\n" + 
-        "</svg>\n", v1.formatSVG(m1));
+        "</svg>\n", v1.printView(m1));
   }
 
   @Test
@@ -194,7 +194,7 @@ public class SVGViewTest {
         + "Name=\"ry\" from=\"0\" to=\"17\" fill=\"freeze\" />\n" + 
         "</ellipse>\n" + 
         "\n" + 
-        "</svg>\n", v1.formatSVG(m1));
+        "</svg>\n", v1.printView(m1));
   }
 
   @Test
@@ -279,6 +279,6 @@ public class SVGViewTest {
         + "me=\"ry\" from=\"0\" to=\"17\" fill=\"freeze\" />\n" + 
         "</ellipse>\n" + 
         "\n" + 
-        "</svg>\n", v1.formatSVG(m1));
+        "</svg>\n", v1.printView(m1));
   }
 }

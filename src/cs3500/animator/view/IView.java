@@ -14,20 +14,13 @@ import cs3500.animator.model.IReadOnlyShapeState;
 public interface IView {
 
   /**
-   * prints the motions of each shape in the animation.
+   * prints the motions of each shape in the animation in either TextView or SVGView.
    *
    * @param model a Read Only version of the model
    * @return a String description of the shapes and their motions
    */
   String printView(IReadOnlyModel model);
 
-  /**
-   * returns an svg formatted description of the animation.
-   *
-   * @param model a Read Only version of the model
-   * @return a String description of the animation in SVG style
-   */
-  String formatSVG(IReadOnlyModel model);
 
   /**
    * Renders all the shapes in the given list.

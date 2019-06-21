@@ -107,6 +107,7 @@ public class Excellence {
           break;
         case "visual":
         case "edit":
+          view.addListner(controller);
           controller.play();
           break;
         default:

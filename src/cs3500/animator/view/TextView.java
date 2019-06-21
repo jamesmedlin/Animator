@@ -25,12 +25,6 @@ public class TextView implements IView {
   }
 
   @Override
-  public String formatSVG(IReadOnlyModel model) {
-    throw new UnsupportedOperationException("This operation is not " +
-        "supported in this type of view.");
-  }
-
-  @Override
   public void drawShapes(List<IReadOnlyShapeState> shapes) {
     throw new UnsupportedOperationException("This operation is not " +
         "supported in this type of view.");

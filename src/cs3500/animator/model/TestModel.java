@@ -73,7 +73,7 @@ public class TestModel implements IModel {
   @Override
   public int getHeight() {
     try {
-      appendable.append("Getting height");
+      appendable.append("Getting model height");
     } catch (IOException e) {
       System.err.println("Model appendable couldn't output getHeight");
     }
@@ -83,7 +83,7 @@ public class TestModel implements IModel {
   @Override
   public void removeShape(String name) throws IllegalArgumentException {
     try {
-      appendable.append("Remove shape named " + name);
+      appendable.append("Shape " + name + " removed from model");
     } catch (IOException e) {
       System.err.println("Model appendable couldn't output removeShape");
     }
@@ -92,60 +92,88 @@ public class TestModel implements IModel {
   @Override
   public void changeColorTo(String name, int red, int green, int blue, int duration)
       throws IllegalArgumentException {
-    // TODO Auto-generated method stub
+    try {
+      appendable.append("Change color of " + name + " in model");
+    } catch (IOException e) {
+      System.err.println("Model appendable couldn't output changeColorTo");
+    }
 
   }
 
   @Override
   public void moveTo(String name, double x, double y, int duration) {
-    // TODO Auto-generated method stub
-
+    try {
+      appendable.append("Change color of " + name + " in model");
+    } catch (IOException e) {
+      System.err.println("Model appendable couldn't output changeColorTo");
+    }
   }
 
   @Override
   public void changeSizeTo(String name, int newHeight, int newWidth, int duration)
       throws IllegalArgumentException {
-    // TODO Auto-generated method stub
-
+    try {
+      appendable.append("Change size of " + name + " in model");
+    } catch (IOException e) {
+      System.err.println("Model appendable couldn't output changeSizeTo");
+    }
   }
 
   @Override
   public void fullMotionTo(String name, int duration, double endX, double endY, int endHeight,
       int endWidth, int endRed, int endGreen, int endBlue) {
-    // TODO Auto-generated method stub
-
+    try {
+      appendable.append("Full motion to of " + name + " in model");
+    } catch (IOException e) {
+      System.err.println("Model appendable couldn't output fullMotionTo");
+    }
   }
 
   @Override
   public void doNothing(String name, int duration) throws IllegalArgumentException {
-    // TODO Auto-generated method stub
-
+    try {
+      appendable.append("Do nothing added to " + name + " in model");
+    } catch (IOException e) {
+      System.err.println("Model appendable couldn't output doNothing");
+    }
   }
 
   @Override
   public void fullMotion(String name, int t1, int x1, int y1, int w1, int h1, int r1, int g1,
       int b1, int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2) {
-    // TODO Auto-generated method stub
-
+    try {
+      appendable.append("Full motion added to " + name + " in model");
+    } catch (IOException e) {
+      System.err.println("Model appendable couldn't output fullMotion");
+    }
   }
 
   @Override
   public void removeKeyFrame(String id, int index) {
-    // TODO Auto-generated method stub
-
+    try {
+      appendable.append("Key frame removed from " + id + " in model");
+    } catch (IOException e) {
+      System.err.println("Model appendable couldn't output removeKeyFrame");
+    }
   }
 
   @Override
   public void editKeyFrame(String id, int index, int tick, double x, double y, int width,
       int height, int r, int g, int b) {
-    // TODO Auto-generated method stub
-
+    try {
+      appendable.append("Key frame edited in " + id + " in model");
+    } catch (IOException e) {
+      System.err.println("Model appendable couldn't output editKeyFrame");
+    }
   }
 
   @Override
   public void addKeyFrame(String id, int tick, double x, double y, int width, int height, int r,
       int g, int b) {
-    // TODO Auto-generated method stub
-
+    try {
+      appendable.append("Key frame added to " + id + " in model");
+    } catch (IOException e) {
+      System.err.println("Model appendable couldn't output addKeyFrame");
+    }
   }
 }

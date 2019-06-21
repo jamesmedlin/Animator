@@ -36,8 +36,9 @@ public class SVGView implements IView {
         });
   }
 
+
   @Override
-  public String formatSVG(IReadOnlyModel model) {
+  public String printView(IReadOnlyModel model) {
     String result = "<svg width=\"" + model.getWidth() + "\" height=\"" + model.getHeight()
         + "\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n";
     for (IReadOnlyAnimatedShape shape : model.getShapes()) {
@@ -46,12 +47,6 @@ public class SVGView implements IView {
       result += tag.format();
     }
     return result + "\n</svg>\n";
-  }
-
-  @Override
-  public String printView(IReadOnlyModel model) {
-    throw new UnsupportedOperationException("This operation is" +
-        " not supported in this type of view.");
   }
 
   @Override

@@ -19,7 +19,7 @@ import cs3500.animator.model.IReadOnlyShapeState;
 public class VisualView extends JFrame implements IView {
   protected DrawingPanel panel;
   
-  ArrayList<IViewListener> listeners;
+  List<IViewListener> listeners = new ArrayList<IViewListener>();
 
   /**
    * represents the standard animation/user-friendly interpretation of the program.
@@ -41,12 +41,6 @@ public class VisualView extends JFrame implements IView {
 
   @Override
   public String printView(IReadOnlyModel model) {
-    throw new UnsupportedOperationException("This operation is not" +
-            " supported in this type of view.");
-  }
-
-  @Override
-  public String formatSVG(IReadOnlyModel model) {
     throw new UnsupportedOperationException("This operation is not" +
             " supported in this type of view.");
   }
