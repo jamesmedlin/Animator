@@ -1,6 +1,8 @@
 package cs3500.animator.view;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -15,7 +17,7 @@ import cs3500.animator.model.IReadOnlyShapeState;
 /**
  * Represents a view that opens a separate animation window.
  */
-public class VisualView extends JFrame implements IView {
+public class VisualView extends JFrame implements IView, ActionListener {
   
   protected DrawingPanel panel;
   protected List<IViewListener> listeners;
@@ -37,6 +39,7 @@ public class VisualView extends JFrame implements IView {
 
     add(panel, BorderLayout.CENTER);
     scrollPane = new JScrollPane(panel);
+    scrollPane.setPreferredSize(new Dimension(1000, 1000));
     this.add(this.scrollPane, BorderLayout.CENTER);
     setVisible(true);
   }
@@ -60,5 +63,11 @@ public class VisualView extends JFrame implements IView {
   @Override
   public void setShapesArray(ArrayList<IReadOnlyAnimatedShape> shapes) {
     throw new UnsupportedOperationException("Setting shapes not supported by this view");
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    // TODO Auto-generated method stub
+    
   }
 }
