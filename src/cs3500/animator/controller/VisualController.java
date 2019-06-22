@@ -117,7 +117,7 @@ public class VisualController implements IAnimatorController {
     this.setShapesArray();
   }
 
-  public void setShapesArray() {
+  private void setShapesArray() {
     view.setShapesArray(model.getShapes());
   }
 
