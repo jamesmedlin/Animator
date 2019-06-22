@@ -166,7 +166,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     shapesLabel = new JLabel("Shapes:");
     shapesPanel.add(shapesLabel);
 
-    shapeList = new JList<IReadOnlyAnimatedShape>();
+    shapeList = new JList<String>();
     shapeList.addListSelectionListener(this);
     shapeList.setPreferredSize(new Dimension(300, 500));
     shapeList.setFixedCellWidth(300);
@@ -270,9 +270,9 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     labelButtonPanel.setPreferredSize(new Dimension(300, 150));
     motionsPanel = new JPanel();
 
-    motionsLabel = new JLabel("Motions:");
+    motionsLabel = new JLabel("Motions:\n(t, x, y, w, h, r, g, b)");
 
-    motionsList = new JList<Object>();
+    motionsList = new JList<String>();
     motionsList.setPreferredSize(new Dimension(300, 500));
     motionsList.setFixedCellWidth(300);
 
