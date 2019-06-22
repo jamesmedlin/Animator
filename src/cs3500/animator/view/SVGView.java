@@ -1,6 +1,7 @@
 package cs3500.animator.view;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Function;
@@ -58,6 +59,12 @@ public class SVGView implements IView {
   @Override
   public void addListener(IViewListener listener) {
     throw new UnsupportedOperationException("Listeners not supported for this view.");
+  }
+
+
+  @Override
+  public void setShapesArray(ArrayList<IReadOnlyAnimatedShape> shapes) {
+    throw new UnsupportedOperationException("Setting shapes not supported by this view");
   }
 
 }

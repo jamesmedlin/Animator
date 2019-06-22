@@ -52,7 +52,11 @@ public class VisualController implements IAnimatorController {
     });
     
     view.addListener(this);
-    this.setShapesArray();
+    try {
+      this.setShapesArray();
+    } catch (UnsupportedOperationException e) {
+      //Continue as normal
+    }
   }
 
   @Override
@@ -114,7 +118,7 @@ public class VisualController implements IAnimatorController {
   }
 
   public void setShapesArray() {
-    ((EditView)view).setShapesArray(model.getShapes());
+    view.setShapesArray(model.getShapes());
   }
 
   @Override
