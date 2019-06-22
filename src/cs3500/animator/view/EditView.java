@@ -456,9 +456,12 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
   }
 
   private void removeShapeAction() {
+    Scanner string = new Scanner((String)shapeList.getSelectedValue());
+    string.next();
+    String temp = string.next();
     try {
       for (IViewListener listener : this.listeners) {
-        listener.removeShape(((IReadOnlyAnimatedShape) shapeList.getSelectedValue()).getName());
+        listener.removeShape(temp);
       }
       feedback.setText("");
     } catch (Exception r) {
@@ -489,9 +492,9 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
   public void valueChanged(ListSelectionEvent e) {
     Scanner string = new Scanner((String)shapeList.getSelectedValue());
     string.next();
+    String temp = string.next();
     for (IViewListener listener : this.listeners) {
-      this.getMotionsList(listener.getShape(string.next()));
-
+      this.getMotionsList(listener.getShape(temp));
     }
   }
 

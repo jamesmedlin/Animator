@@ -519,16 +519,22 @@ public class AnimatedShape implements IAnimatedShape {
 
   public ArrayList<String> getStatesStringArray() {
     ArrayList<String> result = new ArrayList<String>();
-    int i = 1;
-    result.add(this.states.get(0).toString());
-    while (i < this.states.size() - 2) {
-      if (i % 2 == 1) {
-        result.add(this.states.get(i).toString());
+    if (this.states.size() > 0) {
+      int i = 1;
+      result.add(this.states.get(0).toString());
+      while (i < this.states.size() - 2) {
+        if (i % 2 == 1) {
+          result.add(this.states.get(i).toString());
+        }
         i++;
       }
     }
-    result.add(this.states.get(this.states.size() - 1).toString());
-
+    if (this.states.size() > 2) {
+      result.add(this.states.get(this.states.size() - 1).toString());
+    }
+    else {
+      result = new ArrayList<>();
+    }
     return result;
   }
 
