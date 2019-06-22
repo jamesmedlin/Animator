@@ -41,10 +41,12 @@ public class AnimatedShape implements IAnimatedShape {
       this.order = order;
       switch (type) {
         case RECTANGLE:
-          this.curState = new RectangleState(0, 0, 0,new Color(0, 0, 0), new Point2D.Double(0, 0));
+          this.curState = new RectangleState(0, 0, 0,new Color(0, 0, 0),
+                  new Point2D.Double(0, 0));
           break;
         case ELLIPSE:
-          this.curState = new EllipseState(0, 0, 0,new Color(0, 0, 0), new Point2D.Double(0, 0));
+          this.curState = new EllipseState(0, 0, 0,new Color(0, 0, 0),
+                  new Point2D.Double(0, 0));
           break;
         default:
           throw new IllegalArgumentException(
@@ -474,6 +476,9 @@ public class AnimatedShape implements IAnimatedShape {
           tick, (int)x, (int)y, width, height, r, g, b);
     }
     int curIndex = 0;
+    if (this.states.size() == 0) {
+      this.addFrameMotion(tick,(int)x,(int)y,width,height,r,g,b,tick,(int)x,(int)y,width,height,r,g,b);
+    }
     try {
       while (tick >= this.states.get(curIndex).getTick()) {
         curIndex++;
