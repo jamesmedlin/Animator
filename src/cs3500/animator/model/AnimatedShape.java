@@ -468,6 +468,11 @@ public class AnimatedShape implements IAnimatedShape {
   @Override
   public void addKeyFrame(
       int tick, double x, double y, int width, int height, int r, int g, int b) {
+    
+    if (this.states.size() == 0) {
+      this.addFrameMotion(tick, (int)x, (int)y, width, height, r, g, b,
+          tick, (int)x, (int)y, width, height, r, g, b);
+    }
     int curIndex = 0;
     try {
       while (tick >= this.states.get(curIndex).getTick()) {

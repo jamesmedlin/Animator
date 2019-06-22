@@ -39,7 +39,7 @@ public class VisualView extends JFrame implements IView, ActionListener {
 
     add(panel, BorderLayout.CENTER);
     scrollPane = new JScrollPane(panel);
-    scrollPane.setPreferredSize(new Dimension(1000, 1000));
+    scrollPane.setPreferredSize(new Dimension(500, 500));
     this.add(this.scrollPane, BorderLayout.CENTER);
     setVisible(true);
   }
