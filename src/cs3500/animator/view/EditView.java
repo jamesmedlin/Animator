@@ -107,6 +107,8 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
 
     makeEastPanel();
     this.add(this.eastPanel, BorderLayout.EAST);
+    
+    pack();
   }
 
   private void makeNorthPanel() {
