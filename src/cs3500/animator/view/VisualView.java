@@ -8,8 +8,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JFrame;
-import javax.swing.Timer;
+import javax.swing.*;
+
 import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.IReadOnlyModel;
 import cs3500.animator.model.IReadOnlyShapeState;
@@ -21,6 +21,7 @@ public class VisualView extends JFrame implements IView {
   
   protected DrawingPanel panel;
   protected List<IViewListener> listeners;
+  protected JScrollPane scrollPane;
 
   /**
    * represents the standard animation/user-friendly interpretation of the program.
@@ -36,8 +37,9 @@ public class VisualView extends JFrame implements IView {
     panel.setPreferredSize(new Dimension(width, height));
     panel.setBackground(Color.white);
 
-
     add(panel, BorderLayout.CENTER);
+    scrollPane = new JScrollPane(panel);
+    this.add(this.scrollPane, BorderLayout.CENTER);
     setVisible(true);
   }
 

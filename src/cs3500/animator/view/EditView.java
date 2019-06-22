@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import cs3500.animator.model.IReadOnlyAnimatedShape;
@@ -92,6 +93,8 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
   private JPanel redColorPanel;
   private JPanel greenColorPanel;
   private JPanel blueColorPanel;
+  private JScrollPane scrollPaneShapes;
+  private JScrollPane scrollPaneMotions;
 
 
 
@@ -99,6 +102,8 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     super(speed, width, height);
 
     this.shapeStrings = new ArrayList<String>();
+
+    scrollPane = new JScrollPane(panel);
 
     makeNorthPanel();
     this.add(this.northPanel, BorderLayout.NORTH);
@@ -108,8 +113,10 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
 
     makeEastPanel();
     this.add(this.eastPanel, BorderLayout.EAST);
-    
+
     pack();
+    this.add(this.scrollPane, BorderLayout.CENTER);
+
   }
 
   private void makeNorthPanel() {
@@ -169,9 +176,10 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
 
     shapeList = new JList<String>();
     shapeList.addListSelectionListener(this);
-    shapeList.setPreferredSize(new Dimension(300, 500));
+    scrollPaneShapes = new JScrollPane(shapeList);
     shapeList.setFixedCellWidth(300);
-    shapesPanel.add(shapeList);
+    scrollPaneShapes.setPreferredSize(new Dimension(300, 400));
+    shapesPanel.add(scrollPaneShapes);
 
 
     addShape = new JButton("add shape");
@@ -215,6 +223,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     editShapesPanel.add(editShapesButtonPanel);
 
     westPanel.add(shapesPanel);
+
     westPanel.add(editShapesPanel);
   }
 
@@ -274,8 +283,13 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     motionsLabel = new JLabel("Motions:\n(t, x, y, w, h, r, g, b)");
 
     motionsList = new JList<String>();
-    motionsList.setPreferredSize(new Dimension(300, 500));
+    scrollPaneMotions = new JScrollPane(motionsList);
     motionsList.setFixedCellWidth(300);
+    scrollPaneMotions.setPreferredSize(new Dimension(300, 400));
+
+    motionsPanel.add(motionsLabel);
+    motionsPanel.add(scrollPaneMotions);
+
 
     editFrame = new JButton("Edit");
     editFrame.setActionCommand("edit keyframe button");
@@ -294,8 +308,6 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     submitPanel.add(editFrame);
     submitPanel.add(removeFrame);
 
-    motionsPanel.add(motionsLabel);
-    motionsPanel.add(motionsList);
     eastPanel.add(motionsPanel);
     labelButtonPanel.add(editFrame);
     labelButtonPanel.add(tickLabel);
@@ -477,7 +489,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
             Integer.valueOf(tBlue.getText()));
       }
       feedback.setText("");
-    } catch (NumberFormatException e) {
+    } catch (Exception e) {
       feedback.setText("Ensure a certain shape and its movement are selected. And ensure all frame"
           + "fields are filled out.");
     }
@@ -498,7 +510,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
             motionsList.getSelectedIndex());
       }
       feedback.setText("");
-    } catch (NumberFormatException r) {
+    } catch (Exception r) {
       feedback.setText("Ensure a certain shape and its movement are selected.");
     }
   }
@@ -517,7 +529,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
         listener.removeShape(this.selectedName);
       }
       feedback.setText("");
-    } catch (NumberFormatException r) {
+    } catch (Exception r) {
       feedback.setText("Ensure a certain shape and its movement are selected.");
     }
   }
@@ -544,7 +556,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
   @Override
   public void valueChanged(ListSelectionEvent e) {
     if (e.getValueIsAdjusting()) {
-      System.out.println(this.shapeList.getSelectedIndex());
+     // System.out.println(this.shapeList.getSelectedIndex());
       Scanner string = new Scanner(((String) this.shapeList.getSelectedValue()));
       string.next();
       this.selectedName = string.next();

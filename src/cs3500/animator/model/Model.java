@@ -125,7 +125,6 @@ public final class Model implements IModel {
           new Point2D.Double(endX, endY), endHeight, endWidth,
           new Color(endRed, endGreen, endBlue), duration);
     }
-
     this.height = (int) Math.max(endY, this.height);
     this.width = (int) Math.max(endX, this.width);
   }
