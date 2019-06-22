@@ -547,9 +547,9 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
       Scanner string = new Scanner(((String) this.shapeList.getSelectedValue()));
       string.next();
       this.selectedName = string.next();
-    }
       for (IViewListener listener : this.listeners) {
         this.getMotionsList(listener.getShape(this.selectedName));
       }
+    }
   }
 }
