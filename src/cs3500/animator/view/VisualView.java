@@ -10,7 +10,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.Timer;
-
+import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.IReadOnlyModel;
 import cs3500.animator.model.IReadOnlyShapeState;
 
@@ -55,5 +55,10 @@ public class VisualView extends JFrame implements IView {
   @Override
   public void addListener(IViewListener listener) {
     this.listeners.add(listener);
+  }
+
+  @Override
+  public void setShapesArray(ArrayList<IReadOnlyAnimatedShape> shapes) {
+    throw new UnsupportedOperationException("Setting shapes not supported by this view");
   }
 }

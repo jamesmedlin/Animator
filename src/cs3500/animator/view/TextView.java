@@ -1,6 +1,7 @@
 package cs3500.animator.view;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import cs3500.animator.model.IReadOnlyAnimatedShape;
@@ -45,5 +46,10 @@ public class TextView implements IView {
   @Override
   public void addListener(IViewListener listener) {
     throw new UnsupportedOperationException("Listeners not supported for this view.");
+  }
+
+  @Override
+  public void setShapesArray(ArrayList<IReadOnlyAnimatedShape> shapes) {
+    throw new UnsupportedOperationException("Not supported for this view");
   }
 }

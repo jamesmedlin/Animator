@@ -2,6 +2,7 @@ package cs3500.animator.view;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.IReadOnlyModel;
 import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
@@ -81,5 +82,10 @@ public class TestView implements IView {
     } catch (Exception e) {
       
     } 
+  }
+
+  @Override
+  public void setShapesArray(ArrayList<IReadOnlyAnimatedShape> shapes) {
+    throw new UnsupportedOperationException("Setting shapes not supported by this view");
   }
 }
