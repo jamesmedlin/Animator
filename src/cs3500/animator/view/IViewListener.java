@@ -1,5 +1,6 @@
 package cs3500.animator.view;
 
+import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.ShapeType;
 
 /**
@@ -92,5 +93,13 @@ public interface IViewListener {
    */
   void editKeyFrame(String id, int index, int tick, double x, double y,
       int width, int height, int r, int g, int b);
+
+  /**
+   * Gets shape in the model with the given ID
+   * 
+   * @param id the id of the shape to be return 
+   * @return read only animated shape object with the given id
+   */
+  IReadOnlyAnimatedShape getShape(String id);
 
 }

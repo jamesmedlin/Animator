@@ -1,5 +1,6 @@
 package cs3500.animator.controller;
 import java.io.IOException;
+import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.ShapeType;
 import cs3500.animator.view.IView;
 import cs3500.animator.view.IViewListener;
@@ -113,5 +114,15 @@ public class TestController implements IAnimatorController, IViewListener {
     } catch (IOException e) {
       System.err.println("Appendable could not output editKeyFrame");
     }
+  }
+
+  @Override
+  public IReadOnlyAnimatedShape getShape(String id) {
+    try {
+      appendable.append("Gotten shape " + id);
+    } catch (IOException e) {
+      System.err.println("Appendable could not output getShape");
+    }
+    return null;
   }
 }

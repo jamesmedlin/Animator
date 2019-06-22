@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.Timer;
 
 import cs3500.animator.model.IModel;
+import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
 import cs3500.animator.view.EditView;
@@ -67,6 +68,7 @@ public class VisualController implements IAnimatorController {
   @Override
   public void restart() {
     this.tick = 0;
+    view.drawShapes(model.getShapesAtTick(tick));
   }
 
   @Override
@@ -113,6 +115,11 @@ public class VisualController implements IAnimatorController {
 
   public void setShapesArray() {
     ((EditView)view).setShapesArray(model.getShapes());
+  }
+
+  @Override
+  public IReadOnlyAnimatedShape getShape(String id) {
+    return model.getShapeObject(id);
   }
 
 }

@@ -327,6 +327,5 @@ public final class Model implements IModel {
     }
     return shapesString;
   }
-  
 }
 

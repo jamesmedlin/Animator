@@ -1,18 +1,18 @@
 package cs3500.animator.view;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Scanner;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -21,108 +21,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
-import cs3500.animator.model.IAnimatedShape;
 import cs3500.animator.model.IReadOnlyAnimatedShape;
-import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
 
-/**
- * Represents a view in which you can edit the animation provided. This is implemented through
- * a variety of swing features.
- */
 public class EditView extends VisualView implements ActionListener, ListSelectionListener {
-  ArrayList<IReadOnlyAnimatedShape> shapesList;
 
-  /**
-   * Constructs the new window through which the user views and edits the animation. The animation
-   * panel is render with the given width and height and it runs at the given number of ticks
-   * per second.
-   * 
-   * @param speed the number of ticks per second at which the animation should run
-   * @param width the width of the animation
-   * @param height the height of the animation
-   */
-  public EditView(int speed, int width, int height) {
-    super(speed, width, height);
-
-    this.shapesList = new ArrayList<IReadOnlyAnimatedShape>();
-
-    this.listeners = new ArrayList<IViewListener>();
-
-    feedback = new JLabel("");
-    rectangle = new JRadioButton("rectangle");
-    rectangle.setActionCommand("rectangle button");
-
-    ellipse = new JRadioButton("ellipse");
-    ellipse.setActionCommand("ellipse button");
-
-    buttonGroup = new ButtonGroup();
-    buttonGroup.add(rectangle);
-    buttonGroup.add(ellipse);
-
-    addShape = new JButton("add shape");
-    addShape.setActionCommand("add shape button");
-
-    removeShape = new JButton("remove shape");
-    removeShape.setActionCommand("remove shape button");
-
-    editFrame = new JButton("edit");
-    editFrame.setActionCommand("edit button");
-
-    addFrame = new JButton("add");
-    addFrame.setActionCommand("add keyframe button");
-
-    removeFrame = new JButton("remove");
-    removeFrame.setActionCommand("remove keyframe button");
-
-    this.shapesArray = new ArrayList<String>();
-
-    shapes = new JPanel(new FlowLayout());
-    shapes.add(addShape);
-    shapes.add(removeShape);
-
-    makeEastPanel();
-    makeNorthPanel();
-    makeWestPanel();
-    setLayout(new BorderLayout());
-
-    setSize(1000, 800);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setLocation(200, 200);
-
-    pauseButton.addActionListener(this);
-    speedButton.addActionListener(this);
-    playButton.addActionListener(this);
-    restartButton.addActionListener(this);
-    loopingButton.addActionListener(this);
-    addShape.addActionListener(this);
-    removeShape.addActionListener(this);
-    editFrame.addActionListener(this);
-    addFrame.addActionListener(this);
-    removeFrame.addActionListener(this);
-    rectangle.addActionListener(this);
-    ellipse.addActionListener(this);
-    name.addActionListener(this);
-    shapeList.addListSelectionListener(this);
-
-
-    scrollPane = new JScrollPane(panel);
-
-    feedbackPanel = new JPanel();
-    feedbackPanel.add(feedback);
-    northPanel = new JPanel();
-    northPanel.setLayout((LayoutManager) new BoxLayout(northPanel, BoxLayout.Y_AXIS));
-    northPanel.add(mainButtons);
-    northPanel.add(feedbackPanel);
-
-    add(eastPanel, BorderLayout.EAST);
-    add(northPanel, BorderLayout.NORTH);
-    add(westPanel, BorderLayout.WEST);
-    add(scrollPane, BorderLayout.CENTER);
-
-    setVisible(true);
-  }
+  private ArrayList<String> shapeStrings;
 
   private JPanel northPanel;
   private JLabel feedback;
@@ -137,7 +41,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
   private JButton speedButton;
   private JPanel feedbackPanel;
 
-  private JPanel shapes;
+  private JPanel editShapesPanel;
   private JRadioButton rectangle;
   private JRadioButton ellipse;
   private ButtonGroup buttonGroup;
@@ -158,6 +62,8 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
   private JPanel motionsPanel;
   private JList shapeList;
   private JPanel shapesPanel;
+  private JPanel editShapesButtonPanel;
+  private JPanel radioPanel;
 
   private JPanel eastPanel;
   private JPanel labelButtonPanel;
@@ -186,19 +92,111 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
   private JPanel greenColorPanel;
   private JPanel blueColorPanel;
 
-  //private ArrayList<String> motionsArray;
-  private ArrayList<String> shapesArray;
 
+
+  public EditView(int speed, int width, int height) {
+    super(speed, width, height);
+
+    this.shapeStrings = new ArrayList<String>();
+
+    makeNorthPanel();
+    this.add(this.northPanel, BorderLayout.NORTH);
+
+    makeWestPanel();
+    this.add(this.westPanel, BorderLayout.WEST);
+
+    makeEastPanel();
+    this.add(this.eastPanel, BorderLayout.EAST);
+  }
+
+  private void makeNorthPanel() {
+    pauseButton = new JButton("pause");
+    pauseButton.setActionCommand("pause button");
+    pauseButton.addActionListener(this);
+
+    playButton = new JButton("play");
+    playButton.setActionCommand("play button");
+    playButton.addActionListener(this);
+
+    restartButton = new JButton("restart");
+    restartButton.setActionCommand("restart button");
+    restartButton.addActionListener(this);
+
+    loopingButton = new JCheckBox("loop");
+    loopingButton.setActionCommand("looping checkbox");
+    loopingButton.addActionListener(this);
+
+    speedLabel = new JLabel("speed");
+    speedText = new JTextField(3);
+    speedText.setActionCommand("speed field");
+    speedButton = new JButton("adjust speed");
+    speedButton.setActionCommand("adjust");
+    speedButton.addActionListener(this);
+
+    feedback = new JLabel("");
+    feedbackPanel = new JPanel();
+    feedbackPanel.setLayout(new FlowLayout());
+    feedbackPanel.add(feedback);
+
+    mainButtons = new JPanel();
+    mainButtons.setLayout(new FlowLayout());
+    mainButtons.add(speedLabel);
+    mainButtons.add(speedText);
+    mainButtons.add(speedButton);
+    mainButtons.add(playButton);
+    mainButtons.add(pauseButton);
+    mainButtons.add(restartButton);
+    mainButtons.add(loopingButton);
+
+    this.northPanel = new JPanel();
+    this.northPanel.setLayout(new BoxLayout(this.northPanel, BoxLayout.Y_AXIS));
+
+    this.northPanel.add(this.mainButtons);
+    this.northPanel.add(this.feedbackPanel);
+  }
 
   private void makeWestPanel() {
     westPanel = new JPanel();
-    westPanel.setLayout((LayoutManager) new BoxLayout(westPanel, BoxLayout.Y_AXIS));
+    westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
 
     shapesPanel = new JPanel();
+
     shapesLabel = new JLabel("Shapes:");
-    shapeList = new JList<Object>(this.shapesArray.toArray());
+    shapesPanel.add(shapesLabel);
+
+    shapeList = new JList<IReadOnlyAnimatedShape>();
+    shapeList.addListSelectionListener(this);
     shapeList.setPreferredSize(new Dimension(300, 500));
     shapeList.setFixedCellWidth(300);
+    shapesPanel.add(shapeList);
+
+
+    addShape = new JButton("add shape");
+    addShape.setActionCommand("add shape button");
+    addShape.addActionListener(this);
+
+    removeShape = new JButton("remove shape");
+    removeShape.setActionCommand("remove shape button");
+    removeShape.addActionListener(this);
+
+    editShapesButtonPanel = new JPanel();
+    editShapesButtonPanel.setLayout(new FlowLayout());
+    editShapesButtonPanel.add(addShape);
+    editShapesButtonPanel.add(removeShape);
+
+    rectangle = new JRadioButton("rectangle");
+    rectangle.setActionCommand("rectangle button");
+
+    ellipse = new JRadioButton("ellipse");
+    ellipse.setActionCommand("ellipse button");
+
+    buttonGroup = new ButtonGroup();
+    buttonGroup.add(rectangle);
+    buttonGroup.add(ellipse);
+
+    radioPanel = new JPanel();
+    radioPanel.add(rectangle);
+    radioPanel.add(ellipse);
 
     namePanel = new JPanel(new FlowLayout());
     nameLabel = new JLabel("Name");
@@ -206,50 +204,26 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     namePanel.add(nameLabel);
     namePanel.add(name);
 
+    editShapesPanel = new JPanel();
+    editShapesPanel.setLayout(new BoxLayout(editShapesPanel, BoxLayout.Y_AXIS));
 
-    addShape = new JButton("add shape");
-    addShape.setActionCommand("add shape button");
+    editShapesPanel.add(namePanel);
+    editShapesPanel.add(radioPanel);
+    editShapesPanel.add(editShapesButtonPanel);
 
-    removeShape = new JButton("remove shape");
-    removeShape.setActionCommand("remove shape button");
-
-
-    shapesPanel.add(shapesLabel);
-    shapesPanel.add(shapeList);
     westPanel.add(shapesPanel);
-    westPanel.add(namePanel);
-    westPanel.add(addShape);
-    westPanel.add(removeShape);
-  }
-
-  public void setShapesArray(ArrayList<IReadOnlyAnimatedShape> array) {
-    this.shapesArray = new ArrayList<>();
-    for (IReadOnlyAnimatedShape shape : array) {
-      switch (shape.getType()) {
-        case ELLIPSE:
-          this.shapesArray.add("Ellipse " + shape.getName());
-          break;
-        case RECTANGLE:
-          this.shapesArray.add("Rectangle " + shape.getName());
-          break;
-      }
-    }
-    DefaultListModel model = new DefaultListModel();
-    for (String s : this.shapesArray) {
-      model.addElement(s);
-    }
-    this.shapeList.setModel(model);
+    westPanel.add(editShapesPanel);
   }
 
   private void makeEastPanel() {
     widthLabel = new JLabel("Width");
     heightLabel = new JLabel("Height");
-    xCoordinate = new JLabel("x");
-    yCoordinate = new JLabel("y");
-    redColor = new JLabel("red color");
-    greenColor = new JLabel("green color");
-    blueColor = new JLabel("blue color");
-    tickLabel = new JLabel("tick");
+    xCoordinate = new JLabel("X");
+    yCoordinate = new JLabel("Y");
+    redColor = new JLabel("Red");
+    greenColor = new JLabel("Green");
+    blueColor = new JLabel("Blue");
+    tickLabel = new JLabel("Tick");
 
     tWidth = new JTextField(5);
     tHeight = new JTextField(5);
@@ -289,17 +263,28 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     blueColorPanel.add(tBlue);
 
     eastPanel = new JPanel();
-    eastPanel.setLayout((LayoutManager) new BoxLayout(eastPanel, BoxLayout.Y_AXIS));
+    eastPanel.setLayout(new BoxLayout(eastPanel, BoxLayout.Y_AXIS));
     labelButtonPanel = new JPanel(new FlowLayout());
     labelButtonPanel.setPreferredSize(new Dimension(300, 150));
     motionsPanel = new JPanel();
-    
 
     motionsLabel = new JLabel("Motions:");
 
     motionsList = new JList<Object>();
     motionsList.setPreferredSize(new Dimension(300, 500));
     motionsList.setFixedCellWidth(300);
+
+    editFrame = new JButton("Edit");
+    editFrame.setActionCommand("edit keyframe button");
+    editFrame.addActionListener(this);
+
+    addFrame = new JButton("Add");
+    addFrame.setActionCommand("add keyframe button");
+    addFrame.addActionListener(this);
+
+    removeFrame = new JButton("Remove");
+    removeFrame.setActionCommand("remove keyframe button");
+    removeFrame.addActionListener(this);
 
     submitPanel = new JPanel(new FlowLayout());
     submitPanel.add(addFrame);
@@ -323,20 +308,34 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     eastPanel.add(labelButtonPanel);
   }
 
-  public void getMotionsList() {
-      ArrayList<String> array = this.shapesList.get(shapeList.getSelectedIndex()).getStatesStringArray();
+  public void setShapesArray(ArrayList<IReadOnlyAnimatedShape> array) {
+    this.shapeStrings.clear();
+    for (IReadOnlyAnimatedShape shape : array) {
+      switch (shape.getType()) {
+        case ELLIPSE:
+          this.shapeStrings.add("Ellipse " + shape.getName());
+          break;
+        case RECTANGLE:
+          this.shapeStrings.add("Rectangle " + shape.getName());
+          break;
+      }
       DefaultListModel model = new DefaultListModel();
-
-      for (String s : array) {
+      for (String s : this.shapeStrings) {
         model.addElement(s);
       }
-
-      this.motionsList.setModel(model);
+      this.shapeList.setModel(model);
+    }
   }
 
-  @Override
-  public void addListener(IViewListener listener) {
-    this.listeners.add(listener);
+  public void getMotionsList(IReadOnlyAnimatedShape shape) {
+    ArrayList<String> array =
+        shape.getStatesStringArray();
+    DefaultListModel model = new DefaultListModel();
+
+    for (String s : array) {
+      model.addElement(s);
+    }
+    this.motionsList.setModel(model);
   }
 
   @Override
@@ -380,7 +379,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
       case "remove keyframe button":
         removeKeyFrameAction();
         break;
-      case "add shape":
+      case "add shape button":
         addShapeAction();
         break;
       case "remove shape button":
@@ -393,37 +392,8 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
         break;
       default:
         throw new UnsupportedOperationException("Action command not supported: "
-                + e.getActionCommand());
+            + e.getActionCommand());
     }
-  }
-
-  private void makeNorthPanel() {
-    pauseButton = new JButton("pause");
-    pauseButton.setActionCommand("pause button");
-
-    playButton = new JButton("play");
-    playButton.setActionCommand("play button");
-
-    restartButton = new JButton("restart");
-    restartButton.setActionCommand("restart button");
-
-    loopingButton = new JCheckBox("loop");
-    loopingButton.setActionCommand("looping checkbox");
-
-    speedLabel = new JLabel("speed");
-    speedText = new JTextField(3);
-    speedText.setActionCommand("speed field");
-    speedButton = new JButton("adjust speed");
-    speedButton.setActionCommand("adjust");
-
-    mainButtons = new JPanel();
-    mainButtons.add(speedLabel);
-    mainButtons.add(speedText);
-    mainButtons.add(speedButton);
-    mainButtons.add(playButton);
-    mainButtons.add(pauseButton);
-    mainButtons.add(restartButton);
-    mainButtons.add(loopingButton);
   }
 
   private void adjustSpeedAction() {
@@ -441,16 +411,16 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     try {
       for (IViewListener listener : this.listeners) {
         listener.editKeyFrame(
-                ((IReadOnlyAnimatedShape) this.shapeList.getSelectedValue()).getName(),
-                this.shapeList.getSelectedIndex(),
-                Integer.valueOf(this.tTick.getText()),
-                Double.valueOf(this.tX.getText()),
-                Double.valueOf(this.tY.getText()),
-                Integer.valueOf(this.tWidth.getText()),
-                Integer.valueOf(this.tHeight.getText()),
-                Integer.valueOf(this.tRed.getText()),
-                Integer.valueOf(this.tGreen.getText()),
-                Integer.valueOf(this.tBlue.getText()));
+            ((IReadOnlyAnimatedShape) this.shapeList.getSelectedValue()).getName(),
+            this.shapeList.getSelectedIndex(),
+            Integer.valueOf(this.tTick.getText()),
+            Double.valueOf(this.tX.getText()),
+            Double.valueOf(this.tY.getText()),
+            Integer.valueOf(this.tWidth.getText()),
+            Integer.valueOf(this.tHeight.getText()),
+            Integer.valueOf(this.tRed.getText()),
+            Integer.valueOf(this.tGreen.getText()),
+            Integer.valueOf(this.tBlue.getText()));
       }
       feedback.setText("");
     } catch (Exception r) {
@@ -462,10 +432,10 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     try {
       for (IViewListener listener : this.listeners) {
         listener.addKeyFrame(((IReadOnlyAnimatedShape) shapeList.getSelectedValue()).getName(),
-                Integer.valueOf(tTick.getText()), Double.valueOf(tX.getText()),
-                Double.valueOf(tY.getText()), Integer.valueOf(tWidth.getText()),
-                Integer.valueOf(tHeight.getText()), Integer.valueOf(tRed.getText()),
-                Integer.valueOf(tGreen.getText()), Integer.valueOf(tBlue.getText()));
+            Integer.valueOf(tTick.getText()), Double.valueOf(tX.getText()),
+            Double.valueOf(tY.getText()), Integer.valueOf(tWidth.getText()),
+            Integer.valueOf(tHeight.getText()), Integer.valueOf(tRed.getText()),
+            Integer.valueOf(tGreen.getText()), Integer.valueOf(tBlue.getText()));
       }
       feedback.setText("");
     } catch (Exception r) {
@@ -477,7 +447,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     try {
       for (IViewListener listener : this.listeners) {
         listener.removeKeyFrame(((IReadOnlyAnimatedShape) shapeList.getSelectedValue()).getName(),
-                motionsList.getSelectedIndex());
+            motionsList.getSelectedIndex());
       }
       feedback.setText("");
     } catch (Exception r) {
@@ -517,6 +487,12 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
 
   @Override
   public void valueChanged(ListSelectionEvent e) {
-    this.getMotionsList();
+    Scanner string = new Scanner((String)shapeList.getSelectedValue());
+    string.next();
+    for (IViewListener listener : this.listeners) {
+      this.getMotionsList(listener.getShape(string.next()));
+
+    }
   }
+
 }

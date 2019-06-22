@@ -3,6 +3,7 @@ package cs3500.animator.view;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,12 +32,12 @@ public class VisualView extends JFrame implements IView {
     this.panel = new DrawingPanel();
     this.setSize(width + 25, height + 25);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+    this.setLayout(new BorderLayout());
     panel.setPreferredSize(new Dimension(width, height));
     panel.setBackground(Color.white);
 
 
-    add(panel);
+    add(panel, BorderLayout.CENTER);
     setVisible(true);
   }
 
