@@ -13,16 +13,16 @@ import cs3500.animator.util.AnimationBuilder;
  * to a unique string name.
  */
 public final class Model implements IModel {
-  private HashMap<String, IAnimatedShape> shapes = new HashMap<String, IAnimatedShape>();
+  private HashMap<String, IAnimatedShape> shapes;
   private int height;
   private int width;
-  private int shapeCount = this.shapes.values().size();
+  private int shapeCount;
 
   /**
    * Builds a version of this model so it can be used by the provided Animation reader and builder.
    */
   public static final class Builder implements AnimationBuilder<IModel> {
-    private HashMap<String, IAnimatedShape> shapes = new HashMap<String, IAnimatedShape>();
+    private HashMap<String, IAnimatedShape> shapes = new HashMap<>();
     private int x = 0;
     private int y = 0;
     private int height = 0;
@@ -105,7 +105,9 @@ public final class Model implements IModel {
   public void removeShape(String name) throws IllegalArgumentException {
     if (shapes.containsKey(name)) {
       shapes.remove(name);
-    } else {
+      shapeCount--;
+    }
+    else {
       throw new IllegalArgumentException("This is not a valid name or " +
           "is not a current shape's name.");
     }
@@ -134,7 +136,6 @@ public final class Model implements IModel {
     if (this.shapes.containsKey(name) || type == null || name == null || name.equals("")) {
       throw new IllegalArgumentException("Shape names must be unique and non-null.");
     }
-
     switch (type) {
       case RECTANGLE:
         shapes.put(name, new AnimatedShape(name, type, this.shapeCount));
@@ -145,7 +146,6 @@ public final class Model implements IModel {
       default:
         shapes.put(name, null);
     }
-    
     this.shapeCount++;
   }
 
@@ -243,7 +243,7 @@ public final class Model implements IModel {
     if (shapes.containsKey(name)) {
       return shapes.get(name).deepCopy();
     } else {
-      throw new IllegalArgumentException("This name does not exist in the current shapes");
+      throw new IllegalArgumentException("This name does not exist in the current shapes " + name + shapes.size());
     }
   }
 
