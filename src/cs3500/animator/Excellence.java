@@ -91,7 +91,6 @@ public class Excellence {
       return;
     }
 
-
     IModel model = AnimationReader.parseFile(in, new Model.Builder());
     IView view = ViewFactory.makeView(type, tps, model.getWidth(), model.getHeight());
     IAnimatorController controller = new VisualController(model, view, tps);
