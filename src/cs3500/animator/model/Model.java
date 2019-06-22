@@ -310,21 +310,5 @@ public final class Model implements IModel {
     }  
   }
 
-//  public ArrayList<String> getShapesStringArray() {
-//    ArrayList<String> shapesString = new ArrayList<>();
-//    Collection<IAnimatedShape> shapes = this.shapes.values();
-//    Collections.sort((List<IAnimatedShape>) shapes);
-//    for (IAnimatedShape shape : shapes) {
-//      switch (shape.getType()) {
-//        case ELLIPSE:
-//          shapesString.add("Ellipse " + shape.getName());
-//          break;
-//        case RECTANGLE:
-//          shapesString.add("Rectangle " + shape.getName());
-//          break;
-//      }
-//    }
-//    return shapesString;
-//  }
 }
 

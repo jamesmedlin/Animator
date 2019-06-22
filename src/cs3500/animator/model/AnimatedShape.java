@@ -588,7 +588,6 @@ public class AnimatedShape implements IAnimatedShape {
     ArrayList<String> result = new ArrayList<String>();
     if (this.states.size() > 0) {
       int i = 1;
-      //result.add(this.states.get(0).toString());
       while (i < this.states.size() - 2) {
         if (i % 2 == 1) {
           result.add(this.states.get(i).toString());
