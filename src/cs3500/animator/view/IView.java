@@ -1,10 +1,7 @@
 package cs3500.animator.view;
 
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import cs3500.animator.controller.IAnimatorController;
-import cs3500.animator.controller.TestController;
 import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.IReadOnlyModel;
 import cs3500.animator.model.IReadOnlyShapeState;
@@ -37,6 +34,9 @@ public interface IView {
    */
   void addListener(IViewListener listener);
 
-
+  /**
+   * sets the list of read only shapes in the view.
+   * @param shapes the shapes in the animation
+   */
   void setShapesArray(ArrayList<IReadOnlyAnimatedShape> shapes);
 }

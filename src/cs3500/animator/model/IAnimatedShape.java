@@ -96,13 +96,59 @@ public interface IAnimatedShape extends IReadOnlyAnimatedShape, Comparable<IAnim
    */
   int getOrder();
 
+  /**
+   * adds a keyFrame specified by the user.
+   * @param tick starting tick
+   * @param x the x position of the shape
+   * @param y the y position of the shape
+   * @param width the width of the shape
+   * @param height the height od the shape
+   * @param r the red color value
+   * @param g the green color value
+   * @param b the blue color value
+   */
   void addKeyFrame(int tick, double x, double y, int width, int height, int r, int g, int b);
 
+  /**
+   * edits a selected keyFrame by the user and the user's inputs.
+   * @param index the selected frames in the list of frames for this shape
+   * @param tick the starting tick
+   * @param x the x position of the shape
+   * @param y the y position of the shape
+   * @param width the width of the shape
+   * @param height the height of the shape
+   * @param r the red color value
+   * @param g the green color value
+   * @param b the blue color value
+   */
   void editKeyFrame(
       int index, int tick, double x, double y, int width, int height, int r, int g, int b);
 
+  /**
+   * removes the frame of this shape from its states.
+   * @param index the selected state in the selected shape
+   */
   void removeKeyFrame(int index);
 
+  /**
+   * adds the specified information given by the user in a new frame.
+   * @param t1 the starting tick
+   * @param x1 the starting x value
+   * @param y1 the starting y value
+   * @param w1 the starting width
+   * @param h1 the starting height
+   * @param r1 the starting red color value
+   * @param g1 the starting green color value
+   * @param b1 the starting blue color value
+   * @param t2 the ending tick
+   * @param x2 the ending x position
+   * @param y2 the ending y position
+   * @param w2 the ending width
+   * @param h2 the ending height
+   * @param r2 the ending red color value
+   * @param g2 the ending green color value
+   * @param b2 the ending blue color value
+   */
   void addFrameMotion(int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1, int t2,
       int x2, int y2, int w2, int h2, int r2, int g2, int b2);
 

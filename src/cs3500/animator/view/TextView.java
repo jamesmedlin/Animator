@@ -1,6 +1,5 @@
 package cs3500.animator.view;
 
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +30,12 @@ public class TextView implements IView {
         "supported in this type of view.");
   }
 
+  /**
+   * converts the rectangle type into string format.
+   * @param type the type of shape
+   * @return the string type of shape
+   * @throws IllegalArgumentException when given an unsupported shape type
+   */
   private String convertToString(ShapeType type) throws IllegalArgumentException {
     switch (type) {
       case RECTANGLE:

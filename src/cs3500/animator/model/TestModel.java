@@ -193,8 +193,8 @@ public class TestModel implements IModel {
     return 0;
   }
 
-  @Override
-  public ArrayList<String> getShapesStringArray() {
-    return null;
-  }
+//  @Override
+//  public ArrayList<String> getShapesStringArray() {
+//    return null;
+//  }
 }

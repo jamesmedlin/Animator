@@ -3,7 +3,6 @@ package cs3500.animator.view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -19,7 +18,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import cs3500.animator.model.IReadOnlyAnimatedShape;
@@ -96,8 +94,12 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
   private JScrollPane scrollPaneShapes;
   private JScrollPane scrollPaneMotions;
 
-
-
+  /**
+   * constructs the editing window with its interface.
+   * @param speed the speed at which the animation runs
+   * @param width the width of the window
+   * @param height the height of the window
+   */
   public EditView(int speed, int width, int height) {
     super(speed, width, height);
 
@@ -117,8 +119,13 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     pack();
     this.add(this.scrollPane, BorderLayout.CENTER);
 
+    this.setMinimumSize(new Dimension(1600,700));
   }
 
+  /**
+   * builds the animation commands and all buttons and fields that are required for this to happen.
+   * Contains the feedback label that leaves feedback based on incorrect operations.
+   */
   private void makeNorthPanel() {
     pauseButton = new JButton("pause");
     pauseButton.setActionCommand("pause button");
@@ -165,6 +172,9 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     this.northPanel.add(this.feedbackPanel);
   }
 
+  /**
+   * builds the shapes list and all buttons and fields that are required for this to happen.
+   */
   private void makeWestPanel() {
     westPanel = new JPanel();
     westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
@@ -180,7 +190,6 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     shapeList.setFixedCellWidth(300);
     scrollPaneShapes.setPreferredSize(new Dimension(300, 400));
     shapesPanel.add(scrollPaneShapes);
-
 
     addShape = new JButton("add shape");
     addShape.setActionCommand("add shape button");
@@ -227,6 +236,9 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     westPanel.add(editShapesPanel);
   }
 
+  /**
+   * builds the motions list and all buttons and fields that are required for this to happen.
+   */
   private void makeEastPanel() {
     widthLabel = new JLabel("Width");
     heightLabel = new JLabel("Height");
@@ -323,6 +335,10 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     eastPanel.add(labelButtonPanel);
   }
 
+  /**
+   * sets the current shapes in the animation.
+   * @param array the list of shapes
+   */
   public void setShapesArray(ArrayList<IReadOnlyAnimatedShape> array) {
     this.shapeStrings.clear();
     for (IReadOnlyAnimatedShape shape : array) {
@@ -342,15 +358,23 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     }
   }
 
-  public void getMotionsList(IReadOnlyAnimatedShape shape) {
-    ArrayList<String> array =
-        shape.getStatesStringArray();
-    DefaultListModel model = new DefaultListModel();
+  /**
+   * retrieves the motions of the given shape.
+   * @param shape the read only shape that is currently selected
+   */
+  private void getMotionsList(IReadOnlyAnimatedShape shape) {
+    try {
+      ArrayList<String> array =
+              shape.getStatesStringArray();
+      DefaultListModel model = new DefaultListModel();
 
-    for (String s : array) {
-      model.addElement(s);
+      for (String s : array) {
+        model.addElement(s);
+      }
+      this.motionsList.setModel(model);
+    } catch (Exception e) {
+
     }
-    this.motionsList.setModel(model);
   }
 
   @Override
@@ -414,6 +438,9 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     }
   }
 
+  /**
+   * adjusts the specified speed.
+   */
   private void adjustSpeedAction() {
     try {
       for (IViewListener listener : this.listeners) {
@@ -425,6 +452,9 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     }
   }
 
+  /**
+   * executes the editing action of a keyFrame.
+   */
   private void editAction() {
     try {
 //      Scanner string = new Scanner((String)shapeList.getSelectedValue());
@@ -450,6 +480,9 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     }
   }
 
+  /**
+   * adds a keyFrame to the secified shape.
+   */
   private void addKeyFrameAction() {
     try {
 //      Scanner string = new Scanner((String)shapeList.getSelectedValue());
@@ -467,7 +500,10 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
       feedback.setText("All fields must be valid and filled to add a movement.");
     }
   }
-  
+
+  /**
+   * edits the selected keyFrame in the selected shape.
+   */
   private void editKeyFrameAction() {
     try {
 //      Scanner string = new Scanner((String)shapeList.getSelectedValue());
@@ -495,6 +531,9 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     }
   }
 
+  /**
+   * removes the selected keyFrame.
+   */
   private void removeKeyFrameAction() {
     try {
 //      Scanner string = new Scanner((String)shapeList.getSelectedValue());
@@ -515,6 +554,9 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     }
   }
 
+  /**
+   * removes a shape specified in the scanner.
+   */
   private void removeShapeAction() {
     try {
 //      Scanner string = new Scanner((String)shapeList.getSelectedValue());
@@ -534,6 +576,9 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     }
   }
 
+  /**
+   * adds a shape with the specified name and type.
+   */
   private void addShapeAction() {
     try {
       for (IViewListener listener : this.listeners) {
@@ -553,6 +598,10 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     }
   }
 
+  /**
+   * is called whenever the selection in a list changes.
+   * @param e the list of event selections
+   */
   @Override
   public void valueChanged(ListSelectionEvent e) {
     if (e.getValueIsAdjusting()) {

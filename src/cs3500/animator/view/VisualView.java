@@ -1,8 +1,6 @@
 package cs3500.animator.view;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -48,7 +46,7 @@ public class VisualView extends JFrame implements IView {
     throw new UnsupportedOperationException("This operation is not" +
             " supported in this type of view.");
   }
-  
+
   @Override
   public void drawShapes(List<IReadOnlyShapeState> shapes) {
     panel.draw(shapes);

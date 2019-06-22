@@ -13,6 +13,11 @@ public abstract class ASVGTag implements ISVGTag {
   protected final IReadOnlyAnimatedShape shape;
   protected int rate;
 
+  /**
+   * the constructor of this abstracted class.
+   * @param shape the shape
+   * @param rate the rate at which the animation moves
+   */
   protected ASVGTag(IReadOnlyAnimatedShape shape, int rate) {
     this.shape = shape;
     this.rate = rate;
@@ -21,6 +26,11 @@ public abstract class ASVGTag implements ISVGTag {
   @Override
   public abstract String format();
 
+  /**
+   * converts the information of the states of a shape into SVG format.
+   * @param states the read only states of the shape
+   * @return the string svg formatted version
+   */
   protected String stateConverter(List<IReadOnlyShapeState> states) {
     String result = "";
     for (int i = 0; i < states.size() - 1; i += 2) {
@@ -45,6 +55,12 @@ public abstract class ASVGTag implements ISVGTag {
     return result;
   }
 
+  /**
+   * accounts for all other attributes than color.
+   * @param states the states of this shape
+   * @param i the index in the list of states in this shape
+   * @return the string format of these attributes
+   */
   protected String stateConverterHelper(List<IReadOnlyShapeState> states, int i) {
     return "";
   }

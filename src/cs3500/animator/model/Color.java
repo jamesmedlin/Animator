@@ -29,18 +29,34 @@ public class Color {
     }
   }
 
+  /**
+   * retrieves the red value in this color.
+   * @return the red value
+   */
   public int getRed() {
     return this.red;
   }
 
+  /**
+   * retrieves the green value in this color.
+   * @return the green value
+   */
   public int getGreen() {
     return this.green;
   }
 
+  /**
+   * retrieves the blue value in this color.
+   * @return the blue value
+   */
   public int getBlue() {
     return this.blue;
   }
 
+  /**
+   * translates the color values into HSB.
+   * @return the HSB version of this color
+   */
   public float[] getHSB() {
     return java.awt.Color.RGBtoHSB(this.red, this.green, this.blue, new float[3]);
   }

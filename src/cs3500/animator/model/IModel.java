@@ -163,10 +163,10 @@ public interface IModel extends IReadOnlyModel {
    */
   int getMaxTick();
 
-  /**
-   * gets a string list of the shapes currently in the animation.
-   * @return a string array of the shapes' names and types
-   */
-  ArrayList<String> getShapesStringArray();
+//  /**
+//   * gets a string list of the shapes currently in the animation.
+//   * @return a string array of the shapes' names and types
+//   */
+//  ArrayList<String> getShapesStringArray();
 
 }

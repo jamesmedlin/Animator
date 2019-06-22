@@ -573,6 +573,7 @@ public class AnimatedShape implements IAnimatedShape {
     } 
   }
 
+  @Override
   public ArrayList<String> getStatesStringArray() {
     ArrayList<String> result = new ArrayList<String>();
     if (this.states.size() > 0) {

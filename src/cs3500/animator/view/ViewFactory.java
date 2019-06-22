@@ -1,6 +1,5 @@
 package cs3500.animator.view;
 
-import cs3500.animator.model.IReadOnlyModel;
 
 /**
  * represents a factory to make the specific View type given.

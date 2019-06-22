@@ -2,7 +2,6 @@ package cs3500.animator.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Timer;
@@ -11,7 +10,6 @@ import cs3500.animator.model.IModel;
 import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
-import cs3500.animator.view.EditView;
 import cs3500.animator.view.IView;
 
 /**
@@ -117,6 +115,9 @@ public class VisualController implements IAnimatorController {
     this.setShapesArray();
   }
 
+  /**
+   * sets the shapes in the animation in the view.
+   */
   private void setShapesArray() {
     view.setShapesArray(model.getShapes());
   }
