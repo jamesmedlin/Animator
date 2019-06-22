@@ -415,14 +415,14 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
 
   private void editAction() {
     try {
-      Scanner string = new Scanner((String)shapeList.getSelectedValue());
-      string.next();
-      String temp = string.next();
+//      Scanner string = new Scanner((String)shapeList.getSelectedValue());
+//      string.next();
+//      String temp = string.next();
       Scanner frame = new Scanner(Integer.toString(motionsList.getSelectedIndex()));
       int temp2 = Integer.valueOf(frame.next());
       for (IViewListener listener : this.listeners) {
-        listener.editKeyFrame(temp,
-            temp2 - 1,
+        listener.editKeyFrame(this.selectedName,
+            temp2,
             Integer.valueOf(this.tTick.getText()),
             Double.valueOf(this.tX.getText()),
             Double.valueOf(this.tY.getText()),
@@ -440,11 +440,11 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
 
   private void addKeyFrameAction() {
     try {
-      Scanner string = new Scanner((String)shapeList.getSelectedValue());
-      string.next();
-      String temp = string.next();
+//      Scanner string = new Scanner((String)shapeList.getSelectedValue());
+//      string.next();
+//      String temp = string.next();
       for (IViewListener listener : this.listeners) {
-        listener.addKeyFrame(temp,
+        listener.addKeyFrame(this.selectedName,
             Integer.valueOf(tTick.getText()), Double.valueOf(tX.getText()),
             Double.valueOf(tY.getText()), Integer.valueOf(tWidth.getText()),
             Integer.valueOf(tHeight.getText()), Integer.valueOf(tRed.getText()),
@@ -470,7 +470,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
       }
       for (IViewListener listener : this.listeners) {
         listener.editKeyFrame(this.selectedName,
-                motionsList.getSelectedIndex() - 1, Integer.valueOf(tTick.getText()),
+                motionsList.getSelectedIndex(), Integer.valueOf(tTick.getText()),
             Integer.valueOf(tX.getText()), Integer.valueOf(tY.getText()),
             Integer.valueOf(tWidth.getText()), Integer.valueOf(tHeight.getText()),
             Integer.valueOf(tRed.getText()), Integer.valueOf(tGreen.getText()),
@@ -495,7 +495,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
       }
       for (IViewListener listener : this.listeners) {
         listener.removeKeyFrame(this.selectedName,
-            motionsList.getSelectedIndex() - 1);
+            motionsList.getSelectedIndex());
       }
       feedback.setText("");
     } catch (NumberFormatException r) {
@@ -543,8 +543,8 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
 
   @Override
   public void valueChanged(ListSelectionEvent e) {
-//    System.out.println(this.shapeList.getSelectedIndex());
     if (e.getValueIsAdjusting()) {
+      System.out.println(this.shapeList.getSelectedIndex());
       Scanner string = new Scanner(((String) this.shapeList.getSelectedValue()));
       string.next();
       this.selectedName = string.next();

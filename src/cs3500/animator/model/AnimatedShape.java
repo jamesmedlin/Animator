@@ -506,7 +506,7 @@ public class AnimatedShape implements IAnimatedShape {
   public void removeKeyFrame(int index) {
     if (index == 0) {
       this.states.remove(index);
-      this.states.remove(index + 1);
+      this.states.remove(index);
     }
     else if ((index * 2) - 2 == this.states.size() - 1) {
       this.states.remove((index * 2) - 2);
@@ -514,7 +514,7 @@ public class AnimatedShape implements IAnimatedShape {
     }
     else {
       this.states.remove((index * 2) - 1);
-      this.states.remove(index * 2);
+      this.states.remove((index * 2) - 2);
     } 
   }
 
