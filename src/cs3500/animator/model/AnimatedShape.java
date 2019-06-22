@@ -206,6 +206,42 @@ public class AnimatedShape implements IAnimatedShape {
         return this;
       }
     }
+    
+    /**
+     * Adds a new shape state to this animated shape. It does not check if ticks are overlapping
+     * because key frame ticks can overlap.
+     *
+     * @return returns this object after mutating it
+     */
+    private AnimatedShape addFrame() {
+
+      List<IShapeState> states = AnimatedShape.this.states;
+
+      switch (AnimatedShape.this.type) {
+        case RECTANGLE:
+          states.add(
+              new RectangleState(
+                  this.startTick, this.startWidth,
+                  this.startHeight, this.startColor, this.startPos));
+          states.add(
+              new RectangleState(
+                  this.endTick, this.endWidth, this.endHeight, this.endColor, this.endPos));
+          break;
+        case ELLIPSE:
+          states.add(
+              new EllipseState(
+                  this.startTick, this.startWidth,
+                  this.startHeight, this.startColor, this.startPos));
+          states.add(
+              new EllipseState(
+                  this.endTick, this.endWidth, this.endHeight, this.endColor, this.endPos));
+          break;
+        default:
+          break;
+      }
+      Collections.sort(states);
+      return AnimatedShape.this;
+    }
 
     /**
      * Adds a new shape state to this animated shape. First checks if the ticks specified create any
@@ -261,7 +297,7 @@ public class AnimatedShape implements IAnimatedShape {
     int i = 0;
     while (i < this.states.size() - 1) {
       result += "motion " + this.name + " " + this.states.get(i).toString() + "    "
-              + this.states.get(i + 1).toString() + "\n";
+          + this.states.get(i + 1).toString() + "\n";
       i += 2;
     }
     return result;
@@ -361,6 +397,25 @@ public class AnimatedShape implements IAnimatedShape {
   }
 
   @Override
+  public void addFrameMotion(int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1, int t2,
+      int x2, int y2, int w2, int h2, int r2, int g2, int b2) {
+    MotionAdder adder = new MotionAdder();
+
+    adder
+    .setStartColor(new Color(r1, g1, b1))
+    .setEndColor(new Color(r2, g2, b2))
+    .setStartTick(t1)
+    .setEndTick(t2)
+    .setStartHeight(h1)
+    .setEndHeight(h2)
+    .setStartWidth(w1)
+    .setEndWidth(w2)
+    .setStartPos(new Point2D.Double(x1, y1))
+    .setEndPos(new Point2D.Double(x2, y2))
+    .addFrame();
+  }
+
+  @Override
   public void fullMotion(int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1, int t2,
       int x2, int y2, int w2, int h2, int r2, int g2, int b2) {
     MotionAdder adder = new MotionAdder();
@@ -421,7 +476,7 @@ public class AnimatedShape implements IAnimatedShape {
     }
     catch (IndexOutOfBoundsException e) {
       IShapeState sMax = this.states.get(this.states.size() - 1);
-      this.fullMotion(
+      this.addFrameMotion(
           sMax.getTick(), (int)sMax.getPosition().getX(), (int)sMax.getPosition().getY(), 
           sMax.getWidth(), sMax.getHeight(), sMax.getColor().getRed(),
           sMax.getColor().getGreen(), sMax.getColor().getBlue(),
@@ -435,13 +490,13 @@ public class AnimatedShape implements IAnimatedShape {
     }
     else if (curIndex == 0) {
       IShapeState s0 = this.states.get(0);
-      this.fullMotion(tick, (int)x, (int)y, width, height, r, g, b,
+      this.addFrameMotion(tick, (int)x, (int)y, width, height, r, g, b,
           s0.getTick(), (int)s0.getPosition().getX(), (int)s0.getPosition().getY(),s0.getWidth(),
           s0.getHeight(), s0.getColor().getRed(),
           s0.getColor().getGreen(), s0.getColor().getBlue());
     }
     else {
-      this.fullMotion(tick, (int)x, (int)y, width, height, r, g, b,
+      this.addFrameMotion(tick, (int)x, (int)y, width, height, r, g, b,
           tick, (int)x, (int)y, width, height, r, g, b);
     }
 
