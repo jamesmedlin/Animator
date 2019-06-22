@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import cs3500.animator.model.IReadOnlyAnimatedShape;
@@ -58,9 +59,9 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
   private JPanel westPanel;
   private JLabel shapesLabel;
   private JLabel motionsLabel;
-  private JList motionsList;
+  private JList<String> motionsList;
   private JPanel motionsPanel;
-  private JList shapeList;
+  private JList<String> shapeList;
   private JPanel shapesPanel;
   private JPanel editShapesButtonPanel;
   private JPanel radioPanel;
@@ -350,11 +351,17 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
           this.shapeStrings.add("Rectangle " + shape.getName());
           break;
       }
-      DefaultListModel model = new DefaultListModel();
+      DefaultListModel<String> model = new DefaultListModel<String>();
       for (String s : this.shapeStrings) {
         model.addElement(s);
       }
-      this.shapeList.setModel(model);
+      Runnable updateList = new Runnable() {
+        @Override
+        public void run() {
+          shapeList.setModel(model);          
+        }
+      };
+      SwingUtilities.invokeLater(updateList);
     }
   }
 
@@ -366,7 +373,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     try {
       ArrayList<String> array =
               shape.getStatesStringArray();
-      DefaultListModel model = new DefaultListModel();
+      DefaultListModel<String> model = new DefaultListModel<String>();
 
       for (String s : array) {
         model.addElement(s);
@@ -473,6 +480,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
             Integer.valueOf(this.tRed.getText()),
             Integer.valueOf(this.tGreen.getText()),
             Integer.valueOf(this.tBlue.getText()));
+        frame.close();
       }
       feedback.setText("");
     } catch (Exception r) {
@@ -515,6 +523,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
         Scanner string = new Scanner(((String) this.shapeList.getSelectedValue()));
         string.next();
         this.selectedName = string.next();
+        string.close();
       }
       for (IViewListener listener : this.listeners) {
         listener.editKeyFrame(this.selectedName,
@@ -543,6 +552,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
         Scanner string = new Scanner(((String) this.shapeList.getSelectedValue()));
         string.next();
         this.selectedName = string.next();
+        string.close();
       }
       for (IViewListener listener : this.listeners) {
         listener.removeKeyFrame(this.selectedName,
@@ -566,6 +576,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
         Scanner string = new Scanner(((String) this.shapeList.getSelectedValue()));
         string.next();
         this.selectedName = string.next();
+        string.close();
       }
       for (IViewListener listener : this.listeners) {
         listener.removeShape(this.selectedName);
@@ -612,6 +623,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
       for (IViewListener listener : this.listeners) {
         this.getMotionsList(listener.getShape(this.selectedName));
       }
+      string.close();
     }
   }
 }
