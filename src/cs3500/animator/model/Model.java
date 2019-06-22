@@ -282,7 +282,7 @@ public final class Model implements IModel {
   @Override
   public void removeKeyFrame(String id, int index) {
     if (!shapes.containsKey(id)) {
-      throw new IllegalArgumentException("Invalid name");
+      throw new IllegalArgumentException("Invalid name" + id);
     }
     else {
       shapes.get(id).removeKeyFrame(index);

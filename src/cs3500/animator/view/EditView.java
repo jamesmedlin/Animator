@@ -544,7 +544,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
   @Override
   public void valueChanged(ListSelectionEvent e) {
 //    System.out.println(this.shapeList.getSelectedIndex());
-    if (!e.getValueIsAdjusting()) {
+    if (e.getValueIsAdjusting()) {
       Scanner string = new Scanner(((String) this.shapeList.getSelectedValue()));
       string.next();
       this.selectedName = string.next();
@@ -553,5 +553,4 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
       }
     }
   }
-
 }
