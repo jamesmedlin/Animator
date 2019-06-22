@@ -485,8 +485,8 @@ public class AnimatedShape implements IAnimatedShape {
       Collections.sort(this.states);
     }
     else {
-      IShapeState s0 = this.states.get((index * 2) - 1);
-      IShapeState s1 = this.states.get(index * 2);
+      IShapeState s0 = this.states.get((index * 2) - 2);
+      IShapeState s1 = this.states.get((index * 2) - 1);
 
       s0.setColor(r, g, b);
       s0.setPosition(x, y);
