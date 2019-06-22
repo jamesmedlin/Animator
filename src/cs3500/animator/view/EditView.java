@@ -387,6 +387,9 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
       case "remove shape button":
         removeShapeAction();
         break;
+      case "edit keyframe button":
+        editKeyFrameAction();
+        break;
       case "looping checkbox":
         for (IViewListener listener : this.listeners) {
           listener.loop(this.loopingButton.isSelected());
@@ -447,6 +450,23 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
       feedback.setText("");
     } catch (Exception r) {
       feedback.setText("All fields must be valid and filled to add a movement.");
+    }
+  }
+  
+  private void editKeyFrameAction() {
+    try {
+      for (IViewListener listener : this.listeners) {
+        listener.editKeyFrame(((IReadOnlyAnimatedShape) shapeList.getSelectedValue()).getName(),
+            motionsList.getSelectedIndex(), Integer.valueOf(tTick.getText()),
+            Integer.valueOf(tX.getText()), Integer.valueOf(tY.getText()),
+            Integer.valueOf(tWidth.getText()), Integer.valueOf(tHeight.getText()),
+            Integer.valueOf(tRed.getText()), Integer.valueOf(tGreen.getText()),
+            Integer.valueOf(tBlue.getText()));
+      }
+      feedback.setText("");
+    } catch (Exception e) {
+      feedback.setText("Ensure a certain shape and its movement are selected. And ensure all frame"
+          + "fields are filled out.");
     }
   }
 
