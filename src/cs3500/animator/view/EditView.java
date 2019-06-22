@@ -372,7 +372,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
   private void getMotionsList(IReadOnlyAnimatedShape shape) {
     try {
       ArrayList<String> array =
-              shape.getStatesStringArray();
+          shape.getStatesStringArray();
       DefaultListModel<String> model = new DefaultListModel<String>();
 
       for (String s : array) {
@@ -386,6 +386,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
 
   @Override
   public void actionPerformed(ActionEvent e) {
+    int index = this.shapeList.getSelectedIndex();
     switch (e.getActionCommand()) {
       case "pause button":
         try {
@@ -416,14 +417,13 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
       case "adjust":
         adjustSpeedAction();
         break;
-      case "edit button":
-        editAction();
-        break;
       case "add keyframe button":
         addKeyFrameAction();
+        this.shapeList.setSelectedIndex(index);
         break;
       case "remove keyframe button":
         removeKeyFrameAction();
+        this.shapeList.setSelectedIndex(index);
         break;
       case "add shape button":
         addShapeAction();
@@ -433,6 +433,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
         break;
       case "edit keyframe button":
         editKeyFrameAction();
+        this.shapeList.setSelectedIndex(index);
         break;
       case "looping checkbox":
         for (IViewListener listener : this.listeners) {
@@ -460,42 +461,13 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
   }
 
   /**
-   * executes the editing action of a keyFrame.
-   */
-  private void editAction() {
-    try {
-//      Scanner string = new Scanner((String)shapeList.getSelectedValue());
-//      string.next();
-//      String temp = string.next();
-      Scanner frame = new Scanner(Integer.toString(motionsList.getSelectedIndex()));
-      int temp2 = Integer.valueOf(frame.next());
-      for (IViewListener listener : this.listeners) {
-        listener.editKeyFrame(this.selectedName,
-            temp2,
-            Integer.valueOf(this.tTick.getText()),
-            Double.valueOf(this.tX.getText()),
-            Double.valueOf(this.tY.getText()),
-            Integer.valueOf(this.tWidth.getText()),
-            Integer.valueOf(this.tHeight.getText()),
-            Integer.valueOf(this.tRed.getText()),
-            Integer.valueOf(this.tGreen.getText()),
-            Integer.valueOf(this.tBlue.getText()));
-        frame.close();
-      }
-      feedback.setText("");
-    } catch (Exception r) {
-      feedback.setText("All fields must be valid and filled to edit a movement.");
-    }
-  }
-
-  /**
    * adds a keyFrame to the secified shape.
    */
   private void addKeyFrameAction() {
     try {
-//      Scanner string = new Scanner((String)shapeList.getSelectedValue());
-//      string.next();
-//      String temp = string.next();
+      //      Scanner string = new Scanner((String)shapeList.getSelectedValue());
+      //      string.next();
+      //      String temp = string.next();
       for (IViewListener listener : this.listeners) {
         listener.addKeyFrame(this.selectedName,
             Integer.valueOf(tTick.getText()), Double.valueOf(tX.getText()),
@@ -514,20 +486,20 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
    */
   private void editKeyFrameAction() {
     try {
-//      Scanner string = new Scanner((String)shapeList.getSelectedValue());
-//      string.next();
-//      String temp = string.next();
-//      Scanner frame = new Scanner(Integer.toString(motionsList.getSelectedIndex()));
-//      int temp2 = Integer.valueOf(frame.next());
-      if (this.shapeList.getSelectedValue() != null) {
-        Scanner string = new Scanner(((String) this.shapeList.getSelectedValue()));
-        string.next();
-        this.selectedName = string.next();
-        string.close();
-      }
+      //      Scanner string = new Scanner((String)shapeList.getSelectedValue());
+      //      string.next();
+      //      String temp = string.next();
+      //      Scanner frame = new Scanner(Integer.toString(motionsList.getSelectedIndex()));
+      //      int temp2 = Integer.valueOf(frame.next());
+      //      if (this.shapeList.getSelectedValue() != null) {
+      //        Scanner string = new Scanner(((String) this.shapeList.getSelectedValue()));
+      //        string.next();
+      //        this.selectedName = string.next();
+      //        string.close();
+      //      }
       for (IViewListener listener : this.listeners) {
         listener.editKeyFrame(this.selectedName,
-                motionsList.getSelectedIndex(), Integer.valueOf(tTick.getText()),
+            motionsList.getSelectedIndex(), Integer.valueOf(tTick.getText()),
             Integer.valueOf(tX.getText()), Integer.valueOf(tY.getText()),
             Integer.valueOf(tWidth.getText()), Integer.valueOf(tHeight.getText()),
             Integer.valueOf(tRed.getText()), Integer.valueOf(tGreen.getText()),
@@ -545,15 +517,15 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
    */
   private void removeKeyFrameAction() {
     try {
-//      Scanner string = new Scanner((String)shapeList.getSelectedValue());
-//      string.next();
-//      String temp = string.next();
-      if (this.shapeList.getSelectedValue() != null) {
-        Scanner string = new Scanner(((String) this.shapeList.getSelectedValue()));
-        string.next();
-        this.selectedName = string.next();
-        string.close();
-      }
+      //      Scanner string = new Scanner((String)shapeList.getSelectedValue());
+      //      string.next();
+      //      String temp = string.next();
+      //      if (this.shapeList.getSelectedValue() != null) {
+      //        Scanner string = new Scanner(((String) this.shapeList.getSelectedValue()));
+      //        string.next();
+      //        this.selectedName = string.next();
+      //        string.close();
+      //      }
       for (IViewListener listener : this.listeners) {
         listener.removeKeyFrame(this.selectedName,
             motionsList.getSelectedIndex());
@@ -569,15 +541,15 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
    */
   private void removeShapeAction() {
     try {
-//      Scanner string = new Scanner((String)shapeList.getSelectedValue());
-//      string.next();
-//      String temp = string.next();
-      if (this.shapeList.getSelectedValue() != null) {
-        Scanner string = new Scanner(((String) this.shapeList.getSelectedValue()));
-        string.next();
-        this.selectedName = string.next();
-        string.close();
-      }
+      //      Scanner string = new Scanner((String)shapeList.getSelectedValue());
+      //      string.next();
+      //      String temp = string.next();
+      //      if (this.shapeList.getSelectedValue() != null) {
+      //        Scanner string = new Scanner(((String) this.shapeList.getSelectedValue()));
+      //        string.next();
+      //        this.selectedName = string.next();
+      //        string.close();
+      //      }
       for (IViewListener listener : this.listeners) {
         listener.removeShape(this.selectedName);
       }
@@ -615,15 +587,16 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
    */
   @Override
   public void valueChanged(ListSelectionEvent e) {
-    if (e.getValueIsAdjusting()) {
-     // System.out.println(this.shapeList.getSelectedIndex());
-      Scanner string = new Scanner(((String) this.shapeList.getSelectedValue()));
-      string.next();
-      this.selectedName = string.next();
-      for (IViewListener listener : this.listeners) {
-        this.getMotionsList(listener.getShape(this.selectedName));
-      }
-      string.close();
+    if (this.shapeList.getSelectedValue() == null) {
+      System.out.println("YEEHAW PARTNER");
+      return;
     }
+    Scanner string = new Scanner(((String) this.shapeList.getSelectedValue()));
+    string.next();
+    this.selectedName = string.next();
+    for (IViewListener listener : this.listeners) {
+      this.getMotionsList(listener.getShape(this.selectedName));
+    }
+    string.close();
   }
 }
