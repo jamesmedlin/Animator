@@ -270,7 +270,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     labelButtonPanel.setPreferredSize(new Dimension(300, 150));
     motionsPanel = new JPanel();
 
-    motionsLabel = new JLabel("Motions:");
+    motionsLabel = new JLabel("Motions:\n(t, x, y, w, h, r, g, b)");
 
     motionsList = new JList<String>();
     motionsList.setPreferredSize(new Dimension(300, 500));
