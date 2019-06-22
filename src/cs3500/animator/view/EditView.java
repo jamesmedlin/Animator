@@ -414,10 +414,12 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
 
   private void editAction() {
     try {
+      Scanner string = new Scanner((String)shapeList.getSelectedValue());
+      string.next();
+      String temp = string.next();
       for (IViewListener listener : this.listeners) {
-        listener.editKeyFrame(
-            ((IReadOnlyAnimatedShape) this.shapeList.getSelectedValue()).getName(),
-            this.shapeList.getSelectedIndex(),
+        listener.editKeyFrame(temp,
+            this.motionsList.getSelectedIndex(),
             Integer.valueOf(this.tTick.getText()),
             Double.valueOf(this.tX.getText()),
             Double.valueOf(this.tY.getText()),
@@ -435,8 +437,11 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
 
   private void addKeyFrameAction() {
     try {
+      Scanner string = new Scanner((String)shapeList.getSelectedValue());
+      string.next();
+      String temp = string.next();
       for (IViewListener listener : this.listeners) {
-        listener.addKeyFrame(((IReadOnlyAnimatedShape) shapeList.getSelectedValue()).getName(),
+        listener.addKeyFrame(temp,
             Integer.valueOf(tTick.getText()), Double.valueOf(tX.getText()),
             Double.valueOf(tY.getText()), Integer.valueOf(tWidth.getText()),
             Integer.valueOf(tHeight.getText()), Integer.valueOf(tRed.getText()),
@@ -467,8 +472,11 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
 
   private void removeKeyFrameAction() {
     try {
+      Scanner string = new Scanner((String)shapeList.getSelectedValue());
+      string.next();
+      String temp = string.next();
       for (IViewListener listener : this.listeners) {
-        listener.removeKeyFrame(((IReadOnlyAnimatedShape) shapeList.getSelectedValue()).getName(),
+        listener.removeKeyFrame(temp,
             motionsList.getSelectedIndex());
       }
       feedback.setText("");
@@ -478,10 +486,10 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
   }
 
   private void removeShapeAction() {
-    Scanner string = new Scanner((String)shapeList.getSelectedValue());
-    string.next();
-    String temp = string.next();
     try {
+      Scanner string = new Scanner((String)shapeList.getSelectedValue());
+      string.next();
+      String temp = string.next();
       for (IViewListener listener : this.listeners) {
         listener.removeShape(temp);
       }
