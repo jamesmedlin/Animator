@@ -18,7 +18,7 @@ public class TestModel implements IModel {
    * 
    * @param appendable the appendable to which the tests will be compared.
    */
-  public TestModel(Appendable appendable){
+  public TestModel(Appendable appendable) {
     this.appendable = appendable;
   }
 

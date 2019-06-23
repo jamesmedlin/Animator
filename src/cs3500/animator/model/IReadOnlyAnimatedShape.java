@@ -45,7 +45,7 @@ public interface IReadOnlyAnimatedShape {
   String getName();
 
   /**
-   * retrieves the states of this shape as an array or strings.
+   * retrieves the states of this shape as an array of strings.
    * @return the states in string format
    */
   ArrayList<String> getStatesStringArray();

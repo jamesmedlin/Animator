@@ -2,7 +2,6 @@ package cs3500.animator.model;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -242,7 +241,8 @@ public final class Model implements IModel {
     if (shapes.containsKey(name)) {
       return shapes.get(name).deepCopy();
     } else {
-      throw new IllegalArgumentException("This name does not exist in the current shapes " + name + shapes.size());
+      throw new IllegalArgumentException("This name does not exist in the current shapes "
+              + name + shapes.size());
     }
   }
 

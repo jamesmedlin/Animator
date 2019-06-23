@@ -26,7 +26,7 @@ public class SVGViewTest {
 
   @Test(expected = UnsupportedOperationException.class)
   public void testFail() {
-    v1.drawShapes(null);;
+    v1.drawShapes(null);
   }
 
   @Test

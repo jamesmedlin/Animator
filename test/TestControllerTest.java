@@ -3,12 +3,15 @@ import org.junit.Test;
 import cs3500.animator.controller.IAnimatorController;
 import cs3500.animator.view.IView;
 import cs3500.animator.view.TestView;
-import java.io.BufferedReader;
 import java.io.StringReader;
 import cs3500.animator.controller.TestController;
+
 import static org.junit.Assert.assertEquals;
 
-
+/**
+ * uses the methodology of mock testing to test the {@code VisualController} and
+ * the {@code EditView}.
+ */
 public class TestControllerTest {
   Appendable appendable;
   IView testView;
@@ -82,7 +85,8 @@ public class TestControllerTest {
     testView = new TestView(new StringReader("AddKeyframe"));
     testView.addListener(testController);
     testView.drawShapes(null);
-    assertEquals("new key frame to shape Test Success at tick 25", appendable.toString());
+    assertEquals("new key frame to shape Test Success at tick 25",
+            appendable.toString());
   }
   
   @Test
@@ -90,7 +94,8 @@ public class TestControllerTest {
     testView = new TestView(new StringReader("EditKeyframe"));
     testView.addListener(testController);
     testView.drawShapes(null);
-    assertEquals("key frame edited for shape Test Success", appendable.toString());
+    assertEquals("key frame edited for shape Test Success",
+            appendable.toString());
   }
   
   @Test
@@ -98,6 +103,7 @@ public class TestControllerTest {
     testView = new TestView(new StringReader("RemoveKeyframe"));
     testView.addListener(testController);
     testView.drawShapes(null);
-    assertEquals("key frame removed from shape Test Success", appendable.toString());
+    assertEquals("key frame removed from shape Test Success",
+            appendable.toString());
   }
 }

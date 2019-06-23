@@ -1,10 +1,10 @@
 package cs3500.animator.controller;
+
 import java.io.IOException;
 import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.ShapeType;
 import cs3500.animator.view.IView;
 import cs3500.animator.view.IViewListener;
-
 
 /**
  * Represents a dummy controller used only for testing. It has an Appendable that each of the
@@ -19,13 +19,13 @@ public class TestController implements IAnimatorController, IViewListener {
    * @param view the view from which events will be fired
    * @param appendable the appendable on which the tests will be compared.
    */
-  public TestController(IView view, Appendable appendable){
+  public TestController(IView view, Appendable appendable) {
     this.appendable = appendable;
   }
 
   @Override
   public void play() {
-    try{
+    try {
       appendable.append("play");
     } catch (IOException e) {
       System.err.println("Appendable could not output play");

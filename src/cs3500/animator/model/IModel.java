@@ -1,8 +1,6 @@
 package cs3500.animator.model;
 
 
-import java.util.ArrayList;
-
 /**
  * represents the animation's data structure, independent of user interface. Directly organizes the
  * data and logic of this animation.

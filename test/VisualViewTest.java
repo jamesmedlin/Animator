@@ -21,7 +21,6 @@ public class VisualViewTest {
     m1 = new Model();
     v1 = new VisualView(0, 0, 0);
     c1 = new VisualController(m1, v1, 30);
-
   }
 
   @Test (expected = UnsupportedOperationException.class)

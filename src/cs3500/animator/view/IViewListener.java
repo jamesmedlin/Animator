@@ -4,7 +4,7 @@ import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.ShapeType;
 
 /**
- * Represents and object that listens to an {@code IView} and calls methods based on
+ * Represents an object that listens to an {@code IView} and calls methods based on
  * what event was fired.
  */
 public interface IViewListener {
@@ -95,8 +95,7 @@ public interface IViewListener {
       int width, int height, int r, int g, int b);
 
   /**
-   * Gets shape in the model with the given ID
-   * 
+   * Gets shape in the model with the given ID.
    * @param id the id of the shape to be return 
    * @return read only animated shape object with the given id
    */

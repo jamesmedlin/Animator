@@ -1,7 +1,6 @@
 package cs3500.animator.model;
 
 import java.awt.geom.Point2D;
-import java.awt.geom.Point2D.Double;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -348,12 +347,12 @@ public class AnimatedShape implements IAnimatedShape {
           + "And initState or states must have values.");
     }
     new MotionAdder()
-    .setEndColor(endColor)
-    .setEndHeight(endHeight)
-    .setEndWidth(endWidth)
-    .setEndPos(endPos)
-    .setDuration(duration)
-    .add();
+        .setEndColor(endColor)
+        .setEndHeight(endHeight)
+        .setEndWidth(endWidth)
+        .setEndPos(endPos)
+        .setDuration(duration)
+        .add();
   }
 
   @Override
@@ -377,9 +376,8 @@ public class AnimatedShape implements IAnimatedShape {
   @Override
   public void changeSizeTo(int newHeight, int newWidth, int duration) {
     new MotionAdder().setEndWidth(newWidth)
-    .setEndHeight(newHeight)
-    .setDuration(duration)
-    .add();
+      .setEndHeight(newHeight).setDuration(duration)
+      .add();
   }
 
   @Override
@@ -404,17 +402,17 @@ public class AnimatedShape implements IAnimatedShape {
     MotionAdder adder = new MotionAdder();
 
     adder
-    .setStartColor(new Color(r1, g1, b1))
-    .setEndColor(new Color(r2, g2, b2))
-    .setStartTick(t1)
-    .setEndTick(t2)
-    .setStartHeight(h1)
-    .setEndHeight(h2)
-    .setStartWidth(w1)
-    .setEndWidth(w2)
-    .setStartPos(new Point2D.Double(x1, y1))
-    .setEndPos(new Point2D.Double(x2, y2))
-    .addFrame();
+      .setStartColor(new Color(r1, g1, b1))
+      .setEndColor(new Color(r2, g2, b2))
+      .setStartTick(t1)
+      .setEndTick(t2)
+      .setStartHeight(h1)
+      .setEndHeight(h2)
+      .setStartWidth(w1)
+      .setEndWidth(w2)
+      .setStartPos(new Point2D.Double(x1, y1))
+      .setEndPos(new Point2D.Double(x2, y2))
+      .addFrame();
   }
 
   @Override
@@ -429,17 +427,17 @@ public class AnimatedShape implements IAnimatedShape {
       throw new IllegalArgumentException("Motion must begin where the last one left off");
     } else {
       adder
-      .setStartColor(new Color(r1, g1, b1))
-      .setEndColor(new Color(r2, g2, b2))
-      .setStartTick(t1)
-      .setEndTick(t2)
-      .setStartHeight(h1)
-      .setEndHeight(h2)
-      .setStartWidth(w1)
-      .setEndWidth(w2)
-      .setStartPos(new Point2D.Double(x1, y1))
-      .setEndPos(new Point2D.Double(x2, y2))
-      .add();
+        .setStartColor(new Color(r1, g1, b1))
+        .setEndColor(new Color(r2, g2, b2))
+        .setStartTick(t1)
+        .setEndTick(t2)
+        .setStartHeight(h1)
+        .setEndHeight(h2)
+        .setStartWidth(w1)
+        .setEndWidth(w2)
+        .setStartPos(new Point2D.Double(x1, y1))
+        .setEndPos(new Point2D.Double(x2, y2))
+        .add();
     }
   }
 
@@ -477,7 +475,8 @@ public class AnimatedShape implements IAnimatedShape {
     }
     int curIndex = 0;
     if (this.states.size() == 0) {
-      this.addFrameMotion(tick,(int)x,(int)y,width,height,r,g,b,tick,(int)x,(int)y,width,height,r,g,b);
+      this.addFrameMotion(tick,(int)x,(int)y,width,height,r,g,b,tick,(int)x,(int)y,
+              width,height,r,g,b);
     }
     try {
       while (tick >= this.states.get(curIndex).getTick()) {

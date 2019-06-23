@@ -8,9 +8,12 @@ import cs3500.animator.view.IView;
 import cs3500.animator.view.TestView;
 import java.io.StringReader;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-
+/**
+ * tests the functionality and ability for communication between the controller
+ * and model of this animation program.
+ */
 public class ControllerToModelTest {
   Appendable appendable;
   IView testView;
@@ -28,7 +31,8 @@ public class ControllerToModelTest {
     this.testView = new TestView(new StringReader("AddShape"));
     controller = new VisualController(testModel, testView, 50);
     testView.drawShapes(null);
-    assertEquals("Getting shapesShape Test Success added into modelGetting shapes",
+    assertEquals("Getting shapesShape Test Success added " +
+                    "into modelGetting shapes",
         appendable.toString());
   }
   
@@ -37,7 +41,8 @@ public class ControllerToModelTest {
     this.testView = new TestView(new StringReader("RemoveShape"));
     controller = new VisualController(testModel, testView, 50);
     testView.drawShapes(null);
-    assertEquals("Getting shapesShape Test Success removed from modelGetting shapes",
+    assertEquals("Getting shapesShape Test Success removed " +
+                    "from modelGetting shapes",
         appendable.toString());
   }
   
@@ -46,7 +51,8 @@ public class ControllerToModelTest {
     this.testView = new TestView(new StringReader("AddKeyframe"));
     controller = new VisualController(testModel, testView, 50);
     testView.drawShapes(null);
-    assertEquals("Getting shapesKey frame added to Test Success in modelGetting shapes",
+    assertEquals("Getting shapesKey frame added to Test Success" +
+                    " in modelGetting shapes",
         appendable.toString());
   }
   
@@ -55,7 +61,8 @@ public class ControllerToModelTest {
     this.testView = new TestView(new StringReader("EditKeyframe"));
     controller = new VisualController(testModel, testView, 50);
     testView.drawShapes(null);
-    assertEquals("Getting shapesKey frame edited in Test Success in modelGetting shapes",
+    assertEquals("Getting shapesKey frame edited in Test Success " +
+                    "in modelGetting shapes",
         appendable.toString());
   }
   
@@ -64,7 +71,8 @@ public class ControllerToModelTest {
     this.testView = new TestView(new StringReader("RemoveKeyframe"));
     controller = new VisualController(testModel, testView, 50);
     testView.drawShapes(null);
-    assertEquals("Getting shapesKey frame removed from Test Success in modelGetting shapes",
+    assertEquals("Getting shapesKey frame removed from Test " +
+                    "Success in modelGetting shapes",
         appendable.toString());
   }
 }

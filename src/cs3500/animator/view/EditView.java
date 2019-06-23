@@ -24,59 +24,30 @@ import javax.swing.event.ListSelectionListener;
 import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.ShapeType;
 
+/**
+ * represents an editor window for the user to be able to change/make animations.
+ */
 public class EditView extends VisualView implements ActionListener, ListSelectionListener {
 
+  // this keeps track of all the shapes in the animation in string format
   private ArrayList<String> shapeStrings;
+  // this keeps track of the most recently selected shape in the list of shapes
   private String selectedName;
 
   private JPanel northPanel;
   private JLabel feedback;
-  private JPanel mainButtons;
-  private JScrollPane scrollPane;
-  private JButton pauseButton;
-  private JButton playButton;
-  private JButton restartButton;
   private JCheckBox loopingButton;
-  private JLabel speedLabel;
   private JTextField speedText;
-  private JButton speedButton;
-  private JPanel feedbackPanel;
 
-  private JPanel editShapesPanel;
   private JRadioButton rectangle;
   private JRadioButton ellipse;
-  private ButtonGroup buttonGroup;
-  private JButton addShape;
-  private JButton removeShape;
   private JTextField name;
-  private JPanel namePanel;
-
-  private JPanel submitPanel;
-  private JButton editFrame;
-  private JButton addFrame;
-  private JButton removeFrame;
 
   private JPanel westPanel;
-  private JLabel shapesLabel;
-  private JLabel motionsLabel;
   private JList<String> motionsList;
-  private JPanel motionsPanel;
   private JList<String> shapeList;
-  private JPanel shapesPanel;
-  private JPanel editShapesButtonPanel;
-  private JPanel radioPanel;
 
   private JPanel eastPanel;
-  private JPanel labelButtonPanel;
-  private JLabel nameLabel;
-  private JLabel widthLabel;
-  private JLabel heightLabel;
-  private JLabel xCoordinate;
-  private JLabel yCoordinate;
-  private JLabel redColor;
-  private JLabel greenColor;
-  private JLabel blueColor;
-  private JLabel tickLabel;
   private JTextField tWidth;
   private JTextField tHeight;
   private JTextField tX;
@@ -85,15 +56,6 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
   private JTextField tGreen;
   private JTextField tBlue;
   private JTextField tTick;
-  private JPanel widthPanel;
-  private JPanel heightPanel;
-  private JPanel xCoordinatePanel;
-  private JPanel yCoordinatePanel;
-  private JPanel redColorPanel;
-  private JPanel greenColorPanel;
-  private JPanel blueColorPanel;
-  private JScrollPane scrollPaneShapes;
-  private JScrollPane scrollPaneMotions;
 
   /**
    * constructs the editing window with its interface.
@@ -128,6 +90,14 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
    * Contains the feedback label that leaves feedback based on incorrect operations.
    */
   private void makeNorthPanel() {
+    JPanel mainButtons;
+    JButton pauseButton;
+    JButton playButton;
+    JButton restartButton;
+    JLabel speedLabel;
+    JButton speedButton;
+    JPanel feedbackPanel;
+
     pauseButton = new JButton("pause");
     pauseButton.setActionCommand("pause button");
     pauseButton.addActionListener(this);
@@ -169,14 +139,27 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     this.northPanel = new JPanel();
     this.northPanel.setLayout(new BoxLayout(this.northPanel, BoxLayout.Y_AXIS));
 
-    this.northPanel.add(this.mainButtons);
-    this.northPanel.add(this.feedbackPanel);
+    this.northPanel.add(mainButtons);
+    this.northPanel.add(feedbackPanel);
   }
 
   /**
    * builds the shapes list and all buttons and fields that are required for this to happen.
    */
   private void makeWestPanel() {
+    JPanel editShapesPanel;
+    ButtonGroup buttonGroup;
+    JButton addShape;
+    JButton removeShape;
+    JPanel namePanel;
+    JLabel shapesLabel;
+    JPanel shapesPanel;
+    JPanel editShapesButtonPanel;
+    JPanel radioPanel;
+    JLabel nameLabel;
+    JScrollPane scrollPaneShapes;
+
+
     westPanel = new JPanel();
     westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
 
@@ -241,6 +224,30 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
    * builds the motions list and all buttons and fields that are required for this to happen.
    */
   private void makeEastPanel() {
+    JPanel submitPanel;
+    JButton editFrame;
+    JButton addFrame;
+    JButton removeFrame;
+    JLabel motionsLabel;
+    JPanel motionsPanel;
+    JPanel labelButtonPanel;
+    JLabel widthLabel;
+    JLabel heightLabel;
+    JLabel xCoordinate;
+    JLabel yCoordinate;
+    JLabel redColor;
+    JLabel greenColor;
+    JLabel blueColor;
+    JLabel tickLabel;
+    JPanel widthPanel;
+    JPanel heightPanel;
+    JPanel xCoordinatePanel;
+    JPanel yCoordinatePanel;
+    JPanel redColorPanel;
+    JPanel greenColorPanel;
+    JPanel blueColorPanel;
+    JScrollPane scrollPaneMotions;
+
     widthLabel = new JLabel("Width");
     heightLabel = new JLabel("Height");
     xCoordinate = new JLabel("X");
@@ -350,6 +357,9 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
         case RECTANGLE:
           this.shapeStrings.add("Rectangle " + shape.getName());
           break;
+        default:
+          this.shapeStrings.add("Rectangle " + shape.getName());
+          break;
       }
       DefaultListModel<String> model = new DefaultListModel<String>();
       for (String s : this.shapeStrings) {
@@ -380,7 +390,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
       }
       this.motionsList.setModel(model);
     } catch (Exception e) {
-
+      //do nothing
     }
   }
 

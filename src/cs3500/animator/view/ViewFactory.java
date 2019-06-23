@@ -1,6 +1,5 @@
 package cs3500.animator.view;
 
-
 /**
  * represents a factory to make the specific View type given.
  */

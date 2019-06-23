@@ -49,8 +49,7 @@ public interface IShapeState extends IReadOnlyShapeState, Comparable<IShapeState
   void setPosition(double x, double y);
 
   /**
-   * Sets the tick of this shape state to the given value
-   * 
+   * Sets the tick of this shape state to the given value.
    * @param tick the new tick of this Shape State
    */
   void setTick(int tick);

@@ -1,4 +1,5 @@
 package cs3500.animator.view;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -6,7 +7,6 @@ import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.IReadOnlyModel;
 import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
-
 
 /**
  * Represents a dummy view that tests whether the controller and model are synced up correctly with
@@ -22,7 +22,7 @@ public class TestView implements IView {
    * 
    * @param readable The readable that is composed of the names of the dummy events to be fired.
    */
-  public TestView(Readable readable){
+  public TestView(Readable readable) {
     listeners = new ArrayList<IViewListener>();
     this.readable = readable;
   }
@@ -80,7 +80,7 @@ public class TestView implements IView {
         }
       }
     } catch (Exception e) {
-      
+      // do nothing
     } 
   }
 

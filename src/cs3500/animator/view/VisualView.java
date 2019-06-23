@@ -8,7 +8,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.JScrollPane;
+import javax.swing.JFrame;
 
 import cs3500.animator.model.IReadOnlyAnimatedShape;
 import cs3500.animator.model.IReadOnlyModel;
