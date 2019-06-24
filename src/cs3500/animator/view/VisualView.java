@@ -67,6 +67,11 @@ public class VisualView extends JFrame implements IView, ActionListener {
   }
 
   @Override
+  public void setKnob(int placement) {
+
+  }
+
+  @Override
   public void actionPerformed(ActionEvent e) {
     // TODO Auto-generated method stub
     

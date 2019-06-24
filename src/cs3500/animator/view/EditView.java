@@ -52,8 +52,9 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
 
   /**
    * constructs the editing window with its interface.
-   * @param speed the speed at which the animation runs
-   * @param width the width of the window
+   *
+   * @param speed  the speed at which the animation runs
+   * @param width  the width of the window
    * @param height the height of the window
    */
   public EditView(int speed, int width, int height) {
@@ -75,7 +76,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     pack();
     this.add(this.scrollPane, BorderLayout.CENTER);
 
-    this.setMinimumSize(new Dimension(1600,700));
+    this.setMinimumSize(new Dimension(1600, 700));
   }
 
   /**
@@ -342,6 +343,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
 
   /**
    * sets the current shapes in the animation.
+   *
    * @param array the list of shapes
    */
   public void setShapesArray(ArrayList<IReadOnlyAnimatedShape> array) {
@@ -365,7 +367,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
       Runnable updateList = new Runnable() {
         @Override
         public void run() {
-          shapeList.setModel(model);          
+          shapeList.setModel(model);
         }
       };
       SwingUtilities.invokeLater(updateList);
@@ -374,12 +376,13 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
 
   /**
    * retrieves the motions of the given shape.
+   *
    * @param shape the read only shape that is currently selected
    */
   private void getMotionsList(IReadOnlyAnimatedShape shape) {
     try {
       ArrayList<String> array =
-          shape.getStatesStringArray();
+              shape.getStatesStringArray();
       DefaultListModel<String> model = new DefaultListModel<String>();
 
       for (String s : array) {
@@ -449,7 +452,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
         break;
       default:
         throw new UnsupportedOperationException("Action command not supported: "
-            + e.getActionCommand());
+                + e.getActionCommand());
     }
   }
 
@@ -474,10 +477,10 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     try {
       for (IViewListener listener : this.listeners) {
         listener.addKeyFrame(this.selectedName,
-            Integer.valueOf(tTick.getText()), Double.valueOf(tX.getText()),
-            Double.valueOf(tY.getText()), Integer.valueOf(tWidth.getText()),
-            Integer.valueOf(tHeight.getText()), Integer.valueOf(tRed.getText()),
-            Integer.valueOf(tGreen.getText()), Integer.valueOf(tBlue.getText()));
+                Integer.valueOf(tTick.getText()), Double.valueOf(tX.getText()),
+                Double.valueOf(tY.getText()), Integer.valueOf(tWidth.getText()),
+                Integer.valueOf(tHeight.getText()), Integer.valueOf(tRed.getText()),
+                Integer.valueOf(tGreen.getText()), Integer.valueOf(tBlue.getText()));
       }
       feedback.setText("");
       for (IViewListener listener : this.listeners) {
@@ -495,11 +498,11 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     try {
       for (IViewListener listener : this.listeners) {
         listener.editKeyFrame(this.selectedName,
-            motionsList.getSelectedIndex() + 1, Integer.valueOf(tTick.getText()),
-            Integer.valueOf(tX.getText()), Integer.valueOf(tY.getText()),
-            Integer.valueOf(tWidth.getText()), Integer.valueOf(tHeight.getText()),
-            Integer.valueOf(tRed.getText()), Integer.valueOf(tGreen.getText()),
-            Integer.valueOf(tBlue.getText()));
+                motionsList.getSelectedIndex() + 1, Integer.valueOf(tTick.getText()),
+                Integer.valueOf(tX.getText()), Integer.valueOf(tY.getText()),
+                Integer.valueOf(tWidth.getText()), Integer.valueOf(tHeight.getText()),
+                Integer.valueOf(tRed.getText()), Integer.valueOf(tGreen.getText()),
+                Integer.valueOf(tBlue.getText()));
       }
       feedback.setText("");
       for (IViewListener listener : this.listeners) {
@@ -507,7 +510,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
       }
     } catch (Exception e) {
       feedback.setText("Ensure a certain shape and its movement are selected. And ensure all frame"
-          + "fields are filled out.");
+              + "fields are filled out.");
     }
   }
 
@@ -518,7 +521,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     try {
       for (IViewListener listener : this.listeners) {
         listener.removeKeyFrame(this.selectedName,
-            motionsList.getSelectedIndex() + 1);
+                motionsList.getSelectedIndex() + 1);
       }
       feedback.setText("");
 
@@ -569,6 +572,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
 
   /**
    * is called whenever the selection in a list changes.
+   *
    * @param e the list of event selections
    */
   @Override
@@ -589,17 +593,22 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
 
   @Override
   public void stateChanged(ChangeEvent e) {
-    JSlider source = (JSlider)e.getSource();
+    JSlider source = (JSlider) e.getSource();
     if (source.getValueIsAdjusting()) {
       for (IViewListener listener : this.listeners) {
         listener.changeTickTo(source.getValue());
-        scrubber.setValue(listener.getCurrentTick());
       }
     } else {
       for (IViewListener listener : this.listeners) {
-        scrubber.setValue(listener.getCurrentTick());
+        this.drawShapes(listener.getShapesAtTick(listener.getCurrentTick()));
+        System.out.println(listener.getCurrentTick());
+        System.out.println(source.getValue());
       }
     }
   }
 
+  public void setKnob(int placement) {
+    scrubber.setValue(placement);
+  }
 }
+

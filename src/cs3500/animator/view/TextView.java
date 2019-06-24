@@ -57,4 +57,9 @@ public class TextView implements IView {
   public void setShapesArray(ArrayList<IReadOnlyAnimatedShape> shapes) {
     throw new UnsupportedOperationException("Not supported for this view");
   }
+
+  @Override
+  public void setKnob(int placement) {
+
+  }
 }

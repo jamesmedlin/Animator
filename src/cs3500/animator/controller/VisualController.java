@@ -2,6 +2,7 @@ package cs3500.animator.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Timer;
@@ -46,6 +47,7 @@ public class VisualController implements IAnimatorController {
           tick++;
         }
         view.drawShapes(shapesToRender);
+        view.setKnob(tick);
       }
     });
     
@@ -140,6 +142,11 @@ public class VisualController implements IAnimatorController {
   @Override
   public int getCurrentTick() {
     return this.tick;
+  }
+
+  @Override
+  public List<IReadOnlyShapeState> getShapesAtTick(int tick) {
+    return model.getShapesAtTick(tick);
   }
 
 }

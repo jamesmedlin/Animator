@@ -39,4 +39,6 @@ public interface IView {
    * @param shapes the shapes in the animation
    */
   void setShapesArray(ArrayList<IReadOnlyAnimatedShape> shapes);
+
+  void setKnob(int placement);
 }

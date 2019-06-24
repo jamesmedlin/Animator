@@ -1,7 +1,10 @@
 package cs3500.animator.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import cs3500.animator.model.IReadOnlyAnimatedShape;
+import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
 import cs3500.animator.view.IView;
 import cs3500.animator.view.IViewListener;
@@ -139,5 +142,10 @@ public class TestController implements IAnimatorController, IViewListener {
   @Override
   public int getCurrentTick() {
     return 0;
+  }
+
+  @Override
+  public List<IReadOnlyShapeState> getShapesAtTick(int tick) {
+    return null;
   }
 }

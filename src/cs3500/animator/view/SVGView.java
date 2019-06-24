@@ -65,4 +65,9 @@ public class SVGView implements IView {
     throw new UnsupportedOperationException("Setting shapes not supported by this view");
   }
 
+  @Override
+  public void setKnob(int placement) {
+
+  }
+
 }

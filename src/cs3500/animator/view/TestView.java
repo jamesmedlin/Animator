@@ -88,4 +88,9 @@ public class TestView implements IView {
   public void setShapesArray(ArrayList<IReadOnlyAnimatedShape> shapes) {
     throw new UnsupportedOperationException("Setting shapes not supported by this view");
   }
+
+  @Override
+  public void setKnob(int placement) {
+
+  }
 }

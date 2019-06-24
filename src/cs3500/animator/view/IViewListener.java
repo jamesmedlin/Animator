@@ -1,7 +1,10 @@
 package cs3500.animator.view;
 
 import cs3500.animator.model.IReadOnlyAnimatedShape;
+import cs3500.animator.model.IReadOnlyShapeState;
 import cs3500.animator.model.ShapeType;
+
+import java.util.List;
 
 /**
  * Represents an object that listens to an {@code IView} and calls methods based on
@@ -118,4 +121,6 @@ public interface IViewListener {
    * @return
    */
   int getCurrentTick();
+
+  List<IReadOnlyShapeState> getShapesAtTick(int tick);
 }
