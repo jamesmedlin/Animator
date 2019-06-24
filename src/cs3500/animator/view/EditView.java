@@ -601,8 +601,6 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     } else {
       for (IViewListener listener : this.listeners) {
         this.drawShapes(listener.getShapesAtTick(listener.getCurrentTick()));
-        System.out.println(listener.getCurrentTick());
-        System.out.println(source.getValue());
       }
     }
   }
