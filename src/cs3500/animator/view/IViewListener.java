@@ -117,11 +117,15 @@ public interface IViewListener {
   void changeTickTo(int tick);
 
   /**
-   * TODO
-   * @return
+   * retrieves the current tick of the animation.
+   * @return the value of the tick
    */
   int getCurrentTick();
-
+  /**
+   * retrieves the state of each shape in the animation at the given tick.
+   * @param tick the tick of which is called
+   * @return the states of shapes at the given tick
+   */
   List<IReadOnlyShapeState> getShapesAtTick(int tick);
 
   void changeLayer(String id, int newLayer);

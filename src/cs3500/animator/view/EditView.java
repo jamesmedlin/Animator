@@ -620,6 +620,10 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     string.close();
   }
 
+  /**
+   * is called whenever the value at which the knob slides along the scrubber changes.
+   * @param e the changed event
+   */
   @Override
   public void stateChanged(ChangeEvent e) {
     JSlider source = (JSlider) e.getSource();
@@ -634,6 +638,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     }
   }
 
+  @Override
   public void setKnob(int placement) {
     scrubber.setValue(placement);
   }
