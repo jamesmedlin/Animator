@@ -40,5 +40,9 @@ public interface IView {
    */
   void setShapesArray(ArrayList<IReadOnlyAnimatedShape> shapes);
 
+  /**
+   * instructs knob of position along the slider.
+   * @param placement the integer value along the slider
+   */
   void setKnob(int placement);
 }

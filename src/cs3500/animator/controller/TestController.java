@@ -131,21 +131,40 @@ public class TestController implements IAnimatorController, IViewListener {
 
   @Override
   public int getMaxTick() {
-    return 1;
+    try {
+      appendable.append("Gotten maximum tick " + 0);
+    } catch (IOException e) {
+      System.err.println("Appendable could not output getMaxTick");
+    }
+    return 0;
   }
 
   @Override
   public void changeTickTo(int tick) {
-
+    try {
+      appendable.append("The tick has been changed to " + tick);
+    } catch (IOException e) {
+      System.err.println("Appendable could not output changeTickTo");
+    }
   }
 
   @Override
   public int getCurrentTick() {
+    try {
+      appendable.append("GCurrent tick is " + 0);
+    } catch (IOException e) {
+      System.err.println("Appendable could not output getCurrentTick");
+    }
     return 0;
   }
 
   @Override
   public List<IReadOnlyShapeState> getShapesAtTick(int tick) {
+    try {
+      appendable.append("Shapes have been retrieved at tick: " + tick);
+    } catch (IOException e) {
+      System.err.println("Appendable could not output getShapesAtTick");
+    }
     return null;
   }
 }
