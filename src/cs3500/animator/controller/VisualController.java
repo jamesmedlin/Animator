@@ -127,4 +127,19 @@ public class VisualController implements IAnimatorController {
     return model.getShapeObject(id);
   }
 
+  @Override
+  public int getMaxTick() {
+    return model.getMaxTick();
+  }
+
+  @Override
+  public void changeTickTo(int tick) {
+    this.tick = tick;
+  }
+
+  @Override
+  public int getCurrentTick() {
+    return this.tick;
+  }
+
 }

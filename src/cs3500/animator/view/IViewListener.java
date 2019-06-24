@@ -101,4 +101,21 @@ public interface IViewListener {
    */
   IReadOnlyAnimatedShape getShape(String id);
 
+  /**
+   * gets the maximum tick in the whole animation.
+   * @return the maximum tick
+   */
+  int getMaxTick();
+
+  /**
+   * changes the tick in the animation to the given one.
+   * @param tick the tick specified by the user
+   */
+  void changeTickTo(int tick);
+
+  /**
+   * TODO
+   * @return
+   */
+  int getCurrentTick();
 }

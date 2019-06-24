@@ -7,18 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Scanner;
-import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import cs3500.animator.model.IReadOnlyAnimatedShape;
@@ -27,12 +18,13 @@ import cs3500.animator.model.ShapeType;
 /**
  * represents an editor window for the user to be able to change/make animations.
  */
-public class EditView extends VisualView implements ActionListener, ListSelectionListener {
+public class EditView extends VisualView implements ActionListener, ListSelectionListener, ChangeListener {
 
   // this keeps track of all the shapes in the animation in string format
   private ArrayList<String> shapeStrings;
   // this keeps track of the most recently selected shape in the list of shapes
   private String selectedName;
+  private int maxTick;
 
   private JPanel northPanel;
   private JLabel feedback;
@@ -56,6 +48,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
   private JTextField tGreen;
   private JTextField tBlue;
   private JTextField tTick;
+  private JSlider scrubber;
 
   /**
    * constructs the editing window with its interface.
@@ -163,6 +156,9 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     westPanel = new JPanel();
     westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
 
+    scrubber = new JSlider(JSlider.HORIZONTAL, 0, 100, 0);
+    scrubber.addChangeListener(this);
+
     shapesPanel = new JPanel();
 
     shapesLabel = new JLabel("Shapes:");
@@ -218,6 +214,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     westPanel.add(shapesPanel);
 
     westPanel.add(editShapesPanel);
+    westPanel.add(scrubber);
   }
 
   /**
@@ -585,7 +582,24 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     this.selectedName = string.next();
     for (IViewListener listener : this.listeners) {
       this.getMotionsList(listener.getShape(this.selectedName));
+      this.maxTick = listener.getMaxTick();
     }
     string.close();
   }
+
+  @Override
+  public void stateChanged(ChangeEvent e) {
+    JSlider source = (JSlider)e.getSource();
+    if (source.getValueIsAdjusting()) {
+      for (IViewListener listener : this.listeners) {
+        listener.changeTickTo(source.getValue());
+        scrubber.setValue(listener.getCurrentTick());
+      }
+    } else {
+      for (IViewListener listener : this.listeners) {
+        scrubber.setValue(listener.getCurrentTick());
+      }
+    }
+  }
+
 }

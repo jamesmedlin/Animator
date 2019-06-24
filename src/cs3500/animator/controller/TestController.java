@@ -125,4 +125,19 @@ public class TestController implements IAnimatorController, IViewListener {
     }
     return null;
   }
+
+  @Override
+  public int getMaxTick() {
+    return 1;
+  }
+
+  @Override
+  public void changeTickTo(int tick) {
+
+  }
+
+  @Override
+  public int getCurrentTick() {
+    return 0;
+  }
 }
