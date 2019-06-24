@@ -474,6 +474,9 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     }
   }
 
+  /**
+   * changes the layer to the specified layer of the selected shape.
+   */
   private void changeLayerAction() {
     try {
       for (IViewListener listener : this.listeners) {

@@ -161,6 +161,11 @@ public interface IModel extends IReadOnlyModel {
    */
   int getMaxTick();
 
+  /** 
+   * changes the layer of the given shape to the given layer.
+   * @param id the unique name of the shape
+   * @param newLayer the new layer of the shape
+   */
   void changeLayer(String id, int newLayer);
 
 }

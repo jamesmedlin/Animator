@@ -128,5 +128,10 @@ public interface IViewListener {
    */
   List<IReadOnlyShapeState> getShapesAtTick(int tick);
 
+  /** 
+   * changes the layer of the given shape to the given layer value.
+   * @param id the unique name of the shape
+   * @param newLayer the new layer value of the shape in the animation
+   */
   void changeLayer(String id, int newLayer);
 }
