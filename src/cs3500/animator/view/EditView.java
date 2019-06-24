@@ -30,6 +30,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
   private JLabel feedback;
   private JCheckBox loopingButton;
   private JTextField speedText;
+  private JTextField layerValue;
 
   private JRadioButton rectangle;
   private JRadioButton ellipse;
@@ -152,6 +153,8 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     JPanel radioPanel;
     JLabel nameLabel;
     JScrollPane scrollPaneShapes;
+    JPanel layerPanel;
+    JButton layerButton;
 
 
     westPanel = new JPanel();
@@ -179,6 +182,17 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     removeShape = new JButton("remove shape");
     removeShape.setActionCommand("remove shape button");
     removeShape.addActionListener(this);
+    
+    layerButton = new JButton("Change Layer");
+    layerButton.setActionCommand("change layer");
+    layerButton.addActionListener(this);
+    
+    layerValue = new JTextField(5);
+    
+    layerPanel = new JPanel();
+    layerPanel.setLayout(new FlowLayout());
+    layerPanel.add(layerValue);
+    layerPanel.add(layerButton);
 
     editShapesButtonPanel = new JPanel();
     editShapesButtonPanel.setLayout(new FlowLayout());
@@ -211,6 +225,7 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     editShapesPanel.add(namePanel);
     editShapesPanel.add(radioPanel);
     editShapesPanel.add(editShapesButtonPanel);
+    editShapesPanel.add(layerPanel);
 
     westPanel.add(shapesPanel);
 
@@ -351,13 +366,13 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
     for (IReadOnlyAnimatedShape shape : array) {
       switch (shape.getType()) {
         case ELLIPSE:
-          this.shapeStrings.add("Ellipse " + shape.getName());
+          this.shapeStrings.add("Ellipse " + shape.getName() + " - Layer " + shape.getLayer());
           break;
         case RECTANGLE:
-          this.shapeStrings.add("Rectangle " + shape.getName());
+          this.shapeStrings.add("Rectangle " + shape.getName() + " - Layer " + shape.getLayer());
           break;
         default:
-          this.shapeStrings.add("Rectangle " + shape.getName());
+          this.shapeStrings.add("Rectangle " + shape.getName() + " - Layer " + shape.getLayer());
           break;
       }
       DefaultListModel<String> model = new DefaultListModel<String>();
@@ -450,9 +465,23 @@ public class EditView extends VisualView implements ActionListener, ListSelectio
           listener.loop(this.loopingButton.isSelected());
         }
         break;
+      case "change layer":
+        changeLayerAction();
+        break;
       default:
         throw new UnsupportedOperationException("Action command not supported: "
                 + e.getActionCommand());
+    }
+  }
+
+  private void changeLayerAction() {
+    try {
+      for (IViewListener listener : this.listeners) {
+        listener.changeLayer(this.selectedName, Integer.valueOf(layerValue.getText()));
+      }
+      feedback.setText("");
+    } catch (Exception r) {
+      feedback.setText("Must be a positive layer value.");
     }
   }
 

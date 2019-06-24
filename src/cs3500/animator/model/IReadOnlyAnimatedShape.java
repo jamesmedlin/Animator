@@ -49,4 +49,11 @@ public interface IReadOnlyAnimatedShape {
    * @return the states in string format
    */
   ArrayList<String> getStatesStringArray();
+  
+  /**
+   * Retrieves the layer of this read-only shape
+   * 
+   * @return an integer layer
+   */
+  int getLayer();
 }

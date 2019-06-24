@@ -123,4 +123,6 @@ public interface IViewListener {
   int getCurrentTick();
 
   List<IReadOnlyShapeState> getShapesAtTick(int tick);
+
+  void changeLayer(String id, int newLayer);
 }

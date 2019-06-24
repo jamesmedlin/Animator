@@ -148,4 +148,14 @@ public class TestController implements IAnimatorController, IViewListener {
   public List<IReadOnlyShapeState> getShapesAtTick(int tick) {
     return null;
   }
+
+  @Override
+  public void changeLayer(String id, int newLayer) {
+    try {
+      appendable.append("Layer changed for shape " + id + " to " + newLayer);
+    } catch (IOException e) {
+      System.err.println("Appendable could not output changeLayer");
+    }
+    
+  }
 }

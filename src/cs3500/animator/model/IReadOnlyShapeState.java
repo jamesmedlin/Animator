@@ -49,4 +49,5 @@ public interface IReadOnlyShapeState {
    * @return the type in this instance
    */
   ShapeType getType();
+ 
 }

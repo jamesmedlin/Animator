@@ -603,4 +603,14 @@ public class AnimatedShape implements IAnimatedShape {
     return result;
   }
 
+  @Override
+  public int getLayer() {
+    return this.order;
+  }
+
+  @Override
+  public void setLayer(int newLayer) {
+    this.order = newLayer;
+  }
+
 }

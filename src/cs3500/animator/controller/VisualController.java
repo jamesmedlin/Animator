@@ -149,4 +149,10 @@ public class VisualController implements IAnimatorController {
     return model.getShapesAtTick(tick);
   }
 
+  @Override
+  public void changeLayer(String id, int newLayer) {
+    model.changeLayer(id, newLayer);
+    this.setShapesArray();
+  }
+
 }

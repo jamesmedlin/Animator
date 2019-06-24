@@ -161,4 +161,6 @@ public interface IModel extends IReadOnlyModel {
    */
   int getMaxTick();
 
+  void changeLayer(String id, int newLayer);
+
 }

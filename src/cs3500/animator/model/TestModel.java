@@ -192,4 +192,14 @@ public class TestModel implements IModel {
   public int getMaxTick() {
     return 0;
   }
+
+  @Override
+  public void changeLayer(String id, int newLayer) {
+    try {
+      appendable.append("Shape " + id + " layer changed to " + newLayer);
+    } catch (IOException e) {
+      System.err.println("Model appendable couldn't output changeLayer");
+    }
+    
+  }
 }

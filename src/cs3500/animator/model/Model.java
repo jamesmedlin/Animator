@@ -310,5 +310,17 @@ public final class Model implements IModel {
     }  
   }
 
+  @Override
+  public void changeLayer(String id, int newLayer) {
+    if (shapes.containsKey(id)) {
+      shapes.get(id).setLayer(newLayer);
+    }
+    else {
+      throw new IllegalArgumentException("This is not a valid name or " +
+          "is not a current shape's name.");
+    }
+    
+  }
+
 }
 
