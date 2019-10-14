@@ -5,6 +5,10 @@ This program was written to practice object-oriented programming best practices 
 ### Getting it working
 Everything you need can be found in the 'resources' folder of this repository. To use the animator, simply download the JAR file and any `.txt` files you wish to animate. Then, in a shell, run the following command. `java -jar Animator.jar -in demoFile.txt -view text/visual/svg/edit -out outputFile -speed tickPerSecond`. The `-in` and `-view` commands are mandatory as they determine what is to be animated and how to animate it respectively. The other two are optional. Specifying an output file only makes a difference if you want a text or SVG version of the animation. The speed argument determines the number of ticks per second at which the animation moves (default to 1, so specifying a speed around 30 is recommended).
 
+![editor](resources/buildingsScreenShot.png)
+
+### When animated, it moves like so:
+![animation](toh-at-20.svg)
 
 ## Model
 ### Overview
