@@ -7,7 +7,7 @@ Everything you need can be found in the 'resources' folder of this repository. T
 
 ![editor](resources/buildingsScreenShot.png)
 
-### When animated, it moves like so:
+### Click on the image below to see how the animator would run it at speed 20. This is purely the animation, not the entire editor shown above. To see that, follow the instructions under `Getting it working`
 ![animation](resources/toh-at-20.svg)
 
 ## Model
