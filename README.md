@@ -8,7 +8,7 @@ Everything you need can be found in the 'resources' folder of this repository. T
 ![editor](resources/buildingsScreenShot.png)
 
 ### When animated, it moves like so:
-![animation](toh-at-20.svg)
+![animation](resources/toh-at-20.svg)
 
 ## Model
 ### Overview
