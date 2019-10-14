@@ -1,4 +1,11 @@
 # Easy Animator
+
+This program was written to practice object-oriented programming best practices and S.O.L.I.D. principles. It follows the Model-View-Controller (MVC) programming framework and is written in Java, with user-interface making use of Java Swing. The program is meant to create visual animations based on text files that denote where and when shapes should move in the animation. It supports plain text, SVG, visual, and editable view types. Below is a description of how to get it up and running, as well as an in-depth description of each interface and its purpose.
+
+### Getting it working
+Everything you need can be found in the 'resources' folder of this repository. To use the animator, simply download the JAR file and any .txt files you wish to animate. Then, in a shell, run the following command. java -jar Animator.jar -in demoFile.txt -view text/visual/svg/edit -out outputFile -speed tickPerSecond. The -in and -view commands are mandatory as they determine what is to be animated and how to animate it respectively. The other two are optional. Specifying an output file only makes a difference if you want a text or SVG version of the animation. The speed argument determines the number of ticks per second at which the animation moves (default to 1, so specifying a speed around 30 is recommended).
+
+
 ## Model
 ### Overview
 Most original text from this README descibes our model from Assignment 5. All additions documenting changes from Assignment 5 to 6 will be added below the original text and will be clearly indicated with "CHANGES." All additions documenting changes from Assignment 6 to 7 will be added below to the text and will be indicated with "FINAL CHANGES."
